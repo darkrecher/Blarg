@@ -1,10 +1,12 @@
 # Blarg #
 
-Un jeu vidéo écrit en python et pygame. C'est juste du shoot en 2D. Mais il y a toutes les fioritures d'usage : menu, configuration, sauvegarde des scores, présentation, ...
+Un jeu vidéo écrit en python et pygame. Un shoot en 2D, avec toutes les fioritures d'usage qu'on trouve dans un "vrai" jeu vidéo : menu, configuration, sauvegarde des scores, présentation, ...
 
 ![screenshot in-game blarg](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/screenshot.png)
 
-Vous êtes  un vendeur de fusil à pompe tout ce qu'il y a de plus honnête. Un jour, vous êtes mystérieusement télétransportagé dans un univers parallèle remplis de magiciens dopés aux amphétamines, qui veulent vous transformer en potion de mana. Combien de temps pourrez-vous survivre ?
+![screenshot in-game kawax](https://raw.githubusercontent.com/darkrecher/Kawax/master/doc_diverses/screenshot_menu.png)
+
+Vous êtes un honnête vendeur de fusil à pompe. Un jour, vous êtes mystérieusement télétransportagé dans un univers parallèle remplis de magiciens dopés aux amphétamines. Ils veulent vous transformer en potion de mana. Combien de temps pourrez-vous survivre ?
 
 # Pour jouer #
 
@@ -14,7 +16,7 @@ L'installation est assez simple : télécharger, décompresser le fichier, doubl
 
 # État actuel du machin #
 
-Ce jeu a été développé en 2010-2011. Je mets son code source sur github histoire de me faire mousser. Je suis en train de faire une mini-doc de conception.
+Ce jeu a été terminé en 2011. Je mets son code source sur github histoire de me faire mousser. Je suis en train de faire une mini-doc de conception.
 
 ## Exécution du jeu à partir du code source, conversion en exécutable ##
 
@@ -25,6 +27,10 @@ https://github.com/darkrecher/Kawax/blob/master/doc_diverses/installation_et_exe
 ## Doc de conception ##
 
 En cours, donc.
+
+## Doc de conception du système de menu ##
+
+En cours aussi, donc.
 
 # Crédits #
 
