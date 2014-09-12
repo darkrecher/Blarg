@@ -4,7 +4,7 @@ Un jeu vidéo écrit en python et pygame. Un shoot en 2D, avec toutes les fiorit
 
 ![screenshot in-game blarg](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/screenshot.png)
 
-![screenshot in-game kawax](https://raw.githubusercontent.com/darkrecher/Kawax/master/doc_diverses/screenshot_menu.png)
+![screenshot in-game blarg menu](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/screenshot_menu.png)
 
 Vous êtes un honnête vendeur de fusil à pompe. Un jour, vous êtes mystérieusement télétransportagé dans un univers parallèle remplis de magiciens dopés aux amphétamines. Ils veulent vous transformer en potion de mana. Combien de temps pourrez-vous survivre ?
 
