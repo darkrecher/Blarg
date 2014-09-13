@@ -23,3 +23,18 @@ Le jeu en lui-même, sans le système de menu, est entièrement géré par la cl
     # exécuté dans MaiClass.mactPlaySeveralGames
     self.theGame.playOneGame(self.archivist.dicKeyMapping, dogDom)
 
+Les paramètres nécessaires sont les suivants :
+
+ - `self.screen` : objet `pygame.surface.Surface`. Représente l'écran sur lequel s'affichera le jeu.
+
+ - `self.scoreManager` : classe stockant le score de la partie en cours. Permet de récupérer le score final à la fin de la partie.
+
+ - `self.fontDefault` : objet `pygame.font.Font`. Police de caractère utilisé pour afficher les textes durant le jeu. (principalement le score).
+
+ - `self.archivist.dicKeyMapping` : dictionnaire effectuant la correspondance entre des touches du clavier, et les actions du joueur. (définissable par le joueur, via le menu de configuration).
+
+ - `dogDom` : booléen indiquant si le mode invincible est activé ou pas.
+
+## Diagramme de classe. ##
+
+plus tard.
