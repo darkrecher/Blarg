@@ -37,4 +37,42 @@ Les paramètres nécessaires sont les suivants :
 
 ## Diagramme de classe. ##
 
-plus tard.
+TODO : Plus tard.
+
+## Description du rôle de chaque classe ##
+
+### game/Game ###
+
+Classe principale gérant le jeu en lui-même. Contient la game loop.
+
+### sprsimpl/SpriteSimple ###
+
+Classe héritée de pygame.sprite.Sprite. Permet de gérer des sprites avec des mouvements simples (vitesse initiale + accélération), des enchaînements d'images simples (en boucle), et des conditions de "fin de vie" simples (au bout d'un certain temps, lorsqu'il est en dehors de l'écran). Il faut exécuter la méthode `update` à chaque cycle de jeu pour faire évoluer le sprite.
+
+### sprsiman/SpriteSimpleManager ###
+
+Contient une liste de `SpriteSimple`. Effectue leurs update, et les supprime de la liste lorsqu'ils sont arrivés en fin de vie.
+
+### lamoche/Lamoche ###
+
+Classe héritée de pygame.sprite.Sprite. Permet d'afficher un texte à l'écran. Je l'ai appelé "lamoche" pour faire une blague par rapport au mot "label". Voilà, c'est drôle.
+
+### herobody/HeroBody ###
+
+Héritée de pygame.sprite.Sprite. Affiche le corps du héros. Le choix de l'image à afficher se fait en appelant la méthode changeImg. C'est au code extérieur de décider quelle image afficher en fonction de ce qu'il se passe dans le jeu.
+
+### herohead/HeroHead ###
+
+Héritée de pygame.sprite.Sprite. Affiche la tête du héros. Gère un peu plus de choses que la classe HeroBody :
+
+ - le tournage de tête à gauche et à droite : fonctions `turnHead`. (Appelée lorsque le héros meurt)
+ - l'action de sourire : fonction `startSmiling` et `stopSmiling`. (Appelée lorsque le héros fait exploser un magicien en bouillie).
+ - l'arrêt automatique du sourire au bout de quelques secondes : fonction `update`.
+
+### cobulmag/CollHandlerBulletMagi ###
+
+TODO : ce fichier contient plein d'explications sur les différents états du magicien, et comment il passe de l'un à l'autre.
+Je ne sais pas si ça a sa place à cet endroit là. Le fait est que c'est à cet endroit là.
+
+Exécute la fonction Magician.hitByBullet(Damage)
+
