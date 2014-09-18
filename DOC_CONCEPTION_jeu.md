@@ -57,6 +57,8 @@ Contient une liste de `SpriteSimple`. Effectue leurs update, et les supprime de 
 
 Classe héritée de pygame.sprite.Sprite. Permet d'afficher un texte à l'écran. Je l'ai appelé "lamoche" pour faire une blague par rapport au mot "label". Voilà, c'est drôle.
 
+Cette classe est également utilisée dans l'interface de menu.
+
 ### herobody/HeroBody ###
 
 Héritée de pygame.sprite.Sprite. Affiche le corps du héros. Le choix de l'image à afficher se fait en appelant la méthode changeImg. C'est au code extérieur de décider quelle image afficher en fonction de ce qu'il se passe dans le jeu.
@@ -71,8 +73,36 @@ Héritée de pygame.sprite.Sprite. Affiche la tête du héros. Gère un peu plus
 
 ### cobulmag/CollHandlerBulletMagi ###
 
-TODO : ce fichier contient plein d'explications sur les différents états du magicien, et comment il passe de l'un à l'autre.
-Je ne sais pas si ça a sa place à cet endroit là. Le fait est que c'est à cet endroit là.
+ - Calcul du trajectoire des balles tirées par le héros. À chaque tir, il y en a 3 qui partent : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanées.
 
-Exécute la fonction Magician.hitByBullet(Damage)
+ - Gestion des collisons entre les balles et les magiciens.
+
+Lorsqu'une balle touche un magicien, cette classe exécute la fonction `Magician.hitByBullet(Damage)`. La valeur renvoyée indique si le magicien est encore vivant, s'il s'est fait tuer, ou exploser. La classe renvoie le nombre total de magiciens tués et explosés par le tir.
+
+D'autre part, ce fichier de code contient des explications détaillées sur les différents états d'un magicien, et les passages d'un état à un autre.
+Je ne sais pas si ça a sa place à cet endroit, mais c'est ainsi. Tralalali.
+
+### cohermag/CollHandlerHeroMagi ###
+
+Gestion des collisions entre le héros (tête + corps) et les magiciens.
+
+Lorsqu'une collision a lieu, on envoie le stimuli `takeStimuliHurt(theMagician.rect)` au héros, et le stimuli `TakeStimuliTouchedHero()` au magicien.
+
+Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans l'état `HURT`. Et lorsque le héros est dans cet état, on ne lui envoie plus de stimuli de collision. Cela permet d'éviter que le héros se fasse toucher plusieurs fois en peu de temps, ce qui ne serait pas très gentil pour le joueur.
+
+### ammoview/AmmoViewer ###
+
+Affiche les cartouches à gauche de l'écran. Gère toutes les animations liés à ces cartouches :
+
+ - reload : le héros vient de recharger. Une cartouche supplémentaire est affichée en bas de la pile de cartouche.
+ - fire : la balle la plus haute disparaît, et un nuage de fumée est dessinée. la douille reste.
+ - rearm : la douille tout en haut, ainsi que toutes les autres cartouches de la pile, sont déplacées d'un cran vers le haut. À la fin, la douille disparaît.
+
+Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes. (`takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`).
+
+## Vocabulaire ##
+
+takeStimuli
+
+
 
