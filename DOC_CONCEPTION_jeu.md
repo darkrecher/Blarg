@@ -1,6 +1,6 @@
 # Document de conception de Blarg (jeu) #
 
-Ce document décrit la manière dont est organisé le code du jeu. Le code du  système d'interface (menu principal, config, ...) sera décrit dans un autre document (pas encore fait).
+Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) sera décrit dans un autre document, qui n'est pas encore fait.
 
 ## Introduction ##
 
@@ -16,7 +16,7 @@ Au démarrage du programme, le système d'interface est initialisé. Ensuite, lo
  - Afficher l'écran de fin de partie (avec le héros transformé en potion de mana)
  - Éventuellement, redémarrer une partie, et ainsi de suite.
 
-Le jeu en lui-même, sans l'interface, est géré par la classe `game.py/Game`. Pour démarrer une partie, il faut exécuter les fonctions suivantes :
+Le jeu en lui-même, sans l'interface, est géré par la classe `game.py/Game`. Pour démarrer une partie, les fonctions suivantes sont exécutées :
 
     # Instanciation (appelée par MainClass.__init__)
     self.theGame = Game(self.screen, self.scoreManager, self.fontDefault)
@@ -31,9 +31,9 @@ Les paramètres nécessaires sont les suivants :
 
  - `self.scoreManager` : classe stockant le score de la partie en cours. Permet de récupérer le score final à la fin de la partie.
 
- - `self.fontDefault` : objet `pygame.font.Font`. Police de caractère utilisé pour afficher les textes. (le score, et il aurait pu y avoir d'autres textes, mais y'en n'a pas).
+ - `self.fontDefault` : objet `pygame.font.Font`. Police de caractère utilisé pour afficher tous les textes durant le jeu. (en fait, il n'y a que le score à afficher).
 
- - `self.archivist.dicKeyMapping` : dictionnaire effectuant la correspondance entre des touches du clavier, et les actions du joueur. (Défini par le joueur, dans le menu de configuration).
+ - `self.archivist.dicKeyMapping` : dictionnaire effectuant la correspondance entre des touches du clavier et les actions. Il est défini par le joueur, dans le menu de configuration.
 
  - `dogDom` : booléen indiquant si le mode invincible est activé ou pas.
 
@@ -67,19 +67,19 @@ Héritée de `pygame.sprite.Sprite`. Affiche le corps du héros. Le choix de l'i
 
 ### herohead/HeroHead ###
 
-Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Gère un peu plus de choses que la classe `HeroBody` :
+Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Elle est d'un niveau un peu plus haut que la classe `HeroBody`, et gère donc un peu plus de choses :
 
  - Tournage de tête à gauche et à droite : fonction `turnHead`. (Appelée lorsque le héros meurt)
- - Le  sourire : fonction `startSmiling` et `stopSmiling`. (Appelées lorsque le héros fait exploser un magicien en bouillie).
- - L'arrêt automatique du sourire au bout de quelques secondes : fonction `update`.
+ - Sourire : fonction `startSmiling` et `stopSmiling`. (Appelées lorsque le héros fait exploser un magicien en bouillie).
+ - Arrêt automatique du sourire au bout de quelques secondes : fonction `update`.
 
 ### cobulmag/CollHandlerBulletMagi ###
 
- - Calcul du trajectoire des balles tirées par le héros. À chaque tir, il y en a 3 qui partent : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
+ - Calcul de la trajectoire des balles tirées par le héros. À chaque tir, il y en a 3 qui partent : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
 
  - Gestion des collisons entre les balles et les magiciens.
 
-Lorsqu'une balle touche un magicien, cette classe exécute la fonction `Magician.hitByBullet(Damage)`. La valeur renvoyée indique l'état du magicien  (vivant/ tué/explosé). La classe renvoie le nombre total de magiciens tués et explosés par le tir.
+Lorsqu'une balle touche un magicien, cette classe exécute la fonction `Magician.hitByBullet(Damage)`. La valeur renvoyée indique l'état du magicien  (vivant/tué/explosé). La classe renvoie le nombre total de magiciens tués et explosés par le tir.
 
 D'autre part, ce fichier de code contient des explications détaillées sur les différents états d'un magicien, et les passages d'un état à un autre.
 Je ne sais pas si ça a sa place à cet endroit, mais c'est ainsi. Tralalali.
@@ -102,9 +102,19 @@ Affiche les cartouches à gauche de l'écran, et gère leurs animations :
 
 Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes. (`takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`).
 
+### scoremn/ScoreManager ###
+
+
+
+### archiv/Archivist ###
+
+plus tard
+
+
 ## Vocabulaire ##
 
 takeStimuli
 
 dogDom
 
+mact*
