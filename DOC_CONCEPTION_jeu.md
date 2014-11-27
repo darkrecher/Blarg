@@ -40,6 +40,7 @@ Les paramètres nécessaires sont les suivants :
 ## Diagramme de classe. ##
 
 TODO : Plus tard.
+(le scoreManager et l'archivist sont liés)
 
 ## Description du rôle de chaque classe ##
 
@@ -92,19 +93,23 @@ Lorsqu'une collision a lieu, on envoie le stimuli `takeStimuliHurt(theMagician.r
 
 Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans l'état `HURT`. On ne lui envoie pas d'autres stimuli de collision tant qu'il reste dans cet état. Cela permet d'éviter que le héros se fasse toucher plusieurs fois en peu de temps, ce qui ne serait pas très gentil pour le joueur.
 
+### scoremn/ScoreManager ###
+
+Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe qui gère le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
+
+Au fur et à mesure de la partie, récupère le nombre de magiciens explosés, et le nombre de magiciens tués sans être explosé. Met à jour le score de la partie en cours, les high scores, et les nombres totaux en fonction.
+
+À la fin de la partie, renvoie à l'archivist les stats mises à jour, qui les enregistrera dans le fichier.
+
 ### ammoview/AmmoViewer ###
 
 Affiche les cartouches à gauche de l'écran, et gère leurs animations :
 
  - reload : le héros vient de recharger. Une cartouche supplémentaire est affichée en bas de la pile.
- - fire : la balle la plus haute disparaît, et un nuage de fumée est dessiné. la douille reste.
- - rearm : la douille tout en haut, ainsi que toutes les autres cartouches de la pile, sont déplacées progressivement vers le haut. À la fin, la douille disparaît.
+ - fire : la balle la plus haute disparaît, et un nuage de fumée est dessiné. La douille reste.
+ - rearm : la douille tout en haut, ainsi que toutes les autres cartouches de la pile, sont déplacées progressivement vers le haut. À la fin, la douille du haut disparaît.
 
 Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes. (`takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`).
-
-### scoremn/ScoreManager ###
-
-
 
 ### archiv/Archivist ###
 

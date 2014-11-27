@@ -25,8 +25,8 @@ classe qui fait la gestion du score, des hiscore, des stats, tout ça
 vocab :
 
 stat/playerStat : c'est les valeurs récupérées depuis l'archivist, qui les a
-récupérées depuis le fichier de sauvegarde.
-pour un joueur en particulier. jouer une partie peut faire changer les stats.
+récupérées depuis le fichier de sauvegarde,pour un joueur en particulier.
+Jouer une partie peut faire changer les stats.
 Mais les stats ne reflètent pas l'historique total des parties jouées.
 
 playerData : équivalent des playerStat, mais c'est celles qui sont enregistrées
