@@ -38,12 +38,12 @@ comment on va gérer ça ? il faut que chaque BulletShell soit un minimum indépend
  - nbrOfReloadToDo : pareil.
  - nbrOfFireToDo : pareil pareil
 
-bon je me pique de vouloir faire des bullets qui se réaffiche pas tout le temps.
+bon je me pique de vouloir faire des bullets qui se réaffichent pas tout le temps.
 Mais du coup, c'est un peu le bronsk.
 
 J'utilise la variable AmmoViewer.isUpdatingSthg, qui permet d'indiquer au code extérieur
 qu'il s'est passé un changement quelconque dans les bullets, et qu'il faut donc les rafraîchir.
-(Les sprites à afficher se trouve tous dans AmmoViewer.groupBulShell)
+(Les sprites à afficher se trouvent tous dans AmmoViewer.groupBulShell)
 Donc à chaque cycle, le code extérieur doit faire les trucs suivants :
 
  - AmmoViewer.determineIsUpdatingSthg() pour remettre à jour la variable AmmoViewer.isUpdatingSthg
@@ -154,7 +154,7 @@ class AmmoViewer():
         decalTwoBulletShell_Y = heightBulletShell + SPACING_Y_BULLETS
         self.decalTwoBulletShell = pyRect(0, decalTwoBulletShell_Y)
 
-        #liste des BulletShell chargé (on les voit à l'écran)
+        #liste des BulletShell chargées (on les voit à l'écran)
         self.listBulShellLoaded = []
         #liste des BulletShell pas chargé (on les voit pas).
         self.listBulShellToLoad = []
@@ -222,7 +222,7 @@ class AmmoViewer():
             boolean. self.isUpdatingSthg
 
         TRODO : c'est pas tout à fait optimisé comme truc. La variable isUpdatingSthg
-        est utilisé par le code principal, pour savoir si faut updater à l'écran
+        est utilisée par le code principal, pour savoir si faut updater à l'écran
         le groupe de sprite contenant les BulletShell.
         Je met cette variable à True dès qu'il y a un truc en cours. Mais c'est pas
         pour ça que des sprites ont bougé / changé d'image. Si on est en train de compter
@@ -251,7 +251,7 @@ class AmmoViewer():
             self.isUpdatingSthg = True
 
         #Vérifie si il faut démarrer une animation de tirage d'un coup
-        #Pareil, le fire instantané. (Y'a juste à virer la cartouche).
+        #Pareil, le fire est instantané. (Y'a juste à virer la cartouche).
         #La BulletSmoke n'influe pas sur self.isUpdatingSthg,
         #vu qu'elle est pas géré par l'ammoviewer
         if self.nbrOfFireToDo > 0:
@@ -319,7 +319,7 @@ class AmmoViewer():
         #conversion rect -> tuple de mouvement. (C'est chiant de devoir faire ça)
         moveRearming = MOVEMENT_REARMING[self.cursorRearmMovement].topleft
 
-        #on applique le piti mouvement sur tous les BulletShell chargés
+        #on applique le piti mouvement sur tous les BulletShell chargées
         for (sprShell, sprBullet) in self.listBulShellLoaded:
             sprShell.rect.move_ip(moveRearming)
             sprBullet.rect.move_ip(moveRearming)
@@ -335,7 +335,7 @@ class AmmoViewer():
     def endRearm(self):
         """
         fonction effectuant les trucs à faire à la fin d'un réarmement.
-        Il y a une BulletShell qui est sorti du chargeur.
+        Il y a une BulletShell qui est sortie du chargeur.
         Donc il faut la transférer de la liste des BulShell loaded
         vers la liste des BulShell to load (sans la perdre en route).
         """
@@ -375,7 +375,7 @@ class AmmoViewer():
         self.groupBulShell.add(sprShell)
         self.groupBulShell.add(sprBullet)
 
-        #ajout du BulletShell dans la liste des to load
+        #ajout du BulletShell dans la liste des loaded
         self.listBulShellLoaded.append((sprShell, sprBullet))
 
         #réactualisation de la position de la prochaine BulletShell à charger.

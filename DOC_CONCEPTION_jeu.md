@@ -111,6 +111,22 @@ Affiche les cartouches à gauche de l'écran, et gère leurs animations :
 
 Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes. (`takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`).
 
+La classe contient des fonctions à appeler à chaque cycle, pour faire jouer les animations des cartouches, ajouter/enlever celles qui se rechargent, celles qui sont tirées, etc. Le blabla en début de fichier me semble suffisamment clair à ce sujet.
+
+### lifeview/LifePointViewer ###
+
+Affiche les points de vie du joueur, en haut à gauche de l'écran (sous forme d'image représentant des vestes en jean, parce que c'est rigolo).
+
+Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean, pour la faire disparaître progressivement. Le "progressivement" étant un peu aléatoire, pour faire quelque chose de joli et classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier.
+
+Le code extérieur doit donc appeler, à chaque cycle, une fonction determineIsUpdatingSthg, pour savoir si il y a un clignotement en cours, et appeler update, pour gérer cedit clignotement.
+
+Cette classe ne gère pas la mort du héros, lorsqu'il n'a plus de point de vie. Elle ne prévient pas le code extérieur le héros n'a plus de points de vie. En gros, elle ne fait pas du tout de "game logic", juste de l'affichage.
+
+
+
+
+
 ### archiv/Archivist ###
 
 plus tard

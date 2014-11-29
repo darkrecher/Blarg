@@ -22,15 +22,16 @@ date de la dernière relecture-commentage : 01/10/2010
 
 la classe pour gérer l'affichage des points de vie. ( = les vestes en jean)
 
-Dans tout ce module de code, "veste en jean" et "life point", ça désigne ezguegtement la meme choz
+Dans tout ce module de code, "veste en jean" et "life point", ça désigne ezguegtement la même choz
 
 Lorsque le joueur perd un point de vie, on supprime pas tout de suite
 la veste en jean correspondante. On la fait clignoter un peu. C'est classe.
 
  --- comment c'est foutu, la gestion du clignotement quand on perd un point de vie ? ---
-Je voulais faire un clignotement, mais qui diminue. Et de manière randomisatoire.
+J'ai fait un clignotement, mais qui diminue de manière randomisatoire.
 donc y'a deux curseurs.
 le blinkCounter et le blinkRandomCursor.
+
 A chaque cycle :
 
   si le blinkRandomCursor > blinkCounter, la veste est affiché, sinon , elle ne l'est pas.
@@ -44,7 +45,7 @@ A chaque cycle :
       toujours en total random de 0 à 50
   pour que ça tombe juste, le blinkRandomEnd et le blinkRandomCursor sont tout le temps
   des multiples de 5. A tout moment. En fait il y a une "RandomGrid", représentant
-  le domaine de valeurs autorisées pour blinkRandomCursor et blinkRandomEnd.
+  le domaine de valeurs autorisé pour blinkRandomCursor et blinkRandomEnd.
   Ce domaine de valeur est : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 (ou pas 50, osef)
 """
 
@@ -227,7 +228,7 @@ class LifePointViewer():
 
         # --- ajout d'un life point en cours de clignotage ---
 
-        #cet ajout et fait si il faut virer au moins un life point, et si y'a
+        #cet ajout est fait si il faut virer au moins un life point, et si y'a
         #pas d'autres life point en cours de clignotage.
         if self.lifePointToRemove > 0 and self.blinkCounter is NONE_COUNT:
 
