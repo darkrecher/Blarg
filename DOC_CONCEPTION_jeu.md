@@ -119,13 +119,11 @@ Affiche les points de vie du joueur, en haut à gauche de l'écran (sous forme d
 
 Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean, pour la faire disparaître progressivement. Le "progressivement" étant un peu aléatoire, pour faire quelque chose de joli et classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier.
 
-Le code extérieur doit donc appeler, à chaque cycle, une fonction determineIsUpdatingSthg, pour savoir si il y a un clignotement en cours, et appeler update, pour gérer cedit clignotement.
+Le code extérieur doit donc appeler, à chaque cycle, une fonction determineIsUpdatingSthg, pour savoir si il y a un clignotement en cours, et appeler update, pour gérer cedit clignotement. 
 
-Cette classe ne gère pas la mort du héros, lorsqu'il n'a plus de point de vie. Elle ne prévient pas le code extérieur le héros n'a plus de points de vie. En gros, elle ne fait pas du tout de "game logic", juste de l'affichage.
+Pour le code extérieur, la seule chose intéressante à récupérer de cette classe est le groupe de sprite "groupLifePoints", contenant toutes les vestes en jean à afficher à un instant donné (tient compte des clignotements).
 
-
-
-
+Cette classe ne gère pas la mort du héros. Elle ne prévient pas le code extérieur lorsque le héros n'a plus de points de vie. Elle ne fait pas du tout de "game logic". Elle indique juste des sprites à afficher.
 
 ### archiv/Archivist ###
 
