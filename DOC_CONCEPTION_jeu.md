@@ -56,6 +56,14 @@ Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec de
 
 Contient une liste de `SpriteSimple`. Effectue leurs update, et les supprime de la liste lorsqu'ils sont arrivés en fin de vie.
 
+### sprsigen/SpriteSimpleGenerator ###
+
+Générateur de `SpriteSimple` prédéfinis, correspondant à des éléments spécifiques du jeu (Le "prout" d'un magicien qui meurt en s'envolant, la flamme du fusil du héros, ...)
+
+Le `SpriteSimpleGenerator` contient une référence vers un `SpriteSimpleManager`, dans lequel il ajoutera les sprites générés.
+
+Cette classe est équivalente à un gros tas de constantes, permettant de générer des sprites avec des images, des mouvements et une configuration prédéfinies. La seule génération un peu plus complexe est celle des bras et des têtes coupées de magiciens. Ce sont des SpriteSimple comme les autres, mais il y a un petit traitement initial (avec du random) pour déterminer les images effectuant les gigotages et le tournoiement.
+
 ### lamoche/Lamoche ###
 
 Classe héritée de `pygame.sprite.Sprite`. Permet d'afficher un texte à l'écran. Je l'ai appelé "lamoche" pour faire une blague par rapport au mot "label". Voilà, c'est drôle.
@@ -123,8 +131,37 @@ Le code extérieur doit donc appeler, à chaque cycle, une fonction determineIsU
 
 Cette classe ne gère pas la mort du héros, lorsqu'il n'a plus de point de vie. Elle ne prévient pas le code extérieur le héros n'a plus de points de vie. En gros, elle ne fait pas du tout de "game logic", juste de l'affichage.
 
+### hero/Hero ###
 
+Gère tout le bazar concernant le héros :
 
+ - Affichage.
+
+ - Récupération des stimulis (ordre envoyés par le joueur, collision avec les magiciens)
+
+ - Mouvement, limitation de la position aux bords de l'aire de jeu.
+
+nécessite les images du héros.
+
+construit le herohead et le herobody.
+
+génération de sprite :
+
+ - douille qui vole et retombe à chaque réarmement.
+
+ - flamme qui sort du fusil quand le héro tire.
+
+ - sang qui gicle quand le héro se fait toucher.
+
+Super machine à état qui tue.
+
+stockage des stimulis.
+
+Quand on tire, tout est déclenché instantanément (calcul de trajectoire, envoi de stimulis aux magiciens, ...)
+
+mouvement de hurt.
+
+animation de crevage.
 
 
 ### archiv/Archivist ###
@@ -139,3 +176,11 @@ takeStimuli
 dogDom
 
 mact*
+
+NONE_COUNT
+
+
+
+
+
+
