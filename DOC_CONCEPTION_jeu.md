@@ -133,6 +133,7 @@ Pour le code extérieur, la seule chose intéressante à récupérer de cette cl
 
 Cette classe ne gère pas la mort du héros. Elle ne prévient pas le code extérieur lorsque le héros n'a plus de points de vie. Elle ne fait pas du tout de "game logic". Elle indique juste des sprites à afficher.
 
+
 ### hero/Hero ###
 
 Gère tout le bazar concernant le héros :
@@ -143,27 +144,109 @@ Gère tout le bazar concernant le héros :
 
  - Mouvement, limitation de la position aux bords de l'aire de jeu.
 
-nécessite les images du héros.
+ - Gestion des points de vie, animation de la mort du héros quand il n'a plus de points de vie.
 
-construit le herohead et le herobody.
+ - Gestion du nombre de cartouche.
 
-génération de sprite :
 
- - douille qui vole et retombe à chaque réarmement.
+Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Il instancie de lui-même les deux objets `heroHead` et `heroBody`.
 
- - flamme qui sort du fusil quand le héro tire.
+Le héros envoie directement ses ordres à deux objets `ammoViewer` et `lifePointViewer` (réarmement, perte d'un point de vie, ...). Cependant, la mise à jour de ces deux objets (fonction update) est effectuée dans la fonction principale `game.py/playOneGame`.
 
- - sang qui gicle quand le héro se fait toucher.
+Il possède également un `spriteSimpleGenerator`, lui permettant de générer les sprites suivants, quand y'a besoin :
 
-Super machine à état qui tue.
+ - Douille qui s'envole et retombe à chaque réarmement.
 
-stockage des stimulis.
+ - Flamme sortant du fusil à chaque tir.
 
-Quand on tire, tout est déclenché instantanément (calcul de trajectoire, envoi de stimulis aux magiciens, ...)
+ - Sang qui gicle lorsque le héro se fait toucher.
 
-mouvement de hurt.
 
-animation de crevage.
+La classe contient une super machine à état (variable membre `stateMachine`) permettant de gérer les comportements suivants :
+
+ - Rechargements et réarmements.
+
+ - Images du heroBody à afficher en fonction de l'action en cours. Enchaînement automatique de ces images.
+
+ - Prise en compte des stimulis, ou stockage des stimulis si l'état actuel ne permet pas de le prendre immédiatement en compte.
+
+ - Prise en compte des contraintes (par exemple : on recharge automatiquement après un tir si plus de cartouche)
+
+ - Déclenchement d'un tir.
+
+Les explications détaillées de chaque état, ainsi que les contraintes implémentées, sont décrites dans la fonction `definestateMachine`.
+
+
+
+Détail des actions déclenchées quand on tire (après avoir vérifié qu'il y a au moins une cartouche, et que l'état actuel permet de tirer) :
+
+ - Changement d'état dans la machine à état.
+
+ - Diminution du nombre de cartouche.
+
+ - Envoi d'un son (bruit de coup de feu)
+
+ - Indication qu'il faut réarmer. (La machine à état le prendra en compte le moment venu)
+
+ - Détermination de la position exacte d'où partent les bullets.
+
+ - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets`
+
+    - Calcul de la trajectoire des 3 bullets partant du fusil.
+
+    - Détermination des collision entre les bullets et les magiciens.
+
+    - Envoi des stimulis de dégâts aux magiciens touchés.
+
+ - Récupération du nombre de magiciens tués et explosés par le tir.
+
+ - Envoi de ces deux nombres au `scoreManager` (augmentation du score courant, des totaux, des high scores, ...)
+
+ - Si au moins un magicien a été explosé, modification du sprite `heroHead` pour le faire sourire.
+
+ - Génération d'un `simpleSprite` : la flamme au bout du fusil.
+
+ - Remise à zéro du stimuli de FIRE, puisqu'il vient d'être effectué.
+
+Toutes ces actions sont donc déclenchées automatiquement et instantanément. Les objets extérieurs sont directement contactés. On ne passe pas par le game.py pour envoyer des messages entre objets (par exemple, pour envoyer les points de dégâts aux magiciens).
+
+
+Détail des actions déclenchées quand le héros se fait toucher (après avoir détecté une collision entre le héros et un magicien) :
+
+ - Vérification que le héros n'est pas déjà dans un état où il a mal, ni où il est en train de mourir. (On est invincible pendant un petit temps juste après s'être fait toucher).
+
+ - Diminution des points de vie de 1 (sauf si mode invincible)
+
+ - Envoi d'un ordre au `lifePointViewer` pour afficher une veste en jean de moins (sauf si mode invincible).
+
+ - Suppression du sourire sur le `heroHead`.
+
+ - Annulation des stimulis stockées de tir et de rechargement. Le joueur n'aura qu'à réappuyer sur la touche correspondant. C'est comme ça, c'est le jeu.
+
+ - Détermination du mouvement de Hurt, en fonction de la position relative du héros et du magicient qui l'a touché. (Lorsque le héro a mal, il recule pendant quelques cycles, dans la direction opposée au magicien)
+
+ - Modification de l'image du `heroBody`. Gestion pourrie des décalages de sprite parce que j'ai pas implémenté de hotSpot.
+
+ - Si il reste des points de vie :
+
+    - Génération de Simple Sprite (gouttes de sang).
+
+    - Changement de l'état actuel en l'état `HURT`.
+
+    - Envoi d'un son ("argl !")
+
+ - Sinon (le héros doit mourir)
+
+    - Pas de génération de gouttes de sang, mais déclenchement du compteur de génération de gouttes de sang. (Le sang giclera en continu pendant quelques secondes).
+
+    - Changement de l'état actuel en l'état `DYING`.
+
+    - L'animation de mort (la tête qui se tourne de droite à gauche, les sons, ...) sont gérés par la machine à état, qui effectue toutes ces actions lorsque l'état est `DYING`.
+
+    - Au bout de quelques secondes, la machine à état passera de `DYING` à `DEAD`.
+
+
+La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `game.py/playOneGame` examine périodiquement l'état de la machine, et arrête la partie si cet état est `DEAD`.
 
 ### archiv/Archivist ###
 
