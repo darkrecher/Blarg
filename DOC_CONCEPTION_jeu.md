@@ -48,13 +48,25 @@ TODO : Plus tard.
 
 Classe principale gérant le jeu en lui-même. Contient la game loop.
 
+Rappel concernant pygame : un "group" de sprite est une classe définie dans pygame, permettant d'effectuer la même action sur un ensemble de sprite : update, draw, clear, ...
+
+TODO : expliquer ça mieux. (allSprites / spriteSimpleGroup)
+
+TODO : Rappel concernant les groupe de sprite dans pygame. clear, draw, update. Qui s'occupe de ça pour les spriteSimple.
+
+TODO : lister les différents groupe de sprite présent dans Game, et ce qu'il y a dedans.
+
 ### sprsimpl/SpriteSimple ###
 
 Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec des mouvements simples (vitesse initiale + accélération), des enchaînements d'images simples (en boucle), et des conditions de destruction simples (après x boucles / en quittant l'écran). Il faut exécuter la méthode `update` à chaque cycle de jeu pour faire évoluer le sprite.
 
 ### sprsiman/SpriteSimpleManager ###
 
-Contient une liste de `SpriteSimple`. Effectue leurs update, et les supprime de la liste lorsqu'ils sont arrivés en fin de vie.
+Contient une groupe de `SpriteSimple`. Effectue leurs update, et les supprime de ce groupe lorsqu'ils sont arrivés en fin de vie.
+
+À la création, on passe au manager un gros groupe, contenant tous les sprites (par exemple, un `pygame.sprite.RenderUpdates`). Le manager s'occupe d'ajouter/enlever de ce groupe les `SpriteSimple` dont il a la charge, au fur et à mesure de leur création/suppression.
+
+C'est le code extérieur qui s'occupera de dessiner ce groupe de sprites. Mais il ne s'occupe pas de les updater. Les update sont fait dans d'autres classes, selon le type de Sprite.
 
 ### sprsigen/SpriteSimpleGenerator ###
 
@@ -247,6 +259,52 @@ Détail des actions déclenchées quand le héros se fait toucher (après avoir 
 
 
 La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `game.py/playOneGame` examine périodiquement l'état de la machine, et arrête la partie si cet état est `DEAD`.
+
+### magician/Magician ###
+
+Cette classe hérite de `pygame.sprite.Sprite`. Elle possède une machine à état, (plus simple que celle du héros). Lorsqu'on l'instancie, on lui passe un `spriteSimpleGenerator`, ce qui lui permet de créer des Simple Sprite lorsque c'est nécessaire.
+
+#### cycle de vie ####
+
+instanciation
+
+création d'un Sprite Simple pour l'animation d'apparition
+
+
+`currentState = APPEARING`
+
+dans le groupe game.groupMagicianAppearing. updaté, mais pas drawé.
+
+fonction magician.update exécute la fonction magician.updateAppearing : ne fait rien, à part attendre que l'animation du Simple Sprite se termine.
+
+
+`currentState = ALIVE`
+
+dans le groupe `game.groupMagician` et `game.allSprites`. updaté et drawé.
+
+la fonction `magician.updateNormal` est exécutée. Elle est censé s'occuper des mouvements, de la montée de level du magicien, etc. Dans la classe de base, elle ne fait rien.
+
+
+`currentState = DYING`
+
+updaté et drawé.
+
+Ça dépend du type de mort. Mais quand rotate et shit, le magicien ne reste pas plus d'un cycle dans cet état. Quand c'est dying naked, il y reste plus longtemps. (voir plus loin)
+
+
+`currentState = DEAD`
+
+retiré des deux groupes. ni updaté ni drawé. l'objet `magician` est garbage-collecté.
+
+
+#### animation de mort ####
+
+TODO
+
+#### dérivation de la classe ####
+
+TODO
+
 
 ### archiv/Archivist ###
 
