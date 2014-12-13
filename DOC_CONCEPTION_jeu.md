@@ -305,44 +305,55 @@ La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `ga
 
 ### magician/Magician ###
 
-Cette classe hérite de `pygame.sprite.Sprite`. Elle possède une machine à état, (plus simple que celle du héros). Lorsqu'on l'instancie, on lui passe un `spriteSimpleGenerator`, ce qui lui permet de créer des Simple Sprite lorsque c'est nécessaire.
+Cette classe hérite de `pygame.sprite.Sprite`. Lorsqu'on l'instancie, on lui passe un `spriteSimpleGenerator`, ce qui lui permet de créer des Simple Sprite lorsque c'est nécessaire.
+
+Il s'agit de la classe de base, définissant le comportement générique d'un magicien : apparition, gestion des collision avec le héros et les balles, animations de mort. Elle ne définit pas les mouvements. Ceux-ci sont définis dans les classes héritées.
+
+Le magician possède une machine à état (plus simple que celle du héros). L'état courant est stocké dans le membre `currentState`.
 
 #### cycle de vie ####
 
-instanciation
+ - Instanciation d'un `Magician`
 
-création d'un Sprite Simple pour l'animation d'apparition
+    - création d'un `spriteSimple`, représentant l'animation d'apparition du magicien. (Que au début ça ressemble à une bite bleue, puis ça prend la forme du magicien). On conserve une référence vers ce sprite, afin de savoir quand l'animation se termine.
+
+    - La game loop place le nouveau magicien dans le groupe de sprite `Game.groupMagicianAppearing`, mais pas dans `Game.allSprites`. C'est à dire que le magicien est updaté, mais pas dessiné.
+
+ - `currentState = APPEARING`.
+
+    - La fonction `Magician.update` exécute la fonction `Magician.updateAppearing`. Cette fonction ne fait rien, à part attendre que l'animation du SpriteSimple d'apparition se termine. Lorsque c'est le cas, on passe à l'état suivant.
+
+ - `currentState = ALIVE`
+
+    - La game loop sort le magicien du groupe `Game.groupMagicianAppearing`, pour le placer dans deux groupes à la fois : `game.groupMagician` et `game.allSprites`. Le magicien est donc updaté et dessiné à chaque cycle de jeu.
+
+    - La fonction `Magician.update` exécute la fonction `magician.updateNormal`. Elle est censée s'occuper des mouvements, de la montée de level, etc. Dans la classe de base, cette fonction ne fait rien. Le magicien reste immobile.
+
+ - `currentState = HURT`
+
+    - (Cet état est facultatif, si le magicien perd tous ses points de vie d'un coup, il passe directement de l'état `ALIVE` à `DYING` ou `BURSTING`.)
+
+    - Exécution de la fonction `updateHurt` à chaque cycle de jeu. Fonction à overrider. Au bout d'un moment, le magicien revient à l'état `ALIVE`.
+
+ - `currentState = DYING / BURSTING`
+
+    - Le magicien passe dans l'état `BURSTING` lorsqu'il se prend 3 bullets d'un seul coup. Ça arrive lorsque le héros lui tire dessus d'assez près, puisqu'un tir génère trois bullets, qui partent dans 3 directions un petit peu différentes. Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
+
+    - Il passe dans l'état `DYING` lorsqu'il n'a plus de points de vie (il en a 2 au départ). Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
+
+         * shit : le magicien se transforme en caca.
+         * rotate : il tournoie dans les airs puis retombe.
+         * naked : il s'envole tout nu, tout en faisant des prouts.
+
+    - Pour les animations bursting, shit et rotate, le magicien génère immédiatement un ou plusieurs `simpleSprite` correspondant à l'animation. Puis, dès le cycle de jeu suivant, il passe directement à l'état `DEAD`. L'animation n'est pas gérée par la classe elle-même.
+
+    - Pour l'animation naked, c'est un peu plus compliquée. Il faut effectuer des petits mouvements aléatoires gauche et droite, tout en allant vers le haut, et en générant de temps en temps des mini `spriteSimple` de fumée de prout, tout en émettant des mini-sons de prouts. Oui oui, tout cela est génial. Tout cela est effectué par le magician, avec la fonction `updateDyingNaked`.
+
+ - `currentState = DEAD`
+
+    - La game loop retire le magicien des deux groupes de sprites. Il n'est plus updaté ni drawé, et il finit par être garbage-collecté puisqu'il n'est plus référencé nul part.
 
 
-`currentState = APPEARING`
-
-dans le groupe game.groupMagicianAppearing. updaté, mais pas drawé.
-
-fonction magician.update exécute la fonction magician.updateAppearing : ne fait rien, à part attendre que l'animation du Simple Sprite se termine.
-
-
-`currentState = ALIVE`
-
-dans le groupe `game.groupMagician` et `game.allSprites`. updaté et drawé.
-
-la fonction `magician.updateNormal` est exécutée. Elle est censé s'occuper des mouvements, de la montée de level du magicien, etc. Dans la classe de base, elle ne fait rien.
-
-
-`currentState = DYING`
-
-updaté et drawé.
-
-Ça dépend du type de mort. Mais quand rotate et shit, le magicien ne reste pas plus d'un cycle dans cet état. Quand c'est dying naked, il y reste plus longtemps. (voir plus loin)
-
-
-`currentState = DEAD`
-
-retiré des deux groupes. ni updaté ni drawé. l'objet `magician` est garbage-collecté.
-
-
-#### animation de mort ####
-
-TODO
 
 #### dérivation de la classe ####
 
