@@ -2,11 +2,13 @@
 
 Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) sera décrit dans un autre document, qui n'est pas encore fait.
 
+
 ## Introduction ##
 
 Le code est assez densément commenté. Ce document se bornera donc à décrire sommairement le but de chaque classe.
 
 Durant la réalisation de ce jeu, le PEP8 a été foulé aux pieds, écartelé, équarri et humilié en place publique par des petits enfants jetant des cailloux. C'est la faute à l'entreprise dans laquelle je bossais à l'époque, qui m'a appris à coder en python avec les conventions de nommage du C++. Il va falloir faire avec !
+
 
 ## Lancement d'une partie ##
 
@@ -37,10 +39,39 @@ Les paramètres nécessaires sont les suivants :
 
  - `dogDom` : booléen indiquant si le mode invincible est activé ou pas.
 
+
 ## Diagramme de classe. ##
 
 TODO : Plus tard.
 (le scoreManager et l'archivist sont liés)
+
+
+## Rappel : fonctionnement des sprites avec pygame ##
+
+Les sprites sont gérés par des objets `pygame.sprite.Sprite`. Durant un cycle de jeu, il faut effectuer les actions suivantes :
+
+ - Pour chaque sprite :
+
+    - Effacer à l'écran le rectangle englobant le sprite (selon sa position et la taille de son image). Si il y a une image de fond, il faut la redessiner par-dessus.
+
+    - Exécuter la fonction `Sprite.update()` (qu'on a overridé). Cette fonction modifie la position et/ou l'image courante du sprite.
+
+    - Exécuter la fonction `Sprite.draw()`. Dessine le sprite à l'écran.
+
+- Exécuter la fonction `pygame.display.flip()`, afin de rafraîchir l'écran et d'afficher tous les changements d'un seul coup. (Double buffer, tout ça...)
+
+Pygame permet de faciliter ce traitement, avec les groupes de sprite, en particulier, les `pygame.sprite.RenderUpdates`. On commence par mettre des sprites dans le groupe, avec la fonction `RenderUpdates.add()`. Ensuite, à chaque cycle de jeu, il faut effectuer les actions suivantes :
+
+ - `RenderUpdates.clear()`, en indiquant en paramètre l'écran, et l'image de fond à redessiner. Cette fonction enregistre en interne une liste de "rectangle sales". C'est à dire les zones de l'écran sur lesquelles un sprite a été clearé.
+
+ - Pour chaque sprite : exécuter sa fonction `update()`. On peut le faire individuellement, ou appeler la fonction `RenderUpdates.update()`, qui va updater tous les sprites du groupe.
+
+ - `listDirtyRects = RenderUpdates.draw()`. Dessine à l'écran tous les sprites du groupe. Renvoie la liste de rectangle sales, correspondants à toutes les zones de l'écran sur laquelle quelque chose a changé (du clear, du draw, ou les deux, pour un ou plusieurs sprites).
+
+ - Exécuter la fonction `pygame.display.flip()`, pour rafraîchir tout l'écran. Ou bien, si on veut être un peu plus subtil, exécuter `pygame.display.update(listDirtyRects)`. Cela rafraîchira uniquement les zones nécessaires.
+
+Durant le jeu, on peut ajouter et enlever des sprites du groupe, avec les fonctions `add` et `remove`. Il faut le faire après le `clear`, et avant le `draw`.
+
 
 ## Description du rôle de chaque classe ##
 
@@ -48,25 +79,24 @@ TODO : Plus tard.
 
 Classe principale gérant le jeu en lui-même. Contient la game loop.
 
-Rappel concernant pygame : un "group" de sprite est une classe définie dans pygame, permettant d'effectuer la même action sur un ensemble de sprite : update, draw, clear, ...
+Cette classe contient un groupe `RenderUpdates`, appelé `allSprites`. Il contient tous les sprites du jeu à afficher actuellement. La game loop exécute la fonction `clear` et `draw` de `allSprites`.
 
-TODO : expliquer ça mieux. (allSprites / spriteSimpleGroup)
+Elle n'exécute pas la fonction `update`. Cette action est effectuée par divers autres modules du jeu. J'ai voulu faire comme ça car certains objets du jeu (en particulier le héros) sont représentés par plusieurs sprites. Il fallait donc mettre le code de gestion de ces objets dans des classes dédiées, et non pas dans un update d'un sprite quelconque qu'on n'aurait pas su exactement lequel.
 
-TODO : Rappel concernant les groupe de sprite dans pygame. clear, draw, update. Qui s'occupe de ça pour les spriteSimple.
-
-TODO : lister les différents groupe de sprite présent dans Game, et ce qu'il y a dedans.
 
 ### sprsimpl/SpriteSimple ###
 
-Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec des mouvements simples (vitesse initiale + accélération), des enchaînements d'images simples (en boucle), et des conditions de destruction simples (après x boucles / en quittant l'écran). Il faut exécuter la méthode `update` à chaque cycle de jeu pour faire évoluer le sprite.
+Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec des mouvements simples (vitesse initiale + accélération), des enchaînements d'images simples (en boucle), et des conditions de destruction simples (après x boucles / en quittant l'écran).
+
 
 ### sprsiman/SpriteSimpleManager ###
 
 Contient une groupe de `SpriteSimple`. Effectue leurs update, et les supprime de ce groupe lorsqu'ils sont arrivés en fin de vie.
 
-À la création, on passe au manager un gros groupe, contenant tous les sprites (par exemple, un `pygame.sprite.RenderUpdates`). Le manager s'occupe d'ajouter/enlever de ce groupe les `SpriteSimple` dont il a la charge, au fur et à mesure de leur création/suppression.
+À la création, on passe au manager le gros groupe `allSprites`. Le manager s'occupe d'updater, et d'ajouter/enlever de ce groupe les `SpriteSimple` dont il a la charge, au fur et à mesure de leur création/suppression.
 
-C'est le code extérieur qui s'occupera de dessiner ce groupe de sprites. Mais il ne s'occupe pas de les updater. Les update sont fait dans d'autres classes, selon le type de Sprite.
+Le manager ne s'occupe pas de dessiner ses sprites. C'est le code extérieur qui s'occupe de cette tâche, par le fait que ces sprites sont dans le groupe `allSprites`.
+
 
 ### sprsigen/SpriteSimpleGenerator ###
 
@@ -76,15 +106,18 @@ Le `SpriteSimpleGenerator` contient une référence vers un `SpriteSimpleManager
 
 Cette classe est équivalente à un gros tas de constantes, permettant de générer des sprites avec des images, des mouvements et une configuration prédéfinies. La seule génération un peu plus complexe est celle des bras et des têtes coupées de magiciens. Ce sont des SpriteSimple comme les autres, mais il y a un petit traitement initial (avec du random) pour déterminer les images effectuant les gigotages et le tournoiement.
 
+
 ### lamoche/Lamoche ###
 
 Classe héritée de `pygame.sprite.Sprite`. Permet d'afficher un texte à l'écran. Je l'ai appelé "lamoche" pour faire une blague par rapport au mot "label". Voilà, c'est drôle.
 
 Cette classe est également utilisée dans le système d'interface.
 
+
 ### herobody/HeroBody ###
 
 Héritée de `pygame.sprite.Sprite`. Affiche le corps du héros. Le choix de l'image à afficher se fait en appelant la méthode `changeImg`. C'est au code extérieur de décider quelle image afficher en fonction de ce qu'il se passe dans le jeu.
+
 
 ### herohead/HeroHead ###
 
@@ -93,6 +126,7 @@ Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Elle est d'un n
  - Tournage de tête à gauche et à droite : fonction `turnHead`. (Appelée lorsque le héros meurt)
  - Sourire : fonction `startSmiling` et `stopSmiling`. (Appelées lorsque le héros fait exploser un magicien en bouillie).
  - Arrêt automatique du sourire au bout de quelques secondes : fonction `update`.
+
 
 ### cobulmag/CollHandlerBulletMagi ###
 
@@ -105,6 +139,7 @@ Lorsqu'une balle touche un magicien, cette classe exécute la fonction `Magician
 D'autre part, ce fichier de code contient des explications détaillées sur les différents états d'un magicien, et les passages d'un état à un autre.
 Je ne sais pas si ça a sa place à cet endroit, mais c'est ainsi. Tralalali.
 
+
 ### cohermag/CollHandlerHeroMagi ###
 
 Gestion des collisions entre le héros (tête + corps) et les magiciens.
@@ -113,6 +148,7 @@ Lorsqu'une collision a lieu, on envoie le stimuli `takeStimuliHurt(theMagician.r
 
 Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans l'état `HURT`. On ne lui envoie pas d'autres stimuli de collision tant qu'il reste dans cet état. Cela permet d'éviter que le héros se fasse toucher plusieurs fois en peu de temps, ce qui ne serait pas très gentil pour le joueur.
 
+
 ### scoremn/ScoreManager ###
 
 Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe qui gère le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
@@ -120,6 +156,7 @@ Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe q
 Au fur et à mesure de la partie, récupère le nombre de magiciens explosés, et le nombre de magiciens tués sans être explosé. Met à jour le score de la partie en cours, les high scores, et les nombres totaux en fonction.
 
 À la fin de la partie, renvoie à l'archivist les stats mises à jour, qui les enregistrera dans le fichier.
+
 
 ### ammoview/AmmoViewer ###
 
@@ -132,6 +169,7 @@ Affiche les cartouches à gauche de l'écran, et gère leurs animations :
 Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes. (`takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`).
 
 La classe contient des fonctions à appeler à chaque cycle, pour faire jouer les animations des cartouches, ajouter/enlever celles qui se rechargent, celles qui sont tirées, etc. Le blabla en début de fichier me semble suffisamment clair à ce sujet.
+
 
 ### lifeview/LifePointViewer ###
 
@@ -160,8 +198,9 @@ Gère tout le bazar concernant le héros :
 
  - Gestion du nombre de cartouche.
 
-
 Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Il instancie de lui-même les deux objets `heroHead` et `heroBody`.
+
+#### Fonctionnement global du héros ####
 
 Le héros envoie directement ses ordres à deux objets `ammoViewer` et `lifePointViewer` (réarmement, perte d'un point de vie, ...). Cependant, la mise à jour de ces deux objets (fonction update) est effectuée dans la fonction principale `game.py/playOneGame`.
 
@@ -172,7 +211,6 @@ Il possède également un `spriteSimpleGenerator`, lui permettant de générer l
  - Flamme sortant du fusil à chaque tir.
 
  - Sang qui gicle lorsque le héro se fait toucher.
-
 
 La classe contient une super machine à état (variable membre `stateMachine`) permettant de gérer les comportements suivants :
 
@@ -188,9 +226,11 @@ La classe contient une super machine à état (variable membre `stateMachine`) p
 
 Les explications détaillées de chaque état, ainsi que les contraintes implémentées, sont décrites dans la fonction `definestateMachine`.
 
+#### Tir ####
 
+Le tir est déclenché après avoir vérifié qu'il y a au moins une cartouche, et que l'état actuel de la machine à état permet de tirer.
 
-Détail des actions déclenchées quand on tire (après avoir vérifié qu'il y a au moins une cartouche, et que l'état actuel permet de tirer) :
+Détail des actions effectuée :
 
  - Changement d'état dans la machine à état.
 
@@ -222,6 +262,7 @@ Détail des actions déclenchées quand on tire (après avoir vérifié qu'il y 
 
 Toutes ces actions sont donc déclenchées automatiquement et instantanément. Les objets extérieurs sont directement contactés. On ne passe pas par le game.py pour envoyer des messages entre objets (par exemple, pour envoyer les points de dégâts aux magiciens).
 
+#### Collision avec un magicien ####
 
 Détail des actions déclenchées quand le héros se fait toucher (après avoir détecté une collision entre le héros et un magicien) :
 
@@ -257,8 +298,10 @@ Détail des actions déclenchées quand le héros se fait toucher (après avoir 
 
     - Au bout de quelques secondes, la machine à état passera de `DYING` à `DEAD`.
 
+#### Fin de partie ####
 
 La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `game.py/playOneGame` examine périodiquement l'état de la machine, et arrête la partie si cet état est `DEAD`.
+
 
 ### magician/Magician ###
 
@@ -308,7 +351,7 @@ TODO
 
 ### archiv/Archivist ###
 
-plus tard
+TODO plus tard
 
 
 ## Vocabulaire ##
