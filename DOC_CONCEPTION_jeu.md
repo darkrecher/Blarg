@@ -84,6 +84,11 @@ Cette classe contient un groupe `RenderUpdates`, appelé `allSprites`. Il contie
 Elle n'exécute pas la fonction `update`. Cette action est effectuée par divers autres modules du jeu. J'ai voulu faire comme ça car certains objets du jeu (en particulier le héros) sont représentés par plusieurs sprites. Il fallait donc mettre le code de gestion de ces objets dans des classes dédiées, et non pas dans un update d'un sprite quelconque qu'on n'aurait pas su exactement lequel.
 
 
+### common ###
+
+TODO
+
+
 ### sprsimpl/SpriteSimple ###
 
 Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec des mouvements simples (vitesse initiale + accélération), des enchaînements d'images simples (en boucle), et des conditions de destruction simples (après x boucles / en quittant l'écran).
@@ -472,10 +477,22 @@ Il y a parfois un peu de random dans la détermination des coordonnées (espacem
 Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder`, afin de l'assister dans la généreration des patterns qu'il renvoie. (C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
 
 
+### hardmana ###
+
+TODO
+
+### maggenwa ###
+
+TODO
+
 ### archiv/Archivist ###
 
-TODO plus tard
+TODO
 
+
+### yargler ###
+
+TODO
 
 ## Vocabulaire ##
 
