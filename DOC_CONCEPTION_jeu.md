@@ -410,6 +410,46 @@ Plus le `level` du magirand est haut, plus ses accélérations et sa vitesse max
 Lorsque le magicrand est touché, la fonction `updateHurt` est exécutée. Cette fonction arrête les mouvements aléatoires pendant quelques cycles, et effectue un mouvement de recul, vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse nulle.
 
 
+### maggen/MagicianGenerator ###
+
+Cette classe génère les magiciens durant le jeu. Elle utilise un `MagicianWaveGenerator` pour savoir quoi générer, et quand. (Voir plus loin).
+
+Le `MagicianGenerator` possède une référence vers le groupe de sprite `Game.groupMagicianAppearing`. La génération d'un magicien est effectuée par la fonction `MagicianGenerator.generateOneMagician`. Elle consiste à instancier un magicien, et à l'ajouter dans le groupe de sprite. (En même temps, on joue un son, pour faire cool).
+
+La génération durant le jeu est définie par des "patterns". Il y en a de différents types : par exemple, une ligne de magicien en haut de l'écran, ou un cercle autour du héros, ou un certain nombre placés au hasard, ...
+
+Un pattern, quel que soit son type, est une liste. Chaque élément est un tuple, représentant un magicien à générer. Le tuple contient deux sous-éléments :
+
+ - "Delay" : nombre de cycle à attendre avant de générer ce magicien. Ce nombre est cumulatif. Par exemple, si le premier magicien du pattern à 4 cycles d'attente, et le second 2 cycles, alors le second devra attendre 6 cycles au total pour être généré. L'ordre des éléments du pattern est donc significatif. Si plusieurs magiciens à la suite ont un delay de 0, ils apparaîtront tous en même temps.
+
+ - Un sous-tuple, contenant les caractéristiques du magicien à générer :
+
+    - magiType : type du magicien : magiline (déplacement le long d'une ligne) ou magirand (déplacement au hasard).
+    - position de départ.
+    - position d'arrivée. (Utile seulement pour les magiline).
+    - level de départ du magicien.
+
+Le MagicianGenerator possède une liste de patterns. À chaque cycle, lors de l'appel de la fonction `MagicianGenerator.update`, les actions suivantes sont effectuées :
+
+ - Diminution du compteur de temps  avant la prochaine vague de magicien.
+
+ - Éventuellement, diminution du compteur de temps bonus (voir plus loin).
+
+ - Si il n'y a plus de temps, on demande au `MagicianWaveGenerator` de générer une nouvelle vague. Cela créera de nouveaux patterns, qu'on ajoute à la liste.
+
+ - Pour chaque pattern de la liste :
+
+    - Diminution de 1 du delay du premier élément. Lorsqu'on atteint 0, on génère un magicien, et éventuellement les magiciens suivants, si ils ont aussi un delay de 0.
+    - Suppression des patterns n'ayant plus d'éléments.
+
+Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, en exécutant la fonction `takeStimuliNoMoreActiveMagi`. Cette fonction modifie le temps de génération avant la prochaine vague de magicien, et éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir plus loin).
+
+
+### maggenlc/MagicianListCoordBuilder ###
+
+
+
+
 
 ### archiv/Archivist ###
 
@@ -426,7 +466,7 @@ mact*
 
 NONE_COUNT
 
-
+pat, pattern, genPattern.
 
 
 

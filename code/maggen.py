@@ -86,7 +86,7 @@ class MagicianGenerator():
 
         #liste des premiers paramètres à transmettre aux fonctions constructeurs de magi.
         #les param suivants ne sont pas fixes, donc on les fabriquera le moment venu.
-        self.paramGeneration = (self.dicMagicienImg, 
+        self.paramGeneration = (self.dicMagicienImg,
                                 self.spriteSimpleGenerator)
 
         #liste des pattern de génération de magicien en cours. La classe dépile le
@@ -121,7 +121,7 @@ class MagicianGenerator():
         génère un magicien et le place sur l'aire de jeu.
 
         entées :
-            magiType : tpye du magicien : MAGI_BASE, MAGI_LINE, MAGI_RAND
+            magiType : type du magicien : MAGI_BASE, MAGI_LINE, MAGI_RAND
             posStart : Rect. Coordonnées de départ du magicien.
             posEnd   : Rect. Utile seulement pour les MAGI_LINE.
                        Coordonnée d'arrivée du magicien.
@@ -155,7 +155,7 @@ class MagicianGenerator():
         """
         fonction exécutéee par le code extérieur. Permet d'indiquer à cette
         classe qu'il n'y a plus aucun magicien actifs dans l'aire de jeu.
-        (voir bla-bla du constructeur de cette classe pour une définition de "magicien actif"
+        (voir bla-bla de la fonction Game.isMagicianActive pour une définition de "magicien actif")
         """
 
         #Le stimuli a déjà été pris en compte. On se casse tout de suite
