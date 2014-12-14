@@ -447,8 +447,29 @@ Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le j
 
 ### maggenlc/MagicianListCoordBuilder ###
 
+Classe contenant des fonctions "statiques", qui renvoient deux listes de coordonnées (coord de début, coord de fin), ou bien une liste de coord de début, et "None". Ces listes de coordonnées sont ensuite utilisées pour les patterns de génération de magicien.
 
+Cette classe contient une référence vers le héros. Elle n'en fait rien de spécial, c'est uniquement pour récupérer la position courante du héros.
 
+On ne transmet pas aux `MagicianListCoordBuilder` les autres infos liées au pattern : type de magicien à générer, délai entre magiciens, levels, ... Elle n'en n'a pas besoin, elle ne calcule que les coordonnées. Par contre elle a besoin du nombre de magiciens.
+
+Ces fonctions sont les suivantes :
+
+ - `generateLinePattern` : coordonnées en ligne, horizontale ou verticale. Les coordonnées de début sont d'un côté de l'écran, celles de fin sont de l'autre côtés. On peut avoir la liste des coordonnées de fin inversées par rapport à celles du début. C'est à dire que les magiciens, au lieu de tous avancer le long de lignes parallèles, vont avancer en se croisant au centre. (Le magicien en haut à gauche termine en bas à droite, etc.).
+
+ - `generateDiagPattern` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. On place un premier magicien sur une diagonale, un second sur la suivante, et ainsi de suite, puis on revient sur la première diagonale, et ainsi de suite-suite.
+
+ - `generateRandPattern` : coordonnées complètement au hasard. Aussi bien le départ que l'arrivée.
+
+ - `generateCirclePattern` : coordonnées le long d'un cercle. Le centre du cercle est la position courante du héros.
+
+ - `generatePattern` : fonction générique. On lui passe un type de pattern, et elle appelle l'une des 4 fonctions ci-dessus, en fonction.
+
+Pour chacune de ces fonctions, on précise si on veut la liste de coordonnées de fin, ou si on veut juste None. Lorsqu'on a prévu de générer des magirand, il n'y a pas besoin de déterminer les coordonnées de fin, puisque ce type de magicien se déplace au hasard.
+
+Il y a parfois un peu de random dans la détermination des coordonnées (espacement entre les magiciens, ordre dans un sens ou dans l'autre, etc.). Rien de significatif pour la difficulté du jeu. Car la gestion de la difficulté est faite par le `MagicianWaveGenerator`.
+
+Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder`, afin de l'assister dans la généreration des patterns qu'il renvoie. (C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
 
 
 ### archiv/Archivist ###
