@@ -86,7 +86,7 @@ Elle n'exécute pas la fonction `update`. Cette action est effectuée par divers
 
 ### common ###
 
-TODO
+Module contenant un tas de petites fonctions et de constantes utiles un peu partout. Voir commentaire de chaque fonction et constante pour des infos détaillées.
 
 
 ### sprsimpl/SpriteSimple ###
@@ -477,13 +477,57 @@ Il y a parfois un peu de random dans la détermination des coordonnées (espacem
 Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder`, afin de l'assister dans la généreration des patterns qu'il renvoie. (C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
 
 
-### hardmana ###
+### hardmana/HardMana ###
 
-TODO
+La génération des magiciens se fait par vagues. La difficulté des vagues doit être à peu près progressive, mais en même temps, il faut qu'il y ait du hasard. Afin de répondre à ces besoins, on met en place la notion de "hardMana".
 
-### maggenwa ###
+Le hardMana est une valeur numérique entière. Il représente une quantité de "points", que le `MagicianWaveGenerator` peut dépenser pour augmenter la difficulté de la prochaine vague à générer. À chaque nouvelle vague, on redonne du hardMana au `MagicianWaveGenerator`. On lui en donne de plus en plus au fur et à mesure de la partie.
 
-TODO
+Lors de la génération d'une nouvelle vague, le hardMana disponible est réparti en plusieurs quantités, chacune attribué à un type de dépense spécifique. Les "achats" d'élément de la vague sont décidés en fonction de la quantité alloué.
+
+De plus, lorsque le joueur élimine tous les magiciens d'une vague en peu de temps, on le récompense. On lui attribue de l'"antiHardMana". Un point d'antiHarM annule un point de hardMana.
+
+Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana`, qui sert à gérer une quantité de hardMana. Cette classe permet d'effectuer les opérations suivantes :
+
+ - Lire la quantité actuelle de hardMana, en ajouter, en retirer.
+
+ - `payGeneric` : décide de payer ou pas pour quelque chose (par exemple : un pattern en plus, un magicien en plus dans un pattern, une montée de niveau d'un magicien, ...). La décision se fait en fonction d'un coefficient, et de la quantité de hardMana actuelle. Plus la quantité et le coefs sont haut, plus on a de chances de le payer. (Il faut bien évidemment avoir suffisamment de hardMana).
+
+ - `dispatch` : répartit la quantité actuelle dans deux classes hardMana, selon un coefficient de répartition déterminé plus ou moins au hasard.
+
+ - `chooseAndPay` : choisit un élément (ou rien) parmi une liste de chose à payer, chacune ayant un coût et un coefficient de probabilité de payage. On choisit parmi ce qu'on peut permettre de s'acheter.
+
+ - `divide` : répartit équitablement la quantité actuelle en plusieurs classes `HardMana`.
+
+ - `antiHarMDebuff` : applique de l'antiHarm. Les quantités d'antiHarm sont également gérées par des classes `HardMana`. Sauf que quand on met ensemble du hardMana et de l'antiHarm, ça s'annule.
+
+
+### maggenwa/MagicianWaveGenerator ###
+
+Gère la génération successive des vagues de magiciens.
+
+#### déroulement de la génération des vagues, durant la partie ####
+
+ - Au début de la partie, la classe `Game` instancie un `MagicianGenerator`, qui s'instancie un `MagicianWaveGenerator`.
+
+ - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0. La quantité de hardMana allouée à chaque nouvelle vague à créer est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague.
+
+ - La variable `MagicianGenerator.counterNextWave` est initialisé à 0. Donc on crée automatiquement une première vague, en exécutant la fonction `MagicianWaveGenerator.elaborateNextWave`.
+
+ - Même avec un hardMana initiale de 0, cela crée un magicien. Car le premier pattern de generation d'une vague est gratuit, et le premier magicien d'un pattern est gratuit aussi. Donc la fonction `elaborateNextWave` renvoie toujours au moins un pattern. Elle renvoie également une variable numérique `timeWave` : nombre de cycle avant la génération de la prochaine vague. Ce temps est calculé par le `MagicianWaveGenerator` (voir plus loin pour plus de détails).
+
+ - Le `MagicianGenerator` génère le ou les magiciens définis dans le ou les patterns. (Soit tous d'un coup, soit au fur et à mesure du temps, ça dépend des patterns).
+
+ - `MagicianGenerator.counterNextWave` prend la valeur de `timeWave`. `MagicianGenerator.counterNextWave` diminue de 1 à chaque cycle de jeu.
+
+ - Le héros doit tuer les tous les magiciens de la vague. On imagine qu'il parvient à le faire avant que `MagicianGenerator.counterNextWave` atteigne 0.
+
+ - La fonction `Game.isMagicianActive` détecte qu'il n'y a plus de magiciens actifs. La classe `Game` exécute alors la fonction `MagicianGenerator.takeStimuliNoMoreActiveMagi`.
+
+WIP TODO.
+
+
+#### actions effectuées pour générer une nouvelle vague. ####
 
 ### archiv/Archivist ###
 
@@ -506,6 +550,9 @@ NONE_COUNT
 
 pat, pattern, genPattern.
 
+HardMana, harM
 
+antiHarM
 
+wave
 
