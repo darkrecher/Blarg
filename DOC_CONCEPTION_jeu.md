@@ -311,6 +311,8 @@ Il s'agit de la classe de base, définissant le comportement générique d'un ma
 
 Le magician possède une machine à état (plus simple que celle du héros). L'état courant est stocké dans le membre `currentState`.
 
+Le magician possède un `level` (variable numérique entière). La classe de base ne fait rien de cette variable, elle est censée représenter le niveau de difficulté du magicien. Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiquement à 1, et la fonction `resetToLevelOne` est exécutée. Cela permet de ne pas trop "punir" le joueur. Déjà qu'il se fait toucher et perd un point de vie, on ne va pas en plus lui laisser un magicien ayant un haut `level` à proximité de lui.
+
 #### cycle de vie ####
 
  - Instanciation d'un `Magician`
@@ -354,11 +356,38 @@ Le magician possède une machine à état (plus simple que celle du héros). L'�
     - La game loop retire le magicien des deux groupes de sprites. Il n'est plus updaté ni drawé, et il finit par être garbage-collecté puisqu'il n'est plus référencé nul part.
 
 
+### magiline/MagiLine ###
 
-#### dérivation de la classe ####
+Classe dérivée de `Magician`. Définit un magicien qui se déplace sur une ligne droite. À l'instanciation, on indique (entre autres) la position de départ et la position d'arrivée.
 
-TODO
+Plus le `level` du magiline est haut plus il se déplace vite. Le level lui-même n'augmente pas.
 
+Lorsque le magiline est arrivée à son point de destination, on vérifie s'il n'est pas trop à gauche de l'écran (la limite est définie par la constante `RESPECT_LINE_X`). Si c'est le cas, le joueur ne peut pas le tuer, car il n'a pas assez de place pour se placer à gauche du magiline et lui tirer dessus. (Vu que le héros ne peut pas se retourner, ha ha ha).
+
+À la fin de son mouvement, si le magiline est à gauche de `RESPECT_LINE_X`, il se déplace vers la droite jusqu'à la dépasser. Ensuite, il ne bouge plus du tout.
+
+La fonction `updateNormal`, exécutée à chaque cycle du jeu tant que le magiline est `ALIVE`, exécute la fonction référencée par `currentFuncupdateNorm`. Cette variable pointe sur une fonction d'update qui change selon l'action à faire. Elle peut prendre les valeurs suivantes :
+
+ - updateNormMoveOnLine : mouvement le long de la ligne.
+ - updateNormMoveRespectX : mouvement pour se placer à droite de `RESPECT_LINE_X`.
+ - updateNormStayPut : pas de mouvement.
+
+C'est un peu bizarre de faire comme ça, j'aurais peut-être dû faire un variable de sous-état, et un dictionnaire sous-état -> fonction, comme la classe de base qui a un dictionnaire état ->_fonction. Mais bon, je fais ce qu'on veut, j'ai le droit d'être bizarre.
+
+Lorsque le magiline est touché, la fonction `updateHurt` est exécutée. Cette fonction immobilise le magiline pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne sur laquelle il est censé se déplacer.
+
+
+### magirand/MagiRand ###
+
+Classe dérivée de `Magician`. Définit un magicien qui se déplace au hasard.
+
+Les mouvements ont une inertie. On met du hasard dans les accélérations X et Y. Ces accélérations agissent sur les vitesses de déplacement X et Y, qui agissent sur les positions X et Y.
+
+Le magirand possède une `respectLine` (variable numérique entière, différente pour chaque instance). Elle définit  la position d'une ligne verticale imaginaire. Lorsque le magirand se trouve à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Ça permet de mieux doser la difficulté. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rende le jeu difficile.
+
+Plus le `level` du magirand est haut, plus ses accélérations et sa vitesse maximale sont haute, et plus la `respectLine` se décale vers la droite. Le `level` augmente avec le temps. Toutes ces valeurs sont réinitialisées si le magicrand retombe au niveau 1, lorsqu'il touche le héros.
+
+Lorsque le magicrand est touché, la fonction `updateHurt` est exécutée. Cette fonction arrête les mouvements aléatoires pendant quelques cycles, et effectue un mouvement de recul, vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse nulle.
 
 ### archiv/Archivist ###
 
