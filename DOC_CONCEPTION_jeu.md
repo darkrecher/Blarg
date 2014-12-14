@@ -128,6 +128,26 @@ Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Elle est d'un n
  - Arrêt automatique du sourire au bout de quelques secondes : fonction `update`.
 
 
+### movpoint/MovingPoint ###
+
+classe héritée de `pygame.Rect`. Définit un point dans l'aire de jeu, qui se déplace. On définit la direction de déplacement au moment de l'instanciation. À chaque cycle, on exécute la fonction `advanceOneStep`. La position courante est récupérée par le membre `Rect.topleft`.
+
+Comme on définit un mouvement dans une direction donnée, sans limite, il ne se termine jamais. La fonction `isMoveFinished` renvoie toujours false.
+
+Cette classe est utilisée pour calculer la trajectoire des balles tirées par le héros.
+
+
+### movline/MovingPointOnLine ###
+
+classe héritée de `MovingPoint`. Définit un point dans l'aire de jeu, qui se déplace le long d'un segment de droite. On donne le point d'arrivée et de départ au moment de l'instanciation.
+
+À chaque exécution de `advanceOneStep`, on se déplace d'un pixel (en diagonale ou pas, ça dépend de là où on est). La vitesse n'est donc pas constante entre deux cycles de jeu, mais on s'en fout.
+
+La fonction `IsMoveFinished` renvoie True lorsque le point courant a atteint le point d'arrivée.
+
+Cette classe est utilisée pour calculer la trajectoire des magiciens se déplaçant le long d'une ligne (les `MagiLine`).
+
+
 ### cobulmag/CollHandlerBulletMagi ###
 
  - Calcul de la trajectoire des balles tirées par le héros. À chaque tir, il y en a 3 qui partent : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
@@ -244,7 +264,7 @@ Détail des actions effectuée :
 
  - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets`
 
-    - Calcul de la trajectoire des 3 bullets partant du fusil.
+    - Calcul de la trajectoire des 3 bullets partant du fusil. (une tout droit, une un peu vers le haut, une un peu vers le bas).
 
     - Détermination des collision entre les bullets et les magiciens.
 
@@ -388,6 +408,8 @@ Le magirand possède une `respectLine` (variable numérique entière, différent
 Plus le `level` du magirand est haut, plus ses accélérations et sa vitesse maximale sont haute, et plus la `respectLine` se décale vers la droite. Le `level` augmente avec le temps. Toutes ces valeurs sont réinitialisées si le magicrand retombe au niveau 1, lorsqu'il touche le héros.
 
 Lorsque le magicrand est touché, la fonction `updateHurt` est exécutée. Cette fonction arrête les mouvements aléatoires pendant quelques cycles, et effectue un mouvement de recul, vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse nulle.
+
+
 
 ### archiv/Archivist ###
 

@@ -154,9 +154,9 @@ class MovingPointOnLine(MovingPoint):
         #il faut faire le mouvement sec 2 fois sur 3, ou 455  fois sur 456...
         if self.counterMoveSec >= self.distMain:
 
-            #application du mouvement secondaire
+            #diminution du compteur de mouvement secondaire.
             self.counterMoveSec -= self.distMain
 
-            #diminution du compteur de mouvement secondaire.
+            #application du mouvement secondaire
             self.move_ip(self.secMoveStep)
 
