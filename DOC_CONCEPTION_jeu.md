@@ -510,7 +510,7 @@ Gère la génération successive des vagues de magiciens.
 
  - Au début de la partie, la classe `Game` instancie un `MagicianGenerator`, qui s'instancie un `MagicianWaveGenerator`.
 
- - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0. La quantité de hardMana allouée à chaque nouvelle vague à créer est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague.
+ - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0 (dans la variable `harMTotal`). La quantité  allouée à chaque nouvelle vague à créer est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague (`HARM_INCREMENTATION_OF_INCREMENTATION_PER_WAVE`).
 
  - La variable `MagicianGenerator.counterNextWave` est initialisé à 0. Donc on crée automatiquement une première vague, en exécutant la fonction `MagicianWaveGenerator.elaborateNextWave`.
 
@@ -524,8 +524,17 @@ Gère la génération successive des vagues de magiciens.
 
  - La fonction `Game.isMagicianActive` détecte qu'il n'y a plus de magiciens actifs. La classe `Game` exécute alors la fonction `MagicianGenerator.takeStimuliNoMoreActiveMagi`.
 
-WIP TODO.
+ - Si le temps restant avant la prochaine vague est inférieur à 70 cycles (`DELAY_MAX_BETWEEN_WAVE`), on récompense un peu le joueur : on ne fait rien jusqu'à la prochaine vague. Ça lui laisse le temps de se repositionner et de recharger son fusil.
 
+ - Si le temps est supérieur à 70 cycles, on récompense plus le joueur. On récupère le temps au-delà des 70 cycles, et on l'utilise pour deux choses :
+
+    - création d'antiHarM : 3 cycles de temps bonus créent un point d'antiHarM (`COEF_CONVERSION_HARM_FROM_TIME`). Envoi de cet antiHarM au `MagicianWaveGenerator`, qui le stocke dans sa variable interne `antiHarM`.
+
+    - stockage du temps supplémentaire dans la variable `MagicianGenerator.counterBonusTime`.
+
+ - Le temps avant la génération de la prochaine vague est ramené à 70 cycles, pour pas que le joueur s'ennuie.
+
+ - Génération de la vague suivante. `MagicianWaveGenerator.harMTotal` est augmenté.
 
 #### actions effectuées pour générer une nouvelle vague. ####
 
@@ -553,6 +562,8 @@ pat, pattern, genPattern.
 HardMana, harM
 
 antiHarM
+
+debuff (terme mal choisi mais c'est pas grave)
 
 wave
 
