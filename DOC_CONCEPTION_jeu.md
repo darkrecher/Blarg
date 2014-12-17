@@ -560,12 +560,29 @@ Voir commentaire dans le code. C'est assez détaillé.
 
 ### archiv/Archivist ###
 
-TODO
+Lit et écrit les données (config du jeu, config des touches, scores du joueur) dans le fichier de sauvegarde "dichmama.nil", créé dans le même répertoire que l'application.
+
+Je l'ai appelé "dichmama.nil" parce que je suis quelqu'un de rigolo.
+
+Le format de ce fichier et les interactions avec le code extérieur sont décrites dans le gros commentaire au début de `archiv.py`.
 
 
-### yargler ###
+### yargler/SoundYargler ###
 
-TODO
+Joue les sons. Ceux du jeu, et ceux du système de menu.
+
+Les sons sont organisés par groupe. Un groupe correspond à un événement (ex : coup de feu, magicien qui se prend une balle, ...)
+Il peut y avoir plusieurs sons dans un même groupe. Lorsque l'événement survient, la fonction `playSound` doit être exécutée, en indiquant en paramètre l'identifiant de l'événement. La fonction on choisit un son au hasard parmi ceux du groupe correspondant à l'événement, et le joue.
+
+Ça permet d'avoir un minimum de diversité dans les sons. Un magicien qui meurt fera parfois "Argl", parfois "Heuargl" ou parfois "Ayaaarrr". C'est important.
+
+Le nom des fichiers sons reflète ce rangement par groupe. Le format des noms est le suivant :
+(identifiant du groupe) (index sur 2 chiffres) ".ogg".
+
+La liste des groupes et leurs identifiants sont décrits au début du fichiers (variables `SND_*` et `DICT_SND_FILENAME`).
+
+Pour jouer les sons, on instancie une seule classe `SoundYargler`, dès l'importation du fichier `yargler.py`. L'objet instancié (`theSoundYargler`) n'est pas transmis en paramètre d'une fonction à l'autre. Ce serait lourdingue. On l'importe directement au moment d'importer le fichier. C'est une sorte de singleton à l'arrache.
+
 
 ## Vocabulaire ##
 
@@ -579,14 +596,9 @@ NONE_COUNT
 
 pat, pattern, genPattern.
 
-HardMana, harM
-
-antiHarM
 
 debuff (terme mal choisi mais c'est pas grave)
 
-wave
-
-magiCoefCost
+HardMana, harM, antiHarM, wave, magiCoefCost (voir maggenwa)
 
 

@@ -78,8 +78,6 @@ Le magiCoefCost est utilisé pour :
  - acheter les magiciens d'un pattern
  - augmenter le level des magiciens d'un pattern
  - ... (ouais, c'est facile, de mettre des point-point-point. Eh bien fuck)
-
-voir fichier brouillon_bordel/blabla_generation_magicien.txt
 """
 
 from common import (randRange, SHIFT_PREC, NOT_FLOATING_PREC)

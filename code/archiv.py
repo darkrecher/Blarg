@@ -49,7 +49,7 @@ Ensuite on a la config des touches. Qui s'applique à tous les joueurs :
                 le déduire automatiquement quand même. Enfin c'est un peu bizarre.
                 Voir menuzcon.py
 
-Bien Réchèr. T'as pété dans le bus. Ca sent le soufre. Tu vas tuer tout le monde avec tes
+Trip:Bien Réchèr. T'as pété dans le bus. Ca sent le soufre. Tu vas tuer tout le monde avec tes
 conneries. En plus les gens vont passer à côté de toi. Et pif et paf. Et pif et paf.
 Baisse la tête. Reste concentré. Fais semblant de rien. Tout le monde n'y verra et
 sentira que du fuego. FUEGO !!
@@ -599,7 +599,7 @@ class Archivist():
         Par contre, pour les joueurs, on s'en fout des bouts d'infos éventuellement récupéré.
         On réinitialisera tout avec les valeurs par défaut. (Ca se passe pas ici, mais dans la
         fonction initAndSaveNewArchive.
-        C'est un peu bizarre de faire comme ça. Mais là j'ai plus envie de changer. De toutes 
+        C'est un peu bizarre de faire comme ça. Mais là j'ai plus envie de changer. De toutes
         façons, si jamais je fais une nouvelle version, y'aura vraiment du multi-profil. Et faudra
         repenser entièrement ce putain d'archivist.
         """

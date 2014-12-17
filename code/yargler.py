@@ -80,7 +80,7 @@ DICT_SND_FILENAME = {
 #on a déjà, autre part, un dico faisant la correspondance entre des booléens et
 #le son activé ou pas. C'est le menuzcon.GLOB_DATA_SOUND_FROM_TICK_VALUE.
 #Mais les booleans n'on pas la même signification.
-#Y'a le boolean de la case à cocher du son. Et le boolean de "doit-on jouer des sons ou pas.
+#Y'a le boolean de la case à cocher du son. Et le boolean de "doit-on jouer des sons ou pas".
 #Moi je dis que c'est pas les même, que d'abord que même que ouais.
 DIC_SOUND_ENABLED_FROM_GLOB_DATA = {
     SOUND_ENABLED   : True,
