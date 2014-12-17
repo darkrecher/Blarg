@@ -501,6 +501,7 @@ Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana`, qui se
 
  - `antiHarMDebuff` : applique de l'antiHarm. Les quantités d'antiHarm sont également gérées par des classes `HardMana`. Sauf que quand on met ensemble du hardMana et de l'antiHarm, ça s'annule.
 
+Tous les coefficients sont indiqués en 128ème. C'est un choix personnel d'implémentation, qui est peut-être discutable. Mais moi personnellement, je ne le discute pas, parce que je suis tout seul dans ma tête. (Je suis tout seul dans ma tête, n'est-ce pas ?).
 
 ### maggenwa/MagicianWaveGenerator ###
 
@@ -508,9 +509,9 @@ Gère la génération successive des vagues de magiciens.
 
 #### déroulement de la génération des vagues, durant la partie ####
 
- - Au début de la partie, la classe `Game` instancie un `MagicianGenerator`, qui s'instancie un `MagicianWaveGenerator`.
+ - Au début de la partie, la classe `Game` instancie un `MagicianGenerator`, qui s'instancie pour lui-même un `MagicianWaveGenerator`.
 
- - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0 (dans la variable `harMTotal`). La quantité  allouée à chaque nouvelle vague à créer est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague (`HARM_INCREMENTATION_OF_INCREMENTATION_PER_WAVE`).
+ - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0 (dans la variable `harMTotal`). La quantité allouée à chaque nouvelle vague à créer est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague (`HARM_INCREMENTATION_OF_INCREMENTATION_PER_WAVE`).
 
  - La variable `MagicianGenerator.counterNextWave` est initialisé à 0. Donc on crée automatiquement une première vague, en exécutant la fonction `MagicianWaveGenerator.elaborateNextWave`.
 
@@ -518,7 +519,9 @@ Gère la génération successive des vagues de magiciens.
 
  - Le `MagicianGenerator` génère le ou les magiciens définis dans le ou les patterns. (Soit tous d'un coup, soit au fur et à mesure du temps, ça dépend des patterns).
 
- - `MagicianGenerator.counterNextWave` prend la valeur de `timeWave`. `MagicianGenerator.counterNextWave` diminue de 1 à chaque cycle de jeu.
+ - `MagicianGenerator.counterNextWave` prend la valeur de `timeWave`.
+
+ - exécution de `MagicianGenerator.update` à chaque cycle de jeu : `MagicianGenerator.counterNextWave` diminue de 1.
 
  - Le joueur doit tuer les tous les magiciens de la vague. On imagine qu'il parvient à le faire avant que `MagicianGenerator.counterNextWave` atteigne 0.
 
@@ -534,17 +537,26 @@ Gère la génération successive des vagues de magiciens.
 
  - Le temps avant la génération de la prochaine vague est ramené à 70 cycles, pour pas que le joueur s'ennuie.
 
- - Génération de la vague suivante. `MagicianWaveGenerator.harMTotal` est augmenté, `MagicianWaveGenerator.incrForHarM` aussi.
+ - `MagicianWaveGenerator.harMTotal` est augmenté, `MagicianWaveGenerator.incrForHarM` aussi.
 
  - Utilisation de l'antiHarM stocké pour diminuer `MagicianWaveGenerator.harMTotal`. On utilise au maximum 40 points d'antiHarM. Le reste est toujours stocké dans `MagicianWaveGenerator.antiHarM`, et sera utilisé pour les prochaines vagues.
 
- - Le joueur doit tuer les tous les magiciens de la vague. On imagine que ça lui prend du temps, et que `MagicianGenerator.counterNextWave` atteint 0.
+ - Génération de la nouvelle vague de magicien, par la fonction `MagicianWaveGenerator.elaborateNextWave`, qui dépense le hardMana contenu dans `harMTotal`.
 
- - On ne génère pas encore la vague suivante. On décrémente `MagicianGenerator.counterBonusTime`, de 1 à chaque cycle. Si le joueur parvient à tuer tous les magiciens actifs, on génère immédiatement la v
+ - Le joueur doit tuer les tous les magiciens de la vague. On imagine que ça lui prend du temps, et que `MagicianGenerator.counterNextWave` atteint 0 alors qu'il reste encore des magiciens actifs.
 
-WIP
+ - On ne génère pas encore la vague suivante. On décrémente `MagicianGenerator.counterBonusTime`, de 1 à chaque cycle. Si le joueur parvient à tuer tous les magiciens actifs, on génère immédiatement la vague suivante, et on conserve le reste de `MagicianGenerator.counterBonusTime` pour plus tard.
 
-#### actions effectuées pour générer une nouvelle vague. ####
+ - Sinon, on vide tout le temps de bonus, et lorsqu'il atteint 0, on génère la vague suivante, même si il reste encore des magiciens actifs.
+
+ - Et ainsi de suite, vague après vague ... (trip: peu à peu, vague à vague, goutte à goutte, miette à miette et cœur à cœur).
+
+#### Actions effectuées pour générer une nouvelle vague. ####
+
+Toutes ces actions sont effectuées par la fonction `MagicianWaveGenerator.elaborateNextWave`.
+
+Voir commentaire dans le code. C'est assez détaillé.
+
 
 ### archiv/Archivist ###
 
@@ -574,4 +586,7 @@ antiHarM
 debuff (terme mal choisi mais c'est pas grave)
 
 wave
+
+magiCoefCost
+
 

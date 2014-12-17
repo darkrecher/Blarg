@@ -724,8 +724,9 @@ class MagicianWaveGenerator():
 
         while patChosenInfo is not None:
 
-            #récupération des infos liés au pattern choisi (parChosen = magiCoefCost et patternId)
-            #et de la liste de pattern sup restante, après toutes les éliminations.
+            # Récupération des infos liées au pattern choisi
+            # (patChosenInfo = tuple de 2 éléments : magiCoefCost, patternId)
+            # et de la liste de pattern sup restante, après toutes les éliminations.
             patChosen, remainingList = patChosenInfo
             listPatChosen.append(patChosen)
             currentListPatternChoice = remainingList
@@ -737,7 +738,8 @@ class MagicianWaveGenerator():
 
             #re-choisissage d'un nouveau pattern sup, ou pas si on n'a plus assez
             #de harM et qu'ils sont tous devenus trop chers.
-            #virage des espaces avant et après le egal car ligne trop longue. (beurk)
+            # Convention code fail :
+            # Virage des espaces avant et après le egal car ligne trop longue. (beurk)
             patChosenInfo=harMPatChoice.chooseAndPay(currentListPatternChoice)
 
 
@@ -851,7 +853,7 @@ class MagicianWaveGenerator():
             bla("randomized magi !")
         else:
             magiType = MAGI_LINE
-            #on garde le même magiCoefCost, et on dit que y'aura besoin dee la coordEnd
+            #on garde le même magiCoefCost, et on dit que y'aura besoin de la coordEnd
             coordEnd = True
 
         #répartition du harM entre l'achat des magiciens (harMCurNbr), et le reste (harMCurConf)
@@ -952,7 +954,7 @@ class MagicianWaveGenerator():
         param = (patternId, nbrMagi, coordEnd, rayCoef)
         listCoordStart, listCoordEnd = self.funcGenPat(*param)
 
-        #rassemblage de toutes les infos nécessaires à la création pattern,
+        #rassemblage de toutes les infos nécessaires à la création du pattern,
         #et ajout dans listOfGenPattern
 
         param = (magiType, listCoordStart, listCoordEnd,
