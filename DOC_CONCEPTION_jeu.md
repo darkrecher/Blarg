@@ -586,19 +586,16 @@ Pour jouer les sons, on instancie une seule classe `SoundYargler`, dès l'import
 
 ## Vocabulaire ##
 
-takeStimuli
+`takeStimuli*` : préfixe de nom de fonction. À appeler par du code extérieur, pour prévenire la classe possédant cette fonction qu'il s'est passé un truc. C'est pour exprimer que c'est une fonction "publique", et que c'est comme une sorte de "callback", mais pas vraiment. Et ça s'appelle "takeStimuli" et non pas "sendStimuli", car la fonction est nommé du point de vue de la classe, et non pas du point de vue du code extérieur. C'est pas très bien. Tant pis, on fera mieux la prochaine fois.
 
-dogDom
+`dogDom` : annagramme plus ou moins obfusqué de "god mode". Je ne voulais pas que ce soit trop facile de se rajouter le mode invincible en bidouillant le code source. Une recherche des mots "god" et "invincible" dans tous les fichiers ne doit rien donner d'intéressant. J'utilise donc ce mot-clé toutes les fois où je parle de la validation du god mode avec le code secret, et de la sélection de ce mode dans le menu secret. Ha ha ha, je m'appelle Réchèr et j'obfusque du code python tout en le documentant par ailleurs. Oui je suis schizophrène, oui.
 
-mact*
+`mact*` : préfixe de nom de fonction. "mact" = "menu action". Fonction de callback à exécuter lorsque l'utilisateur clique un bouton, active un élément de l'IHM, ...
 
-NONE_COUNT
+`NONE_COUNT` : Bon en fait c'est la valeur `None`. Je l'utilise pour les variables de compteur. Pour indiquer explicitement que c'est une variable de compteur, et que là, je lui demande de ne pas compter. C'est une sorte de typage spécifique du vide pour indiquer plus précisément qu'est-ce qui est vide. Au fait, vous avez lu mon article de blog sur l'expression du vide dans les langages de programmation ?
 
-pat, pattern, genPattern.
+`HardMana`, `harM`, `antiHarM`, `wave`, `magiCoefCost` : voir début du fichier `maggenwa.py`.
 
+`pat`, `pattern`, `genPattern` : pattern de génération d'une liste de magiciens, dans une vague. (en ligne, en diagonale, en cercle, au hasard), (avec tous les magiciens qui apparaissent d'un coup, qui apparaissent progressivement, ...) ...
 
-debuff (terme mal choisi mais c'est pas grave)
-
-HardMana, harM, antiHarM, wave, magiCoefCost (voir maggenwa)
-
-
+`debuff` : action de diminuer le `HardMana` de la prochaine vague à créer avec de l'`antiHarM`. Le terme n'est pas très bien choisi mais c'est pas grave.
