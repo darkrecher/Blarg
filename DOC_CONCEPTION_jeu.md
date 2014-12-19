@@ -44,7 +44,7 @@ Les paramètres nécessaires sont les suivants :
 
 TODO : Plus tard.
 (le scoreManager et l'archivist sont liés)
-
+paf
 
 ## Rappel : fonctionnement des sprites avec pygame ##
 
