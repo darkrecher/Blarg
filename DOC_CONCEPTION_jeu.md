@@ -181,14 +181,17 @@ Cette classe est utilisée pour calculer la trajectoire des magiciens se dépla�
 
 ### cobulmag/CollHandlerBulletMagi ###
 
- - Calcul de la trajectoire des balles tirées par le héros. À chaque tir, il y en a 3 qui partent : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
+À chaque fois que le héros tire, cette classe effectue les actions suivantes :
 
- - Gestion des collisons entre les balles et les magiciens.
+ - Calcul des trajectoires. Un tir fait partir 3 balles : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
 
-Lorsqu'une balle touche un magicien, cette classe exécute la fonction `Magician.hitByBullet(Damage)`. La valeur renvoyée indique l'état du magicien  (vivant/tué/explosé). La classe renvoie le nombre total de magiciens tués et explosés par le tir.
+ - Détection des collisions entre les balles et les magiciens.
 
-D'autre part, ce fichier de code contient des explications détaillées sur les différents états d'un magicien, et les passages d'un état à un autre.
-Je ne sais pas si ça a sa place à cet endroit, mais c'est ainsi. Tralalali.
+ - Exécution de la fonction `Magician.hitByBullet(Damage)` chaque fois qu'une des balles touche un magicien. La valeur renvoyée indique son état (vivant/tué/explosé). Lorsque plusieurs magiciens sont exactement sur la même abscisse et qu'une balle leur arrive dessus, ils sont tous touchés en même temps.
+
+ - Renvoi du nombre total de magiciens tués et explosés par le tir.
+
+D'autre part, ce fichier de code contient des explications détaillées sur les différents états d'un magicien, et les passages d'un état à un autre. Ça n'a peut-être pas sa place ici, mais c'est ainsi. Tralalali.
 
 
 ### cohermag/CollHandlerHeroMagi ###
@@ -197,14 +200,14 @@ Gestion des collisions entre le héros (tête + corps) et les magiciens.
 
 Lorsqu'une collision a lieu, on envoie le stimuli `takeStimuliHurt(theMagician.rect)` au héros, et le stimuli `TakeStimuliTouchedHero()` au magicien.
 
-Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans l'état `HURT`. On ne lui envoie pas d'autres stimuli de collision tant qu'il reste dans cet état. Cela permet d'éviter que le héros se fasse toucher plusieurs fois en peu de temps, ce qui ne serait pas très gentil pour le joueur.
+Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans l'état `HURT`. On ne fait pas d'autres détections de collision tant qu'il reste dans cet état. Cela permet d'éviter que le héros se fasse toucher plusieurs fois en peu de temps, ce qui ne serait pas très gentil envers le joueur.
 
 
 ### scoremn/ScoreManager ###
 
 Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe qui gère le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
 
-Au fur et à mesure de la partie, récupère le nombre de magiciens explosés, et le nombre de magiciens tués sans être explosé. Met à jour le score de la partie en cours, les high scores, et les nombres totaux en fonction.
+Au fur et à mesure de la partie, récupère le nombre de magiciens explosés, et le nombre de magiciens tués sans être explosé. Met à jour le score de la partie en cours, les high scores, et les totaux.
 
 À la fin de la partie, renvoie à l'archivist les stats mises à jour, qui les enregistrera dans le fichier.
 
