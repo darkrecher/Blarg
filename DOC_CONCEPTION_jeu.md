@@ -42,9 +42,30 @@ Les paramètres nécessaires sont les suivants :
 
 ## Diagramme de classe. ##
 
-TODO : Plus tard.
-(le scoreManager et l'archivist sont liés)
-paf
+![diagramme classe Blarg jeu](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/diagramme_pas_UML_jeu.png)
+
+### Légende ###
+
+Boîte avec un titre composé d'un seul mot : une instance de classe. Le nom de l'objet instancié et le nom de la classe sont les mêmes, aux majuscules près.
+
+Boîte avec un titre plus compliqué : une instance de classe aussi. Format du titre : objetInstancié = LaClasse()
+
+Cadre bleu : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
+
+Flèche bleue pleine, de A vers B : Référence "forte". L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
+
+Flèche bleue pointillée, de A vers B : Référence "faible". L'objet A n'a pas de référence vers l'objet B. Mais de temps en temps, on appelle une fonction de l'objet A en lui passant en paramètre l'objet B.
+
+Petite flèche bleue vers "SpriteSiGen" : Référence vers l'objet `SpriteSimpleGenerator`. Ces références ne sont pas représentées comme les autres, car ça ferait une flèche qui traverse tout le diagramme et ça ferait fouilis.
+
+Petite flèche bleue vers "SndYargl" : Référence vers l'objet `SoundYargler`.
+
+Flèche verte, de A vers B : héritage. L'objet B est dérivée de l'objet A.
+
+Grosse flèche grise pointillée : déplacement. À un moment de sa vie, l'objet est transféré d'un endroit à un autre.
+
+Boîte avec un cadre pointillé : l'objet est instancié par l'objet englobant, puis il est tout de suite transféré ailleurs.
+
 
 ## Rappel : fonctionnement des sprites avec pygame ##
 
