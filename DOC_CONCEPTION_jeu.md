@@ -12,7 +12,7 @@ Durant la réalisation de ce jeu, le PEP8 a été foulé aux pieds, écartelé, 
 
 ## Lancement d'une partie ##
 
-Au démarrage du programme, le système d'interface est initialisé. Ensuite, lors du clic sur l'option "jouer" du menu principal, la fonction `MainClass.mactPlaySeveralGames` du fichier `mainclas.py` est exécutée. Cette fonction effectue les actions suivantes :
+Au démarrage du programme, le système d'interface est initialisé. Ensuite, lors du clic sur l'option "jouer" du menu principal, la fonction `mainclas.py/MainClass.mactPlaySeveralGames` est exécutée. Cette fonction effectue les actions suivantes :
 
  - Jouer une partie.
  - Afficher l'écran de fin de partie (avec le héros transformé en potion de mana)
@@ -33,9 +33,9 @@ Les paramètres nécessaires sont les suivants :
 
  - `self.scoreManager` : classe stockant le score de la partie en cours. Permet de récupérer le score final à la fin de la partie.
 
- - `self.fontDefault` : objet `pygame.font.Font`. Police de caractère utilisé pour afficher tous les textes durant le jeu. (en fait, il n'y a que le score à afficher).
+ - `self.fontDefault` : objet `pygame.font.Font`. Police de caractère utilisée pour afficher les textes durant le jeu. (Le score).
 
- - `self.archivist.dicKeyMapping` : dictionnaire effectuant la correspondance entre des touches du clavier et les actions. Il est défini par le joueur, dans le menu de configuration.
+ - `self.archivist.dicKeyMapping` : dictionnaire effectuant la correspondance entre des touches du clavier et les actions. Il est défini par le joueur, durant la configuration.
 
  - `dogDom` : booléen indiquant si le mode invincible est activé ou pas.
 
@@ -46,15 +46,15 @@ Les paramètres nécessaires sont les suivants :
 
 ### Légende ###
 
-Boîte avec un titre composé d'un seul mot : une instance de classe. Le nom de l'objet instancié et le nom de la classe sont les mêmes, aux majuscules près.
+Boîte avec un titre composé d'un seul mot : instance de classe. Le nom de l'objet instancié et le nom de la classe sont les mêmes, aux majuscules près.
 
-Boîte avec un titre plus compliqué : une instance de classe aussi. Format du titre : objetInstancié = LaClasse()
+Boîte avec un titre plus compliqué : instance de classe aussi. Format du titre : `nomDeLObjetInstancié = nomDeLaClasse()`.
 
-Cadre bleu : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
+Cadre bleu clair : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
 
 Flèche bleue pleine, de A vers B : Référence "forte". L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
 
-Flèche bleue pointillée, de A vers B : Référence "faible". L'objet A n'a pas de référence vers l'objet B. Mais de temps en temps, on appelle une fonction de l'objet A en lui passant en paramètre l'objet B.
+Flèche bleue pointillée, de A vers B : Référence "faible". L'objet A n'a pas de référence vers l'objet B. Mais de temps en temps, on appelle une fonction de l'objet A en lui passant l'objet B en paramètre.
 
 Petite flèche bleue vers "SpriteSiGen" : Référence vers l'objet `SpriteSimpleGenerator`. Ces références ne sont pas représentées comme les autres, car ça ferait une flèche qui traverse tout le diagramme et ça ferait fouilis.
 
@@ -73,13 +73,13 @@ Les sprites sont gérés par des objets `pygame.sprite.Sprite`. Durant un cycle 
 
  - Pour chaque sprite :
 
-    - Effacer à l'écran le rectangle englobant le sprite (selon sa position et la taille de son image). Si il y a une image de fond, il faut la redessiner par-dessus.
+    - Effacer à l'écran le rectangle englobant (défini par la position et la taille de l'image courant du sprite). S'il y a une image de fond, il faut la redessiner par-dessus.
 
-    - Exécuter la fonction `Sprite.update()` (qu'on a overridé). Cette fonction modifie la position et/ou l'image courante du sprite.
+    - Exécuter la fonction (overridée) `Sprite.update()`. Cette fonction modifie la position et/ou l'image courante du sprite.
 
     - Exécuter la fonction `Sprite.draw()`. Dessine le sprite à l'écran.
 
-- Exécuter la fonction `pygame.display.flip()`, afin de rafraîchir l'écran et d'afficher tous les changements d'un seul coup. (Double buffer, tout ça...)
+- Exécuter la fonction `pygame.display.flip()`, afin de rafraîchir l'écran et d'afficher les changements. (Double buffer, tout ça...)
 
 Pygame permet de faciliter ce traitement, avec les groupes de sprite, en particulier, les `pygame.sprite.RenderUpdates`. On commence par mettre des sprites dans le groupe, avec la fonction `RenderUpdates.add()`. Ensuite, à chaque cycle de jeu, il faut effectuer les actions suivantes :
 
@@ -87,9 +87,9 @@ Pygame permet de faciliter ce traitement, avec les groupes de sprite, en particu
 
  - Pour chaque sprite : exécuter sa fonction `update()`. On peut le faire individuellement, ou appeler la fonction `RenderUpdates.update()`, qui va updater tous les sprites du groupe.
 
- - `listDirtyRects = RenderUpdates.draw()`. Dessine à l'écran tous les sprites du groupe. Renvoie la liste de rectangle sales, correspondants à toutes les zones de l'écran sur laquelle quelque chose a changé (du clear, du draw, ou les deux, pour un ou plusieurs sprites).
+ - `listDirtyRects = RenderUpdates.draw()`. Dessine à l'écran tous les sprites du groupe. Renvoie la liste des rectangle sales, correspondant à toutes les zones de l'écran où quelque chose a changé (clear et/ou draw).
 
- - Exécuter la fonction `pygame.display.flip()`, pour rafraîchir tout l'écran. Ou bien, si on veut être un peu plus subtil, exécuter `pygame.display.update(listDirtyRects)`. Cela rafraîchira uniquement les zones nécessaires.
+ - Exécuter la fonction `pygame.display.flip()`, pour rafraîchir tout l'écran. Si on veut être plus subtil, on peut exécuter à la place `pygame.display.update(listDirtyRects)`. Cela rafraîchira uniquement les zones nécessaires.
 
 Durant le jeu, on peut ajouter et enlever des sprites du groupe, avec les fonctions `add` et `remove`. Il faut le faire après le `clear`, et avant le `draw`.
 
@@ -100,28 +100,31 @@ Durant le jeu, on peut ajouter et enlever des sprites du groupe, avec les foncti
 
 Classe principale gérant le jeu en lui-même. Contient la game loop.
 
-Cette classe contient un groupe `RenderUpdates`, appelé `allSprites`. Il contient tous les sprites du jeu à afficher actuellement. La game loop exécute la fonction `clear` et `draw` de `allSprites`.
+Cette classe possède un `RenderUpdates`, appelé `allSprites`, contenant tous les sprites du jeu à afficher à l'instant T. La game loop exécute les fonctions `clear()` et `draw()` de `allSprites`.
 
-Elle n'exécute pas la fonction `update`. Cette action est effectuée par divers autres modules du jeu. J'ai voulu faire comme ça car certains objets du jeu (en particulier le héros) sont représentés par plusieurs sprites. Il fallait donc mettre le code de gestion de ces objets dans des classes dédiées, et non pas dans un update d'un sprite quelconque qu'on n'aurait pas su exactement lequel.
+Elle n'exécute pas `update()`. Cette action est effectuée par divers autres bouts de code. J'ai voulu faire comme ça car certains objets du jeu (en particulier le héros) sont représentés par plusieurs sprites. Il fallait donc mettre le code de gestion de ces objets dans des classes dédiées, et non pas dans un update d'un sprite quelconque qu'on n'aurait pas su à quel objet il se rapporte.
 
 
 ### common ###
 
-Module contenant un tas de petites fonctions et de constantes utiles un peu partout. Voir commentaire de chaque fonction et constante pour des infos détaillées.
+Module contenant des petites fonctions et des constantes utiles un peu partout. Voir commentaire de chacun d'eux pour des infos détaillées.
 
 
 ### sprsimpl/SpriteSimple ###
 
-Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec des mouvements simples (vitesse initiale + accélération), des enchaînements d'images simples (en boucle), et des conditions de destruction simples (après x boucles / en quittant l'écran).
+Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec :
+ - des mouvements simples (vitesse initiale, accélération),
+ - des enchaînements d'images simples (en boucle),
+ - des conditions de destruction simples (après x boucles / en quittant l'écran).
 
 
 ### sprsiman/SpriteSimpleManager ###
 
-Contient une groupe de `SpriteSimple`. Effectue leurs update, et les supprime de ce groupe lorsqu'ils sont arrivés en fin de vie.
+Contient une groupe de `SpriteSimple`. Effectue leurs updates, et les supprime lorsqu'ils sont arrivés en fin de vie.
 
-À la création, on passe au manager le gros groupe `allSprites`. Le manager s'occupe d'updater, et d'ajouter/enlever de ce groupe les `SpriteSimple` dont il a la charge, au fur et à mesure de leur création/suppression.
+Le manager possède une référence vers le gros groupe `allSprites`. Il s'occupe d'updater et d'ajouter/enlever les `SpriteSimple` dont il a la charge, au fur et à mesure de leur cycle de vie.
 
-Le manager ne s'occupe pas de dessiner ses sprites. C'est le code extérieur qui s'occupe de cette tâche, par le fait que ces sprites sont dans le groupe `allSprites`.
+Le manager ne s'occupe pas de clearer et dessiner ses sprites. C'est le groupe `allSprites` qui effectue ces tâches, comme il le fait pour tous les autres sprites du jeu.
 
 
 ### sprsigen/SpriteSimpleGenerator ###
@@ -130,46 +133,48 @@ Générateur de `SpriteSimple` prédéfinis, correspondant à des éléments sp�
 
 Le `SpriteSimpleGenerator` contient une référence vers un `SpriteSimpleManager`, dans lequel il ajoutera les sprites générés.
 
-Cette classe est équivalente à un gros tas de constantes, permettant de générer des sprites avec des images, des mouvements et une configuration prédéfinies. La seule génération un peu plus complexe est celle des bras et des têtes coupées de magiciens. Ce sont des SpriteSimple comme les autres, mais il y a un petit traitement initial (avec du random) pour déterminer les images effectuant les gigotages et le tournoiement.
+Cette classe est équivalente à un gros tas de constantes, permettant de générer des sprites avec des images, des mouvements et une configuration prédéfinis.
+
+La seule génération plus complexe que les autres est celle des bras et têtes coupées de magiciens. Ce sont des `SpriteSimple` comme les autres, mais il y a un petit traitement initial (avec du random) pour déterminer les images effectuant les gigotages et le tournoiement.
 
 
 ### lamoche/Lamoche ###
 
-Classe héritée de `pygame.sprite.Sprite`. Permet d'afficher un texte à l'écran. Je l'ai appelé "lamoche" pour faire une blague par rapport au mot "label". Voilà, c'est drôle.
+Classe héritée de `pygame.sprite.Sprite`. Permet d'afficher un texte à l'écran. Je l'ai appelé "Lamoche" pour faire une blague par rapport au mot "Label". Voilà, c'est drôle.
 
 Cette classe est également utilisée dans le système d'interface.
 
 
 ### herobody/HeroBody ###
 
-Héritée de `pygame.sprite.Sprite`. Affiche le corps du héros. Le choix de l'image à afficher se fait en appelant la méthode `changeImg`. C'est au code extérieur de décider quelle image afficher en fonction de ce qu'il se passe dans le jeu.
+Héritée de `pygame.sprite.Sprite`. Affiche le corps du héros. Le choix de l'image à afficher se fait en appelant la méthode `changeImg()`. C'est au code extérieur de décider quelle image afficher en fonction de ce qu'il se passe dans le jeu.
 
 
 ### herohead/HeroHead ###
 
-Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Elle est d'un niveau un peu plus haut que la classe `HeroBody`, et gère donc un peu plus de choses :
+Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Cette classe est d'un niveau un peu plus haut que `HeroBody`, et gère donc un peu plus de choses :
 
- - Tournage de tête à gauche et à droite : fonction `turnHead`. (Appelée lorsque le héros meurt)
- - Sourire : fonction `startSmiling` et `stopSmiling`. (Appelées lorsque le héros fait exploser un magicien en bouillie).
- - Arrêt automatique du sourire au bout de quelques secondes : fonction `update`.
+ - Tournage de tête à gauche et à droite : fonction `turnHead()`. (Appelée lorsque le héros meurt)
+ - Sourire : fonction `startSmiling()` et `stopSmiling()`. (Appelées lorsque le héros fait exploser un magicien en bouillie).
+ - Arrêt automatique du sourire au bout de quelques secondes : fonction `update()`.
 
 
 ### movpoint/MovingPoint ###
 
-classe héritée de `pygame.Rect`. Définit un point dans l'aire de jeu, qui se déplace. On définit la direction de déplacement au moment de l'instanciation. À chaque cycle, on exécute la fonction `advanceOneStep`. La position courante est récupérée par le membre `Rect.topleft`.
+classe héritée de `pygame.Rect`. Représente un point dans l'aire de jeu qui se déplace, la direction étant définie à l'instanciation. À chaque cycle, on exécute la fonction `advanceOneStep()`. La position courante est récupérée par le membre `Rect.topleft`.
 
-Comme on définit un mouvement dans une direction donnée, sans limite, il ne se termine jamais. La fonction `isMoveFinished` renvoie toujours false.
+Comme on définit un mouvement dans une direction donnée, sans limite, il ne se termine jamais. La fonction `isMoveFinished()` renvoie toujours false.
 
 Cette classe est utilisée pour calculer la trajectoire des balles tirées par le héros.
 
 
 ### movline/MovingPointOnLine ###
 
-classe héritée de `MovingPoint`. Définit un point dans l'aire de jeu, qui se déplace le long d'un segment de droite. On donne le point d'arrivée et de départ au moment de l'instanciation.
+classe héritée de `MovingPoint`. Représente un point dans l'aire de jeu se déplaçant le long d'un segment de droite. Les points d'arrivée et de départ sont donnés à l'instanciation.
 
-À chaque exécution de `advanceOneStep`, on se déplace d'un pixel (en diagonale ou pas, ça dépend de là où on est). La vitesse n'est donc pas constante entre deux cycles de jeu, mais on s'en fout.
+À chaque exécution de `advanceOneStep()`, on se déplace d'un pixel (en diagonale ou pas, ça dépend de là où on est). La vitesse n'est donc pas constante entre deux cycles de jeu, mais on s'en fout.
 
-La fonction `IsMoveFinished` renvoie True lorsque le point courant a atteint le point d'arrivée.
+La fonction `IsMoveFinished()` renvoie True lorsque le point courant a atteint le point d'arrivée.
 
 Cette classe est utilisée pour calculer la trajectoire des magiciens se déplaçant le long d'une ligne (les `MagiLine`).
 
