@@ -207,7 +207,9 @@ Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans
 
 Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe qui gère le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
 
-Au fur et à mesure de la partie, récupère le nombre de magiciens explosés, et le nombre de magiciens tués sans être explosé. Met à jour le score de la partie en cours, les high scores, et les totaux.
+Récupère le nombre de magiciens explosés et le nombre de magiciens tués sans être explosés, au fur et à mesure de la partie.
+
+Met à jour le score de la partie en cours, les high scores, et les totaux.
 
 À la fin de la partie, renvoie à l'archivist les stats mises à jour, qui les enregistrera dans le fichier.
 
@@ -220,20 +222,20 @@ Affiche les cartouches à gauche de l'écran, et gère leurs animations :
  - fire : la balle la plus haute disparaît, et un nuage de fumée est dessiné. La douille reste.
  - rearm : la douille tout en haut, ainsi que toutes les autres cartouches de la pile, sont déplacées progressivement vers le haut. À la fin, la douille du haut disparaît.
 
-Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes. (`takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`).
+Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes : `takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`.
 
-La classe contient des fonctions à appeler à chaque cycle, pour faire jouer les animations des cartouches, ajouter/enlever celles qui se rechargent, celles qui sont tirées, etc. Le blabla en début de fichier me semble suffisamment clair à ce sujet.
+Cette classe contient des fonctions à appeler à chaque cycle, pour faire jouer les animations des cartouches, ajouter/enlever celles qui se rechargent, celles qui sont tirées, etc. Le blabla en début de fichier me semble suffisamment clair à ce sujet.
 
 
 ### lifeview/LifePointViewer ###
 
 Affiche les points de vie du joueur, en haut à gauche de l'écran (sous forme d'image représentant des vestes en jean, parce que c'est rigolo).
 
-Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean, pour la faire disparaître progressivement. Le "progressivement" étant un peu aléatoire, pour faire quelque chose de joli et classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier.
+Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean jusqu'à la faire disparaître progressivement. Le "progressivement" étant aléatoire, afin d'avoir quelque chose de classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier.
 
-Le code extérieur doit donc appeler, à chaque cycle, une fonction determineIsUpdatingSthg, pour savoir si il y a un clignotement en cours, et appeler update, pour gérer cedit clignotement.
+À chaque cycle, le code extérieur doit appeler la fonction `determineIsUpdatingSthg()`, pour savoir si il y a un clignotement en cours. Si oui, il faut ensuite appeler `update()`.
 
-Pour le code extérieur, la seule chose intéressante à récupérer de cette classe est le groupe de sprite "groupLifePoints", contenant toutes les vestes en jean à afficher à un instant donné (tient compte des clignotements).
+Pour le code extérieur, la seule chose intéressante à récupérer de cette classe est le groupe de sprite `groupLifePoints`, contenant toutes les vestes en jean à afficher à un instant donné (clignotements pris en compte).
 
 Cette classe ne gère pas la mort du héros. Elle ne prévient pas le code extérieur lorsque le héros n'a plus de points de vie. Elle ne fait pas du tout de "game logic". Elle indique juste des sprites à afficher.
 
@@ -252,19 +254,19 @@ Gère tout le bazar concernant le héros :
 
  - Gestion du nombre de cartouche.
 
-Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Il instancie de lui-même les deux objets `heroHead` et `heroBody`.
+Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Il instancie de lui-même un `heroHead` et un `heroBody`.
 
 #### Fonctionnement global du héros ####
 
 Le héros envoie directement ses ordres à deux objets `ammoViewer` et `lifePointViewer` (réarmement, perte d'un point de vie, ...). Cependant, la mise à jour de ces deux objets (fonction update) est effectuée dans la fonction principale `game.py/playOneGame`.
 
-Il possède également un `spriteSimpleGenerator`, lui permettant de générer les sprites suivants, quand y'a besoin :
+Le héros possède une référence vers un `spriteSimpleGenerator`, lui permettant de générer les sprites suivants :
 
  - Douille qui s'envole et retombe à chaque réarmement.
 
  - Flamme sortant du fusil à chaque tir.
 
- - Sang qui gicle lorsque le héro se fait toucher.
+ - Sang qui gicle lorsqu'il se fait toucher.
 
 La classe contient une super machine à état (variable membre `stateMachine`) permettant de gérer les comportements suivants :
 
@@ -282,9 +284,9 @@ Les explications détaillées de chaque état, ainsi que les contraintes implém
 
 #### Tir ####
 
-Le tir est déclenché après avoir vérifié qu'il y a au moins une cartouche, et que l'état actuel de la machine à état permet de tirer.
+Le tir est déclenché après avoir vérifié qu'il y a au moins une cartouche, et que l'état actuel du héros permette de tirer.
 
-Détail des actions effectuée :
+Détail des actions effectuées :
 
  - Changement d'état dans la machine à état.
 
@@ -296,11 +298,11 @@ Détail des actions effectuée :
 
  - Détermination de la position exacte d'où partent les bullets.
 
- - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets`
+ - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets()`
 
-    - Calcul de la trajectoire des 3 bullets partant du fusil. (une tout droit, une un peu vers le haut, une un peu vers le bas).
+    - Calcul de la trajectoire des 3 bullets partant du fusil.
 
-    - Détermination des collision entre les bullets et les magiciens.
+    - Détermination des collisions entre les bullets et les magiciens.
 
     - Envoi des stimulis de dégâts aux magiciens touchés.
 
@@ -314,7 +316,7 @@ Détail des actions effectuée :
 
  - Remise à zéro du stimuli de FIRE, puisqu'il vient d'être effectué.
 
-Toutes ces actions sont donc déclenchées automatiquement et instantanément. Les objets extérieurs sont directement contactés. On ne passe pas par le game.py pour envoyer des messages entre objets (par exemple, pour envoyer les points de dégâts aux magiciens).
+Toutes ces actions sont déclenchées immédiatement. Les objets extérieurs sont directement contactés. On ne passe pas par la main loop située dans `game.py/Game`.
 
 #### Collision avec un magicien ####
 
@@ -328,17 +330,17 @@ Détail des actions déclenchées quand le héros se fait toucher (après avoir 
 
  - Suppression du sourire sur le `heroHead`.
 
- - Annulation des stimulis stockées de tir et de rechargement. Le joueur n'aura qu'à réappuyer sur la touche correspondant. C'est comme ça, c'est le jeu.
+ - Annulation des stimulis stockés de tir et de rechargement. Le joueur n'aura qu'à réappuyer sur la touche correspondante. C'est comme ça, c'est le jeu.
 
- - Détermination du mouvement de Hurt, en fonction de la position relative du héros et du magicient qui l'a touché. (Lorsque le héro a mal, il recule pendant quelques cycles, dans la direction opposée au magicien)
+ - Détermination du mouvement de Hurt, en fonction de la position relative du héros et du magicien qui l'a touché. (Le héros reculera pendant quelques cycles, dans la direction opposée au magicien).
 
  - Modification de l'image du `heroBody`. Gestion pourrie des décalages de sprite parce que j'ai pas implémenté de hotSpot.
 
- - Si il reste des points de vie :
+ - S'il reste des points de vie :
 
-    - Génération de Simple Sprite (gouttes de sang).
+    - Génération de `SimpleSprite` représentant des gouttes de sang.
 
-    - Changement de l'état actuel en l'état `HURT`.
+    - Changement de l'état actuel en `HURT`.
 
     - Envoi d'un son ("argl !")
 
@@ -346,64 +348,69 @@ Détail des actions déclenchées quand le héros se fait toucher (après avoir 
 
     - Pas de génération de gouttes de sang, mais déclenchement du compteur de génération de gouttes de sang. (Le sang giclera en continu pendant quelques secondes).
 
-    - Changement de l'état actuel en l'état `DYING`.
+    - Changement de l'état actuel en `DYING`.
 
-    - L'animation de mort (la tête qui se tourne de droite à gauche, les sons, ...) sont gérés par la machine à état, qui effectue toutes ces actions lorsque l'état est `DYING`.
+    - L'animation de mort (la tête qui se tourne de droite à gauche, les sons, ...) sont gérés par la machine à état, qui effectue ces actions lorsque l'état est `DYING`.
 
-    - Au bout de quelques secondes, la machine à état passera de `DYING` à `DEAD`.
+    - Au bout de quelques secondes, on passera de `DYING` à `DEAD`.
 
 #### Fin de partie ####
 
-La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `game.py/playOneGame` examine périodiquement l'état de la machine, et arrête la partie si cet état est `DEAD`.
+La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `Game/playOneGame` examine périodiquement l'état du héros, et arrête la main loop si il vaut `DEAD`.
 
 
 ### magician/Magician ###
 
-Cette classe hérite de `pygame.sprite.Sprite`. Lorsqu'on l'instancie, on lui passe un `spriteSimpleGenerator`, ce qui lui permet de créer des Simple Sprite lorsque c'est nécessaire.
+Cette classe hérite de `pygame.sprite.Sprite`. Lorsqu'on l'instancie, on lui passe un `spriteSimpleGenerator`.
 
-Il s'agit de la classe de base, définissant le comportement générique d'un magicien : apparition, gestion des collision avec le héros et les balles, animations de mort. Elle ne définit pas les mouvements. Ceux-ci sont définis dans les classes héritées.
+Il s'agit de la classe de base, définissant le comportement générique d'un magicien : apparition, gestion des collisions avec le héros et les balles, animations de mort. Elle ne définit pas les mouvements, qui le sont dans les classes héritées.
 
-Le magician possède une machine à état (plus simple que celle du héros). L'état courant est stocké dans le membre `currentState`.
+Le magician possède aussi une machine à état, plus simple que celle du héros. L'état courant est stocké dans la variable membre `currentState`.
 
-Le magician possède un `level` (variable numérique entière). La classe de base ne fait rien de cette variable, elle est censée représenter le niveau de difficulté du magicien. Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiquement à 1, et la fonction `resetToLevelOne` est exécutée. Cela permet de ne pas trop "punir" le joueur. Déjà qu'il se fait toucher et perd un point de vie, on ne va pas en plus lui laisser un magicien ayant un haut `level` à proximité de lui.
+Le magician possède un `level` (variable numérique entière), censée représenter son niveau de difficulté (rapidité de déplacement, ...). Seules les classes héritées utilisent le `level` pour définir leur comportement.
+
+Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiquement à 1, et la fonction `resetToLevelOne()` est exécutée. Cela permet de ne pas trop "punir" le joueur. Déjà qu'il se fait toucher et perd un point de vie, on ne va pas en plus lui laisser un magicien ayant un haut `level` à proximité de lui.
 
 #### cycle de vie ####
 
  - Instanciation d'un `Magician`
 
-    - création d'un `spriteSimple`, représentant l'animation d'apparition du magicien. (Que au début ça ressemble à une bite bleue, puis ça prend la forme du magicien). On conserve une référence vers ce sprite, afin de savoir quand l'animation se termine.
+    - création d'un `SpriteSimple`, représentant l'animation d'apparition du magicien. (Que au début ça ressemble à une bite bleue, puis ça prend la forme du magicien, haha lol, si j'ose dire). On conserve une référence vers ce `SpriteSimple`, afin de savoir quand son animation se termine.
 
     - La game loop place le nouveau magicien dans le groupe de sprite `Game.groupMagicianAppearing`, mais pas dans `Game.allSprites`. C'est à dire que le magicien est updaté, mais pas dessiné.
 
  - `currentState = APPEARING`.
 
-    - La fonction `Magician.update` exécute la fonction `Magician.updateAppearing`. Cette fonction ne fait rien, à part attendre que l'animation du SpriteSimple d'apparition se termine. Lorsque c'est le cas, on passe à l'état suivant.
+    - La fonction `Magician.update()` exécute `Magician.updateAppearing()`. Cette fonction ne fait rien, à part attendre que l'animation d'apparition se termine. Lorsque c'est le cas, on passe à l'état suivant.
 
  - `currentState = ALIVE`
 
     - La game loop sort le magicien du groupe `Game.groupMagicianAppearing`, pour le placer dans deux groupes à la fois : `game.groupMagician` et `game.allSprites`. Le magicien est donc updaté et dessiné à chaque cycle de jeu.
 
-    - La fonction `Magician.update` exécute la fonction `magician.updateNormal`. Elle est censée s'occuper des mouvements, de la montée de level, etc. Dans la classe de base, cette fonction ne fait rien. Le magicien reste immobile.
+    - La fonction `Magician.update()` exécute `magician.updateNormal()`. Elle est censée s'occuper des mouvements, de la montée de level, etc. Dans la classe de base, cette fonction ne fait rien. Le magicien reste immobile.
 
  - `currentState = HURT`
 
-    - (Cet état est facultatif, si le magicien perd tous ses points de vie d'un coup, il passe directement de l'état `ALIVE` à `DYING` ou `BURSTING`.)
+    - (Cet état est facultatif, si le magicien perd tous ses points de vie d'un coup, il passe directement de `ALIVE` à `DYING` ou `BURSTING`.)
 
-    - Exécution de la fonction `updateHurt` à chaque cycle de jeu. Fonction à overrider. Au bout d'un moment, le magicien revient à l'état `ALIVE`.
+    - Exécution de `updateHurt()` à chaque cycle de jeu (fonction à overrider). Au bout d'un moment, le magicien revient à l'état `ALIVE`.
 
  - `currentState = DYING / BURSTING`
 
-    - Le magicien passe dans l'état `BURSTING` lorsqu'il se prend 3 bullets d'un seul coup. Ça arrive lorsque le héros lui tire dessus d'assez près, puisqu'un tir génère trois bullets, qui partent dans 3 directions un petit peu différentes. Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
+    - Le magicien passe dans l'état `BURSTING` lorsqu'il se prend 3 bullets d'un seul coup (ce qui arrive lorsque le héros lui tire dessus d'assez près). Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
 
     - Il passe dans l'état `DYING` lorsqu'il n'a plus de points de vie (il en a 2 au départ). Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
 
          * shit : le magicien se transforme en caca.
          * rotate : il tournoie dans les airs puis retombe.
-         * naked : il s'envole tout nu, tout en faisant des prouts.
+         * naked : il s'envole tout nu, en faisant des prouts.
 
-    - Pour les animations bursting, shit et rotate, le magicien génère immédiatement un ou plusieurs `simpleSprite` correspondant à l'animation. Puis, dès le cycle de jeu suivant, il passe directement à l'état `DEAD`. L'animation n'est pas gérée par la classe elle-même.
+    - Pour les animations bursting, shit et rotate, le magicien génère immédiatement un ou plusieurs `SimpleSprite` correspondant à l'animation. Puis, dès le cycle de jeu suivant, il passe directement à l'état `DEAD`. L'animation n'est pas gérée par la classe elle-même.
 
-    - Pour l'animation naked, c'est un peu plus compliquée. Il faut effectuer des petits mouvements aléatoires gauche et droite, tout en allant vers le haut, et en générant de temps en temps des mini `spriteSimple` de fumée de prout, tout en émettant des mini-sons de prouts. Oui oui, tout cela est génial. Tout cela est effectué par le magician, avec la fonction `updateDyingNaked`.
+    - Pour l'animation naked, c'est un peu plus compliqué. Le sprite reste actif encore quelques temps, avec une image de magicien tout nu. La fonction `updateDyingNaked()` est exécutée à chaque cycle de jeu. Elle effectue les actions suivantes :
+         * Mouvement général vers le haut, additionné de petits mouvements aléatoires gauche et droite
+         * Génération aléatoirement périodique de `SpriteSimple` représentant de la fumée de prout
+         * Émission de mini-sons de prouts, en même temps que les sprites de fumée.
 
  - `currentState = DEAD`
 
@@ -414,34 +421,34 @@ Le magician possède un `level` (variable numérique entière). La classe de bas
 
 Classe dérivée de `Magician`. Définit un magicien qui se déplace sur une ligne droite. À l'instanciation, on indique (entre autres) la position de départ et la position d'arrivée.
 
-Plus le `level` du magiline est haut plus il se déplace vite. Le level lui-même n'augmente pas.
+Plus le `level` du Magiline est haut, plus il se déplace vite. Le level lui-même n'augmente pas.
 
-Lorsque le magiline est arrivée à son point de destination, on vérifie s'il n'est pas trop à gauche de l'écran (la limite est définie par la constante `RESPECT_LINE_X`). Si c'est le cas, le joueur ne peut pas le tuer, car il n'a pas assez de place pour se placer à gauche du magiline et lui tirer dessus. (Vu que le héros ne peut pas se retourner, ha ha ha).
+Lorsque le Magiline est arrivé à son point de destination, on teste s'il est  à gauche de l'écran (limite définie par la constante `RESPECT_LINE_X`). Si c'est le cas, il se déplace vers la droite jusqu'à dépasser `RESPECT_LINE_X`. Ensuite, il ne bouge plus du tout.
 
-À la fin de son mouvement, si le magiline est à gauche de `RESPECT_LINE_X`, il se déplace vers la droite jusqu'à la dépasser. Ensuite, il ne bouge plus du tout.
+Ce dernier mouvement permet de s'assurer que le joueur pourra tuer le Magiline. Car s'il reste trop à gauche, le héros (qui ne peut pas se retourner), ne peut pas se mettre devant lui pour lui tirer dessus.
 
-La fonction `updateNormal`, exécutée à chaque cycle du jeu tant que le magiline est `ALIVE`, exécute la fonction référencée par `currentFuncupdateNorm`. Cette variable pointe sur une fonction d'update qui change selon l'action à faire. Elle peut prendre les valeurs suivantes :
+La fonction `updateNormal()`, exécutée à chaque cycle du jeu tant que le magiline est `ALIVE`, exécute la fonction référencée par `currentFuncupdateNorm`. Cette variable membre pointe sur une fonction d'update qui change selon l'action à faire. Elle peut prendre les valeurs suivantes :
 
- - updateNormMoveOnLine : mouvement le long de la ligne.
- - updateNormMoveRespectX : mouvement pour se placer à droite de `RESPECT_LINE_X`.
- - updateNormStayPut : pas de mouvement.
+ - `updateNormMoveOnLine` : mouvement le long de la ligne.
+ - `updateNormMoveRespectX` : mouvement pour se placer à droite de `RESPECT_LINE_X`.
+ - `updateNormStayPut` : pas de mouvement.
 
-C'est un peu bizarre de faire comme ça, j'aurais peut-être dû faire un variable de sous-état, et un dictionnaire sous-état -> fonction, comme la classe de base qui a un dictionnaire état ->_fonction. Mais bon, je fais ce qu'on veut, j'ai le droit d'être bizarre.
+C'est un peu bizarre de faire comme ça, j'aurais peut-être dû faire un variable de sous-état, et un dictionnaire sous-état -> fonction, comme la classe de base qui a un dictionnaire état -> fonction. Mais bon, je fais ce que je veux, j'ai le droit d'être bizarre.
 
-Lorsque le magiline est touché, la fonction `updateHurt` est exécutée. Cette fonction immobilise le magiline pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne sur laquelle il est censé se déplacer.
+Lorsque le Magiline est touché, la fonction `updateHurt()` est exécutée, qui l'immobilise pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne sur laquelle il est censé se déplacer.
 
 
 ### magirand/MagiRand ###
 
 Classe dérivée de `Magician`. Définit un magicien qui se déplace au hasard.
 
-Les mouvements ont une inertie. On met du hasard dans les accélérations X et Y. Ces accélérations agissent sur les vitesses de déplacement X et Y, qui agissent sur les positions X et Y.
+Ses mouvements ont une inertie. On met du hasard dans les accélérations X et Y. Ces accélérations agissent sur les vitesses de déplacement X et Y, qui agissent sur les positions X et Y.
 
-Le magirand possède une `respectLine` (variable numérique entière, différente pour chaque instance). Elle définit  la position d'une ligne verticale imaginaire. Lorsque le magirand se trouve à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Ça permet de mieux doser la difficulté. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rende le jeu difficile.
+Le Magirand possède une `respectLine` (variable numérique entière, différente pour chaque instance), définissant la position d'une ligne verticale imaginaire. Lorsque le Magirand est à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rend le jeu difficile.
 
-Plus le `level` du magirand est haut, plus ses accélérations et sa vitesse maximale sont haute, et plus la `respectLine` se décale vers la droite. Le `level` augmente avec le temps. Toutes ces valeurs sont réinitialisées si le magicrand retombe au niveau 1, lorsqu'il touche le héros.
+Plus le `level` du Magirand est haut, plus ses accélérations et sa vitesse maximale sont haute, et plus la `respectLine` se décale vers la droite. Le `level` augmente avec le temps. Toutes ces valeurs sont réinitialisées lorsque le Magicand touche le héros et qu'il retombe au niveau 1.
 
-Lorsque le magicrand est touché, la fonction `updateHurt` est exécutée. Cette fonction arrête les mouvements aléatoires pendant quelques cycles, et effectue un mouvement de recul, vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse nulle.
+Lorsque le Magirand est touché, la fonction `updateHurt()` est exécutée. Cette fonction arrête les mouvements aléatoires pendant quelques cycles, et effectue un mouvement de recul vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse nulle.
 
 
 ### maggen/MagicianGenerator ###
