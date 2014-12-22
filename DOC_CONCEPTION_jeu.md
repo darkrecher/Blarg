@@ -455,62 +455,62 @@ Lorsque le Magirand est touché, la fonction `updateHurt()` est exécutée. Cett
 
 Cette classe génère les magiciens durant le jeu. Elle utilise un `MagicianWaveGenerator` pour savoir quoi générer, et quand. (Voir plus loin).
 
-Le `MagicianGenerator` possède une référence vers le groupe de sprite `Game.groupMagicianAppearing`. La génération d'un magicien est effectuée par la fonction `MagicianGenerator.generateOneMagician`. Elle consiste à instancier un magicien, et à l'ajouter dans le groupe de sprite. (En même temps, on joue un son, pour faire cool).
+Le `MagicianGenerator` possède une référence vers le groupe de sprite `Game.groupMagicianAppearing`. La génération d'un magicien est réalisée par la fonction `MagicianGenerator.generateOneMagician()`. Elle consiste à instancier un magicien, et à l'ajouter dans le groupe de sprite. Il y a également un son émis, pour faire cool.
 
-La génération durant le jeu est définie par des "patterns". Il y en a de différents types : par exemple, une ligne de magicien en haut de l'écran, ou un cercle autour du héros, ou un certain nombre placés au hasard, ...
+La génération durant le jeu est définie par des "patterns", de différents types. Par exemple : une ligne de magicien en haut de l'écran, un cercle autour du héros, dispersé au hasard, ...
 
 Un pattern, quel que soit son type, est une liste. Chaque élément est un tuple, représentant un magicien à générer. Le tuple contient deux sous-éléments :
 
- - "Delay" : nombre de cycle à attendre avant de générer ce magicien. Ce nombre est cumulatif. Par exemple, si le premier magicien du pattern à 4 cycles d'attente, et le second 2 cycles, alors le second devra attendre 6 cycles au total pour être généré. L'ordre des éléments du pattern est donc significatif. Si plusieurs magiciens à la suite ont un delay de 0, ils apparaîtront tous en même temps.
+ - `delay` : nombre de cycle à attendre avant de générer ce magicien. Ce nombre est cumulatif. Par exemple, si le premier magicien du pattern a 4 cycles, et le second 2, alors le second devra attendre 6 cycles au total pour être généré. L'ordre dans la liste est donc significatif. Si plusieurs magiciens à la suite ont un delay de 0, ils apparaîtront tous en même temps.
 
  - Un sous-tuple, contenant les caractéristiques du magicien à générer :
 
-    - magiType : type du magicien : magiline (déplacement le long d'une ligne) ou magirand (déplacement au hasard).
-    - position de départ.
-    - position d'arrivée. (Utile seulement pour les magiline).
-    - level de départ du magicien.
+    - `magiType` : type du magicien. Magiline ou Magirand.
+    - Position de départ.
+    - Position d'arrivée (utile seulement pour les Magiline).
+    - `level` de départ.
 
-Le MagicianGenerator possède une liste de patterns. À chaque cycle, lors de l'appel de la fonction `MagicianGenerator.update`, les actions suivantes sont effectuées :
+Le `MagicianGenerator` possède une liste de patterns. À chaque cycle, lors de l'appel de la fonction `MagicianGenerator.update()`, les actions suivantes sont effectuées :
 
  - Diminution du compteur de temps  avant la prochaine vague de magicien.
 
  - Éventuellement, diminution du compteur de temps bonus (voir plus loin).
 
- - Si il n'y a plus de temps, on demande au `MagicianWaveGenerator` de générer une nouvelle vague. Cela créera de nouveaux patterns, qu'on ajoute à la liste.
+ - S'il n'y a plus de temps, on demande au `MagicianWaveGenerator` de générer une nouvelle vague. Cela créera de nouveaux patterns, qu'on ajoute à la liste.
 
  - Pour chaque pattern de la liste :
 
-    - Diminution de 1 du delay du premier élément. Lorsqu'on atteint 0, on génère un magicien, et éventuellement les magiciens suivants, si ils ont aussi un delay de 0.
+    - Diminution du `delay` du premier élément. Lorsqu'on atteint 0, on génère un magicien, et éventuellement les suivants s'ils ont un `delay` de 0.
     - Suppression des patterns n'ayant plus d'éléments.
 
-Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, en exécutant la fonction `takeStimuliNoMoreActiveMagi`. Cette fonction modifie le temps de génération avant la prochaine vague de magicien, et éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir plus loin).
+Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, via la fonction `takeStimuliNoMoreActiveMagi()`. Cette fonction modifie le temps de génération avant la prochaine vague de magicien. Éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir plus loin).
 
 
 ### maggenlc/MagicianListCoordBuilder ###
 
-Classe contenant des fonctions "statiques", qui renvoient deux listes de coordonnées (coord de début, coord de fin), ou bien une liste de coord de début, et "None". Ces listes de coordonnées sont ensuite utilisées pour les patterns de génération de magicien.
+Classe contenant des fonctions "statiques", renvoyant toutes deux listes de coordonnées (coord de début, coord de fin), ou bien une seule liste de coord de début. Ces listes de coordonnées sont ensuite utilisées pour les patterns de génération de magicien.
 
-Cette classe contient une référence vers le héros. Elle n'en fait rien de spécial, c'est uniquement pour récupérer la position courante du héros.
+Cette classe contient une référence vers le héros. Elle n'en fait rien de spécial, c'est uniquement pour récupérer sa position courante.
 
-On ne transmet pas aux `MagicianListCoordBuilder` les autres infos liées au pattern : type de magicien à générer, délai entre magiciens, levels, ... Elle n'en n'a pas besoin, elle ne calcule que les coordonnées. Par contre elle a besoin du nombre de magiciens.
+On ne transmet pas aux `MagicianListCoordBuilder` les autres infos liées au pattern : type de magicien, délai, levels, ... Elle n'en n'a pas besoin, elle ne calcule que les coordonnées. Par contre elle a besoin du nombre de magiciens à générer.
 
-Ces fonctions sont les suivantes :
+Ces fonctions de génération de coordonnées sont les suivantes :
 
- - `generateLinePattern` : coordonnées en ligne, horizontale ou verticale. Les coordonnées de début sont d'un côté de l'écran, celles de fin sont de l'autre côtés. On peut avoir la liste des coordonnées de fin inversées par rapport à celles du début. C'est à dire que les magiciens, au lieu de tous avancer le long de lignes parallèles, vont avancer en se croisant au centre. (Le magicien en haut à gauche termine en bas à droite, etc.).
+ - `generateLinePattern()` : coordonnées en ligne, horizontale ou verticale. Les coordonnées de début sont d'un côté de l'écran, celles de fin de l'autre côté. On peut avoir les coordonnées de fin inversées par rapport à celles du début. C'est à dire que les magiciens, au lieu de tous avancer le long de lignes parallèles, vont se croiser au centre. (Le magicien en haut à gauche termine en bas à droite, etc.).
 
- - `generateDiagPattern` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. On place un premier magicien sur une diagonale, un second sur la suivante, et ainsi de suite, puis on revient sur la première diagonale, et ainsi de suite-suite.
+ - `generateDiagPattern()` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. On place un premier magicien sur une diagonale, un second sur la suivante, et ainsi de suite, puis on revient sur la première diagonale, et ainsi de suite-suite.
 
- - `generateRandPattern` : coordonnées complètement au hasard. Aussi bien le départ que l'arrivée.
+ - `generateRandPattern()` : coordonnées complètement au hasard. Aussi bien le départ que l'arrivée.
 
- - `generateCirclePattern` : coordonnées le long d'un cercle. Le centre du cercle est la position courante du héros.
+ - `generateCirclePattern()` : coordonnées le long d'un cercle. Le centre du cercle est la position courante du héros.
 
- - `generatePattern` : fonction générique. On lui passe un type de pattern, et elle appelle l'une des 4 fonctions ci-dessus, en fonction.
+ - `generatePattern()` : fonction générique. On lui passe un type de pattern, et elle appelle l'une des 4 fonctions ci-dessus.
 
-Pour chacune de ces fonctions, on précise si on veut la liste de coordonnées de fin, ou si on veut juste None. Lorsqu'on a prévu de générer des magirand, il n'y a pas besoin de déterminer les coordonnées de fin, puisque ce type de magicien se déplace au hasard.
+Pour chacune de ces fonctions, on précise si on veut la liste de coordonnées de fin, ou si on veut juste un None à la place. Lorsqu'on a prévu de générer des Magirand, il n'y a en effet pas besoin de déterminer les coordonnées de fin.
 
-Il y a parfois un peu de random dans la détermination des coordonnées (espacement entre les magiciens, ordre dans un sens ou dans l'autre, etc.). Rien de significatif pour la difficulté du jeu. Car la gestion de la difficulté est faite par le `MagicianWaveGenerator`.
+Il y a parfois un peu de random dans la détermination des coordonnées (espacement entre les magiciens, ordre dans un sens ou dans l'autre, etc.). Rien de significatif pour la difficulté du jeu. Toute la gestion de la difficulté est faite par le `MagicianWaveGenerator`.
 
-Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder`, afin de l'assister dans la généreration des patterns qu'il renvoie. (C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
+Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder`, afin de l'assister dans la généreration des patterns qu'il renvoie. (Trip: C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
 
 
 ### hardmana/HardMana ###
