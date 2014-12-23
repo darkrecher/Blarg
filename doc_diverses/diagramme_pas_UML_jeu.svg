@@ -1243,7 +1243,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1859,15 +1859,9 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5, 10;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow2Mstart-7-4);marker-end:url(#DotM-2-2)"
-       d="m 282.56894,584.18114 74.59682,37.85507"
+       style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5,10;stroke-dashoffset:11.75;stroke-opacity:1;marker-start:url(#Arrow2Mstart-7-4);marker-end:url(#DotM-2-2)"
+       d="m 308.56894,596.18114 82.59682,27.85507"
        id="path4742-90-0"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5, 10;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow2Mstart-7-41);marker-end:url(#DotM-2-6)"
-       d="m 282.13586,655.43779 114.67869,-33.1748"
-       id="path4742-90-8"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
@@ -2041,22 +2035,27 @@
     <rect
        style="fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4162-8"
-       width="111.33855"
-       height="80.163704"
-       x="8.9070625"
-       y="422.3728" />
+       width="163.66766"
+       height="77.936928"
+       x="860.60577"
+       y="333.302" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="14.503254"
-       y="446.84796"
+       x="866.20197"
+       y="357.77716"
        id="text4170-8-7-6"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4172-9-6-7"
-         x="14.503254"
-         y="446.84796"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;font-family:Arial;-inkscape-font-specification:'Arial Bold'">SoundYargler</tspan></text>
+         x="866.20197"
+         y="357.77716"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;font-family:Arial;-inkscape-font-specification:'Arial Bold'">theSoundYargler = </tspan><tspan
+         sodipodi:role="line"
+         x="866.20197"
+         y="376.52716"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;font-family:Arial;-inkscape-font-specification:'Arial Bold'"
+         id="tspan4467">SoundYargler()</tspan></text>
     <rect
        style="fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4162-8-7"
