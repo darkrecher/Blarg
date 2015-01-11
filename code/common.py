@@ -292,7 +292,7 @@ def loadImg(filename, colorkey=-1, doConversion=True):
                        graphique actuel. (Normalement, faut le faire tout le temps, pour
                        optimiser). Sauf que si le mode graphique actuel n'a pas encore été
                        déterminé, eh ben on peut pô faire de convert. Donc faudra mettre False.
-                                 
+
     plat-dessert :
         la Surface contenant l'image chargée
     """
