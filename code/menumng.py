@@ -180,8 +180,8 @@ class MenuManager():
         #définition de self.isOneElemAcceptFocus. boolean indiquant si il y a au moins un
         #MenuElem dans la liste qui accepte le focus.
         #construction d'une liste de booléen : tous les menuElem.acceptFocus
-        listAccepFocus = [ menuElem.acceptFocus 
-                           for menuElem in self.listMenuElem 
+        listAccepFocus = [ menuElem.acceptFocus
+                           for menuElem in self.listMenuElem
                          ]
 
         #il suffit d'avoir un seul True dans cette liste, et c'est bon.
@@ -337,7 +337,8 @@ class MenuManager():
             for event in pygame.event.get():
 
                 if event.type == pygl.QUIT:
-                    #event de fermage de fenêtre, ou Alt-F4 sous windows.
+                    #event de fermage de fenêtre
+                    #(mais pas Alt-F4, qui ne semble pas être pris en compte).
                     #on se barre de la fonction avec le message d'ihm TOTALQUIT.
                     #Ce message doit être remonté vers tous les menus et les MenuElem
                     #en cours d'exécution, jusqu'à quitter le programme proprement.
