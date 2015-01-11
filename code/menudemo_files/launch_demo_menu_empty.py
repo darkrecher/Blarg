@@ -4,9 +4,9 @@
 """
 Blarg version 1.0
 
-DÃ©mo du systÃ¨me de menu
-Lancement d'une dÃ©mo avec un menu vide, (la classe de base), ne contenant aucun "MenuElement".
-Pour quitter la dÃ©mo, appuyer sur le bouton de fermage de fenÃªtre. (Alt-F4 ne marche pas).
+Démo du système de menu
+Lancement d'une démo avec un menu vide, (la classe de base), ne contenant aucun "MenuElement".
+Pour quitter la démo, appuyer sur le bouton de fermage de fenêtre. (Alt-F4 ne marche pas).
 """
 
 

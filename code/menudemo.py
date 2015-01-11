@@ -4,14 +4,16 @@
 """
 Blarg version 1.0
 
-DÃ©mo du systÃ¨me de menu
-Fichier principal, qui lancera toutes les dÃ©mos, en fonction d'un paramÃ¨tre de ligne de commande.
+Démo du système de menu
+Fichier principal, qui lancera toutes les démos, en fonction d'un paramètre de ligne de commande.
 """
 
 
 import menudemo_files.launch_demo_menu_empty
+import menudemo_files.launch_demo_menu_labels
 
 if __name__ == "__main__":
 
-    menudemo_files.launch_demo_menu_empty.launch_demo_menu_empty()
+    #menudemo_files.launch_demo_menu_empty.launch_demo_menu_empty()
+    menudemo_files.launch_demo_menu_labels.launch_demo_menu_labels()
 
