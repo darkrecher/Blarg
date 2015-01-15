@@ -11,9 +11,11 @@ Fichier principal, qui lancera toutes les démos, en fonction d'un paramètre de l
 
 import menudemo_files.launch_demo_menu_empty
 import menudemo_files.launch_demo_menu_labels
+import menudemo_files.launch_demo_menu_event_teller
 
 if __name__ == "__main__":
 
     #menudemo_files.launch_demo_menu_empty.launch_demo_menu_empty()
-    menudemo_files.launch_demo_menu_labels.launch_demo_menu_labels()
+    #menudemo_files.launch_demo_menu_labels.launch_demo_menu_labels()
+    menudemo_files.launch_demo_menu_event_teller.launch_demo_menu_event_teller()
 
