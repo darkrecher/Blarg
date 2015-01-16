@@ -45,8 +45,8 @@ class MenuElemEventTeller(MenuElem):
         """
         overridé (plus ou moins)
         """
-        print "J'ai été activé"
-        self.menu_elem_text.changeFontAndText(newText="J'ai été activé")
+        print "J'ai ete actived"
+        self.menu_elem_text.changeFontAndText(newText="activé")
         return (IHMSG_REDRAW_MENU, )
 
     def draw(self, surfaceDest):
@@ -57,24 +57,25 @@ class MenuElemEventTeller(MenuElem):
         surfaceDest.blit(self.carre_rouge, self.draw_zone)
 
     def takeStimuliMouse(self, mousePos, mouseDown, mousePressed):
-        """
-        TODO
-        """
+        # TODO
         #print "hailz"
         return IHMSG_VOID
 
     def takeStimuliFocusCycling(self):
         print "cyclage de focus"
-        return (IHMSG_CYCLE_FOCUS_OK, )
-
+        self.menu_elem_text.changeFontAndText(newText="cyclage de focus")
+        return (IHMSG_REDRAW_MENU, IHMSG_CYCLE_FOCUS_OK, )
 
     def takeStimuliGetFocus(self):
-        print "je prends le focus"
         self.focusOn = True
-
+        print "je prends le focus"
+        self.menu_elem_text.changeFontAndText(newText="focus enter")
+        # useless: return (IHMSG_REDRAW_MENU, )
 
     def takeStimuliLoseFocus(self):
-        print "je perd le focus"
         self.focusOn = False
+        print "je perd le focus"
+        self.menu_elem_text.changeFontAndText(newText="focus quit")
+        # useless: return (IHMSG_REDRAW_MENU, )
 
 

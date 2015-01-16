@@ -20,6 +20,35 @@ from menukey  import MenuSensitiveKey
 from menuelem_event_teller import MenuElemEventTeller
 
 
+class MenuTextClearable(MenuText):
+    """
+    Monkey patching.
+    La classe MenuTextClearable est un élément de menu qui affiche un texte.
+    Mais le MenuText de base ne marche pas bien. Si on change le texte en live,
+    ça se superpose.
+    L'idéal serait de corriger ce bug directement dans la classe MenuText,
+    mais j'ai pas envie de changer le code existant parce que j'ai plus
+    envie de retoucher et retester tout ce bazar.
+    """
+    def redefineRectDrawZoneAfterAttribChange(self):
+        if hasattr(self, "rectDrawZone"):
+            self.rectDrawZone_previous = self.rectDrawZone
+        else:
+            self.rectDrawZone_previous = None
+        MenuText.redefineRectDrawZoneAfterAttribChange(self)
+
+    def draw(self, surfaceDest):
+        """
+        Dessine le texte à l'écran, comme un MenuText normal.
+        Mais avant, dessine un carré noir, pour effacer le texte d'avant.
+        """
+        if self.rectDrawZone_previous is not None:
+            img_clearing = pygame.Surface(self.rectDrawZone_previous.size).convert()
+            img_clearing.fill((0, 0, 0))
+            surfaceDest.blit(img_clearing, self.rectDrawZone_previous)
+        MenuText.draw(self, surfaceDest)
+
+
 def mactCloseApp():
     return (common.IHMSG_TOTALQUIT, )
 
@@ -33,7 +62,7 @@ def launch_demo_menu_event_teller():
     load_font_infos = common.loadFonts()
     fontDefault = load_font_infos[1]
 
-    label_1 = MenuText(
+    label_1 = MenuTextClearable(
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
