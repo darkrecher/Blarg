@@ -52,7 +52,6 @@ class MenuTextClearable(MenuText):
 def mactCloseApp():
     return (common.IHMSG_TOTALQUIT, )
 
-
 def launch_demo_menu_event_teller():
 
     pygame.init()
@@ -66,15 +65,33 @@ def launch_demo_menu_event_teller():
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
-    event_teller = MenuElemEventTeller(
-        pygame.rect.Rect(150, 150, 70, 70),
+    event_teller_1 = MenuElemEventTeller(
+        pygame.rect.Rect(10, 50, 70, 70),
         label_1)
+    label_2 = MenuTextClearable(
+        pygame.Rect(210, 10, 0, 0),
+        fontDefault,
+        text="bonjour !!")
+    event_teller_2 = MenuElemEventTeller(
+        pygame.rect.Rect(210, 50, 70, 70),
+        label_2)
+    label_3 = MenuTextClearable(
+        pygame.Rect(10, 160, 0, 0),
+        fontDefault,
+        text="bonjour !!")
+    event_teller_3 = MenuElemEventTeller(
+        pygame.rect.Rect(10, 200, 70, 70),
+        label_3)
     mkey_escape_quit = MenuSensitiveKey(
         mactCloseApp,
         pygl.K_ESCAPE)
 
     menu_empty = MenuManager(screen)
-    menu_empty.listMenuElem = [ label_1, event_teller, mkey_escape_quit ]
+    menu_empty.listMenuElem = [
+        label_1, event_teller_1,
+        label_2, event_teller_2,
+        label_3, event_teller_3,
+        mkey_escape_quit ]
     menu_empty.initFocusCyclingInfo()
     menu_empty.handleMenu()
 

@@ -20,7 +20,8 @@ import pygame
 import pygame.locals
 pygl = pygame.locals
 
-from common import IHMSG_VOID, IHMSG_REDRAW_MENU, IHMSG_CYCLE_FOCUS_OK
+from common import (
+    IHMSG_VOID, IHMSG_REDRAW_MENU, IHMSG_CYCLE_FOCUS_OK, IHMSG_ELEM_WANTFOCUS)
 from menuelem import MenuElem
 
 
@@ -36,30 +37,39 @@ class MenuElemEventTeller(MenuElem):
         MenuElem.__init__(self)
         self.acceptFocus = True
         self.draw_zone = draw_zone
+        self.color = (150, 50, 50)
         self.carre_rouge = pygame.Surface(self.draw_zone.size).convert()
-        self.carre_rouge.fill((200, 0, 0))
+        self.carre_rouge.fill(self.color)
         self.menu_elem_text = menu_elem_text
         self.funcAction = self._funcAction
+        self.must_redraw = False
 
     def _funcAction(self):
         """
         overridé (plus ou moins)
         """
         print "J'ai ete actived"
-        self.menu_elem_text.changeFontAndText(newText="activé")
+        self.menu_elem_text.changeFontAndText(newText="activation")
+        self.color = (0, 250, 0)
+        self.carre_rouge.fill(self.color)
         return (IHMSG_REDRAW_MENU, )
 
     def draw(self, surfaceDest):
         """
-        overridé
         Dessine un carré rouge.
         """
         surfaceDest.blit(self.carre_rouge, self.draw_zone)
 
     def takeStimuliMouse(self, mousePos, mouseDown, mousePressed):
-        # TODO
-        #print "hailz"
-        return IHMSG_VOID
+        if mouseDown and self.draw_zone.collidepoint(mousePos):
+            # TODO : ne marche pas bien. Ça définit la couleur verte,
+            # puis juste après ça définit la couleur rouge claire,
+            # car le menuManager donne le focus à l'élément, qui exécute
+            # takeStimuliGetFocus.
+            self.funcAction()
+            return (IHMSG_ELEM_WANTFOCUS, )
+        else:
+            return IHMSG_VOID
 
     def takeStimuliFocusCycling(self):
         print "cyclage de focus"
@@ -70,12 +80,31 @@ class MenuElemEventTeller(MenuElem):
         self.focusOn = True
         print "je prends le focus"
         self.menu_elem_text.changeFontAndText(newText="focus enter")
-        # useless: return (IHMSG_REDRAW_MENU, )
+        self.color = (250, 0, 0)
+        self.carre_rouge.fill(self.color)
+        # Les fonctions takeStimuliGetFocus et takeStimuliLoseFocus ne peuvent
+        # pas renvoyer des valeurs IHMSG. Donc on ne peut pas demander ici un
+        # redraw global du menu.
+        # Contournement à l'arrache, on utilise le booléen must_redraw,
+        # la fonction update (appelée périodiquement) émettra un
+        # IHMSG_REDRAW_MENU lorsque ce sera nécessaire.
+        self.must_redraw = True
 
     def takeStimuliLoseFocus(self):
         self.focusOn = False
         print "je perd le focus"
         self.menu_elem_text.changeFontAndText(newText="focus quit")
-        # useless: return (IHMSG_REDRAW_MENU, )
+        self.color = (150, 50, 50)
+        self.carre_rouge.fill(self.color)
+        # Voir commentaire de takeStimuliGetFocus.
+        self.must_redraw = True
+
+    def update(self):
+        if self.must_redraw:
+            self.must_redraw = False
+            print "demande redessin global via la fonction update"
+            return (IHMSG_REDRAW_MENU, )
+        else:
+            return IHMSG_VOID
 
 
