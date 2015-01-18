@@ -43,6 +43,8 @@ class MenuElemEventTeller(MenuElem):
         self.menu_elem_text = menu_elem_text
         self.funcAction = self._funcAction
         self.must_redraw = False
+        self.got_focus_from_click = False
+        self.nb_activation_chained = 0
 
     def _funcAction(self):
         """
@@ -61,26 +63,31 @@ class MenuElemEventTeller(MenuElem):
         surfaceDest.blit(self.carre_rouge, self.draw_zone)
 
     def takeStimuliMouse(self, mousePos, mouseDown, mousePressed):
+        ihm_msg_result = IHMSG_VOID
         if mouseDown and self.draw_zone.collidepoint(mousePos):
-            # TODO : ne marche pas bien. Ça définit la couleur verte,
-            # puis juste après ça définit la couleur rouge claire,
-            # car le menuManager donne le focus à l'élément, qui exécute
-            # takeStimuliGetFocus.
-            self.funcAction()
-            return (IHMSG_ELEM_WANTFOCUS, )
-        else:
-            return IHMSG_VOID
+            ihm_msg_result += self.funcAction()
+            if not self.focusOn:
+                # funcAction mettra la couleur verte.
+                # mais comme on renvoie IHMSG_ELEM_WANTFOCUS, le menuManager
+                # donnera le focus à l'élément, qui exécutera takeStimuliGetFocus,
+                # et ça risque de mettre la couleur rouge clair. Or on veut que ça
+                # reste vert. Donc on stocke à l'arrache l'origine du focus dans
+                # un booléen.
+                self.got_focus_from_click = True
+                ihm_msg_result += (IHMSG_ELEM_WANTFOCUS, )
+        return ihm_msg_result
 
     def takeStimuliFocusCycling(self):
         print "cyclage de focus"
         self.menu_elem_text.changeFontAndText(newText="cyclage de focus")
         return (IHMSG_REDRAW_MENU, IHMSG_CYCLE_FOCUS_OK, )
 
-    def takeStimuliGetFocus(self):
-        self.focusOn = True
-        print "je prends le focus"
-        self.menu_elem_text.changeFontAndText(newText="focus enter")
-        self.color = (250, 0, 0)
+    def takeStimuliLoseFocus(self):
+        self.focusOn = False
+        self.nb_activation_chained = 0 # WIP TODO
+        print "je perd le focus"
+        self.menu_elem_text.changeFontAndText(newText="focus quit")
+        self.color = (150, 50, 50)
         self.carre_rouge.fill(self.color)
         # Les fonctions takeStimuliGetFocus et takeStimuliLoseFocus ne peuvent
         # pas renvoyer des valeurs IHMSG. Donc on ne peut pas demander ici un
@@ -90,14 +97,19 @@ class MenuElemEventTeller(MenuElem):
         # IHMSG_REDRAW_MENU lorsque ce sera nécessaire.
         self.must_redraw = True
 
-    def takeStimuliLoseFocus(self):
-        self.focusOn = False
-        print "je perd le focus"
-        self.menu_elem_text.changeFontAndText(newText="focus quit")
-        self.color = (150, 50, 50)
-        self.carre_rouge.fill(self.color)
-        # Voir commentaire de takeStimuliGetFocus.
-        self.must_redraw = True
+    def takeStimuliGetFocus(self):
+        self.focusOn = True
+        print "je prends le focus"
+        if self.got_focus_from_click:
+            print "mais je met pas la couleur rouge clair,"
+            print "car c'est un focus qui vient d'un clic."
+            self.got_focus_from_click = False
+        else:
+            self.menu_elem_text.changeFontAndText(newText="focus enter")
+            self.color = (250, 0, 0)
+            self.carre_rouge.fill(self.color)
+            # voir commentaire de takeStimuliLoseFocus
+            self.must_redraw = True
 
     def update(self):
         if self.must_redraw:
