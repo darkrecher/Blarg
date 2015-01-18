@@ -48,3 +48,4 @@ def launch_demo_menu_labels():
     menu_empty.handleMenu()
 
     pygame.quit()
+
