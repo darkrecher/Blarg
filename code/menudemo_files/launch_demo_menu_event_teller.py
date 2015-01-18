@@ -67,6 +67,7 @@ def launch_demo_menu_event_teller():
         text="bonjour !!")
     event_teller_1 = MenuElemEventTeller(
         pygame.rect.Rect(10, 50, 70, 70),
+        "haut_gauche",
         label_1)
     label_2 = MenuTextClearable(
         pygame.Rect(210, 10, 0, 0),
@@ -74,6 +75,7 @@ def launch_demo_menu_event_teller():
         text="bonjour !!")
     event_teller_2 = MenuElemEventTeller(
         pygame.rect.Rect(210, 50, 70, 70),
+        "haut_droite",
         label_2)
     label_3 = MenuTextClearable(
         pygame.Rect(10, 160, 0, 0),
@@ -81,6 +83,7 @@ def launch_demo_menu_event_teller():
         text="bonjour !!")
     event_teller_3 = MenuElemEventTeller(
         pygame.rect.Rect(10, 200, 70, 70),
+        "bas_gauche",
         label_3)
     mkey_escape_quit = MenuSensitiveKey(
         mactCloseApp,

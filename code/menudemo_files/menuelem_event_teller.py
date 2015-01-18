@@ -30,7 +30,7 @@ class MenuElemEventTeller(MenuElem):
     TODO
     """
 
-    def __init__(self, draw_zone, menu_elem_text):
+    def __init__(self, draw_zone, name, menu_elem_text):
         """
         constructeur. (thx captain obvious)
         """
@@ -40,6 +40,7 @@ class MenuElemEventTeller(MenuElem):
         self.color = (150, 50, 50)
         self.carre_rouge = pygame.Surface(self.draw_zone.size).convert()
         self.carre_rouge.fill(self.color)
+        self.name = name
         self.menu_elem_text = menu_elem_text
         self.funcAction = self._funcAction
         self.must_redraw = False
@@ -50,8 +51,11 @@ class MenuElemEventTeller(MenuElem):
         """
         overridé (plus ou moins)
         """
-        print "J'ai ete actived"
-        self.menu_elem_text.changeFontAndText(newText="activation")
+        self.nb_activation_chained += 1
+        print self.name + ". J'ai ete actived"
+        self.menu_elem_text.changeFontAndText(
+            newText="activation : " +
+            str(self.nb_activation_chained))
         self.color = (0, 250, 0)
         self.carre_rouge.fill(self.color)
         return (IHMSG_REDRAW_MENU, )
@@ -78,14 +82,14 @@ class MenuElemEventTeller(MenuElem):
         return ihm_msg_result
 
     def takeStimuliFocusCycling(self):
-        print "cyclage de focus"
+        print self.name + ". cyclage de focus"
         self.menu_elem_text.changeFontAndText(newText="cyclage de focus")
         return (IHMSG_REDRAW_MENU, IHMSG_CYCLE_FOCUS_OK, )
 
     def takeStimuliLoseFocus(self):
         self.focusOn = False
-        self.nb_activation_chained = 0 # WIP TODO
-        print "je perd le focus"
+        self.nb_activation_chained = 0
+        print self.name + ". je perd le focus"
         self.menu_elem_text.changeFontAndText(newText="focus quit")
         self.color = (150, 50, 50)
         self.carre_rouge.fill(self.color)
@@ -99,10 +103,10 @@ class MenuElemEventTeller(MenuElem):
 
     def takeStimuliGetFocus(self):
         self.focusOn = True
-        print "je prends le focus"
+        print self.name + ". je prends le focus"
         if self.got_focus_from_click:
-            print "mais je met pas la couleur rouge clair,"
-            print "car c'est un focus qui vient d'un clic."
+            print self.name + ". mais je met pas la couleur rouge clair,"
+            print self.name + ". car c'est un focus qui vient d'un clic."
             self.got_focus_from_click = False
         else:
             self.menu_elem_text.changeFontAndText(newText="focus enter")
@@ -114,7 +118,7 @@ class MenuElemEventTeller(MenuElem):
     def update(self):
         if self.must_redraw:
             self.must_redraw = False
-            print "demande redessin global via la fonction update"
+            print self.name + ". demande redessin global via la fonction update"
             return (IHMSG_REDRAW_MENU, )
         else:
             return IHMSG_VOID
