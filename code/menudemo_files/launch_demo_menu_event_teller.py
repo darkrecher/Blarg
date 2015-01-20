@@ -4,8 +4,15 @@
 """
 Blarg version 1.0
 
-Démo du système de menu
-TODO
+Démo du système de menu.
+Lancement d'une démo avec un menu contenant des MenuElements customisés :
+des carrés qui réagissent aux événements, et qui écrivent ces events dans
+un MenuText associé.
+
+L'utilisateur peut effectuer les actions suivantes :
+ - cliquer sur un carré -> le carré prend le focus et s'active immédiatement.
+ - appuyer sur Tab -> cyclage de focus entre les 3 carrés affichés.
+ - appuyer sur Espace ou Entrée -> active l'élément ayant le focus.
 """
 
 
@@ -14,8 +21,8 @@ import pygame.locals
 pygl = pygame.locals
 import common
 from menumng import MenuManager
-from menutxt  import MenuText
-from menukey  import MenuSensitiveKey
+from menutxt import MenuText
+from menukey import MenuSensitiveKey
 
 from menuelem_event_teller import MenuElemEventTeller
 
@@ -23,14 +30,17 @@ from menuelem_event_teller import MenuElemEventTeller
 class MenuTextClearable(MenuText):
     """
     Monkey patching.
-    La classe MenuTextClearable est un élément de menu qui affiche un texte.
-    Mais le MenuText de base ne marche pas bien. Si on change le texte en live,
+    Cette classe est un élément de menu affichant un texte.
+    Le MenuText de base ne marche pas bien. Si on change le texte en live,
     ça se superpose.
     L'idéal serait de corriger ce bug directement dans la classe MenuText,
     mais j'ai pas envie de changer le code existant parce que j'ai plus
     envie de retoucher et retester tout ce bazar.
     """
     def redefineRectDrawZoneAfterAttribChange(self):
+        # self.rectDrawZone_previous permet de se souvenir de la position et
+        # de la taille du texte précédent. Si pas de texte précédent,
+        # il vaut None.
         if hasattr(self, "rectDrawZone"):
             self.rectDrawZone_previous = self.rectDrawZone
         else:
@@ -39,8 +49,8 @@ class MenuTextClearable(MenuText):
 
     def draw(self, surfaceDest):
         """
-        Dessine le texte à l'écran, comme un MenuText normal.
-        Mais avant, dessine un carré noir, pour effacer le texte d'avant.
+        Dessine un carré noir, pour effacer le texte précédent.
+        Puis dessine le texte à l'écran, comme un MenuText normal.
         """
         if self.rectDrawZone_previous is not None:
             img_clearing = pygame.Surface(self.rectDrawZone_previous.size).convert()
@@ -50,21 +60,27 @@ class MenuTextClearable(MenuText):
 
 
 def mactCloseApp():
+    """ Quitte l'application. """
     return (common.IHMSG_TOTALQUIT, )
 
 def launch_demo_menu_event_teller():
 
+    # Init de pygame et du screen, comme d'hab'.
     pygame.init()
     SCREEN_RECT = pygame.Rect(0, 0, 400, 300)
     screen = pygame.display.set_mode(SCREEN_RECT.size, 0)
-
+    # chargement d'une police de caractère.
     load_font_infos = common.loadFonts()
     fontDefault = load_font_infos[1]
 
+    # Création d'un premier label. (Texte simple, non interactif)
     label_1 = MenuTextClearable(
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
+    # Créaton d'un élément de menu customisé, réagissant aux événements.
+    # On lui passe le label en paramètre. Il changera le texte de ce label,
+    # afin de signaler les événements détectés.
     event_teller_1 = MenuElemEventTeller(
         pygame.rect.Rect(10, 50, 70, 70),
         "haut_gauche",

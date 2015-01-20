@@ -20,6 +20,7 @@ from menukey  import MenuSensitiveKey
 
 
 def mactCloseApp():
+    """ Quitte l'application. """
     # Un MenuElement peut communiquer avec le MenuManager en renvoyant
     # un tuple contenant des valeurs "IHMSG_xxx".
     # La liste de ces valeurs et leur signification sont dans common.py.
