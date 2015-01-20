@@ -25,6 +25,7 @@ import sys
 import menudemo_files.launch_demo_menu_empty
 import menudemo_files.launch_demo_menu_labels
 import menudemo_files.launch_demo_menu_event_teller
+m = menudemo_files
 
 if __name__ == "__main__":
 
@@ -34,12 +35,12 @@ if __name__ == "__main__":
         choice = sys.argv[1]
 
     while choice not in MENU_CHOICES:
-        choice = raw_input("indiquez 1, 2 ou 3 pour declencher un menu : ")
+        choice = raw_input("indiquez 1, 2 ou 3 pour declencher un menuz : ")
 
     launch_function_from_choice = {
-        "1" : menudemo_files.launch_demo_menu_empty.launch_demo_menu_empty,
-        "2" : menudemo_files.launch_demo_menu_labels.launch_demo_menu_labels,
-        "3" : menudemo_files.launch_demo_menu_event_teller.launch_demo_menu_event_teller,
+        "1" : m.launch_demo_menu_empty.launch_demo_menu_empty,
+        "2" : m.launch_demo_menu_labels.launch_demo_menu_labels,
+        "3" : m.launch_demo_menu_event_teller.launch_demo_menu_event_teller,
     }
     launch_function = launch_function_from_choice[choice]
     launch_function()
