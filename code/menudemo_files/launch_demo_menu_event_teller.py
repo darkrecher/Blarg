@@ -5,15 +5,20 @@
 Blarg version 1.0
 
 Démo du système de menu.
-Lancement d'une démo avec un menu contenant des MenuElements customisés :
-des carrés qui réagissent aux événements, et qui écrivent ces events dans
-un MenuText associé.
+Lancement d'une démo avec des MenuElements customisés :
+des carrés qui réagissent aux événements, et qui les signalent dans un
+MenuText associé.
 
 L'utilisateur peut effectuer les actions suivantes :
  - cliquer sur un carré -> le carré prend le focus et s'active immédiatement.
  - touche Tab -> cyclage de focus entre les 3 carrés affichés.
  - touche Espace ou Entrée -> active l'élément ayant le focus.
  - touche Echap -> quitter.
+
+Les clics et la touche Echap sont gérés par le MenuElement customisé, à l'aide
+de fonction overridée.
+
+Les touches Tab, Espace et Entrée sont gérées directement par le MenuManager.
 """
 
 
@@ -38,6 +43,7 @@ class MenuTextClearable(MenuText):
     mais j'ai pas envie de changer le code existant parce que j'ai plus
     envie de retoucher et retester tout ce bazar.
     """
+
     def redefineRectDrawZoneAfterAttribChange(self):
         # self.rectDrawZone_previous permet de se souvenir de la position et
         # de la taille du texte précédent. Si pas de texte précédent,
@@ -88,7 +94,7 @@ def launch_demo_menu_event_teller():
         "haut_gauche",
         label_1)
 
-    # Création de deux autres couples label + EventTeller.
+    # Création de deux autres couples label + MenuElemEventTeller.
     # Ça permet de bien comprendre ce qu'il se passe lors des cyclages
     # de focus avec Tab.
     label_2 = MenuTextClearable(
@@ -112,7 +118,7 @@ def launch_demo_menu_event_teller():
         mactCloseApp,
         pygl.K_ESCAPE)
 
-    # création du menu, définition des éléments de menu, init, lancement.
+    # création du menu, définition de ses éléments, init, lancement.
     menu_main = MenuManager(screen)
     menu_main.listMenuElem = [
         label_1, event_teller_1,

@@ -13,11 +13,12 @@ classe. Mais ça aurait rendu les exemples plus complexes, notamment au
 niveau des initialisations. Là, chaque exemple est stand-alone dans son
 fichier de launch, et ça va très bien.
 
+Enfin... Pas tout à fait stand-alone à cause des imports, mais presque.
+
 Usage :
-lancer le script en indiquant 1, 2 ou 3 en paramètres, pour lancer l'exemple
-1, 2 ou 3.
-Si le script est lancé sans paramètre, ou avec des paramètre incorrect, le
-numéro de menu est demandé dans le prompt.
+Lancer le script en indiquant 1, 2 ou 3 en paramètre.
+Si le script est lancé sans paramètre, ou avec des paramètres incorrects,
+le numéro est demandé dans le prompt.
 """
 
 
@@ -26,6 +27,7 @@ import menudemo_files.launch_demo_menu_empty
 import menudemo_files.launch_demo_menu_labels
 import menudemo_files.launch_demo_menu_event_teller
 m = menudemo_files
+
 
 if __name__ == "__main__":
 
@@ -38,7 +40,7 @@ if __name__ == "__main__":
         print ""
         print "1 : menu vide. (Pour quitter : clic sur fermeture fenetre)."
         print ""
-        print "2 : menu avec des labels standard. (Pour quitter : Echap)."
+        print "2 : menu avec des labels standards. (Pour quitter : Echap)."
         print ""
         print "3 : menu avec des elements specifique reagissant aux clics"
         print "    et aux focus."

@@ -7,7 +7,7 @@ Blarg version 1.0
 Démo du système de menu.
 Lancement d'une démo avec un menu vide.
 
-Le MenuManager ne contient aucun "MenuElement".
+Crée un MenuManager, ne contenant aucun "MenuElement".
 Pour quitter la démo, appuyer sur le bouton de fermage de fenêtre.
 Alt-F4 ne marche pas.
 """
@@ -25,11 +25,12 @@ def launch_demo_menu_empty():
     SCREEN_RECT = pygame.Rect(0, 0, 400, 300)
     screen = pygame.display.set_mode(SCREEN_RECT.size, 0)
 
-    # Instanciation d'un menumanager.
+    # Instanciation d'un MenuManager.
     menu_empty = MenuManager(screen)
-    # Lancement du menu. Il y a une boucle, dans handleMenu, qui dépile les
-    # événements de souris et de clavier, les prend en compte, et/ou les
-    # transfère aux MenuElements contenus dans le menu.
+    # Lancement du menu. Il y a une boucle, dans handleMenu, qui :
+    #  - dépile les événements de souris et de clavier,
+    #  - les prend en compte pour lui-même ou bien
+    #  - les transfère aux MenuElements contenus dans le menu.
     # Là, on a un menu sans MenuElements, donc il ne se passe pas grand-chose.
     menu_empty.handleMenu()
 

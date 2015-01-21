@@ -5,8 +5,9 @@
 Blarg version 1.0
 
 Démo du système de menu.
-Lancement d'une démo avec un menu contenant des MenuElements standard :
-des labels affichant du texte, et un élément réagissant à la touche Echap.
+Lancement d'une démo avec des MenuElements standard :
+ - des labels affichant du texte,
+ - un élément réagissant à la touche Echap.
 """
 
 
@@ -25,8 +26,8 @@ def mactCloseApp():
     # un tuple contenant des valeurs "IHMSG_xxx".
     # La liste de ces valeurs et leur signification sont dans common.py.
     # Ça ne marche pas forcément pour toutes les fonctions overridable
-    # dans un MenuElement, mais là, ça marche.
-    # la valeur IHMSG_TOTALQUIT sert à indiquer qu'on veut quitter
+    # du MenuElement, mais là, ça marche.
+    # La valeur IHMSG_TOTALQUIT sert à indiquer qu'on veut quitter
     # complètement l'application.
     return (common.IHMSG_TOTALQUIT, )
 
@@ -44,8 +45,8 @@ def launch_demo_menu_labels():
 
     # Création de deux MenuElements, affichant un texte à l'écran.
     # Il faut indiquer les coordonnées à l'écran, la police et le texte.
-    # Ces MenuElements ne sont pas interactifs :
-    # non cliquables, non focusables.
+    # Ces MenuElements ne sont pas interactifs.
+    # (non cliquables, non focusables).
     label_1 = MenuText(
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
@@ -64,15 +65,15 @@ def launch_demo_menu_labels():
 
     # Instanciation, comme d'hab'
     menu_main = MenuManager(screen)
-    # On place les MenuElement dans le menu qu'on vient de créer. L'ordre
-    # est important, car il définit l'ordre de focus (quand l'utilisateur
-    # appuie sur Tab).
+    # On place les MenuElement dans le MenuManager qu'on vient de créer.
+    # L'ordre est important, car il définit l'ordre de cyclage de focus.
+    # (Quand l'utilisateur appuie sur Tab).
     menu_main.listMenuElem = [ label_1, label_2, mkey_escape_quit ]
-    # Cette fonction doit obligatoirement être appelée après une redéfinition
-    # du contenu de listMenuElem. Ce n'est pas obligatoire, mais c'est mieux.
+    # Cette fonction doit obligatoirement être appelée après que listMenuElem
+    # ait été modifiée. Ce n'est pas obligatoire, mais c'est mieux.
     # On peut l'appeler depuis du code extérieur, ou bien hériter un
-    # MenuManager, et dans la fonction __init__, on définit directement
-    # listMenuElem, puis on appelle initFocusCyclingInfo.
+    # MenuManager, et dans la fonction __init__, définir listMenuElem,
+    # puis appeller initFocusCyclingInfo.
     menu_main.initFocusCyclingInfo()
     # Lancement du menu.
     menu_main.handleMenu()
