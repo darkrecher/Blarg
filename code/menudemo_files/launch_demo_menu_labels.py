@@ -63,19 +63,19 @@ def launch_demo_menu_labels():
         pygl.K_ESCAPE)
 
     # Instanciation, comme d'hab'
-    menu_empty = MenuManager(screen)
+    menu_main = MenuManager(screen)
     # On place les MenuElement dans le menu qu'on vient de créer. L'ordre
     # est important, car il définit l'ordre de focus (quand l'utilisateur
     # appuie sur Tab).
-    menu_empty.listMenuElem = [ label_1, label_2, mkey_escape_quit ]
+    menu_main.listMenuElem = [ label_1, label_2, mkey_escape_quit ]
     # Cette fonction doit obligatoirement être appelée après une redéfinition
     # du contenu de listMenuElem. Ce n'est pas obligatoire, mais c'est mieux.
     # On peut l'appeler depuis du code extérieur, ou bien hériter un
     # MenuManager, et dans la fonction __init__, on définit directement
     # listMenuElem, puis on appelle initFocusCyclingInfo.
-    menu_empty.initFocusCyclingInfo()
+    menu_main.initFocusCyclingInfo()
     # Lancement du menu.
-    menu_empty.handleMenu()
+    menu_main.handleMenu()
 
     pygame.quit()
 

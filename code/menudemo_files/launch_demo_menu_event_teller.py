@@ -11,8 +11,9 @@ un MenuText associé.
 
 L'utilisateur peut effectuer les actions suivantes :
  - cliquer sur un carré -> le carré prend le focus et s'active immédiatement.
- - appuyer sur Tab -> cyclage de focus entre les 3 carrés affichés.
- - appuyer sur Espace ou Entrée -> active l'élément ayant le focus.
+ - touche Tab -> cyclage de focus entre les 3 carrés affichés.
+ - touche Espace ou Entrée -> active l'élément ayant le focus.
+ - touche Echap -> quitter.
 """
 
 
@@ -53,7 +54,8 @@ class MenuTextClearable(MenuText):
         Puis dessine le texte à l'écran, comme un MenuText normal.
         """
         if self.rectDrawZone_previous is not None:
-            img_clearing = pygame.Surface(self.rectDrawZone_previous.size).convert()
+            img_clearing = pygame.Surface(self.rectDrawZone_previous.size)
+            img_clearing = img_clearing.convert()
             img_clearing.fill((0, 0, 0))
             surfaceDest.blit(img_clearing, self.rectDrawZone_previous)
         MenuText.draw(self, surfaceDest)
@@ -78,13 +80,17 @@ def launch_demo_menu_event_teller():
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
-    # Créaton d'un élément de menu customisé, réagissant aux événements.
+    # Création d'un élément de menu customisé, réagissant aux événements.
     # On lui passe le label en paramètre. Il changera le texte de ce label,
     # afin de signaler les événements détectés.
     event_teller_1 = MenuElemEventTeller(
         pygame.rect.Rect(10, 50, 70, 70),
         "haut_gauche",
         label_1)
+
+    # Création de deux autres couples label + EventTeller.
+    # Ça permet de bien comprendre ce qu'il se passe lors des cyclages
+    # de focus avec Tab.
     label_2 = MenuTextClearable(
         pygame.Rect(210, 10, 0, 0),
         fontDefault,
@@ -101,17 +107,19 @@ def launch_demo_menu_event_teller():
         pygame.rect.Rect(10, 200, 70, 70),
         "bas_gauche",
         label_3)
+    # Élément qui fait quitter lorsqu'on appuie sur Echap.
     mkey_escape_quit = MenuSensitiveKey(
         mactCloseApp,
         pygl.K_ESCAPE)
 
-    menu_empty = MenuManager(screen)
-    menu_empty.listMenuElem = [
+    # création du menu, définition des éléments de menu, init, lancement.
+    menu_main = MenuManager(screen)
+    menu_main.listMenuElem = [
         label_1, event_teller_1,
         label_2, event_teller_2,
         label_3, event_teller_3,
         mkey_escape_quit ]
-    menu_empty.initFocusCyclingInfo()
-    menu_empty.handleMenu()
+    menu_main.initFocusCyclingInfo()
+    menu_main.handleMenu()
 
     pygame.quit()

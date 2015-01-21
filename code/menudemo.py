@@ -34,8 +34,20 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] in MENU_CHOICES:
         choice = sys.argv[1]
 
+    if choice not in MENU_CHOICES:
+        print ""
+        print "1 : menu vide. (Pour quitter : clic sur fermeture fenetre)."
+        print ""
+        print "2 : menu avec des labels standard. (Pour quitter : Echap)."
+        print ""
+        print "3 : menu avec des elements specifique reagissant aux clics"
+        print "    et aux focus."
+        print "    Pour cycler le focus : Tab."
+        print "    Pour activer l'element courant : Espace ou Entree."
+        print "    Pour quitter : Echap."
+        print ""
     while choice not in MENU_CHOICES:
-        choice = raw_input("indiquez 1, 2 ou 3 pour declencher un menuz : ")
+        choice = raw_input("indiquez 1, 2 ou 3 pour declencher un menu : ")
 
     launch_function_from_choice = {
         "1" : m.launch_demo_menu_empty.launch_demo_menu_empty,
