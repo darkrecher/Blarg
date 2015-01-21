@@ -43,9 +43,32 @@ TODO.
 
 ### Description des fichiers ###
 
-IHMSG
+#### Valeurs IHMSG_* ####
 
+IHMSG = "IHM Message".
 
+Il s'agit de constantes permettant d'échanger des informations entre les `MenuElem` et le `MenuManager`. On peut en placer plusieurs dans un même message (par exemple, pour demander un redessin du menu, et en même temps signaler qu'on accepte le focus). Un message est constitué d'un tuple de 0, 1 ou plusieurs IHMSG.
+
+La liste des IHMSG est définie dans `common.py`
+
+ - `IHMSG_QUIT` : on veut quitter le menu courant, pour revenir au truc qu'on faisait avant.
+ - `IHMSG_TOTALQUIT` : on veut totalement quitter tout le jeu.
+ - `IHMSG_REDRAW_MENU` : Le menu doit être entièrement redessiné. (Le fond + tous les éléments).
+ - `IHMSG_ELEM_CLICKED` : l'élément de menu s'est fait cliquer dessus.
+ - `IHMSG_ELEM_WANTFOCUS` : l'élément de menu veut avoir le focus.
+ - `IHMSG_CYCLE_FOCUS_OK` : on fait un cyclage de focus (Tab). L'élément de menu actuellement focusé accepte de lâcher le focus pour le transmettre à l'élément suivant.
+ - `IHMSG_PLAY_ONCE_MORE` : message spécial utilisé dans un seul cas : quand on quitte le menu affichant que le héros est mort. Sert à indiquer que le joueur veut rejouer. C'est à ça que ça sert.
+ - `IHMSG_CANCEL` : le joueur veut annuler le truc en cours.
+
+Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égal au tuple vide, afin d'exprimer qu'on veut renvoyer un message sans IHMSG. (Une sorte de typage spécifique, ou une lubie du genre). La constante s'appelle `IHMSG_VOID`.
+
+Du coup, pour renvoyer un message vide, on écrit `IHMSG_VOID`, sans parenthèse. Et pour renvoyer un message contenant un IHMSG, on écrit `(IHMSG_REDRAW_MENU, )`, avec parenthèses. Ça fait un peu bizarre. Tant pis !
+
+#### menucomn.py ####
+
+Diverses fonctions et constantes communes au système de menu.
+
+C'est principalement utilisé par la partie spécifique (les menu du jeu Blarg), mais la partie générique (le système de menu) utilise parfois une ou deux constantes contenues dans ce fichier. D'ailleurs c'est pas très bien, il faudrait essayer de séparer.
 
 ### mot-clé utilisé dans les noms de variables ###
 
