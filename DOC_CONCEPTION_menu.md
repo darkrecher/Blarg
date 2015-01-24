@@ -41,7 +41,7 @@ Le code de ces exemples de menu contiennent des commentaires et des docstrings, 
 
 TODO.
 
-### Description des fichiers ###
+### Description des modules ###
 
 #### Valeurs IHMSG_* ####
 
@@ -70,6 +70,20 @@ Diverses fonctions et constantes communes au système de menu.
 
 C'est principalement utilisé par la partie spécifique (les menu du jeu Blarg), mais la partie générique (le système de menu) utilise parfois une ou deux constantes contenues dans ce fichier. D'ailleurs c'est pas très bien, il faudrait essayer de séparer.
 
+### menuelem.py ###
+
+Définition générique d'un élément de menu.
+
+La classe `MenuElem` contient plusieurs fonctions presque vides. Pour créer un élément de menu effectuant des choses, il faut hériter ce `MenuElem` et overrider les fonctions nécessaires. Les commentaires de docstring détaillent le rôle de chaque fonction, ce qu'on peut mettre dedans, ce qu'elles doivent renvoyer, etc.
+
+Un élément de menu peut être placé dans un `MenuManager`, ou bien dans un `MenuSubMenu` : un élément de menu spéciale, capable de stocker d'autres éléments. (Voir plus loin).
+
+Le module `menuelem.py` contient également la fonction `cycleFocus`, qui s'exécute lorsqu'il faut passer le focus d'un élément de menu à l'élément suivant dans une liste (par exemple, quand l'utilisateur appuie sur Tab). Un gros tas de commentaire au début du fichier décrit le fonctionnement des focus, ainsi que les différents "use cases".
+
+La fonction `cycleFocus` aurait méritée d'être dans un fichier de code à part, mais je l'ai mise là car elle y est plutôt bien. Elle est utilisée à la fois par le `MenuManager` et le `MenuSubMenu`, donc elle est assez générique.
+
+### menumng.py ###
+
 ### mot-clé utilisé dans les noms de variables ###
 
 `mact` : "m-act", menu action.
@@ -83,6 +97,6 @@ C'est principalement utilisé par la partie spécifique (les menu du jeu Blarg),
 
 "activation du menu" : le menu est placé à l'écran. Et le joueur peut utiliser ses options.
 
-## Description des menus de Blarg ##
+## Description des menus spécifiques de Blarg ##
 
 TODO.
