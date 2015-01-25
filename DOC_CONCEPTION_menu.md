@@ -78,6 +78,10 @@ La classe `MenuElem` contient plusieurs fonctions presque vides. Pour créer un 
 
 Un élément de menu peut être placé dans un `MenuManager`, ou bien dans un `MenuSubMenu` : un élément de menu spéciale, capable de stocker d'autres éléments. (Voir plus loin).
 
+Un élément de menu peut définir `funcAction` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances (voir `MenuSensitiveSquare`).
+
+Si `funcAction` est None, l'élément de menu n'est pas activable.
+
 Le module `menuelem.py` contient également la fonction `cycleFocus`, qui s'exécute lorsqu'il faut passer le focus d'un élément de menu à l'élément suivant dans une liste (par exemple, quand l'utilisateur appuie sur Tab). Un gros tas de commentaire au début du fichier décrit le fonctionnement des focus, ainsi que les différents "use cases".
 
 La fonction `cycleFocus` aurait méritée d'être dans un fichier de code à part, mais je l'ai mise là car elle y est plutôt bien. Elle est utilisée à la fois par le `MenuManager` et le `MenuSubMenu`, donc elle est assez générique.
@@ -141,8 +145,17 @@ Si on s'amuse à panacher les 2 manières de définir le texte, ça donne des co
 
 ### menusesq.py ###
 
-désolé pour le nom de fonction `treatStimuliMouse`.
+Contient la classe `MenuSensitiveSquare`, dérivée d'un `MenuElem`. Elément de menu qui n'affiche rien, mais qui est focusable et activable. Il réagit quand on clique ou qu'on passe la souris dans une zone rectangulaire prédéfinie.
 
+On n'utilise jamais directement cette classe, mais on la fait dériver pour avoir des éléments de menu interactifs. (Héritage multiple ou simple).
+
+Cette classe contient 3 variables membres importantes :
+
+ - `rectStimZone` : rectangle définissant la zone sensible, dans l'écran. On peut la définir directement, ou à partir de la variable membre existante `rectDrawZone` (qui aurait été définie par un autre moyen, tel qu'un héritage mulitple).
+
+ - `funcAction` : WIP.
+
+Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat"... N'importe quoi. Même en français c'est moche, ce verbe "traiter".
 
 ### mot-clé utilisé dans les noms de variables ###
 
