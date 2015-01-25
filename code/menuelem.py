@@ -62,7 +62,7 @@ sur le premier élément de la sous-liste.
 *) Si j'amène ma souris sur le sensitiveRect d'un élément, (sans cliquer),
 il est focusé.
 
-*) si je focus sur un élément avec la soutis, et que j'appuie sur Tab. Ca cycle.
+*) si je focus sur un élément avec la souris, et que j'appuie sur Tab. Ca cycle.
 Donc l'élément focusé n'est plus celui pointé par la souris. Tant que je bouge pas
 la souris, ça reste comme ça.
 
@@ -81,22 +81,22 @@ alors je focus dessus immédiatement tout de suite sur l'élément pointé.
 *) Si je clique avec ma souris sur rien, il ne se passe rien. L'élément focusé reste
 le même.
 
-*)Certains éléments n'ont pas de sensitiveRect. On peut jamais les sélectionner
+*) Certains éléments n'ont pas de sensitiveRect. On peut jamais les sélectionner
 avec la souris. (Je ne fais ça que pour les éléments non-interactifs. Sinon c'est crétin)
 
-*)Certains éléments n'acceptent pas du tout le focus. Quand on passe la souris dessus, il
+*) Certains éléments n'acceptent pas du tout le focus. Quand on passe la souris dessus, il
 se passe rien, et quand on fait Tab, le cyclage de focus saute cet élément.
 
-*)En général, on a la relation réciproque :
+*) En général, on a la relation réciproque :
 élément n'ayant pas de sensitiveRect <=> éléments n'acceptant pas du tout le focus.
 (Mais théoriquement, rien ne l'interdit).
 
-*)Il y a aussi des éléments sans focus, sans sensitiveRect, et qui ne s'affichent même pas.
+*) Il y a aussi des éléments sans focus, sans sensitiveRect, et qui ne s'affichent même pas.
 Mais ils peuvent exécuter la fonction qui leur est liée, quand on appuie sur une touche.
 C'est juste un bind sur une touche en fait. Mais je l'ai foutu sous forme d'élément,
 et pis c'est tout.
 
-*)pour communiquer tout ces trucs, on utilise les IHMSG (IHM Message).
+*) Pour communiquer tout ces trucs, on utilise les IHMSG (IHM Message).
 Voir la librairie common. Ils sont tous dedans.
 
 """

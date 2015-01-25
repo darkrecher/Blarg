@@ -84,6 +84,32 @@ La fonction `cycleFocus` aurait méritée d'être dans un fichier de code à par
 
 ### menumng.py ###
 
+Contient la classe `MenuManager`, qui gère un menu, comportant des `MenuElem`.
+
+On peut s'en servir de 2 manières différentes :
+
+ - Utliser directement le `MenuManager`. On l'instancie, on place dedans les `MenuElem` en redéfinissant directement la variable membre `listMenuElem`, puis on appelle la fonction `initFocusCyclingInfo`, et ça fonctionne. C'est ce qui est fait dans les codes d'exemple du chapitre précédent.
+
+ - Dériver le `MenuManager`. Dans l'`__init__` de la classe dérivée, on définit directement `listMenuElem`, puis on appelle `initFocusCyclingInfo`. C'est ce qui est fait dans la plupart des menus de Blarg.
+
+Si on dérive, on peut également overrider les fonctions suivantes :
+
+ - showBackground : Fonction affichant l'image de fond, derrière le menu.
+
+ - beforeDrawMenu : Fonction vide. Elle est appelée à chaque fois qu'il faut (re)dessiner tout le menu, juste avant le dessin de l'image de fond et des éléments de menu.
+
+ - startMenu : Fonction vide. Elle s'exécute au début de l'activation d'un menu. (Activation = lorsqu'on affiche le menu et qu'il récupère les événements souris et clavier. Équivalent du "OnActivate" dans les menus Windows ou autre).
+
+ - periodicAction : Fonction vide. Elle s'exécute au début de chaque cycle, tant que le menu est activé.
+
+Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuElem`.
+
+ - `listMenuElem` : la liste contenant tous les éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur Tab.
+
+ - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les éléments de texte sélectionnables, affichés au milieu de l'écran). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
+
+
+
 ### mot-clé utilisé dans les noms de variables ###
 
 `mact` : "m-act", menu action.
