@@ -41,7 +41,7 @@ Le code de ces exemples de menu contiennent des commentaires et des docstrings, 
 
 TODO.
 
-### Description des modules ###
+### Modules définissant le fonctionnement des menus ###
 
 #### Valeurs IHMSG_* ####
 
@@ -70,7 +70,7 @@ Diverses fonctions et constantes communes au système de menu.
 
 C'est principalement utilisé par la partie spécifique (les menu du jeu Blarg), mais la partie générique (le système de menu) utilise parfois une ou deux constantes contenues dans ce fichier. D'ailleurs c'est pas très bien, il faudrait essayer de séparer.
 
-### menuelem.py ###
+#### menuelem.py ####
 
 Définition générique d'un élément de menu.
 
@@ -86,7 +86,7 @@ Le module `menuelem.py` contient également la fonction `cycleFocus`, qui s'exé
 
 La fonction `cycleFocus` aurait méritée d'être dans un fichier de code à part, mais je l'ai mise là car elle y est plutôt bien. Elle est utilisée à la fois par le `MenuManager` et le `MenuSubMenu`, donc elle est assez générique.
 
-### menumng.py ###
+#### menumng.py ####
 
 Contient la classe `MenuManager`, qui gère un menu, comportant des `MenuElem`.
 
@@ -112,7 +112,7 @@ Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuE
 
  - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les éléments de texte sélectionnables, affichés au milieu de l'écran). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
 
-### txtstock.py ###
+#### txtstock.py ####
 
 Contient la classe `TextStock`, qui stocke tous les textes du jeu (menu, présentation, ...).
 
@@ -129,9 +129,27 @@ Le fichier `txtstock.py` effectue immédiatement une instanciation : `txtStock =
 
 C'est pour ça que la fonction `MenuElem.changeLanguage` n'a pas de paramètres. Cette fonction sert à prévenir un élément de menu que la langue courante a changé. Pour avoir la nouvelle langue, il suffit de consulter l'instance dans `txtstock.py`.
 
-### menutxt.py ###
+### Modules définissant les éléments de menu ###
 
-Contient la classe `MenuText`, dérivée d'un `MenuElem`. Affiche un texte non interactif.
+Tous les modules de ce chapitre définissent des classes qui sont dérivées de `MenuElem`.
+
+#### menukey.py ####
+
+Contient la classe `MenuSensitiveKey`. Élement de menu qui n'affiche rien, et qui est non focusable.
+
+Cet élément réagit à l'appui d'une touche spécifique. Lorsque celle-ci est appuyée, la fonction d'activation `funcAction` est exécutée.
+
+Ne réagit pas à un lâchage de touche ni à une touche déjà appuyée.
+
+#### menuany.py
+
+Contient la classe `MenuSensitiveAnyKeyButton`. Élement de menu qui n'affiche rien, et qui est non focusable.
+
+Cet élement réagit à un appui de touche (n'importe laquelle) et/ou un clic de souris. Il est utile pour des menus de transition, du style : "appuyer sur une touche pour passer à l'écran suivant".
+
+#### menutxt.py ####
+
+Contient la classe `MenuText`. Affiche un texte non interactif.
 
 Pour l'affichage et la config qui va avec (alignement horizontal et vertical, font, couleur, ...), la classe utilise en interne un `Lamoche`, une classe qui est également utilisée dans le jeu en lui-même.
 
@@ -143,9 +161,9 @@ Le texte à afficher se définit à l'instanciation, on peut le faire de 2 mani�
 
 Si on s'amuse à panacher les 2 manières de définir le texte, ça donne des comportements plus ou moins intéressant. C'est un fonctionnement qui n'est pas vraiment prévu.
 
-### menusesq.py ###
+#### menusesq.py ####
 
-Contient la classe `MenuSensitiveSquare`, dérivée d'un `MenuElem`. Elément de menu qui n'affiche rien, mais qui est focusable et activable. Il réagit quand on clique ou qu'on passe la souris dans une zone rectangulaire prédéfinie.
+Contient la classe `MenuSensitiveSquare`. Elément de menu qui n'affiche rien, mais qui est focusable et activable. Il réagit quand on clique ou qu'on passe la souris dans une zone rectangulaire prédéfinie.
 
 On n'utilise jamais directement cette classe, mais on la fait dériver pour avoir des éléments de menu interactifs. (Héritage multiple ou simple).
 
@@ -153,9 +171,13 @@ Cette classe contient 3 variables membres importantes :
 
  - `rectStimZone` : rectangle définissant la zone sensible, dans l'écran. On peut la définir directement, ou à partir de la variable membre existante `rectDrawZone` (qui aurait été définie par un autre moyen, tel qu'un héritage mulitple).
 
- - `funcAction` : WIP.
+ - `funcAction` : voir `MenuElem`.
 
-Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat"... N'importe quoi. Même en français c'est moche, ce verbe "traiter".
+ - `clickType` : indique la manière dont est exécutée `funcAction` en fonction des événements de la souris. Les différentes valeurs possibles sont les constantes `MOUSE_*`, définies au début de ce fichier. (En gros : soit ça réagit au clic, soit ça réagit périodiquement tant que le curseur est dans le rectangle sensible).
+
+Quel que soit la valeur de `clickType`, le `MenuSensitiveSquare` demande systématiquement à avoir le focus lorsque le curseur de souris passe sur le rectangle sensible.
+
+TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat"... N'importe quoi. Même en français c'est moche, ce verbe "traiter".
 
 ### mot-clé utilisé dans les noms de variables ###
 
