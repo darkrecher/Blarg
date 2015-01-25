@@ -108,6 +108,40 @@ Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuE
 
  - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les éléments de texte sélectionnables, affichés au milieu de l'écran). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
 
+### txtstock.py ###
+
+Contient la classe `TextStock`, qui stocke tous les textes du jeu (menu, présentation, ...).
+
+Les textes sont stockés dans un grand dictionnaire : `TextStock.DICT_LANGUAGE`.
+
+ - clé : identifiant d'un texte. Ces identifiants sont définis comme des constantes statiques, au début de `TextStock`.
+ - valeur : sous-dictionnaire :
+    * clé : identifiants de langage. `LANG_FRENCH` ou `LANG_ENGL`
+    * valeur : chaîne de caractère unicode avec le texte dedans.
+
+La classe contient une variable membre `language`, qui indique la langue courante. Il est possible de changer sa valeur.
+
+Le fichier `txtstock.py` effectue immédiatement une instanciation : `txtStock = TextStock()`. Lorsque les autres modules importent le fichier, ils utilisent cet objet instancié, contenant la langue courante. Ça permet de partager la valeur de langue courante entre tous les modules, sans se prendre la tête.
+
+C'est pour ça que la fonction `MenuElem.changeLanguage` n'a pas de paramètres. Cette fonction sert à prévenir un élément de menu que la langue courante a changé. Pour avoir la nouvelle langue, il suffit de consulter l'instance dans `txtstock.py`.
+
+### menutxt.py ###
+
+Contient la classe `MenuText`, dérivée d'un `MenuElem`. Affiche un texte non interactif.
+
+Pour l'affichage et la config qui va avec (alignement horizontal et vertical, font, couleur, ...), la classe utilise en interne un `Lamoche`, une classe qui est également utilisée dans le jeu en lui-même.
+
+Le texte à afficher se définit à l'instanciation, on peut le faire de 2 manières différentes :
+
+ - Indiquer directement une chaîne de caractère dans le paramètre `text`, qui sera affichée tel quelle. Ensuite, le texte peut être changé par un appel à la fonction `changeFontAndText()`.
+
+ - Indiquer un identifiant de texte de `TextStock`. Le texte affichée sera celui défini dans `txtStock.DICT_LANGUAGE`, avec la langue courante. Ensuite, la langue peut être changée en appelant `txtStock.changeLanguage(newLanguage)` puis `MenuText.changeLanguage()`.
+
+Si on s'amuse à panacher les 2 manières de définir le texte, ça donne des comportements plus ou moins intéressant. C'est un fonctionnement qui n'est pas vraiment prévu.
+
+### menusesq.py ###
+
+désolé pour le nom de fonction `treatStimuliMouse`.
 
 
 ### mot-clé utilisé dans les noms de variables ###

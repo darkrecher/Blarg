@@ -39,7 +39,7 @@ from common   import (pyRect, IHMSG_VOID,
                       IHMSG_ELEM_WANTFOCUS, IHMSG_ELEM_CLICKED)
 
 from menuelem import MenuElem
-import lamoche
+import lamoche # useless ??
 
 #type de cliquage de souris auquel on peut réagir.
 
