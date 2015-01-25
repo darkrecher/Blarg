@@ -33,40 +33,6 @@ from menukey import MenuSensitiveKey
 from menuelem_event_teller import MenuElemEventTeller
 
 
-class MenuTextClearable(MenuText):
-    """
-    Monkey patching.
-    Cette classe est un élément de menu affichant un texte.
-    Le MenuText de base ne marche pas bien. Si on change le texte en live,
-    ça se superpose.
-    L'idéal serait de corriger ce bug directement dans la classe MenuText,
-    mais j'ai pas envie de changer le code existant parce que j'ai plus
-    envie de retoucher et retester tout ce bazar.
-    """
-
-    def redefineRectDrawZoneAfterAttribChange(self):
-        # self.rectDrawZone_previous permet de se souvenir de la position et
-        # de la taille du texte précédent. Si pas de texte précédent,
-        # il vaut None.
-        if hasattr(self, "rectDrawZone"):
-            self.rectDrawZone_previous = self.rectDrawZone
-        else:
-            self.rectDrawZone_previous = None
-        MenuText.redefineRectDrawZoneAfterAttribChange(self)
-
-    def draw(self, surfaceDest):
-        """
-        Dessine un carré noir, pour effacer le texte précédent.
-        Puis dessine le texte à l'écran, comme un MenuText normal.
-        """
-        if self.rectDrawZone_previous is not None:
-            img_clearing = pygame.Surface(self.rectDrawZone_previous.size)
-            img_clearing = img_clearing.convert()
-            img_clearing.fill((0, 0, 0))
-            surfaceDest.blit(img_clearing, self.rectDrawZone_previous)
-        MenuText.draw(self, surfaceDest)
-
-
 def mactCloseApp():
     """ Quitte l'application. """
     return (common.IHMSG_TOTALQUIT, )
@@ -82,7 +48,7 @@ def launch_demo_menu_event_teller():
     fontDefault = load_font_infos[1]
 
     # Création d'un premier label. (Texte simple, non interactif)
-    label_1 = MenuTextClearable(
+    label_1 = MenuText(
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
@@ -97,7 +63,7 @@ def launch_demo_menu_event_teller():
     # Création de deux autres couples label + MenuElemEventTeller.
     # Ça permet de bien comprendre ce qu'il se passe lors des cyclages
     # de focus avec Tab.
-    label_2 = MenuTextClearable(
+    label_2 = MenuText(
         pygame.Rect(210, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
@@ -105,7 +71,7 @@ def launch_demo_menu_event_teller():
         pygame.rect.Rect(210, 50, 70, 70),
         "haut_droite",
         label_2)
-    label_3 = MenuTextClearable(
+    label_3 = MenuText(
         pygame.Rect(10, 160, 0, 0),
         fontDefault,
         text="bonjour !!")
@@ -118,8 +84,24 @@ def launch_demo_menu_event_teller():
         mactCloseApp,
         pygl.K_ESCAPE)
 
+    # Définition de l'image de fond du menu, et envoi au MenuManager.
+    # Il y en a besoin, car le texte des MenuText change. Il faut donc
+    # redessiner l'image de fond, puis dessiner le nouveau texte par-dessus.
+    # Sinon, les différents textes des MenuText vont se superposer au fur et
+    # à mesure qu'ils changent.
+    # L'image de fond est un rectangle noir qui prend tout l'écran.
+    img_background = pygame.Surface(SCREEN_RECT.size)
+    img_background.fill((0, 0, 0))
+    # On ne peut pas donner directement l'image de fond au MenuManager.
+    # (C'est mal fichu mais c'est comme ça). Il faut la mettre dans un
+    # dictionnaire (qui pourraient éventuellemment contenir d'autres images
+    # utiles pour le MenuManager). Ensuite, on envoie ce dictionnaire, ainsi
+    # que la clé correspondant à l'image de fond.
+    img_background_key = 0
+    dict_img_background = { img_background_key:img_background }
+
     # création du menu, définition de ses éléments, init, lancement.
-    menu_main = MenuManager(screen)
+    menu_main = MenuManager(screen, dict_img_background, img_background_key)
     menu_main.listMenuElem = [
         label_1, event_teller_1,
         label_2, event_teller_2,
