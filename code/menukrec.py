@@ -20,7 +20,7 @@ Blarg version 1.0
 
 date de la dernière relecture-commentage : 24/02/2011
 
-Element de menu qui chope un appuyage de appuyée, et stocke le code de cette touche,
+Element de menu qui chope un appuyage de touche appuyée, et stocke le code de cette touche,
 pour en faire ce qu'on veut après.
 Pour que le MenuElem enregistre, faut activer son mode enregistrement. Sinon ça fait rien.
 (C'est fait exprès, evidemment ! Car on n'a peut être pas tout le temps besoin d'enregistrer

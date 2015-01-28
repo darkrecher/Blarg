@@ -236,7 +236,7 @@ class MenuEditableText(MenuSensitiveText):
 
         else:
 
-            #Le texte n'a pas changé. Rien à faire. (J'adore cette assertion : "Rien à faire".
+            #Le texte n'a pas changé. Rien à faire. (J'adore cette assertion : "Rien à faire").
             return IHMSG_VOID
 
 

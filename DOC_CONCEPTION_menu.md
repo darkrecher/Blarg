@@ -241,7 +241,28 @@ On peut associer une valeur littérale à chacune des deux valeurs cochée/déco
 
 #### menuedtx.py ####
 
+Contient la classe `MenuEditableText`, héritée de `MenuSensitiveText`. Il s'agit d'une zone de texte éditable. L'élément est focusable, mais pas cliquable ni activable. (`funcAction` est None).
+
+À priori, tous les caractères bizarres peuvent être écrits (accents, majuscules, trémas, ...). L'utilisateur peut appuyer sur backspace pour effacer la dernière lettre.
+
+Le curseur reste toujours à la fin du texte. Les flèches gauche et droite ne font rien. On ne peut pas sélectionner tout ou partie du texte. On ne peut pas faire de copier-coller. Donc c'est un peu rustique, mais c'est suffisant.
+
+La valeur courante du texte saisi est accessible par la classe `Lamoche` interne à l'élément. C'est à dire : `self.theLamoche.text`.
+
+La classe override la fonction `MenuElement.takeStimuliKeys()`, afin de récupérer les appuis de touche et d'en déduire les modifications à applique au texte saisi. Lorsqu'une modif est faite, on envoie le message `IHMSG_REDRAW_MENU`, afin de demander un redessin global du menu. C'est obligé, pour effacer entièrement le texte précédent, et afficher le texte courant. (Sinon ça fait des superpositions dégueulasses).
+
+L'élément est un `MenuSensitiveSquare` (puisque c'est un `MenuSensitiveText`), mais avec la variable membre `clickType = MOUSE_NONE`. Ça veut dire que quand on clique dessus, il ne se passe rien. Cependant, le focus est toujours attribué à cet élément lorsqu'on passe la souris dessus. Les saisies de texte ne sont prises en compte que quand l'élément a le focus.
+
+Contrairement au `MenuSensitiveText`, le texte est toujours affiché en blanc, même lorsqu'il y a le focus. C'est le curseur qui change de couleur en continu : bleu -> blanc -> bleu -> blanc...
+
+Lorsqu'il n'y a pas le focus, le curseur est bleu (et non pas blanc). C'est important que le curseur soit d'une couleur différente que le texte, sinon ça embrouille un peu.
+
+L'affichage du texte et du curseur est géré par la fonction `draw()`. La modification périodique de l'index indiquant la couleur du curseur en cours est effectuée par la fonction `MenuSensitiveText.update()` (elle n'est pas overridée dans cette classe). Donc l'index évolue pareil, mais la liste de couleur (`glowColorList`) n'est pas la même entre le `MenuSensitiveText` et le `MenuEditableText`.
+
+#### menukrec.py ####
+
 WIP
+
 
 ### mot-clé utilisé dans les noms de variables ###
 
