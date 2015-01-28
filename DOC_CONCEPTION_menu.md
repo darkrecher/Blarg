@@ -141,11 +141,17 @@ Cet élément réagit à l'appui d'une touche spécifique. Lorsque celle-ci est 
 
 Ne réagit pas à un lâchage de touche ni à une touche déjà appuyée.
 
-#### menuany.py
+#### menuany.py ####
 
 Contient la classe `MenuSensitiveAnyKeyButton`. Élement de menu qui n'affiche rien, et qui est non focusable.
 
 Cet élement réagit à un appui de touche (n'importe laquelle) et/ou un clic de souris. Il est utile pour des menus de transition, du style : "appuyer sur une touche pour passer à l'écran suivant".
+
+#### menuimg.py ####
+
+Contient la classe `MenuImage`. Élément de men qui affiche une image.
+
+Non focusable, non cliquable, non activable.
 
 #### menutxt.py ####
 
@@ -178,6 +184,22 @@ Cette classe contient 3 variables membres importantes :
 Quel que soit la valeur de `clickType`, le `MenuSensitiveSquare` demande systématiquement à avoir le focus lorsque le curseur de souris passe sur le rectangle sensible.
 
 TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat"... N'importe quoi. Même en français c'est moche, ce verbe "traiter".
+
+#### menuseim.py ####
+
+Contient la classe `MenuSensitiveImage`, héritée de `MenuSensitiveSquare`. Affiche une image.
+
+Cette classe réagit aux clics ou aux mousehovers sur l'image, et exécute `funcAction`. (Comportement défini dans `MenuSensitiveSquare`).
+
+Lorsque l'élément prend le focus, l'image s'affiche progressivement en plus clair. Lorsqu'il perd le focus, l'image s'affiche progressivement du clair vers le normal.
+
+Les transitions clair<->normal se font sur 8 images. La liste de ces images est stockée dans la variable membre `listImgWithLight`. Elle est précalculée à l'instanciation de la classe, à partir de l'image normale.
+
+Les transitions sont effectuées par la fonction `update`, qui s'exécute une fois par cycle de jeu. Pendant une transition, on ne réaffiche pas tous le menu entier, uniquement cet élément. Le booléen membre `mustBeRefreshed` est fixé à True durant tout le temps de transition.
+
+#### menusetx.py ####
+
+
 
 ### mot-clé utilisé dans les noms de variables ###
 
