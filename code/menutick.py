@@ -34,12 +34,12 @@ Y'a une variable self.boolTickValue. Pas compliqué : True=coché. False=décoché.
 
 Si on veut, on peut associer (via un dictionnaire), une literalValue à chaque valeur
 coché/décoché. La literalValue peut être de n'importe quel type, on s'en fout.
-(Mais en général, c'est des string, enfin plus exactement des globDataValue.)
+(Mais en théorie, c'est des string, enfin plus exactement des globDataValue.)
 La variable self.literTickValue stocke la valeur litérale actuelle.
 
 Attention, trip total :
 ça ça change plein de trucs. Je fais semblant de taper des trucs pour qu'elle me lâche
-la gamine "au conseil général". C'est Pas tout de suite. Pas le choix.
+la gamine "au conseil théorie". C'est Pas tout de suite. Pas le choix.
 Gratuit. Non que d'alle. J'en sais rien depuis longtemps.  Bordel de merde. Faut que kje c
 Je commence à.
 end of trip total

@@ -199,7 +199,49 @@ Les transitions sont effectuées par la fonction `update`, qui s'exécute une fo
 
 #### menusetx.py ####
 
+Contient la classe `MenuSensitiveText`, qui hérite à la fois de `MenuSensitiveSquare` et de `MenuText`.
 
+Je ne sais pas trop comment est censé être géré l'héritage multiple en python. Dans le corps des fonctions, j'ai parfois besoin d'appeler explicitement une fonction de l'une ou l'autre des classes-mères. Ça fonctionne, c'est tout ce que j'attends.
+
+Cette classe affiche un texte, comme `MenuText`. Elle réagit aux clics et aux mousehovers sur l'image, et exécute `funcAction`, comme `MenuSensitiveSquare`.
+
+Lorsque l'élément prend le focus, le texte se met en mode "glow". Il change de couleur pour aller du blanc vers le bleu vers le blanc vers le bleu, etc. Contrairement au `MenuSensitiveImage`, les changements de couleur se font en yo-yo continu, tant que l'élément possède le focus.
+
+Lorsque l'élément perd le focus, le texte fait une dernière petite transition pour passer progressivement de la couleur en cours vers le blanc. Puis il reste blanc.
+
+Les images de textes changeant de couleur ne sont pas pré-calculées. En interne, on change la couleur du `Lamoche` et on fait un `font.render()` à chaque fois.
+
+La liste des couleurs pour le glow est définie dans la variable membre `glowColorList`.
+
+Le glow et la transition "glow->normal" sont effectuées par la fonction `update`, qui s'exécute une fois par cycle de jeu. Pendant un glow/transition, on ne réaffiche pas tous le menu entier, uniquement cet élément.
+
+#### menulink.py ####
+
+Contient la classe `MenuLink`, héritée de `MenuSensitiveText`.
+
+Texte cliquable et focusable. La fonction `funcAction` pointe vers la fonction `mactQuitFullScreenAndGoToDaInterWeb`. Cette fonction désactive le mode plein écran (si on est actuellement dans ce mode), ouvre le navigateur internet par défaut, en lui indiquant une url égale au texte de l'élément de menu.
+
+Pour ouvrir le navigateur par défaut vers une url, on utilise la fonction `webbrowser.open` (présente dans la librairie standard). Comme on n'est pas sûr que cette librairie existe sur tous les systèmes, il y a un try-catch au moment de son import.
+
+Si l'import a échoué, lorsque l'utilisateur clique sur l'élément, on se contente de logger l'url vers la sortie standard. Comme ça le jeu peut fonctionner sur des systèmes bizarres n'ayant pas de navigateur.
+
+#### menutick.py ####
+
+Contient la classe `MenuSensitiveTick`, qui hérite à la fois de `MenuSensitiveImage` et de `MenuText`.
+
+Cet élément de menu affiche à la fois une image (case à cocher) et un texte. La variable membre `rectDrawZone` est égale à la fusion des deux rectangles de l'image et du texte. La variable membre `rectStimZone` est déduite de `rectDrawZone`, avec une petite marge à chaque bord, comme d'habitude.
+
+Lorsque cet élément a le focus, l'image de la case (cochée ou pas) s'affiche progressivement en plus clair (comme le `MenuSensitiveImage`). Cet élément a donc besoin de deux listes d'images différentes. Une liste de case cochée, de plus en plus claires. Et une liste de case pas cochée, de plus en plus claires. Tout cela doit être initialisé préalablement, et transmis lors de l'instanciation, par le paramètre `dicTickImage`.
+
+En l'état, la classe `MenuSensitiveTick` ne modifie pas la valeur de son cochage lorsqu'elle est activée (par un clic ou par la touche Espace). Pour cela, il faut overrider `funcAction`, et appeler dedans la méthode `toggleTick`. J'ai fait exprès de rendre ça explicite, comme ça on peut désactiver le cochage/décochage si on a envie. Et on peut effectuer d'autres actions spécifiques dans `funcAction`.
+
+La valeur de cochage courante est stockée dans la variable membre `boolTickValue`
+
+On peut associer une valeur littérale à chacune des deux valeurs cochée/décochée. Pour cela, il faut passer les paramètres `dicLiteralFromBool` et `literalValInit` au moment de l'instanciation. Lorsque c'est défini, la variable membre `self.literTickValue` contient la valeur littérale courante.
+
+#### menuedtx.py ####
+
+WIP
 
 ### mot-clé utilisé dans les noms de variables ###
 
