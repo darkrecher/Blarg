@@ -18,7 +18,7 @@ Blarg version 1.0
     Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 1O/02/2011
+date de la dernière relecture-commentage : 10/02/2011
 
 élément de menu qui contient, gère, et affiche d'autres trucs (une liste de menuElem)
 on peut faire scroller horizontalement et verticalement ces trucs

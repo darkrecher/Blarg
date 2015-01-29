@@ -106,6 +106,8 @@ Si on dérive, on peut également overrider les fonctions suivantes :
 
  - periodicAction : Fonction vide. Elle s'exécute au début de chaque cycle, tant que le menu est activé.
 
+Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de menu de les gérer, ou pas, en fonction de leur focus, ou d'autres choses.
+
 Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuElem`.
 
  - `listMenuElem` : la liste contenant tous les éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur Tab.
@@ -261,21 +263,65 @@ L'affichage du texte et du curseur est géré par la fonction `draw()`. La modif
 
 #### menukrec.py ####
 
-WIP
+Contient la classe `MenuOneKeyRecorder`. Élément de menu qui ne s'affiche pas, qui est non focusable, mais qui peut quand même exécuter une `funcAction`.
 
+Cet élément possède deux fonctions spécifiques : `activateRecording()` et `desactivateRecording()`, permettant d'activer et désactiver l'enregistrement des touches.
+
+Lorsque l'enregistrement est activé, les appuis de touches sont enregistrés. Seul le dernier appui est gardé en mémoire. Il est accessible par les variables membres `keyRecorded` (code numérique de la touche appuyée) et `charKeyRecorded` (caractère correspond à la touche appuyée).
+
+Lorsque l'enregistrement est activé, `funcAction` est exécutée à chaque appui de touche.
+
+Dans Blarg, c'est cet élément qui permet de configurer les touches du jeu.
+
+#### menusubm.py ####
+
+Contient la classe `MenuSubMenu`. Élément de menu top génial, dans lequel on met d'autres éléments de menu (de n'importe quel type), qu'on appelle "sous-éléments".
+
+Le sub-menu s'affiche dans un rectangle à l'écran, définie par `rectDrawZone` (transmis à l'instanciation). L'affichage ne déborde jamais de cet écran.
+
+Les coordonnées des sous-éléments sont définies par rapport à une zone interne au sub-menu, et non pas par rapport à l'écran. C'est à dire qu'un sous-élément en coordonnée (0, 0) apparaîtra à la coordonnée `(rectDrawZone.x, rectDrawZone.y)` de l'écran.
+
+La zone interne peut être plus grande que `rectDrawZone`, elle peut même être plus grande que l'écran. Sa taille est définie par la taille de la variable membre `surfaceInside` (objet `pygame.Surface`).
+
+La taille de la zone interne est calculée automatiquement, à l'instanciation et lors d'un changement de langue (fonction `renderElemInside()`). Elle est calculée en fonction des sous-éléments, et de leurs `rectDrawZone`. La fonction `renderElemInside()` effectue également un dessin de tous les sous-éléments dans `surfaceInside`, afin d'initialiser l'aspect général du sub-menu.
+
+La fonction `SubMenu.draw` redessine les sous-éléments ayant leur valeur `mustBeRefreshed` à True, puis extrait un sous-rectangle de `surfaceInside` pour l'afficher à l'écran, à la position de `rectDrawZone`.
+
+Le sous-rectangle est défini par la variable membre `sourceRectToBlit`. Si la zone interne est plus grande que l'écran, `sourceRectToBlit` n'en prend qu'une partie. On ne voit donc pas le sub-menu en entier.
+
+Des fonctions spécifiques (`scrollVertically()` et `scrollSetPosition()`) permettent de déplacer verticalement `sourceRectToBlit`, afin de faire scroller la zone interne. On ne peut pas scroller horizontalement, car je n'en ai pas eu besoin pour Blarg.
+
+À priori il y aurait un bug : si un quelconque élément de menu envoie le message `IHMSG_REDRAW_MENU`, on est censé redessiner tous les éléments de menu. Mais lorsqu'on demande de redessiner le sub-menu, il inspecte ces sous-éléments et ne redessine que ceux ayant `mustBeRefreshed` à True.
+
+Pour forcer un redessin complet, il faudrait appeler `renderElemInside()`. Le problème, c'est que quand le `MenuManager` demande un dessin, il ne précise pas si c'est pour un redessin complet, ou si c'est pour une autre raison. Donc pour l'instant, on va laisser comme ça. Tant pis pour le bug.
+
+Les événements souris sont transmis aux sous-éléments (en tenant compte des décalage de coordonnées du au scrolling vertical et à la position d'affichage du sub-menu à l'écran).
+
+Les événements de touche ne sont pas transmis. Ce n'est pas bien, mais j'en ai pas eu besoin.
+
+Les cyclages de focus sont transmis. C'est à dire que lorsque le sub-menu reçoit un événement de cyclage, il fait cycler le focus en interne, dans les sub-menu (le sous-élément ayant le focus est indiqué par la variable membre `focusedElemInside`). Tant qu'on n'est pas arrivé au dernier sous-élément, le sub-menu répond qu'il ne veut pas lâcher le focus (il ne renvoie pas le message `IHMSG_CYCLE_FOCUS_OK`). Lorsqu'on est arrivé au dernier sous-élément et que l'utilisateur cycle une dernière fois, on accepte de lâcher le focus.
+
+Le sub-menu possède une `funcAction`, mais elle n'est pas censée être overridée. Cette `funcAction` exécute la `funcAction` du sous-élément ayant actuellement le focus (si elle existe). De cette manière, l'événement d'activation est propagé. Lorsque l'utilisateur appuie sur Espace ou Entrée, c'est le sous-élémemnt actuellement focusé qui est activé.
+
+Dans Blarg, le sub-menu permet d'afficher le texte scrollable des Credits (liens vers mes sites, noms des contributeurs, lien vers la licence, ...).
+
+En théorie, on devrait pouvoir mettre un sub-menu dans un sub-menu dans un sub-menu etc. Mais je n'ai pas testé.
 
 ### mot-clé utilisé dans les noms de variables ###
 
-`mact` : "m-act", menu action.
-`mbutt` : MenuElem de type bouton text (MenuSensitiveText)
-`mbuttLink` : MenuElem de type bouton text (MenuSensitiveText), qui fait un lien vers un site web.
-`mbuti` : MenuElem de type bouton image (MenuSensitiveImage)
-`mkey` : MenuElem de type MenuSensitiveKey
+`mact` : "m-act" : menu action.
 
-"Création du menu" : Création de l'instance du menu, à partir de la classe.
-(En général, c'est des classes héritées de celle-ci.
+`mbutt` : MenuElem de type `MenuSensitiveText` (texte cliquable).
 
-"activation du menu" : le menu est placé à l'écran. Et le joueur peut utiliser ses options.
+`mbuttLink` : MenuElem de type `MenuLink`, constituant un lien vers un site web.
+
+`mbuti` : MenuElem de type `MenuSensitiveImage` (image cliquable).
+
+`mkey` : MenuElem de type `MenuSensitiveKey` (réaction à une touche spécifique).
+
+"Création du menu" : Instanciation d'un `MenuManager`, ou d'une classe héritée.
+
+"activation du menu" : affichage et activation du `MenuManager` à l'écran. Exécution de la méthode `handleMenu()`. Le joueur peut utiliser les options du menu.
 
 ## Description des menus spécifiques de Blarg ##
 
