@@ -1,6 +1,6 @@
 # Document de conception de Blarg (système de menu) #
 
-Ce document décrit la manière dont est organisé le système de menu de Blarg (menu principal, config des touches, affichage des scores, ...). Il ne décrit pas comment le code du jeu en lui-même est organisé.
+Ce document décrit la manière dont est organisé le système de menu de Blarg (menu principal, config des touches, affichage des scores, ...). Il ne décrit pas l'organisation du code du jeu en lui-même.
 
 ## Introduction ##
 
@@ -10,13 +10,13 @@ Durant la réalisation de ce jeu, le PEP8 a été foulé aux pieds, écartelé, 
 
 Le système de menu se veut le plus générique et le plus réutilisable possible. Même si en réalité, euh... Bref.
 
-Les noms des fichiers de code définissant le système de menu générique commencent tous par "menu". Les noms des fichiers de code définissant les menus spécifique à Blarg commencent tous par "menuz". J'aurais dû ranger tout ça correctement dans des répertoires, mais j'étais un vilain.
+Les noms des fichiers définissant le système de menu générique commencent tous par "menu". Les noms des fichiers définissant les menus spécifique à Blarg commencent tous par "menuz". J'aurais dû ranger tout ça correctement dans des répertoires, mais j'étais un vilain.
 
 ## Description du système de menu générique ##
 
 ### Menus d'exemple ###
 
-Des exemples simples, indépendants du jeu, ont été créés, afin de donner une première idée de ce que peut faire le système de menu.
+Des exemples simples et indépendants du jeu ont été créés, afin de donner une première idée de ce que peut faire le système de menu.
 
 Pour les exécuter, ouvrir une console, et utiliser les commandes suivantes :
 
@@ -26,11 +26,11 @@ Pour les exécuter, ouvrir une console, et utiliser les commandes suivantes :
 
 Il y a 3 exemples de menus. Remplacer le "1" à la fin de la dernière commande par "2" ou "3" pour les lancer.
 
-Il faut avoir installé python et les dépendances nécessaires. Si vous avez réussi à exécuter le jeu à partir de son code source, les exemples de menus s'exécuteront sans problème. Pour installer le jeu à partir du code source, voir autre document pas encore fait.
+Il faut avoir installé python et les dépendances nécessaires. Si vous avez réussi à exécuter le jeu à partir du code source, les exemples s'exécuteront sans problème. L'aide à ce sujet est décrite dans un autre document, pas encore fait.
 
 (TODO : https://github.com/darkrecher/Kawax/blob/master/doc_diverses/installation_et_exe_build.md)
 
-Le code de ces exemples de menu contiennent des commentaires et des docstrings, qui sont à priori suffisants. Pour une meilleure compréhension, les fichiers sont à consulter dans l'ordre suivant :
+Le code des exemples de menu contient des commentaires et des docstrings, qui sont à priori suffisants. Pour une meilleure compréhension, les fichiers sont à consulter dans l'ordre suivant :
  - code/menudemo.py
  - code/menudemo_files/launch_demo_menu_empty.py
  - code/menudemo_files/launch_demo_menu_label.py
@@ -43,24 +43,24 @@ TODO.
 
 ### Modules définissant le fonctionnement des menus ###
 
-#### Valeurs IHMSG_* ####
+#### common.py, valeurs IHMSG_* ####
 
 IHMSG = "IHM Message".
 
-Il s'agit de constantes permettant d'échanger des informations entre les `MenuElem` et le `MenuManager`. On peut en placer plusieurs dans un même message (par exemple, pour demander un redessin du menu, et en même temps signaler qu'on accepte le focus). Un message est constitué d'un tuple de 0, 1 ou plusieurs IHMSG.
+Il s'agit de constantes permettant d'échanger des informations entre les `MenuElem` et le `MenuManager`. On peut en placer plusieurs dans un même message (par exemple, pour demander un redessin du menu et en même temps signaler qu'on accepte le focus).
 
-La liste des IHMSG est définie dans `common.py`
+Un message est constitué d'un tuple de 0, 1 ou plusieurs IHMSG. Ceux-ci sont définis dans `common.py`.
 
  - `IHMSG_QUIT` : on veut quitter le menu courant, pour revenir au truc qu'on faisait avant.
  - `IHMSG_TOTALQUIT` : on veut totalement quitter tout le jeu.
  - `IHMSG_REDRAW_MENU` : Le menu doit être entièrement redessiné. (Le fond + tous les éléments).
  - `IHMSG_ELEM_CLICKED` : l'élément de menu s'est fait cliquer dessus.
  - `IHMSG_ELEM_WANTFOCUS` : l'élément de menu veut avoir le focus.
- - `IHMSG_CYCLE_FOCUS_OK` : on fait un cyclage de focus (Tab). L'élément de menu actuellement focusé accepte de lâcher le focus pour le transmettre à l'élément suivant.
- - `IHMSG_PLAY_ONCE_MORE` : message spécial utilisé dans un seul cas : quand on quitte le menu affichant que le héros est mort. Sert à indiquer que le joueur veut rejouer. C'est à ça que ça sert.
+ - `IHMSG_CYCLE_FOCUS_OK` : lors d'un cyclage de focus (touche Tab), l'élément de menu actuellement focusé accepte de transmettre le focus à l'élément suivant.
+ - `IHMSG_PLAY_ONCE_MORE` : message spécial utilisé dans un seul cas : quand on quitte le menu affichant que le héros est mort. Sert à indiquer que le joueur veut rejouer.
  - `IHMSG_CANCEL` : le joueur veut annuler le truc en cours.
 
-Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égal au tuple vide, afin d'exprimer qu'on veut renvoyer un message sans IHMSG. (Une sorte de typage spécifique, ou une lubie du genre). La constante s'appelle `IHMSG_VOID`.
+Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égal au tuple vide, afin d'exprimer explicitement que c'est un message sans IHMSG. (Une sorte de typage spécifique, ou une lubie du genre). La constante s'appelle `IHMSG_VOID`.
 
 Du coup, pour renvoyer un message vide, on écrit `IHMSG_VOID`, sans parenthèse. Et pour renvoyer un message contenant un IHMSG, on écrit `(IHMSG_REDRAW_MENU, )`, avec parenthèses. Ça fait un peu bizarre. Tant pis !
 
@@ -68,15 +68,15 @@ Du coup, pour renvoyer un message vide, on écrit `IHMSG_VOID`, sans parenthèse
 
 Diverses fonctions et constantes communes au système de menu.
 
-C'est principalement utilisé par la partie spécifique (les menu du jeu Blarg), mais la partie générique (le système de menu) utilise parfois une ou deux constantes contenues dans ce fichier. D'ailleurs c'est pas très bien, il faudrait essayer de séparer.
+C'est principalement utilisé par la partie spécifique (menus du jeu Blarg). Mais la partie générique utilise parfois une ou deux constantes contenues dans ce fichier. D'ailleurs c'est pas très bien, il faudrait essayer de séparer.
 
 #### menuelem.py ####
 
-Définition générique d'un élément de menu.
+Contient la classe `MenuElem` : définition générique d'un élément de menu.
 
-La classe `MenuElem` contient plusieurs fonctions presque vides. Pour créer un élément de menu effectuant des choses, il faut hériter ce `MenuElem` et overrider les fonctions nécessaires. Les commentaires de docstring détaillent le rôle de chaque fonction, ce qu'on peut mettre dedans, ce qu'elles doivent renvoyer, etc.
+La plupart des fonctions de cette classe sont vides. Pour créer un élément de menu effectuant des choses, il faut faire un héritage et overrider les fonctions nécessaires. Les commentaires de docstring détaillent le rôle de chaque fonction, ce qu'on peut mettre dedans, ce qu'elles doivent renvoyer, etc.
 
-Un élément de menu peut être placé dans un `MenuManager`, ou bien dans un `MenuSubMenu` : un élément de menu spéciale, capable de stocker d'autres éléments. (Voir plus loin).
+Un élément de menu peut être placé dans un `MenuManager`, ou bien dans un `MenuSubMenu` (élément de menu spécial stockant d'autres éléments de menu) (voir plus loin.
 
 Un élément de menu peut définir `funcAction` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances (voir `MenuSensitiveSquare`).
 
