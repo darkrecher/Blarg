@@ -263,7 +263,7 @@ C'est malgré tout un peu rustique pour une zone de texte :
 
 La valeur courante du texte saisi est accessible par le `Lamoche` interne, c'est à dire : `self.theLamoche.text`.
 
-La classe override la fonction `MenuElement.takeStimuliKeys()`, afin de récupérer les appuis de touche et d'en déduire les modifications à appliquer au texte saisi. Lorsqu'une modif est faite, on envoie le message `IHMSG_REDRAW_MENU`, afin de demander un redessin global du menu. On est obligé d'effacer entièrement le texte précédent puis de réafficher le texte courant, sinon ça fait des superpositions dégueulasses.
+La classe override la fonction `MenuElem.takeStimuliKeys()`, afin de récupérer les appuis de touche et d'en déduire les modifications à appliquer au texte saisi. Lorsqu'une modif est faite, on envoie le message `IHMSG_REDRAW_MENU`, afin de demander un redessin global du menu. On est obligé d'effacer entièrement le texte précédent puis de réafficher le texte courant, sinon ça fait des superpositions dégueulasses.
 
 L'élément est un `MenuSensitiveSquare` (puisque c'est un `MenuSensitiveText`), mais avec `clickType = MOUSE_NONE`. Donc quand on clique dessus, il ne se passe rien. Cependant, le focus est attribué à cet élément lorsqu'on passe la souris dessus. Les saisies de texte ne sont prises en compte que quand l'élément a le focus.
 
