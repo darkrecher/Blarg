@@ -48,7 +48,7 @@ Les paramètres nécessaires sont les suivants :
 
 Boîte avec un titre composé d'un seul mot : instance de classe. Le nom de l'objet instancié et le nom de la classe sont les mêmes, aux majuscules près.
 
-Boîte avec un titre plus compliqué : instance de classe aussi. Format du titre : `nomDeLObjetInstancié = nomDeLaClasse()`.
+Boîte avec un titre plus compliqué : instance de classe aussi. Format du titre : `nomDeLObjetInstancié = NomDeLaClasse()`.
 
 Cadre bleu clair : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
 

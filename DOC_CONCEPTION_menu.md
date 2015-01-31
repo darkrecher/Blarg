@@ -40,7 +40,19 @@ Le code des exemples de menu contient des commentaires et des docstrings, qui so
 
 ### Diagramme de classe ###
 
-TODO.
+![diagramme classe Blarg menu générique](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/diagramme_pas_UML_menu_generique.png)
+
+#### Légende ####
+
+Boîte avec un titre composé d'un seul mot : instance de classe.
+
+Boîte avec un titre plus compliqué : instance de classe aussi. Format du titre : `nomDeLObjetInstancié = NomDeLaClasse()`.
+
+Cadre bleu clair : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
+
+Flèche bleue pleine, de A vers B : Référence. L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
+
+Flèche verte, de A vers B : héritage. L'objet B est dérivée de l'objet A.
 
 ### Modules définissant le fonctionnement des menus ###
 
