@@ -50,6 +50,7 @@ import pygame
 
 from common import (pyRect, pyRectTuple, getRectDrawZone,
                     IHMSG_ELEM_CLICKED, IHMSG_REDRAW_MENU, IHMSG_VOID, )
+# IHMSG_ELEM_CLICKED, IHMSG_REDRAW_MENU, IHMSG_VOID useless ?
 
 from menuelem import MenuElem
 from menusesq import MenuSensitiveSquare, MOUSE_DOWN, RECT_ZERO

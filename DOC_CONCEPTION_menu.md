@@ -30,7 +30,8 @@ Il faut avoir installé python et les dépendances nécessaires. Si vous avez r�
 
 (TODO : https://github.com/darkrecher/Kawax/blob/master/doc_diverses/installation_et_exe_build.md)
 
-Le code des exemples de menu contient des commentaires et des docstrings, qui sont à priori suffisants. Pour une meilleure compréhension, les fichiers sont à consulter dans l'ordre suivant :
+Le code des exemples de menu contient des commentaires et des docstrings, qui sont à priori suffisants. Les fichiers sont à consulter dans l'ordre suivant :
+
  - code/menudemo.py
  - code/menudemo_files/launch_demo_menu_empty.py
  - code/menudemo_files/launch_demo_menu_label.py
@@ -45,7 +46,7 @@ TODO.
 
 #### common.py, valeurs IHMSG_* ####
 
-IHMSG = "IHM Message".
+"IHMSG" = "IHM Message".
 
 Il s'agit de constantes permettant d'échanger des informations entre les `MenuElem` et le `MenuManager`. On peut en placer plusieurs dans un même message (par exemple, pour demander un redessin du menu et en même temps signaler qu'on accepte le focus).
 
@@ -53,16 +54,16 @@ Un message est constitué d'un tuple de 0, 1 ou plusieurs IHMSG. Ceux-ci sont d�
 
  - `IHMSG_QUIT` : on veut quitter le menu courant, pour revenir au truc qu'on faisait avant.
  - `IHMSG_TOTALQUIT` : on veut totalement quitter tout le jeu.
- - `IHMSG_REDRAW_MENU` : Le menu doit être entièrement redessiné. (Le fond + tous les éléments).
+ - `IHMSG_REDRAW_MENU` : le menu doit être entièrement redessiné. (Le fond + tous les éléments).
  - `IHMSG_ELEM_CLICKED` : l'élément de menu s'est fait cliquer dessus.
  - `IHMSG_ELEM_WANTFOCUS` : l'élément de menu veut avoir le focus.
  - `IHMSG_CYCLE_FOCUS_OK` : lors d'un cyclage de focus (touche Tab), l'élément de menu actuellement focusé accepte de transmettre le focus à l'élément suivant.
  - `IHMSG_PLAY_ONCE_MORE` : message spécial utilisé dans un seul cas : quand on quitte le menu affichant que le héros est mort. Sert à indiquer que le joueur veut rejouer.
  - `IHMSG_CANCEL` : le joueur veut annuler le truc en cours.
 
-Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égal au tuple vide, afin d'exprimer explicitement que c'est un message sans IHMSG. (Une sorte de typage spécifique, ou une lubie du genre). La constante s'appelle `IHMSG_VOID`.
+Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égale au tuple vide, afin d'exprimer explicitement la notion de message vide. (Une lubie s'apparentant à du typage spécifique). La constante s'appelle `IHMSG_VOID`.
 
-Du coup, pour renvoyer un message vide, on écrit `IHMSG_VOID`, sans parenthèse. Et pour renvoyer un message contenant un IHMSG, on écrit `(IHMSG_REDRAW_MENU, )`, avec parenthèses. Ça fait un peu bizarre. Tant pis !
+Du coup, pour renvoyer un message vide, on écrit `IHMSG_VOID`, sans parenthèse. Pour renvoyer un message contenant un IHMSG, on écrit `(IHMSG_REDRAW_MENU, )`, avec parenthèses. Ça fait bizarre. Tant pis !
 
 #### menucomn.py ####
 
@@ -76,49 +77,53 @@ Contient la classe `MenuElem` : définition générique d'un élément de menu.
 
 La plupart des fonctions de cette classe sont vides. Pour créer un élément de menu effectuant des choses, il faut faire un héritage et overrider les fonctions nécessaires. Les commentaires de docstring détaillent le rôle de chaque fonction, ce qu'on peut mettre dedans, ce qu'elles doivent renvoyer, etc.
 
-Un élément de menu peut être placé dans un `MenuManager`, ou bien dans un `MenuSubMenu` (élément de menu spécial stockant d'autres éléments de menu) (voir plus loin.
+Un élément de menu peut être placé dans un `MenuManager` ou dans un `MenuSubMenu` (un élément de menu spécial stockant d'autres éléments de menu, [voir `MenuSubMenu`](#menusubmpy)).
 
-Un élément de menu peut définir `funcAction` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances (voir `MenuSensitiveSquare`).
+Un élément de menu peut définir `funcAction` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances ([voir `MenuSensitiveSquare`](#menusesqpy)).
 
-Si `funcAction` est None, l'élément de menu n'est pas activable.
+Si `funcAction` vaut None, l'élément de menu n'est pas activable.
 
-Le module `menuelem.py` contient également la fonction `cycleFocus`, qui s'exécute lorsqu'il faut passer le focus d'un élément de menu à l'élément suivant dans une liste (par exemple, quand l'utilisateur appuie sur Tab). Un gros tas de commentaire au début du fichier décrit le fonctionnement des focus, ainsi que les différents "use cases".
+Le module `menuelem.py` contient également la fonction `cycleFocus()`, qui s'exécute lorsqu'il faut passer le focus à l'élément suivant d'une liste (par exemple, quand l'utilisateur appuie sur Tab). Un gros tas de commentaire au début du fichier décrit le fonctionnement des focus, ainsi que les différents "use cases".
 
-La fonction `cycleFocus` aurait méritée d'être dans un fichier de code à part, mais je l'ai mise là car elle y est plutôt bien. Elle est utilisée à la fois par le `MenuManager` et le `MenuSubMenu`, donc elle est assez générique.
+La fonction `cycleFocus()` aurait méritée d'être dans un fichier de code à part, mais je l'ai mise là car elle y est plutôt bien. Elle est utilisée à la fois par le `MenuManager` et le `MenuSubMenu`, donc elle est assez générique.
 
 #### menumng.py ####
 
-Contient la classe `MenuManager`, qui gère un menu, comportant des `MenuElem`.
+Contient la classe `MenuManager` gérant un menu, qui comporte des `MenuElem`.
 
-On peut s'en servir de 2 manières différentes :
+On peut créer un `MenuManager` de 2 manières différentes :
 
- - Utliser directement le `MenuManager`. On l'instancie, on place dedans les `MenuElem` en redéfinissant directement la variable membre `listMenuElem`, puis on appelle la fonction `initFocusCyclingInfo`, et ça fonctionne. C'est ce qui est fait dans les codes d'exemple du chapitre précédent.
+ - Utliser directement la classe de base. On l'instancie, on place dedans les `MenuElem` en redéfinissant la variable membre `listMenuElem`, puis on appelle la fonction `initFocusCyclingInfo()`. C'est ce qui est fait dans les codes d'exemple du chapitre précédent.
 
- - Dériver le `MenuManager`. Dans l'`__init__` de la classe dérivée, on définit directement `listMenuElem`, puis on appelle `initFocusCyclingInfo`. C'est ce qui est fait dans la plupart des menus de Blarg.
+ - Dériver la classe. Dans l'`__init__`, on définit `listMenuElem`, puis on appelle `initFocusCyclingInfo()`. C'est ce qui est fait dans la plupart des menus de Blarg.
+
+Dans les deux cas, l'activation du menu se fait en appelant la fonction `handleMenu()`.
+
+Le terme "activation" est à peu près l'équivalent du "OnActivate" dans les menus Windows ou autre. Il désigne le fait d'afficher le menu, et de démarrer une boucle qui récupère et prend en compte les événements souris et clavier. La boucle s'arrête sur récupération d'un `IHMSG_QUIT` ou d'un `IHMSG_TOTALQUIT`.
 
 Si on dérive, on peut également overrider les fonctions suivantes :
 
- - showBackground : Fonction affichant l'image de fond, derrière le menu.
+ - `showBackground` : Fonction affichant l'image de fond, derrière le menu.
 
- - beforeDrawMenu : Fonction vide. Elle est appelée à chaque fois qu'il faut (re)dessiner tout le menu, juste avant le dessin de l'image de fond et des éléments de menu.
+ - `beforeDrawMenu` : Fonction vide. Elle est appelée à chaque fois qu'il faut (re)dessiner tout le menu, juste avant le dessin de l'image de fond et des éléments.
 
- - startMenu : Fonction vide. Elle s'exécute au début de l'activation d'un menu. (Activation = lorsqu'on affiche le menu et qu'il récupère les événements souris et clavier. Équivalent du "OnActivate" dans les menus Windows ou autre).
+ - `startMenu` : Fonction vide, s'exécute au début de l'activation d'un menu.
 
- - periodicAction : Fonction vide. Elle s'exécute au début de chaque cycle, tant que le menu est activé.
+ - `periodicAction` : Fonction vide, s'exécute au début de chaque cycle, tant que le menu est activé.
 
-Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de menu de les gérer, ou pas, en fonction de leur focus, ou d'autres choses.
+Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de les gérer ou pas, en fonction de leur focus, ou d'autres choses.
 
 Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuElem`.
 
- - `listMenuElem` : la liste contenant tous les éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur Tab.
+ - `listMenuElem` : liste contenant tous les éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur Tab.
 
- - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les éléments de texte sélectionnables, affichés au milieu de l'écran). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
+ - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les texte sélectionnables au milieu de l'écran, mais ne contient pas les mini-options tels que les choix de langue). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
 
 #### txtstock.py ####
 
 Contient la classe `TextStock`, qui stocke tous les textes du jeu (menu, présentation, ...).
 
-Les textes sont stockés dans un grand dictionnaire : `TextStock.DICT_LANGUAGE`.
+Les textes sont dans le dictionnaire `TextStock.DICT_LANGUAGE`.
 
  - clé : identifiant d'un texte. Ces identifiants sont définis comme des constantes statiques, au début de `TextStock`.
  - valeur : sous-dictionnaire :
@@ -127,9 +132,9 @@ Les textes sont stockés dans un grand dictionnaire : `TextStock.DICT_LANGUAGE`.
 
 La classe contient une variable membre `language`, qui indique la langue courante. Il est possible de changer sa valeur.
 
-Le fichier `txtstock.py` effectue immédiatement une instanciation : `txtStock = TextStock()`. Lorsque les autres modules importent le fichier, ils utilisent cet objet instancié, contenant la langue courante. Ça permet de partager la valeur de langue courante entre tous les modules, sans se prendre la tête.
+Le fichier `txtstock.py` effectue immédiatement une instanciation : `txtStock = TextStock()`. Lorsque les autres modules importent le fichier, ils utilisent cet objet instancié. Ça permet au code extérieur d'accéder à la valeur de langue courante sans se prendre la tête.
 
-C'est pour ça que la fonction `MenuElem.changeLanguage` n'a pas de paramètres. Cette fonction sert à prévenir un élément de menu que la langue courante a changé. Pour avoir la nouvelle langue, il suffit de consulter l'instance dans `txtstock.py`.
+C'est pour ça que la fonction `MenuElem.changeLanguage` n'a pas de paramètres. Elle sert uniquement à prévenir les éléments de menu que la langue courante a changé. Pour avoir la nouvelle langue, il faut consulter `txtstock.TextStock.language`.
 
 ### Modules définissant les éléments de menu ###
 
@@ -169,6 +174,7 @@ Le texte à afficher se définit à l'instanciation, on peut le faire de 2 mani�
 
 Si on s'amuse à panacher les 2 manières de définir le texte, ça donne des comportements plus ou moins intéressant. C'est un fonctionnement qui n'est pas vraiment prévu.
 
+<a class="mk-toclify" id="menusesqpy"></a>
 #### menusesq.py ####
 
 Contient la classe `MenuSensitiveSquare`. Elément de menu qui n'affiche rien, mais qui est focusable et activable. Il réagit quand on clique ou qu'on passe la souris dans une zone rectangulaire prédéfinie.
@@ -273,6 +279,7 @@ Lorsque l'enregistrement est activé, `funcAction` est exécutée à chaque appu
 
 Dans Blarg, c'est cet élément qui permet de configurer les touches du jeu.
 
+<a class="mk-toclify" id="menusubmpy"></a>
 #### menusubm.py ####
 
 Contient la classe `MenuSubMenu`. Élément de menu top génial, dans lequel on met d'autres éléments de menu (de n'importe quel type), qu'on appelle "sous-éléments".
