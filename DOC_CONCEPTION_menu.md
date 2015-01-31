@@ -71,6 +71,7 @@ Diverses fonctions et constantes communes au système de menu.
 
 C'est principalement utilisé par la partie spécifique (menus du jeu Blarg). Mais la partie générique utilise parfois une ou deux constantes contenues dans ce fichier. D'ailleurs c'est pas très bien, il faudrait essayer de séparer.
 
+<a class="mk-toclify" id="menuelempy"></a>
 #### menuelem.py ####
 
 Contient la classe `MenuElem` : définition générique d'un élément de menu.
@@ -79,9 +80,9 @@ La plupart des fonctions de cette classe sont vides. Pour créer un élément de
 
 Un élément de menu peut être placé dans un `MenuManager` ou dans un `MenuSubMenu` (un élément de menu spécial stockant d'autres éléments de menu, [voir `MenuSubMenu`](#menusubmpy)).
 
-Un élément de menu peut définir `funcAction` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances ([voir `MenuSensitiveSquare`](#menusesqpy)).
+Un élément de menu peut définir `funcAction()` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances ([voir `MenuSensitiveSquare`](#menusesqpy)).
 
-Si `funcAction` vaut None, l'élément de menu n'est pas activable.
+Si `funcAction()` vaut None, l'élément de menu n'est pas activable.
 
 Le module `menuelem.py` contient également la fonction `cycleFocus()`, qui s'exécute lorsqu'il faut passer le focus à l'élément suivant d'une liste (par exemple, quand l'utilisateur appuie sur Tab). Un gros tas de commentaire au début du fichier décrit le fonctionnement des focus, ainsi que les différents "use cases".
 
@@ -103,13 +104,13 @@ Le terme "activation" est à peu près l'équivalent du "OnActivate" dans les me
 
 Si on dérive, on peut également overrider les fonctions suivantes :
 
- - `showBackground` : Fonction affichant l'image de fond, derrière le menu.
+ - `showBackground()` : Fonction affichant l'image de fond, derrière le menu.
 
- - `beforeDrawMenu` : Fonction vide. Elle est appelée à chaque fois qu'il faut (re)dessiner tout le menu, juste avant le dessin de l'image de fond et des éléments.
+ - `beforeDrawMenu()` : Fonction vide. Elle est appelée à chaque fois qu'il faut (re)dessiner tout le menu, juste avant le dessin de l'image de fond et des éléments.
 
- - `startMenu` : Fonction vide, s'exécute au début de l'activation d'un menu.
+ - `startMenu()` : Fonction vide, s'exécute au début de l'activation d'un menu.
 
- - `periodicAction` : Fonction vide, s'exécute au début de chaque cycle, tant que le menu est activé.
+ - `periodicAction()` : Fonction vide, s'exécute au début de chaque cycle, tant que le menu est activé.
 
 Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de les gérer ou pas, en fonction de leur focus, ou d'autres choses.
 
@@ -138,25 +139,25 @@ C'est pour ça que la fonction `MenuElem.changeLanguage` n'a pas de paramètres.
 
 ### Modules définissant les éléments de menu ###
 
-Tous les modules de ce chapitre définissent des classes qui sont dérivées de `MenuElem`.
+Tous les classes définies dans les modules de ce chapitre sont dérivées de `MenuElem`.
 
 #### menukey.py ####
 
-Contient la classe `MenuSensitiveKey`. Élement de menu qui n'affiche rien, et qui est non focusable.
+Contient la classe `MenuSensitiveKey`. Élement de menu non focusable, et qui n'affiche rien.
 
-Cet élément réagit à l'appui d'une touche spécifique. Lorsque celle-ci est appuyée, la fonction d'activation `funcAction` est exécutée.
+Cet élément réagit à l'appui d'une touche spécifique. Lorsque celle-ci est appuyée, la fonction d'activation `funcAction()` est exécutée.
 
 Ne réagit pas à un lâchage de touche ni à une touche déjà appuyée.
 
 #### menuany.py ####
 
-Contient la classe `MenuSensitiveAnyKeyButton`. Élement de menu qui n'affiche rien, et qui est non focusable.
+Contient la classe `MenuSensitiveAnyKeyButton`. Élement de menu non focusable, et qui n'affiche rien.
 
-Cet élement réagit à un appui de touche (n'importe laquelle) et/ou un clic de souris. Il est utile pour des menus de transition, du style : "appuyer sur une touche pour passer à l'écran suivant".
+Cet élement réagit et exécute `funcAction()` sur un appui de touche (n'importe laquelle) et/ou sur un clic de souris. Il est utile pour des menus de transition, du style : "appuyer sur une touche pour passer à l'écran suivant".
 
 #### menuimg.py ####
 
-Contient la classe `MenuImage`. Élément de men qui affiche une image.
+Contient la classe `MenuImage`. Élément de menu affichant une image.
 
 Non focusable, non cliquable, non activable.
 
@@ -164,7 +165,7 @@ Non focusable, non cliquable, non activable.
 
 Contient la classe `MenuText`. Affiche un texte non interactif.
 
-Pour l'affichage et la config qui va avec (alignement horizontal et vertical, font, couleur, ...), la classe utilise en interne un `Lamoche`, une classe qui est également utilisée dans le jeu en lui-même.
+Pour l'affichage et la config associée (alignement horizontal et vertical, police, couleur, ...), la classe utilise en interne un `Lamoche`, une classe également utilisée dans le jeu lui-même.
 
 Le texte à afficher se définit à l'instanciation, on peut le faire de 2 manières différentes :
 
@@ -172,7 +173,7 @@ Le texte à afficher se définit à l'instanciation, on peut le faire de 2 mani�
 
  - Indiquer un identifiant de texte de `TextStock`. Le texte affichée sera celui défini dans `txtStock.DICT_LANGUAGE`, avec la langue courante. Ensuite, la langue peut être changée en appelant `txtStock.changeLanguage(newLanguage)` puis `MenuText.changeLanguage()`.
 
-Si on s'amuse à panacher les 2 manières de définir le texte, ça donne des comportements plus ou moins intéressant. C'est un fonctionnement qui n'est pas vraiment prévu.
+Le comportement du `MenuText` n'est pas vraiment prévu dans le cas où on s'amuse à panacher les 2 manières de définir le texte.
 
 <a class="mk-toclify" id="menusesqpy"></a>
 #### menusesq.py ####
@@ -185,9 +186,9 @@ Cette classe contient 3 variables membres importantes :
 
  - `rectStimZone` : rectangle définissant la zone sensible, dans l'écran. On peut la définir directement, ou à partir de la variable membre existante `rectDrawZone` (qui aurait été définie par un autre moyen, tel qu'un héritage mulitple).
 
- - `funcAction` : voir `MenuElem`.
+ - `funcAction()` : [voir `MenuElem`](#menuelempy).
 
- - `clickType` : indique la manière dont est exécutée `funcAction` en fonction des événements de la souris. Les différentes valeurs possibles sont les constantes `MOUSE_*`, définies au début de ce fichier. (En gros : soit ça réagit au clic, soit ça réagit périodiquement tant que le curseur est dans le rectangle sensible).
+ - `clickType` : indique la manière dont est exécutée `funcAction()` en fonction des événements de la souris. Les différentes valeurs possibles sont les constantes `MOUSE_*`, définies au début du fichier. (Soit ça réagit aux clics, soit ça réagit périodiquement tant que le curseur est dans le rectangle sensible, soit ça réagit jamais).
 
 Quel que soit la valeur de `clickType`, le `MenuSensitiveSquare` demande systématiquement à avoir le focus lorsque le curseur de souris passe sur le rectangle sensible.
 
@@ -197,13 +198,13 @@ TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidem
 
 Contient la classe `MenuSensitiveImage`, héritée de `MenuSensitiveSquare`. Affiche une image.
 
-Cette classe réagit aux clics ou aux mousehovers sur l'image, et exécute `funcAction`. (Comportement défini dans `MenuSensitiveSquare`).
+Cette classe réagit aux clics ou aux mousehovers sur l'image. (Comportement défini dans `MenuSensitiveSquare`).
 
 Lorsque l'élément prend le focus, l'image s'affiche progressivement en plus clair. Lorsqu'il perd le focus, l'image s'affiche progressivement du clair vers le normal.
 
 Les transitions clair<->normal se font sur 8 images. La liste de ces images est stockée dans la variable membre `listImgWithLight`. Elle est précalculée à l'instanciation de la classe, à partir de l'image normale.
 
-Les transitions sont effectuées par la fonction `update`, qui s'exécute une fois par cycle de jeu. Pendant une transition, on ne réaffiche pas tous le menu entier, uniquement cet élément. Le booléen membre `mustBeRefreshed` est fixé à True durant tout le temps de transition.
+Les transitions sont effectuées par la fonction `update()`, exécutée une fois par cycle de jeu. Durant tout le temps de transition, le booléen membre `mustBeRefreshed` est fixé à True, c'est à dire qu'on ne réaffiche pas le menu en entier, mais uniquement cet élément.
 
 #### menusetx.py ####
 
@@ -211,25 +212,25 @@ Contient la classe `MenuSensitiveText`, qui hérite à la fois de `MenuSensitive
 
 Je ne sais pas trop comment est censé être géré l'héritage multiple en python. Dans le corps des fonctions, j'ai parfois besoin d'appeler explicitement une fonction de l'une ou l'autre des classes-mères. Ça fonctionne, c'est tout ce que j'attends.
 
-Cette classe affiche un texte, comme `MenuText`. Elle réagit aux clics et aux mousehovers sur l'image, et exécute `funcAction`, comme `MenuSensitiveSquare`.
+Cette classe affiche un texte, comme `MenuText`. Elle réagit aux clics et aux mousehovers sur l'image, et exécute `funcAction()`, comme `MenuSensitiveSquare`.
 
 Lorsque l'élément prend le focus, le texte se met en mode "glow". Il change de couleur pour aller du blanc vers le bleu vers le blanc vers le bleu, etc. Contrairement au `MenuSensitiveImage`, les changements de couleur se font en yo-yo continu, tant que l'élément possède le focus.
 
-Lorsque l'élément perd le focus, le texte fait une dernière petite transition pour passer progressivement de la couleur en cours vers le blanc. Puis il reste blanc.
+Lorsque l'élément perd le focus, le texte fait une dernière petite transition pour passer progressivement de la couleur en cours vers le blanc.
 
 Les images de textes changeant de couleur ne sont pas pré-calculées. En interne, on change la couleur du `Lamoche` et on fait un `font.render()` à chaque fois.
 
 La liste des couleurs pour le glow est définie dans la variable membre `glowColorList`.
 
-Le glow et la transition "glow->normal" sont effectuées par la fonction `update`, qui s'exécute une fois par cycle de jeu. Pendant un glow/transition, on ne réaffiche pas tous le menu entier, uniquement cet élément.
+Le glow et la transition "glow->normal" sont effectuées par la fonction `update()`, exécutée à chaque cycle de jeu. Pendant un glow/transition, on ne réaffiche pas le menu en entier, mais uniquement cet élément.
 
 #### menulink.py ####
 
 Contient la classe `MenuLink`, héritée de `MenuSensitiveText`.
 
-Texte cliquable et focusable. La fonction `funcAction` pointe vers la fonction `mactQuitFullScreenAndGoToDaInterWeb`. Cette fonction désactive le mode plein écran (si on est actuellement dans ce mode), ouvre le navigateur internet par défaut, en lui indiquant une url égale au texte de l'élément de menu.
+Texte cliquable et focusable. La fonction `funcAction()` pointe vers la fonction `mactQuitFullScreenAndGoToDaInterWeb`. Cette fonction désactive le mode plein écran (si on est actuellement dans ce mode) et ouvre le navigateur internet par défaut en lui fournissant l'url correspondant au texte de l'élément de menu.
 
-Pour ouvrir le navigateur par défaut vers une url, on utilise la fonction `webbrowser.open` (présente dans la librairie standard). Comme on n'est pas sûr que cette librairie existe sur tous les systèmes, il y a un try-catch au moment de son import.
+Pour ouvrir le navigateur par défaut vers une url, on utilise `webbrowser.open()` (présent dans la librairie standard). Comme on n'est pas sûr que cette librairie existe sur tous les systèmes, il y a un try-catch au moment de son import.
 
 Si l'import a échoué, lorsque l'utilisateur clique sur l'élément, on se contente de logger l'url vers la sortie standard. Comme ça le jeu peut fonctionner sur des systèmes bizarres n'ayant pas de navigateur.
 
@@ -237,19 +238,19 @@ Si l'import a échoué, lorsque l'utilisateur clique sur l'élément, on se cont
 
 Contient la classe `MenuSensitiveTick`, qui hérite à la fois de `MenuSensitiveImage` et de `MenuText`.
 
-Cet élément de menu affiche à la fois une image (case à cocher) et un texte. La variable membre `rectDrawZone` est égale à la fusion des deux rectangles de l'image et du texte. La variable membre `rectStimZone` est déduite de `rectDrawZone`, avec une petite marge à chaque bord, comme d'habitude.
+Cet élément de menu affiche à la fois une image (case à cocher) et un texte. La variable membre `rectDrawZone` est égale à la fusion des deux rectangles de l'image et du texte. La variable membre `rectStimZone` est déduite de `rectDrawZone`, avec une petite marge à chaque bord, comme pour la plupart des autres éléments cliquables.
 
-Lorsque cet élément a le focus, l'image de la case (cochée ou pas) s'affiche progressivement en plus clair (comme le `MenuSensitiveImage`). Cet élément a donc besoin de deux listes d'images différentes. Une liste de case cochée, de plus en plus claires. Et une liste de case pas cochée, de plus en plus claires. Tout cela doit être initialisé préalablement, et transmis lors de l'instanciation, par le paramètre `dicTickImage`.
+Lorsque cet élément a le focus, l'image de la case (cochée ou pas) s'affiche progressivement en plus clair (comme le `MenuSensitiveImage`). Cet élément a donc besoin de deux listes d'images différentes. Une liste de case cochée, de plus en plus claires. Et une liste de case pas cochée, de plus en plus claires. Tout cela doit être initialisé préalablement et transmis lors de l'instanciation, via le paramètre `dicTickImage`.
 
-En l'état, la classe `MenuSensitiveTick` ne modifie pas la valeur de son cochage lorsqu'elle est activée (par un clic ou par la touche Espace). Pour cela, il faut overrider `funcAction`, et appeler dedans la méthode `toggleTick`. J'ai fait exprès de rendre ça explicite, comme ça on peut désactiver le cochage/décochage si on a envie. Et on peut effectuer d'autres actions spécifiques dans `funcAction`.
+En l'état, la classe `MenuSensitiveTick` ne modifie pas la valeur de son cochage lorsqu'elle est activée. Pour cela, il faut overrider `funcAction()`, pour y appeler la méthode `toggleTick()`. J'ai fait exprès de rendre ça explicite, comme ça on peut désactiver le cochage/décochage si on a envie. Et on peut effectuer d'autres actions spécifiques dans `funcAction()`.
 
-La valeur de cochage courante est stockée dans la variable membre `boolTickValue`
+La valeur de cochage courante est stockée dans la variable membre `boolTickValue`.
 
 On peut associer une valeur littérale à chacune des deux valeurs cochée/décochée. Pour cela, il faut passer les paramètres `dicLiteralFromBool` et `literalValInit` au moment de l'instanciation. Lorsque c'est défini, la variable membre `self.literTickValue` contient la valeur littérale courante.
 
 #### menuedtx.py ####
 
-Contient la classe `MenuEditableText`, héritée de `MenuSensitiveText`. Il s'agit d'une zone de texte éditable. L'élément est focusable, mais pas cliquable ni activable. (`funcAction` est None).
+Contient la classe `MenuEditableText`, héritée de `MenuSensitiveText`. Il s'agit d'une zone de texte éditable. L'élément est focusable, mais pas cliquable ni activable. (`funcAction()` est None).
 
 À priori, tous les caractères bizarres peuvent être écrits (accents, majuscules, trémas, ...). L'utilisateur peut appuyer sur backspace pour effacer la dernière lettre.
 
@@ -269,13 +270,13 @@ L'affichage du texte et du curseur est géré par la fonction `draw()`. La modif
 
 #### menukrec.py ####
 
-Contient la classe `MenuOneKeyRecorder`. Élément de menu qui ne s'affiche pas, qui est non focusable, mais qui peut quand même exécuter une `funcAction`.
+Contient la classe `MenuOneKeyRecorder`. Élément de menu qui ne s'affiche pas, qui est non focusable, mais qui peut quand même exécuter une `funcAction()`.
 
 Cet élément possède deux fonctions spécifiques : `activateRecording()` et `desactivateRecording()`, permettant d'activer et désactiver l'enregistrement des touches.
 
 Lorsque l'enregistrement est activé, les appuis de touches sont enregistrés. Seul le dernier appui est gardé en mémoire. Il est accessible par les variables membres `keyRecorded` (code numérique de la touche appuyée) et `charKeyRecorded` (caractère correspond à la touche appuyée).
 
-Lorsque l'enregistrement est activé, `funcAction` est exécutée à chaque appui de touche.
+Lorsque l'enregistrement est activé, `funcAction()` est exécutée à chaque appui de touche.
 
 Dans Blarg, c'est cet élément qui permet de configurer les touches du jeu.
 
@@ -308,7 +309,7 @@ Les événements de touche ne sont pas transmis. Ce n'est pas bien, mais j'en ai
 
 Les cyclages de focus sont transmis. C'est à dire que lorsque le sub-menu reçoit un événement de cyclage, il fait cycler le focus en interne, dans les sub-menu (le sous-élément ayant le focus est indiqué par la variable membre `focusedElemInside`). Tant qu'on n'est pas arrivé au dernier sous-élément, le sub-menu répond qu'il ne veut pas lâcher le focus (il ne renvoie pas le message `IHMSG_CYCLE_FOCUS_OK`). Lorsqu'on est arrivé au dernier sous-élément et que l'utilisateur cycle une dernière fois, on accepte de lâcher le focus.
 
-Le sub-menu possède une `funcAction`, mais elle n'est pas censée être overridée. Cette `funcAction` exécute la `funcAction` du sous-élément ayant actuellement le focus (si elle existe). De cette manière, l'événement d'activation est propagé. Lorsque l'utilisateur appuie sur Espace ou Entrée, c'est le sous-élémemnt actuellement focusé qui est activé.
+Le sub-menu possède une `funcAction()`, mais elle n'est pas censée être overridée. Cette `funcAction()` exécute la `funcAction()` du sous-élément ayant actuellement le focus (si elle existe). De cette manière, l'événement d'activation est propagé. Lorsque l'utilisateur appuie sur Espace ou Entrée, c'est le sous-élémemnt actuellement focusé qui est activé.
 
 Dans Blarg, le sub-menu permet d'afficher le texte scrollable des Credits (liens vers mes sites, noms des contributeurs, lien vers la licence, ...).
 
