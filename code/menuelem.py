@@ -10,90 +10,90 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 04/02/2011
+date de la derniÃ¨re relecture-commentage : 04/02/2011
 
-Element de menu qui s'affiche éventuellement quelque part, qui reçoit des stimuli
+Element de menu qui s'affiche Ã©ventuellement quelque part, qui reÃ§oit des stimuli
 de click de souris et d'appuyage de touche, et qui fait eventuellement des trucs en fonction.
 
-Mais là c'est la classe générique, alors y'a pas grand chose dedans.
+Mais lÃ  c'est la classe gÃ©nÃ©rique, alors y'a pas grand chose dedans.
 
-Vocabulaire et gestion d'interface : (bizarroïde, mais na!).
+Vocabulaire et gestion d'interface : (bizarroÃ¯de, mais na!).
 
-GetFocus, LoseFocus : l'élément de menu est sélectionné/déslectionné, via les touches
-du clavier (flèche haut/bas, tab, ...) ou la souris. Les deux sont gérés,
-mais c'est le dernier qui a parlé qui a raison.
+GetFocus, LoseFocus : l'Ã©lÃ©ment de menu est sÃ©lectionnÃ©/dÃ©slectionnÃ©, via les touches
+du clavier (flÃ¨che haut/bas, tab, ...) ou la souris. Les deux sont gÃ©rÃ©s,
+mais c'est le dernier qui a parlÃ© qui a raison.
 
-*) Les éléments peuvent éventuellement avoir un sensitiveRect. C'est une zone dans l'écran
-à laquelle l'élément doit réagir.
-Les éléments peuvent éventuellement avoir un drawRect. C'est une zone dans l'écran
-sur laquelle l'élément se dessine.
+*) Les Ã©lÃ©ments peuvent Ã©ventuellement avoir un sensitiveRect. C'est une zone dans l'Ã©cran
+Ã  laquelle l'Ã©lÃ©ment doit rÃ©agir.
+Les Ã©lÃ©ments peuvent Ã©ventuellement avoir un drawRect. C'est une zone dans l'Ã©cran
+sur laquelle l'Ã©lÃ©ment se dessine.
 
 *) On peut avoir un drawRect et ne pas avoir de sensitiveRect.
 Exemple : les images et les textes statiques. (MenuText, MenuImage)
 
-*)En général, quand on a un sensitiveRect, y'a aussi un drawRect, et les deux Rects sont
-à peu près confondus. Mais théoriquement rien ne l'oblige.
+*) En gÃ©nÃ©ral, quand on a un sensitiveRect, y'a aussi un drawRect, et les deux Rects sont
+Ã  peu prÃ¨s confondus. Mais thÃ©oriquement rien ne l'oblige.
 
-*) Si j'appuie sur une touche de cyclage d'élément (tab, up, down),
-je passe à l'élément de menu suivant, à partir de celui sélectionné actuellement.
-(Il avait été soit sélectionné par la souris, soit par l'appui d'une touche, on s'en fout)
-La touche tab fait cycler parmi tous les éléments focusables. ils sont ordonnés dans une liste.
+*) Si j'appuie sur une touche de cyclage d'Ã©lÃ©ment (tab, up, down),
+je passe Ã  l'Ã©lÃ©ment de menu suivant.
+(La sÃ©lection prÃ©cÃ©dente avait Ã©tÃ© faite par la souris ou par l'appui d'une touche).
+La touche tab fait cycler parmi tous les Ã©lÃ©ments focusables. ils sont ordonnÃ©s dans une liste.
 
-*) TRODO pour plus tard : shift+tab doit faire cycler parmi tous les éléments focusables,
+*) TRODO pour plus tard : shift+tab doit faire cycler parmi tous les Ã©lÃ©ments focusables,
 mais dans l'autre sens.
 
-*) On peut définir une sous-liste d'éléments focusable. (Par exemple, toutes les
-options d'un menu). Lorsqu'on fera up ou down, on naviguera dans cette sous-liste,
+*) On peut dÃ©finir une sous-liste d'Ã©lÃ©ments focusable. (Par exemple, les
+options du menu principal). Lorsqu'on fera up ou down, on naviguera dans cette sous-liste,
 dans un sens ou dans l'autre.
-Si on ne définit pas de sous-liste, up et down ne font rien.
+Si on ne dÃ©finit pas de sous-liste, up et down ne font rien.
 
-*) si il y a une sous-liste d'élément focusable, que l'élément focusé actuellement
+*) Si il y a une sous-liste d'Ã©lÃ©ment focusable, que l'Ã©lÃ©ment actuellement focusÃ©
 n'est pas dans cette liste, et que j'appuie sur up ou down, alors on focus
-sur le premier élément de la sous-liste.
+sur le premier Ã©lÃ©ment de la sous-liste.
 
-*) Si j'amène ma souris sur le sensitiveRect d'un élément, (sans cliquer),
-il est focusé.
+*) Si j'amÃ¨ne le curseur de souris sur le sensitiveRect d'un Ã©lÃ©ment, il est focusÃ©.
+Pas besoin de cliquer.
 
-*) si je focus sur un élément avec la souris, et que j'appuie sur Tab. Ca cycle.
-Donc l'élément focusé n'est plus celui pointé par la souris. Tant que je bouge pas
-la souris, ça reste comme ça.
+*) Si je focus sur un Ã©lÃ©ment avec la souris, et que j'appuie sur Tab, Ã§a cycle.
+Donc l'Ã©lÃ©ment focusÃ© n'est plus celui pointÃ© par la souris. Tant que je ne bouge pas
+la souris, Ã§a reste comme Ã§a.
 
-*) Dès que je bouge ma souris, même un tout petit peu :
-alors je resélectionne l'élément sur lequel se trouve la souris.
-Si je bouge ma souris sur rien, je change pas le focus courant.
+*) DÃ¨s que je bouge ma souris, mÃªme un tout petit peu, je resÃ©lectionne l'Ã©lÃ©ment
+sur lequel se trouve la souris.
+Si je bouge ma souris sur rien, je ne change pas le focus courant.
 
-*) Si j'appuie sur l'une des touche Entrée, ou sur Espace. J'active l'élément sélectionné.
-(Quel que soit la façon dont il a été sélectionné, on s'en fout.)
-Si y'a aucun élément sélectionné, ça ne fait rien.
+*) Si j'appuie sur l'une des touche EntrÃ©e ou sur Espace. J'active l'Ã©lÃ©ment sÃ©lectionnÃ©.
+(Quel que soit la faÃ§on dont il a Ã©tÃ© sÃ©lectionnÃ©, on s'en fout.)
+Si y'a aucun Ã©lÃ©ment sÃ©lectionnÃ©, Ã§a ne fait rien.
 
-*) Si la souris ne se trouve pas sur l'élément focusé, et que je clique,
-alors je focus dessus immédiatement tout de suite sur l'élément pointé.
-(Même si j'ai cliqué sans bouger). Et j'active la fonction liée à cet élément.
+*) Si la souris ne se trouve pas sur l'Ã©lÃ©ment focusÃ©, et que je clique,
+alors je focus immÃ©diatement sur l'Ã©lÃ©ment pointÃ© (mÃªme si j'ai cliquÃ© sans bouger)
+et j'active la fonction liÃ©e Ã  cet Ã©lÃ©ment (funcAction).
 
-*) Si je clique avec ma souris sur rien, il ne se passe rien. L'élément focusé reste
-le même.
+*) Si je clique avec ma souris sur rien, il ne se passe rien. L'Ã©lÃ©ment focusÃ© reste
+le mÃªme.
 
-*) Certains éléments n'ont pas de sensitiveRect. On peut jamais les sélectionner
-avec la souris. (Je ne fais ça que pour les éléments non-interactifs. Sinon c'est crétin)
+*) Certains Ã©lÃ©ments n'ont pas de sensitiveRect. On ne peut jamais les sÃ©lectionner
+avec la souris. (Je ne fais Ã§a que pour les Ã©lÃ©ments non-interactifs. Sinon c'est crÃ©tin)
 
-*) Certains éléments n'acceptent pas du tout le focus. Quand on passe la souris dessus, il
-se passe rien, et quand on fait Tab, le cyclage de focus saute cet élément.
+*) Certains Ã©lÃ©ments n'acceptent pas du tout le focus. Quand on passe la souris dessus, il
+ne se passe rien, et quand on fait Tab, le cyclage de focus saute cet Ã©lÃ©ment.
 
-*) En général, on a la relation réciproque :
-élément n'ayant pas de sensitiveRect <=> éléments n'acceptant pas du tout le focus.
-(Mais théoriquement, rien ne l'interdit).
+*) En gÃ©nÃ©ral, on a la relation rÃ©ciproque :
+Ã©lÃ©ment n'ayant pas de sensitiveRect <=> Ã©lÃ©ments n'acceptant pas du tout le focus.
+(Mais thÃ©oriquement, rien ne l'interdit).
 
-*) Il y a aussi des éléments sans focus, sans sensitiveRect, et qui ne s'affichent même pas.
-Mais ils peuvent exécuter la fonction qui leur est liée, quand on appuie sur une touche.
-C'est juste un bind sur une touche en fait. Mais je l'ai foutu sous forme d'élément,
+*) Il y a aussi des Ã©lÃ©ments sans focus, sans sensitiveRect, et qui ne s'affichent mÃªme pas.
+Mais ils peuvent exÃ©cuter la fonction qui leur est liÃ©e, quand on appuie sur une touche.
+C'est juste un bind sur une touche en fait. Mais je l'ai foutu sous forme d'Ã©lÃ©ment,
 et pis c'est tout.
 
 *) Pour communiquer tout ces trucs, on utilise les IHMSG (IHM Message).
@@ -109,147 +109,147 @@ from common import moveIndexInBounds, IHMSG_CYCLE_FOCUS_OK, IHMSG_VOID
 
 def cycleFocus(focusedElem, listMenuElemToCycle, loopAuthorized, delta=+1):
     """
-    Fonction permettant de déplacer le focus d'un élément vers le suivant.
-    Cette fonction se trouve dans ce fichier de code, car je savais pas où la foutre ailleurs.
+    Fonction permettant de dÃ©placer le focus d'un Ã©lÃ©ment vers le suivant.
+    Cette fonction se trouve dans ce fichier de code, car je savais pas oÃ¹ la foutre ailleurs.
 
-    entrées :
-        focusedElem : référence vers le menuElem ayant actuellement le focus
-                      On peut mettre ce param à None. Dans ce cas, pas de cyclage,
-                      et on focusera sur le premier élément de listMenuElemToCycle.
-                      même si, euh... je suis pas sur d'avoir complètement testé
+    entrÃ©es :
+        focusedElem : rÃ©fÃ©rence vers le menuElem ayant actuellement le focus
+                      On peut mettre ce param Ã  None. Dans ce cas, pas de cyclage,
+                      et on focusera sur le premier Ã©lÃ©ment de listMenuElemToCycle.
+                      mÃªme si, euh... je suis pas sur d'avoir complÃ¨tement testÃ©
 
         listMenuElemToCycle : liste de menuElem dans laquelle on fait cycler le focus
 
-        loopAuthorized : boolean. Indique si le cyclage de focus est autorisé à
+        loopAuthorized : boolean. Indique si le cyclage de focus est autorisÃ© Ã 
                          faire des tours du compteurs.
                          Si il ne l'est pas et qu'on sort de la liste, alors
-                         on déplacera pas le focus, et la fonction renverra None.
+                         on dÃ©placera pas le focus, et la fonction renverra None.
 
-        delta : int (positif ou negatif). Indique de combien d'élément on veut se
-                déplacer dans la liste. En général, on met juste +1 ou -1, pour
+        delta : int (positif ou negatif). Indique de combien d'Ã©lÃ©ment on veut se
+                dÃ©placer dans la liste. En gÃ©nÃ©ral, on met juste +1 ou -1, pour
                 indiquer dans quel sens on veut aller. Mais on pourrait mettre autre chose
                 si on veut faire des trucs bizarres.
                 (Moi j'en fais pas, je fais jamais de trucs bizarres moi).
 
     plat-dessert :
 
-        Soit une référence vers le menuElem qui a pris le focus (donc le nouveau focusedElem)
-        Soit une référence vers le même menuElem parce que ça a pas changé,
+        Soit une rÃ©fÃ©rence vers le menuElem qui a pris le focus (donc le nouveau focusedElem)
+        Soit une rÃ©fÃ©rence vers le mÃªme menuElem parce que Ã§a a pas changÃ©,
         Soit None, si on n'a pas eu le droit de faire de tour du compteur alors qu'on devait.
 
-        La fonction s'occupe elle-même de transférer le focus, en appelant les
-        méthodes LoseFocus et GetFocus des menuElem correspondants.
+        La fonction s'occupe elle-mÃªme de transfÃ©rer le focus, en appelant les
+        mÃ©thodes LoseFocus et GetFocus des menuElem correspondants.
 
     Y'a des fois, on a besoin de faire un sous-cyclage de focus. Par exemple,
-    l'élément MenuSubMenu contient des éléments de Menu embarqué dans lui-même.
+    l'Ã©lÃ©ment MenuSubMenu contient des Ã©lÃ©ments de Menu embarquÃ© dans lui-mÃªme.
 
-    C'est pourquoi, avant de faire un cyclage principal, on prévient l'élément
-    actuellement focusé. Si l'elem focusé est simple, il répond qu'il accepte
+    C'est pourquoi, avant de faire un cyclage principal, on prÃ©vient l'Ã©lÃ©ment
+    actuellement focusÃ©. Si l'elem focusÃ© est simple, il rÃ©pond qu'il accepte
     le cyclage, et on fait un cyclage principal.
-    Si l'elem focusé est plus complexe, il se fait son sous-cyclage en interne. Et
-    ensuite, il peut répondre deux choses différente :
+    Si l'elem focusÃ© est plus complexe, il se fait son sous-cyclage en interne. Et
+    ensuite, il peut rÃ©pondre deux choses diffÃ©rente :
      - son sous-cyclage n'est pas fini, dans ce cas, il n'accepte pas le cyclage principal.
-     - son sous-cyclage est fini (on était arrivé au dernier sous-élément de menu),
+     - son sous-cyclage est fini (on Ã©tait arrivÃ© au dernier sous-Ã©lÃ©ment de menu),
     dans ce cas, il accepte le cyclage principal
 
-    quand on cycle, on saute les éléments de la liste qui n'acceptent pas de prendre le focus.
+    quand on cycle, on saute les Ã©lÃ©ments de la liste qui n'acceptent pas de prendre le focus.
 
-    Si aucun élément de la liste n'accepte de prendre le focus, la fonction va planter.
+    Si aucun Ã©lÃ©ment de la liste n'accepte de prendre le focus, la fonction va planter.
     Alors faut pas le faire, d'accord ?
 
-    Le focusedElem passé en paramètre peut être None, ou peut ne pas être dans listMenuElemToCycle,
-    dans ce cas, on démarrera à partir du premier élément de la liste.
+    Le focusedElem passÃ© en paramÃ¨tre peut Ãªtre None, ou peut ne pas Ãªtre dans listMenuElemToCycle,
+    dans ce cas, on dÃ©marrera Ã  partir du premier Ã©lÃ©ment de la liste.
 
     Si on renvoie None, parce qu'on peut pas faire le tour du compteur, on ne fait pas perdre
-    le focus à l'élément focusé.
-    TRODO : peut être qu'on devrait non ? faut que je regarde ça.
+    le focus Ã  l'Ã©lÃ©ment focusÃ©.
+    TRODO : peut Ãªtre qu'on devrait non ? faut que je regarde Ã§a.
     """
 
     if focusedElem is not None:
 
-        #on informe l'élément focusé qu'on veut faire du cyclage de focus.
-        #si c'est un élément normal, il accepte de lacher le focus, et on va pouvoir cycler,
-        #si c'est un subMenu, il va faire un cyclage en interne, et éventuellement lacher
-        #le focus si son cyclage est arrivé sur le dernier elem.
+        #on informe l'Ã©lÃ©ment focusÃ© qu'on veut faire du cyclage de focus.
+        #si c'est un Ã©lÃ©ment normal, il accepte de lacher le focus, et on va pouvoir cycler,
+        #si c'est un subMenu, il va faire un cyclage en interne, et Ã©ventuellement lacher
+        #le focus si son cyclage est arrivÃ© sur le dernier elem.
         ihmsgInfo = focusedElem.takeStimuliFocusCycling()
         acceptQuitFocus = IHMSG_CYCLE_FOCUS_OK in ihmsgInfo
 
     else:
 
-        #Pas d'éléments focusé. Donc pas besoin de demander à qui que ce soit si il accepte
+        #Pas d'Ã©lÃ©ments focusÃ©. Donc pas besoin de demander Ã  qui que ce soit si il accepte
         #de lacher le focus.
         acceptQuitFocus = True
 
     if not acceptQuitFocus:
-        #l'élément focusé ne veut pas lacher le focus. On ne fait rien, on renvoie l'élém focusé.
+        #l'Ã©lÃ©ment focusÃ© ne veut pas lacher le focus. On ne fait rien, on renvoie l'Ã©lÃ©m focusÃ©.
         return focusedElem
 
-    #liste des paramètres à passer à la fonction qui fait avancer un index entre deux bornes,
+    #liste des paramÃ¨tres Ã  passer Ã  la fonction qui fait avancer un index entre deux bornes,
     #y'a pas le premier param, mais il change tout le temps, alors on le passera en live.
     param = (delta, 0, len(listMenuElemToCycle), loopAuthorized)
 
-    # --- détermination de l'index du premier menuElem qui pourrait (avoir le focus, ou pas) ---
+    # --- dÃ©termination de l'index du premier menuElem qui pourrait (avoir le focus, ou pas) ---
 
     if focusedElem in listMenuElemToCycle:
 
-        #l'élément focusé est dans la liste. On commence par choper son index.
+        #l'Ã©lÃ©ment focusÃ© est dans la liste. On commence par choper son index.
 
         #focusedElemIndex = listMenuElemToCycle.index(focusedElem)
-        #l'instruction index n'existe pas dans le python 2.5.4. Allez zou, à la mimine.
+        #l'instruction index n'existe pas dans le python 2.5.4. Allez zou, Ã  la mimine.
         focusedElemIndex = -1
         menuElemCurrent = None
 
         #petite boucle un peu cheap, pour trouver l'index de focusedElem dans listMenuElemToCycle
-        #la boucle va forcément fonctionner, puisqu'on a vérifié avant
+        #la boucle va forcÃ©ment fonctionner, puisqu'on a vÃ©rifiÃ© avant
         #que focusedElem est in listMenuElemToCycle
         while menuElemCurrent != focusedElem:
             focusedElemIndex += 1
             menuElemCurrent = listMenuElemToCycle[focusedElemIndex]
 
-        #on fait avancer une première fois l'index, c'est le cyclage effectif.
+        #on fait avancer une premiÃ¨re fois l'index, c'est le cyclage effectif.
         #Mais que sur les index.
         newFocusedElemIndex = moveIndexInBounds(focusedElemIndex, *param)
 
-        #Tour du compteur non autorisé. On se barre comme un voleur en renvoyant None.
+        #Tour du compteur non autorisÃ©. On se barre comme un voleur en renvoyant None.
         if newFocusedElemIndex is None:
             return None
 
     else:
 
-        #l'élément focusé n'est paz dans la liste. On prend arbitrairement le premier.
+        #l'Ã©lÃ©ment focusÃ© n'est paz dans la liste. On prend arbitrairement le premier.
         newFocusedElemIndex = 0
 
-    # --- détermination de l'index du menuElem qui peut vraiment avoir le focus ---
+    # --- dÃ©termination de l'index du menuElem qui peut vraiment avoir le focus ---
 
-    #on avance dans la liste jusqu'à trouver un menuElem qui accepte le focus.
-    #Ca peut éventuellement être l'élément actuel (car on vient de faire un
-    #cyclage juste ci-dessus, enfin ou pas si on a chopé le premier, bref...)
-    #Mais il faut le vérifier que ça "peut éventuellement être l'élément actuel"
+    #on avance dans la liste jusqu'Ã  trouver un menuElem qui accepte le focus.
+    #Ca peut Ã©ventuellement Ãªtre l'Ã©lÃ©ment actuel (car on vient de faire un
+    #cyclage juste ci-dessus, enfin ou pas si on a chopÃ© le premier, bref...)
+    #Mais il faut le vÃ©rifier que Ã§a "peut Ã©ventuellement Ãªtre l'Ã©lÃ©ment actuel"
     while not listMenuElemToCycle[newFocusedElemIndex].acceptFocus:
 
         #et un cyclage de plus.
         newFocusedElemIndex = moveIndexInBounds(newFocusedElemIndex, *param)
 
-        #fail tour du compteur non autorisé. On se barre comme un voleur en renvoyant None.
+        #fail tour du compteur non autorisÃ©. On se barre comme un voleur en renvoyant None.
         if newFocusedElemIndex is None:
             return None
 
         #fait chier parce que le bout de code ci-dessus, il est en doublon
-        #avec le bout de code ci-ci-dessus. J'ai essayé de factoriser tant que je peux avec la
-        #fonction moveIndexInBounds, mais ça fait pas tout. C'est à cause de ces putain de while
-        #qu'on peut pas écrire à l'envers. Genre le repeat ... until du pascal. Pourquoi
+        #avec le bout de code ci-ci-dessus. J'ai essayÃ© de factoriser tant que je peux avec la
+        #fonction moveIndexInBounds, mais Ã§a fait pas tout. C'est Ã  cause de ces putain de while
+        #qu'on peut pas Ã©crire Ã  l'envers. Genre le repeat ... until du pascal. Pourquoi
         #y'a pas ce truc en python ? Ce serait putain de cool.
 
-    # --- Ah y est ! on a chopé l'élément qui veut bien du focus ! Donc : transfert du focus ---
+    # --- Ah y est ! on a chopÃ© l'Ã©lÃ©ment qui veut bien du focus ! Donc : transfert du focus ---
 
-    #on fait lacher le focus à l'élément actuel qui l'a
+    #on fait lacher le focus Ã  l'Ã©lÃ©ment actuel qui l'a
     if focusedElem is not None:
         focusedElem.takeStimuliLoseFocus()
 
-    #récupération de l'élément à qui donner le focus, à partir de l'index.
+    #rÃ©cupÃ©ration de l'Ã©lÃ©ment Ã  qui donner le focus, Ã  partir de l'index.
     focusedElem = listMenuElemToCycle[newFocusedElemIndex]
 
-    #don du focus à cet élément. Oui je te dooo-ooonneeuuu !
+    #don du focus Ã  cet Ã©lÃ©ment. Oui je te dooo-ooonneeuuu !
     focusedElem.takeStimuliGetFocus()
 
     return focusedElem
@@ -258,7 +258,7 @@ def cycleFocus(focusedElem, listMenuElemToCycle, loopAuthorized, delta=+1):
 
 class MenuElem():
     """
-    menuElem super générique qu'on va décliner en plein de trucs.
+    menuElem super gÃ©nÃ©rique qu'on va dÃ©cliner en plein de trucs.
     """
 
     def __init__(self):
@@ -266,30 +266,30 @@ class MenuElem():
         constructeur. (thx captain obvious)
         """
 
-        #indique dans quelle zone de son conteneur (menu ou submenu) est dessiné ce menuElem.
+        #indique dans quelle zone de son conteneur (menu ou submenu) est dessinÃ© ce menuElem.
         #on peut mettre un Rect, ou None si ce menuElem ne se dessine pas.
         self.rectDrawZone = None
 
-        #pour les menuElem qui se dessinent, indique si il faut redessiner à chaque cycle ou pas.
+        #pour les menuElem qui se dessinent, indique si il faut redessiner Ã  chaque cycle ou pas.
         #on peut bien evidemment changer cet attribut en live. Crac youpi.
-        #attention, entre deux refresh, on ne réaffiche pas le background du menu. Donc
-        #si on veut faire un menuelem animé, faut tout le temps tripoter les mêmes pixels,
+        #attention, entre deux refresh, on ne rÃ©affiche pas le background du menu. Donc
+        #si on veut faire un menuelem animÃ©, faut tout le temps tripoter les mÃªmes pixels,
         #ou alors faut demander un redraw global avec IHMSG_REDRAW_MENU.
-        #Y'a pas de juste milieu. TRODO : pour plus tard, essayer de prévoir un juste milieu.
+        #Y'a pas de juste milieu. TRODO : pour plus tard, essayer de prÃ©voir un juste milieu.
         self.mustBeRefreshed = False
 
-        #référence vers la fonction à exécuter quand cet élément de menu est activé.
-        #C'est à dire quand on clique dessus, où quand le focus est dessus et
-        #qu'on appuie sur entrée ou espace, ou dans d'autres cas funny qu'on code soi-même
-        #dans les classes héritées
+        #rÃ©fÃ©rence vers la fonction Ã  exÃ©cuter quand cet Ã©lÃ©ment de menu est activÃ©.
+        #C'est Ã  dire quand on clique dessus, oÃ¹ quand le focus est dessus et
+        #qu'on appuie sur entrÃ©e ou espace, ou dans d'autres cas funny qu'on code soi-mÃªme
+        #dans les classes hÃ©ritÃ©es
         self.funcAction = None
 
         #indique si le menuElem accepte le focus ou pas.
         self.acceptFocus = False
 
-        #indique si le menuElem a le focus sur lui, ou pas. On n'est pas censé avoir plusieurs
-        #menuElem en même temps ayant le focus. Mais y'a rien de vraiment fait pour contrôler ça.
-        #Et en plus c'est pas tout à fait exact car on peut avoir un subMenu qui a le focus,
+        #indique si le menuElem a le focus sur lui, ou pas. On n'est pas censÃ© avoir plusieurs
+        #menuElem en mÃªme temps ayant le focus. Mais y'a rien de vraiment fait pour contrÃ´ler Ã§a.
+        #Et en plus c'est pas tout Ã  fait exact car on peut avoir un subMenu qui a le focus,
         #et l'un de ses sous-elem qui a un sous-focus. Bref : osef.
         self.focusOn = False
 
@@ -298,34 +298,34 @@ class MenuElem():
         """
         dessine le menuElem.
 
-        entrées:
+        entrÃ©es:
             surfaceDest :
-                surface sur laquelle on doit dessiner le menuElem. Ca peut être
+                surface sur laquelle on doit dessiner le menuElem. Ca peut Ãªtre
                 le screen principal, la surface d'un submenu, ou n'importe quoi d'autre.
                 On dessine tout comme on veut. Mais faut savoir que si on dessine
                 dans un submenu, et qu'on met des pixels en noir,
                 alors ces pixels seront transparents lors de l'affichage
                 du subMenu dans le menu principal.
-                TRODO : C'est peut être crétin. Pour ce jeu, ça me pose pas
-                de problème. Mais faudra pas oublier ça par la suite.
+                TRODO : C'est peut Ãªtre crÃ©tin. Pour ce jeu, Ã§a me pose pas
+                de problÃ¨me. Mais faudra pas oublier Ã§a par la suite.
         """
         pass
 
 
     def takeStimuliFocusCycling(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que y'a un cyclage
-        de focus à faire, alors que ce menuElem a présentement le focus.
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que y'a un cyclage
+        de focus Ã  faire, alors que ce menuElem a prÃ©sentement le focus.
 
         sorties :
             un tuple ihmsgInfo.
 
         Y'a deux cas possibles :
          - le menuElem est "simple". Dans ce cas, il doit accepter de lacher son focus
-           pour que le cyclage se fasse. Il faut donc mettre dans le ihmsgInfo renvoyé le
+           pour que le cyclage se fasse. Il faut donc mettre dans le ihmsgInfo renvoyÃ© le
            message IHMSG_CYCLE_FOCUS_OK
-         - le menuElem est "complexe" (il possède des sous-elements). Dans ce cas, on
-           fait un sous-cyclage en interne, et si on arrive sur le dernier élément,
+         - le menuElem est "complexe" (il possÃ¨de des sous-elements). Dans ce cas, on
+           fait un sous-cyclage en interne, et si on arrive sur le dernier Ã©lÃ©ment,
            on acccepte de lacher le focus.
         """
         return (IHMSG_CYCLE_FOCUS_OK, )
@@ -333,77 +333,77 @@ class MenuElem():
 
     def takeStimuliGetFocus(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que ce menuElem prend le focus
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que ce menuElem prend le focus
         """
         self.focusOn = True
 
 
     def takeStimuliLoseFocus(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que ce menuElem perd le focus
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que ce menuElem perd le focus
         """
         self.focusOn = False
 
 
     def update(self):
         """
-        réactualise les trucs qu'on veut, à chaque cycle, quand ce menuElem est utilisé
+        rÃ©actualise les trucs qu'on veut, Ã  chaque cycle, quand ce menuElem est utilisÃ©
         dans un menu.
 
         plat-dessert : soit IHMSG_VOID,
                        soit un tuple de message d'ihm, avec IHMSG_REDRAW_MENU dedans,
                        pour indiquer qu'on veut tout redrawer.
 
-        On peut faire différent truc dans cette fonction. (Sachant qu'elle est appelée à
+        On peut faire diffÃ©rent truc dans cette fonction. (Sachant qu'elle est appelÃ©e Ã 
         chaque cycle :
 
-         - Rien. Mettre self.mustBeRefreshed à False, et renvoyer IHMSG_VOID
-           Cet élément du menu ne sera pas redessiné.
+         - Rien. Mettre self.mustBeRefreshed Ã  False, et renvoyer IHMSG_VOID
+           Cet Ã©lÃ©ment du menu ne sera pas redessinÃ©.
 
-         - Des petits trucs. mettre self.mustBeRefreshed à True, et renvoyer IHMSG_VOID.
-           Cet élément de menu sera redessiné. Mais le menu dans l'ensemble, ainsi que
-           l'image de fond, ne le sera pas. Si on fait un truc comme ça, il faut
+         - Des petits trucs. mettre self.mustBeRefreshed Ã  True, et renvoyer IHMSG_VOID.
+           Cet Ã©lÃ©ment de menu sera redessinÃ©. Mais le menu dans l'ensemble, ainsi que
+           l'image de fond, ne le sera pas. Si on fait un truc comme Ã§a, il faut
            donc faire attention que la fonction draw du menuElem tripote toujours
-           les mêmes pixels. Sinon ça va laisser des traces.
+           les mÃªmes pixels. Sinon Ã§a va laisser des traces.
 
-         - Des gros trucs. mettre self.mustBeRefreshed à <osef>, et renvoyer un
+         - Des gros trucs. mettre self.mustBeRefreshed Ã  <osef>, et renvoyer un
            IHMSG_REDRAW_MENU. Dans ce cas, tout le menu (img de fond + tous les elems de
-           menus) seront redessinés. Et là y'a plus de question à se poser. Mais c'est
-           un peu bourrin. A ne faire que quand c'est nécessaire.
+           menus) seront redessinÃ©s. Et lÃ  y'a plus de question Ã  se poser. Mais c'est
+           un peu bourrin. A ne faire que quand c'est nÃ©cessaire.
         """
         return IHMSG_VOID
 
 
     def takeStimuliKeys(self, dictKeyPressed, keyCodeDown, keyCharDown):
         """
-        prise en compte d'une touche appuyée par le joueur.
-        Le menuElem peut décider d'en avoir rien à foutre, ou pas.
-        En général, le menuElem ne réagit au plus qu'à une seule touche. C'est à
-        lui de la retrouver dans le bordel des paramètres en entrée.
-        Mais y'a aussi des menuElem qui réagissent à n'importe quelle touche, tralala.
+        prise en compte d'une touche appuyÃ©e par le joueur.
+        Le menuElem peut dÃ©cider d'en avoir rien Ã  foutre, ou pas.
+        En gÃ©nÃ©ral, le menuElem ne rÃ©agit au plus qu'Ã  une seule touche. C'est Ã 
+        lui de la retrouver dans le bordel des paramÃ¨tres en entrÃ©e.
+        Mais y'a aussi des menuElem qui rÃ©agissent Ã  n'importe quelle touche, tralala.
 
-        entrées :
-            dictKeyPressed : dictionnaire (identifiant de touche) -> booléen.
-                             indique quelles touches sont appuyées (elles sont peut-être
-                             appuyées depuis vachement longtemps, ou pas, on sait pas)
+        entrÃ©es :
+            dictKeyPressed : dictionnaire (identifiant de touche) -> boolÃ©en.
+                             indique quelles touches sont appuyÃ©es (elles sont peut-Ãªtre
+                             appuyÃ©es depuis vachement longtemps, ou pas, on sait pas)
 
-            keyCodeDown : identifiant de la touche qui vient d'être appuyée.
-                          là tout de suite.
+            keyCodeDown : identifiant de la touche qui vient d'Ãªtre appuyÃ©e.
+                          lÃ  tout de suite.
 
-            keyCharDown : caractère unicode correspondant à la touche qui vient d'être
-                          appuyé. Ca peut être un caractère vide si c'est une touche
-                          à la con, genre F1, shift, ...
-                          A priori, ça gère automatiquement tous les trucs bizarres :
-                          accents, majuscules, azerty/qwerty, "ô", "ö", ...
+            keyCharDown : caractÃ¨re unicode correspondant Ã  la touche qui vient d'Ãªtre
+                          appuyÃ©. Ca peut Ãªtre un caractÃ¨re vide si c'est une touche
+                          Ã  la con, genre F1, shift, ...
+                          A priori, Ã§a gÃ¨re automatiquement tous les trucs bizarres :
+                          accents, majuscules, azerty/qwerty, "Ã´", "Ã¶", ...
 
         plat-dessert :
             un tuple ihmsgInfo avec les messages qu'on veut dedans.
-            En particulier IHMSG_REDRAW_MENU si le stimuli s'est modifié des trucs
+            En particulier IHMSG_REDRAW_MENU si le stimuli s'est modifiÃ© des trucs
             et veut se redessiner.
 
-        TRODO pour plus tard : cette fonction de prise en compte des stimulis n'est pas appelée
-        si on relache une touche. Alors que les menuElem auraient peut être besoin
-        d'être au courant de cette info. Pour l'instant osef.
+        TRODO pour plus tard : cette fonction de prise en compte des stimulis n'est pas appelÃ©e
+        si on relache une touche. Alors que les menuElem auraient peut Ãªtre besoin
+        d'Ãªtre au courant de cette info. Pour l'instant osef.
         """
         return IHMSG_VOID
 
@@ -411,27 +411,27 @@ class MenuElem():
     def takeStimuliMouse(self, mousePos, mouseDown, mousePressed):
         """
         prise en compte des mouvements et des clics de souris.
-        Cette fonction est exécutée par le code extérieur, même quand le joueur
-        bouge la souris sans cliquer. Ca permet de faire des trucs cools genre mouseHover tout ça.
-        Le menuElem peut décider d'en avoir rien à foutre, ou pas.
+        Cette fonction est exÃ©cutÃ©e par le code extÃ©rieur, mÃªme quand le joueur
+        bouge la souris sans cliquer. Ca permet de faire des trucs cools genre mouseHover tout Ã§a.
+        Le menuElem peut dÃ©cider d'en avoir rien Ã  foutre, ou pas.
 
-        entrées:
-            mousePos : tuple(X,Y). Coordonnées du curseur de souris, dans ce menu/submenu
+        entrÃ©es:
+            mousePos : tuple(X,Y). CoordonnÃ©es du curseur de souris, dans ce menu/submenu
                        Si ce menuElem est dans un subMenu, mousePos contient
-                       les coordonnées locales à ce subMenu (c'est plus pratique).
-                       Si le menuElem est dans un menu général, c'est les coordonnées
-                       à l'écran, tout simplement.
-            mouseDown : booléen. Indique si le bouton droit de la souris est appuyée
+                       les coordonnÃ©es locales Ã  ce subMenu (c'est plus pratique).
+                       Si le menuElem est dans un menu gÃ©nÃ©ral, c'est les coordonnÃ©es
+                       Ã  l'Ã©cran, tout simplement.
+            mouseDown : boolÃ©en. Indique si le bouton droit de la souris est appuyÃ©e
                         (on sait pas depuis combien de temps)
-            mousePressed : booléen. Indique si le bouton droit de la souris vient
-                           d'être appuyé, là maintenant.
+            mousePressed : boolÃ©en. Indique si le bouton droit de la souris vient
+                           d'Ãªtre appuyÃ©, lÃ  maintenant.
 
-        Ca gère que le bouton droit de la souris parce que je m'ai pas besoin des autres.
+        Ca gÃ¨re que le bouton droit de la souris parce que je m'ai pas besoin des autres.
         TRODO pour plus tard : rajouter le reste.
 
         plat-dessert :
             un tuple ihmsgInfo avec les messages qu'on veut dedans.
-            En particulier IHMSG_REDRAW_MENU si le stimuli s'est modifié des trucs
+            En particulier IHMSG_REDRAW_MENU si le stimuli s'est modifiÃ© des trucs
             et veut se redessiner.
         """
         return IHMSG_VOID
@@ -439,16 +439,16 @@ class MenuElem():
 
     def changeLanguage(self):
         """
-        Fonction exécutée par le code extérieur, pour prévenir les MenuElem qu'on change
-        la langue (français/anglais). Si y'a du texte, ou d'autres trucs, faut les changer.
+        Fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir les MenuElem qu'on change
+        la langue (franÃ§ais/anglais). Si y'a du texte, ou d'autres trucs, faut les changer.
 
         on ne passe pas la nouvelle langue en param. Y'a pas besoin. Cette info se trouve
         dans l'objet txtStock, la classe contenant tous les textes de toutes les langues.
 
         dans cette fonction, on ne doit pas effectuer le redessinage de l'objet sur une surface
-        de destination. Y'a la fonction draw, pour ça, qui est automatiquement appelée
-        par le code extérieur, quand on change la langue.
-        Par contre, on a le droit de faire des redessinage en interne, pour préparer
+        de destination. Y'a la fonction draw, pour Ã§a, qui est automatiquement appelÃ©e
+        par le code extÃ©rieur, quand on change la langue.
+        Par contre, on a le droit de faire des redessinage en interne, pour prÃ©parer
         le futur redessinage vers autre part. (Genre le SubMenu)
         """
         pass
