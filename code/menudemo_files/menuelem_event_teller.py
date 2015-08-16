@@ -4,7 +4,7 @@
 """
 Blarg version 1.0
 
-DÃ©mo du systÃ¨me de menu.
+Démo du système de menu.
 """
 
 
@@ -12,40 +12,40 @@ import pygame
 import pygame.locals
 pygl = pygame.locals
 from common import (
-    # Messages d'interface Ã©mis par des Ã©lÃ©ments de menu, Ã  destination
-    # du MenuManager. Voir module "common" pour une description dÃ©taillÃ©e
-    # de la dÃ©finition de chacun d'eux.
+    # Messages d'interface émis par des éléments de menu, à destination
+    # du MenuManager. Voir module "common" pour une description détaillée
+    # de la définition de chacun d'eux.
     IHMSG_VOID, IHMSG_REDRAW_MENU, IHMSG_CYCLE_FOCUS_OK, IHMSG_ELEM_WANTFOCUS)
 from menuelem import MenuElem
 
 
 class MenuElemEventTeller(MenuElem):
     """
-    Un Ã©lÃ©ment de menu customisÃ©.
+    Un élément de menu customisé.
 
-    Contient une rÃ©fÃ©rence vers un MenuText (Ã©lÃ©ment de menu standard).
-    RÃ©agit Ã  des Ã©vÃ©nements, et change en consÃ©quence le texte du MenuText
-    rÃ©fÃ©rencÃ©.
+    Contient une référence vers un MenuText (élément de menu standard).
+    Réagit à des événements, et change en conséquence le texte du MenuText
+    référencé.
 
-    Affiche un carrÃ© de couleur unie.
-     - rouge foncÃ© lorsque l'Ã©lÃ©ment perd le focus.
-     - rouge clair lorsqu'il le rÃ©cupÃ¨re.
-     - vert lorsqu'il a Ã©tÃ© activÃ©.
+    Affiche un carré de couleur unie.
+     - rouge foncé lorsque l'élément perd le focus.
+     - rouge clair lorsqu'il le récupère.
+     - vert lorsqu'il a été activé.
 
-    Les fonctions dÃ©finies dans cette classe sont des overrides de MenuElem,
-    permettant de rÃ©agir Ã  diffÃ©rents Ã©vÃ©nements. Voir commentaires de
-    MenuElem pour plus de prÃ©cisions.
+    Les fonctions définies dans cette classe sont des overrides de MenuElem,
+    permettant de réagir à différents événements. Voir commentaires de
+    MenuElem pour plus de précisions.
     """
 
     def __init__(self, draw_zone, name, menu_elem_text):
         """
         constructor.
 
-        :param draw_zone: zone de l'Ã©cran (pos + taille) oÃ¹ sera placÃ©
-            l'Ã©lÃ©ment de menu.
-        :param name: nom de l'Ã©lÃ©ment. N'est utilisÃ© que pour le log stdout.
-        :param menu_elem_text: rÃ©fÃ©rence vers un label. Cet Ã©lÃ©ment modifiera
-            le texte du label, lorsque certains Ã©vÃ©nements surviendront.
+        :param draw_zone: zone de l'écran (pos + taille) où sera placé
+            l'élément de menu.
+        :param name: nom de l'élément. N'est utilisé que pour le log stdout.
+        :param menu_elem_text: référence vers un label. Cet élément modifiera
+            le texte du label, lorsque certains événements surviendront.
 
         :type draw_zone: pygame.rect.Rect
         :type name: string
@@ -54,41 +54,41 @@ class MenuElemEventTeller(MenuElem):
         MenuElem.__init__(self)
         self.acceptFocus = True
         self.draw_zone = draw_zone
-        # Couleur courante du carrÃ© reprÃ©sentant le MenuElem.
+        # Couleur courante du carré représentant le MenuElem.
         self.color = (150, 50, 50)
         self.colored_square = pygame.Surface(self.draw_zone.size).convert()
         self.colored_square.fill(self.color)
         self.name = name
         self.menu_elem_text = menu_elem_text
-        # funcAction est un membre spÃ©cifique d'un Ã©lÃ©ment de menu. Il s'agit 
-        # de la fonction contenant les actions Ã  faire lors d'une activation.
-        # Elle est appelÃ©e par le code extÃ©rieur.
-        # Si je me contente de l'overrider, Ã§a ne marche pas, 
-        # car le constructeur lui donne une valeur par dÃ©faut (None). 
-        # Donc je crÃ©e une fonction bidon Ã  cÃ´tÃ©, et je l'attribue
-        # au vrai funcAction, aprÃ¨s l'appel du constructeur pÃ¨re.
+        # funcAction est un membre spécifique d'un élément de menu. Il s'agit
+        # de la fonction contenant les actions à faire lors d'une activation.
+        # Elle est appelée par le code extérieur.
+        # Si je me contente de l'overrider, ça ne marche pas,
+        # car le constructeur lui donne une valeur par défaut (None).
+        # Donc je crée une fonction bidon à côté, et je l'attribue
+        # au vrai funcAction, après l'appel du constructeur père.
         self.funcAction = self._funcAction
-        # Indique si les fonctions de perte et de rÃ©cupÃ©ration du focus ont
-        # provoquÃ© la nÃ©cessitÃ© d'un redessin global du menu. On demandera
-        # ce redessin au code extÃ©rieur durant la fonction pÃ©riodique update.
+        # Indique si les fonctions de perte et de récupération du focus ont
+        # provoqué la nécessité d'un redessin global du menu. On demandera
+        # ce redessin au code extérieur durant la fonction périodique update.
         # C'est un peu mal fichu, voir commentaire de takeStimuliLoseFocus.
         self.must_redraw = False
         # Indique si la prise de focus provient d'un clic ou d'autre chose.
-        # Si Ã§a vient d'un clic, l'Ã©lÃ©ment de menu doit rester avec la couleur
+        # Si ça vient d'un clic, l'élément de menu doit rester avec la couleur
         # verte, car on vient de l'activer. Sinon, il prend la couleur rouge
         # claire indiquant une prise de focus.
-        # C'est super mal fichu de devoir gÃ©rer Ã§a Ã  la main dans les
-        # fonctions overridÃ©es, mais j'ai pas mieux.
+        # C'est super mal fichu de devoir gérer ça à la main dans les
+        # fonctions overridées, mais j'ai pas mieux.
         # voir commentaire de takeStimuliMouse.
         self.got_focus_from_click = False
-        # Nombre d'activation de ce MenuElem effectuÃ©e Ã  la chaÃ®ne.
-        # UtilisÃ©e uniquement pour affichage Ã  l'Ã©cran.
+        # Nombre d'activation de ce MenuElem effectuée à la chaîne.
+        # Utilisée uniquement pour affichage à l'écran.
         self.nb_activation_chained = 0
 
     def _funcAction(self):
         """
-         - Change le texte du label associÃ© pour indiquer combien il y a eu
-           d'activation Ã  la suite.
+         - Change le texte du label associé pour indiquer combien il y a eu
+           d'activation à la suite.
          - Change la couleur pour le vert.
          - Demande un redessin global du menu pour que tout ce bazar soit pris
            en compte.
@@ -104,14 +104,14 @@ class MenuElemEventTeller(MenuElem):
 
     def draw(self, surfaceDest):
         """
-        Dessine un carrÃ© avec la couleur courante.
+        Dessine un carré avec la couleur courante.
         """
         surfaceDest.blit(self.colored_square, self.draw_zone)
 
     def takeStimuliMouse(self, mousePos, mouseDown, mousePressed):
         """
-        Si l'Ã©vÃ©nement est un clic, et qu'il a lieu dans la zone de
-        l'Ã©lÃ©ment de menu : exÃ©cute funcAction et demande le focus.
+        Si l'événement est un clic, et qu'il a lieu dans la zone de
+        l'élément de menu : exécute funcAction et demande le focus.
         """
         ihm_msg_result = IHMSG_VOID
         if mouseDown and self.draw_zone.collidepoint(mousePos):
@@ -119,20 +119,20 @@ class MenuElemEventTeller(MenuElem):
             if not self.focusOn:
                 # funcAction mettra la couleur verte.
                 # mais comme on renvoie IHMSG_ELEM_WANTFOCUS, le menuManager
-                # donnera le focus Ã  l'Ã©lÃ©ment, qui exÃ©cutera
-                # takeStimuliGetFocus. Ã‡a risque de rechanger la couleur
-                # pour du rouge clair. Or on veut que Ã§a reste vert.
-                # Donc on stocke Ã  l'arrache l'origine du focus dans un bool.
+                # donnera le focus à l'élément, qui exécutera
+                # takeStimuliGetFocus. Ça risque de rechanger la couleur
+                # pour du rouge clair. Or on veut que ça reste vert.
+                # Donc on stocke à l'arrache l'origine du focus dans un bool.
                 self.got_focus_from_click = True
                 ihm_msg_result += (IHMSG_ELEM_WANTFOCUS, )
         return ihm_msg_result
 
     def takeStimuliFocusCycling(self):
         """
-        Change le texte du label associÃ© pour indiquer le cyclage de focus.
-        Mais on ne le voit jamais, car ce texte est immÃ©diatement recouvert
-        suite Ã  un appel Ã  takeStimuliLoseFocus ou takeStimuliGetFocus,
-        qui survient juste aprÃ¨s.
+        Change le texte du label associé pour indiquer le cyclage de focus.
+        Mais on ne le voit jamais, car ce texte est immédiatement recouvert
+        suite à un appel à takeStimuliLoseFocus ou takeStimuliGetFocus,
+        qui survient juste après.
         """
         print self.name + ". cyclage de focus"
         self.menu_elem_text.changeFontAndText(newText="cyclage de focus")
@@ -140,9 +140,9 @@ class MenuElemEventTeller(MenuElem):
 
     def takeStimuliLoseFocus(self):
         """
-         - Change le texte du label associÃ© pour indiquer la perte de focus.
-         - Change la couleur pour le rouge foncÃ©.
-         - Indique Ã  la fonction update qu'il faudra demander un redessin
+         - Change le texte du label associé pour indiquer la perte de focus.
+         - Change la couleur pour le rouge foncé.
+         - Indique à la fonction update qu'il faudra demander un redessin
            global. (Cette fonction ne peut pas le demander directement).
         """
         self.focusOn = False
@@ -154,19 +154,19 @@ class MenuElemEventTeller(MenuElem):
         # Les fonctions takeStimuliGetFocus et takeStimuliLoseFocus ne peuvent
         # pas renvoyer des valeurs IHMSG. Donc on ne peut pas demander ici un
         # redraw global du menu.
-        # Contournement Ã  l'arrache : on utilise le boolÃ©en must_redraw.
-        # La fonction update (appelÃ©e pÃ©riodiquement) Ã©mettra un
-        # IHMSG_REDRAW_MENU lorsque ce sera nÃ©cessaire.
+        # Contournement à l'arrache : on utilise le booléen must_redraw.
+        # La fonction update (appelée périodiquement) émettra un
+        # IHMSG_REDRAW_MENU lorsque ce sera nécessaire.
         self.must_redraw = True
 
     def takeStimuliGetFocus(self):
         """
         Si le gain du focus ne provient pas d'un clic :
-         - Change le texte du label associÃ© pour indiquer le gain du focus.
+         - Change le texte du label associé pour indiquer le gain du focus.
          - Change la couleur pour le rouge clair.
-         - Indique Ã  la fonction update qu'il faudra demander un redessin
+         - Indique à la fonction update qu'il faudra demander un redessin
            global. (Cette fonction ne peut pas le demander directement).
-        Si le gain du focus provient d'un clic : ne fait rien, Ã  part un peu
+        Si le gain du focus provient d'un clic : ne fait rien, à part un peu
         de log.
         """
         self.focusOn = True
@@ -184,9 +184,9 @@ class MenuElemEventTeller(MenuElem):
 
     def update(self):
         """
-        Fonction exÃ©cutÃ©e pÃ©riodiquement.
+        Fonction exécutée périodiquement.
         Demande (une seule fois) un redessin global du menu, si les fonctions
-        de focus ont prÃ©alablement signalÃ© qu'il fallait le demander.
+        de focus ont préalablement signalé qu'il fallait le demander.
         Sinon, ne fait rien et ne demande rien.
         """
         if self.must_redraw:
