@@ -602,6 +602,7 @@ Je l'ai appelé "dichmama.nil" parce que je suis quelqu'un de rigolo.
 
 Le format de ce fichier et les interactions avec le code extérieur sont décrites dans le gros commentaire au début de `archiv.py`.
 
+Remarque : les noms des tags délimitant les parties du fichier : `[dnipr]` et `[knakes]` ne veulent rien dire. C'est juste un trip personnel.
 
 ### yargler/SoundYargler ###
 

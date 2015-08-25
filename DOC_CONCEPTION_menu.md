@@ -334,20 +334,176 @@ En théorie, on devrait pouvoir mettre un sub-menu dans un sub-menu dans un sub-
 
 ### mot-clé utilisés dans les noms de variables ###
 
-`mact` : "m-act" : menu action (fonction attribuée à une `funcAction()`).
+`mact` : "menu action". Il s'agit d'une fonction, attribuée à une `funcAction()`.
 
-`mbutt` : élément de type `MenuSensitiveText` (texte cliquable).
+`mbutt` : "menu button". Un élément de type `MenuSensitiveText` (texte cliquable).
 
-`mbuttLink` : élément de type `MenuLink`, constituant un lien vers un site web.
+`mbuttLink` : "menu button link". Un élément de type `MenuLink`, constituant un lien vers un site web.
 
-`mbuti` : élément de type `MenuSensitiveImage` (image cliquable).
+`mbuti` : "menu button image". Un élément de type `MenuSensitiveImage` (image cliquable).
 
-`mkey` : élément de type `MenuSensitiveKey` (réaction à une touche spécifique).
+`mkey` : "menu key". Un élément de type `MenuSensitiveKey` (réaction à une touche spécifique).
 
 "Création du menu" : Instanciation d'un `MenuManager`, ou d'une classe héritée.
 
-"activation du menu" : affichage et activation du `MenuManager` à l'écran, via la méthode `handleMenu()`.
+"Activation du menu" : affichage et activation du `MenuManager` à l'écran, via la méthode `handleMenu()`.
 
 ## Description des menus spécifiques de Blarg ##
 
-TODO.
+### Déroulement des actions lors du lancement du jeu ###
+
+#### zemain.py ####
+
+Il s'agit du point d'entrée du jeu. Ce fichier effectue les actions suivantes :
+
+ - Récupération du paramètre optionnel passé en ligne de commande, pour forcer le lancement du jeu en mode fenêtré.
+
+ - Initialisation de pygame, et fermeture de pygame à la fin.
+
+ - Instanciation et activation de la classe principale, définie dans le fichier `mainclas.py`.
+
+#### mainclas/MainClass ####
+
+Les initialisations de tout le bazar sont effectuées en partie dans la fonction `__init__()` et en partie dans la fonction `main` (qui est appelée juste après l'init). Il n'y a pas vraiment de justification sur le fait que certaines actions sont dans l'init et d'autres sont dans le main. J'ai fait ça un peu au feeling.
+
+En vrac, les actions effectuées sont les suivantes :
+
+ - Chargement des polices de caractères (bon y'en a qu'une en fait).
+
+ - Création d'un `Archivist`, permettant de charger/sauvegarder les données dans le fichier `dichmama.nil`.
+
+ - Modification de l'icône de l'application, qui est censé apparaître dans la barre des tâches ou le dock.
+
+ - Création d'une fenêtre, ou activation du mode plein écran (selon la config et les paramètres). Récupération de l'objet `pygame.Surface` correspondant à la zone de dessin à l'écran.
+
+ - Initialisation de la classe `Game` permettant de jouer des parties. (voir DOC_CONCEPTION_jeu) TODO : link
+
+ - Déroulement de la mini-animation de présentation, définie dans le fichier `prezanim.py`.
+
+ - Chargement de tous les sons du jeu. Cette action peut prendre quelques secondes, elle est donc effectuée dans `prezanim.py`, après l'affichage de la première image (avec le texte "LOADINGE"), et avant le déroulement de l'animation.
+
+ - Création de tous les menus du jeu, via le fichier `menugen.py`. Rangement de ces menus dans le dictionnaire `MainClass.dicAllMenu`.
+
+ - Si le chargement du fichier de sauvegarde par l'`Archivist` a raté (fichier inexistant, ou une raison pllus grave) : création et sauvegarde d'un fichier contenant des informations par défaut. Si la sauvegarde échoue également, on garde les données par défaut et on continue l'exécution (un message d'erreur est émis sur stdout).
+
+ - Si c'est le tout premier lancement du jeu (on le sait grâce à l'`Archivist`) : exécution de la fonction `MainClass.doFirstTimeLaunch()`.
+
+ - Ajout de l'option "God Mode" (mode invincible) dans le menu principal, si le nom saisi lors du premier lancement correspond au nom secret.
+
+ - Activation du menu principal, via cette ligne de code : `self.dicAllMenu[MENU_MAIN].handleMenu()`
+
+ - Le joueur peut interagir avec le menu, démarrer une partie, changer la config, ...
+
+ - Lorsque la fonction `handleMenu()` du menu principal se termine, c'est que le joueur a quitté (d'une manière ou d'une autre).
+
+ - La fonction `MainClass.main()` se termine, ainsi que le code du fichier `zemain.py`.
+
+La classe `MainClass` contient une variable `nbrErreur`, qui est incrémentée lors de la détection d'une erreur. En général, un incrément est toujours accompagné d'une description de l'erreur envoyée sur la sortie standard. Mais peut-être pas tout le temps.
+
+Des erreurs peuvent survenir lors de l'initialisation (chargement des fichiers, etc.). Mais il n'y a pas de détection d'erreur pendant le `handleMenu()` du menu principal, ni des autres menus. Par contre, il peut y en avoir pendant le déroulement d'une partie. La fonction `theGame.playOneGame()`, renvoie, entre autres, une variable `errorInGame`.
+
+##### fonction doFirstTimelaunch() #####
+
+Exécute les actions à faire lors du premier lancement du jeu.
+
+Il y a quelques menus supplémentaires à afficher avant le menu principal (l'histoire du jeu, la description des touches, la saisie du nom du joueur). Les fonctions `handleMenu()` sont exécutés les unes après les autres. Il y a, dans chacun de ces menus, un moyen simple pour le joueur de le quitter, et donc de passer au suivant. En général, il suffit juste d'appuyer sur une touche.
+
+Le nom saisi est enregistré dans le fichier de sauvegarde. Ensuite, il est hashé avec du SHA-512, puis comparé avec le hash du nom magique permettant de débloquer le mode invincible.
+
+##### fonction mactPlaySeveralGames() #####
+
+Lance une ou plusieurs parties, les unes après les autres, et enregistre le score obtenu à chaque fin de partie.
+
+Cette fonction est envoyée en paramètre au menu principal, ce qui lui permet de l'exécuter lorsque l'utilisateur clique sur l'option "Jouer".
+
+Pour plus de détail : doc conception jeu. chapitre "Lancement d'une partie" (TODO : link)
+
+#### prezanim/PresentationAnim ####
+
+Cette classe effectue les actions suivantes :
+ - Chargement des images nécessaires à la présentation.
+ - Affichage d'une première image, avec le texte "LOADINGE". Cette action est effectuée le plus vite possible, afin de montrer au joueur qu'il se passe bien quelque chose.
+ - Pré-calcul des différentes images du titre. Il apparaîtra agrandi au début puis se réduit petit à petit.
+ - Chargement des sons.
+ - Exécution de l'animation. Un objet `pygame.time.Clock` gère le FPS. À chaque cycle, on affiche les images en les déplaçant.
+   * Le magicien se déplace de droite à gauche.
+   * Morac se déplace de gauche à droite, en même temps le magicien recule un peu.
+   * Le titre apparaît en gros, puis se réduit.
+
+Lorsque l'animation est terminée, l'image finale est récupérée (fond + magicien + Morac + titre), elle est fortement assombrie, puis elle est stockée dans `imgBgMainMenu`. Le code extérieur (`MainClass`) récupérera cette image, qui sera utilisée comme fond pour le menu principal.
+
+L'image du texte "Blarg" est également récupérée et réutilisée de la même manière (variable `imgTitle`). Aucun traitement n'est appliqué dessus. C'est juste pour éviter de charger deux fois la même image à deux endroits différents du code.
+
+#### menugen.py ####
+
+Contient une seule grosse fonction `generateAllMenuManager()`, qui effectue les actions suivantes :
+
+ - Chargement de toutes les images nécessaires aux menus : boutons, pseudo-fenêtre, ...
+ - Précalcul des images de tickBox (voir menutick.py TODO lien)
+ - Création des menus, un par un, et rangement dans un dictionnaire `dicAllMenu`. Chaque menu est associé à une clé (valeur numérique). Les clés sont définis dans `menucomn.py`, il s'agit des variables commençant par `MENU_`, et elles sont utilisées un peu partout dans le code.
+ - Récupération de la langue courante, stockée dans le fichier de sauvegarde, transmise par l'`Archivist`.
+ - Application du changement de langue courante sur tous les menus, afin de les initialiser.
+ - Renvoi de `dicAllMenu`.
+
+#### menuzmai/MenuManagerMain ####
+
+Classe définissant le menu principal du jeu. Il y a beaucoup de choses, mais c'est assez simple. Les commentaires dans le code sont suffisants.
+
+Quelques détails :
+
+Il y a un `MenuImage` affichant le titre "Blarg". Pourtant, ce titre est déjà présent dans l'image de background du menu principal. (Voir prezanim TODO : link). Mais dans l'image de background, il est assombri. On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
+
+L'élément `mkeyQuitEsc` est utilisé dans plusieurs menus. Il réagit à un appui sur la touche Esc, et envoie un message demandant à quitter le menu en cours. Dans le menu principal, le fait de quitter le menu en cours fait quitter complètement le jeu.
+
+Les `MenuElem` sont rangés dans trois listes :
+ - `listMenuElemButtText` : liste des options textes (jouer, high scores, ...)
+ - `listMenuElemOther` : liste avec tous les autres éléments.
+ - `listMenuElem` : tous les éléments (concaténation des deux listes précédentes).
+
+Ça permet de définir plus facilement le cyclage de focus avec les flèches haut et bas. (voir menumng.py TODO lien). Ce cyclage se fait sur les éléments de `listMenuElemButtText`.
+
+Ça permet aussi de rajouter plus facilement une option texte : on modifie `listMenuElemButtText` et on reconstruit `listMenuElem`. C'est ce qui est fait lorsqu'il faut rajouter l'option du mode invincible (fonction `MenuManagerMain.addDogDom`).
+
+Pour rappel : "DogDom", "EdomEdog" et les termes de ce genre sont une façon stupidement obfusquée de mentionner le "god mode", le mode invincible.
+
+#### menuzwak/MenuManagerWaitOrPressAnyKey ####
+
+Menu utilisé pour la transition entre la présentation du jeu et le menu principal.
+
+Ce menu attend que le joueur appuie sur une touche, puis il se quitte. (Le code extérieur s'occupe ensuite d'activer le menu principal). Il y a également un timer, qui fait quitter automatiquement le menu au bout de 100 cycles, si le joueur n'appuie pas sur une touche.
+
+Ce menu n'affiche absolument rien. Le seul `MenuElem` qu'il possède ne dessine rien à l'écran, et il n'a pas d'image de background. Donc lorsqu'on l'active, ce qui était précédemment affiché reste à l'écran, à savoir : la dernière image de l'animation de présentation.
+
+#### menuzsto/MenuManagerStory ####
+
+Contient 3 éléments :
+ - un `MenuSubMenu` contenant plusieurs textes, décrivant l'histoire du jeu. La `Surface` d'affichage de ce submenu est plus grande (en hauteur) que l'écran. Tous les textes sont placés dans la partie basse de la `Surface`, on ne les voit pas au début. La fonction `periodicAction` du menu décale progressivement la zone à afficher à l'écran, vers le bas. On voit donc le texte qui apparaît progressivement, à partir du bas de l'écran.
+ - le `mkeyQuitEsc`
+ - un `MenuSensitiveAnyKeyButton`. Si le joueur appuie sur une touche et que le décalage de la zone n'est pas fini, on applique un gros décalage qui termine immédiatement le scroll. Si le décalage est fini, l'appui de touche fait quitter le menu.
+
+C'est donc un peu étrange, car on a deux éléments qui réagissent à des appuis de touche. Lorsque le joueur appuie sur Esc, il y a donc deux `funcAction` qui sont exécutées, et qui potentiellement peuvent demander tous les deux à quitter le menu en cours. Ça ne pose pas de problèmes.
+
+#### menuzman/MenuManagerManual ####
+
+pourquoi y'a deux listes ?
+
+tuple(listMenuTextKey),
+                            tuple(self.listMenuText)
+
+
+#### menuznam/MenuManagerEnterName ####
+
+#### menuzpof/MenuManagerNameIsALie ####
+
+#### menuzdea/MenuManagerHeroDead ####
+
+#### menuzsco/MenuManagerHighScore ####
+
+#### menuzcon/MenuManagerConfig ####
+
+#### menuzcre/MenuManagerCredits ####
+
+
+
+
+
