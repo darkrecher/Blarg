@@ -210,25 +210,25 @@ class TextStock():
      CRED_T_DONAT   : (u" --- PERSONNES DE QUALITE AYANT FAIT UN DON --- ",
                        u" ---   GREAT MAJESTIC PERSONS WHO DONATED   --- ", ),
 
-     CRED_ST_DONAT1 : (u"--- assistant aux effets sonores ---", 
+     CRED_ST_DONAT1 : (u"--- assistant aux effets sonores ---",
                        u"--- sound effect assistant ---"),
-     CRED_DONAT_FK  : (u"Ckyfran, qui vous conseille:", 
+     CRED_DONAT_FK  : (u"Ckyfran, qui vous conseille:",
                        u"Ckyfran, who recommends:"),
      CREDL_DONAT_FK : (u"http://jeanbamin.com", ),
-     CRED_ST_DONAT2 : (u"--- super-donateuse ---", 
+     CRED_ST_DONAT2 : (u"--- super-donateuse ---",
                        u"--- super-donatorette ---"),
      CRED_DONAT_KA  : (u"Ceska2007", ),
-     CRED_ST_DONAT3 : (u" --- joyeux mécènes ---", 
+     CRED_ST_DONAT3 : (u" --- joyeux mécènes ---",
                        u"--- joyesque donators ---"),
      CRED_DONAT_CU  : (u"Cuningham", ),
-     CRED_DONAT_CO  : (u"Le Corse", ),     
+     CRED_DONAT_CO  : (u"Le Corse", ),
      CRED_DONAT_CS  : (u"Captive Studio", ),
      CREDL_DONAT_CS : (u"http://www.captive-studio.com/", ),
      CRED_DONAT_CM  : (u"cemonsieur", ),
      CREDL_DONAT_CM : (u"http://www.ulule.com", ),
      CRED_DONAT_LA  : (u"Platypus Creation", ),
      CREDL_DONAT_LA : (u"http://www.platypus-creation.com", ),
-     
+
      CRED_YOU       : (u"Et vous bien sûr !! qui contribuerez à mes prochains jeux !!",
                        u"And you, of course !! Give me your money for my next game !", ),
 
@@ -239,10 +239,10 @@ class TextStock():
                        u"yeepeeeh fonts:", ),
 
      CREDL_YUSU     : (u"http://p.yusukekamiyamane.com", ),
-     
+
      CRED_PYG       : (u"Ce jeu a été créé avec pygame:",
                        u"Game created with pygame:", ),
-     
+
      CREDL_PYG      : (u"http://pygame.org", ),
 
      CRED_LIC_1     : (u"Copyright 2010 Réchèr", ),
