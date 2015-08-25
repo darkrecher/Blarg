@@ -124,17 +124,17 @@ class MainClass():
 
         #chargement et mise en place de l'icône de l'application.
         #on met doConversion à False, pour dire qu'on veut pas faire le convert de l'image
-        #dans le mode graphique actuel. (Car on l'a pas encore été défini, ce mode graphique 
+        #dans le mode graphique actuel. (Car on l'a pas encore été défini, ce mode graphique
         #actuel, héhé). Ca aurait pu poser des problèmes d'optimisation si ça avait été
         #une image du jeu. Mais là en fait c'est l'icône de l'application, donc osef.
         #
         #Il paraît qu'il mettre en place l'icône le plus tôt possible, en particulier avant de
-        #définir le mode graphique. Car sur Mac, on risque de voir apparaître fugitivement 
+        #définir le mode graphique. Car sur Mac, on risque de voir apparaître fugitivement
         #l'icône serpent de pygame, avant l'icône qu'on veut. Je teste ça et je vous le dit
         #très bientôt. Yi haa.
         gamIcon = loadImg("gam_icon.gif", doConversion=False)
         pygame.display.set_icon(gamIcon)
-        
+
         #création de l'objet pygame.Surface, dans laquelle on affichera le jeu, les menus, tout.
         self.screen = theGraphModeChanger.setGraphMode(screenGlobData)
 
@@ -159,7 +159,7 @@ class MainClass():
     def mactPlaySeveralGames(self, dogDom):
         """
         fonction s'activant quand on clique sur le MenuElem "JOUER".
-        Permet de jouer plusieurs paties les unes après les autres.
+        Permet de jouer plusieurs parties les unes après les autres.
 
         entrées :
          - dogDom : boolean. Indique si le héros perd des vies ou pas.
