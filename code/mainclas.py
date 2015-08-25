@@ -128,10 +128,10 @@ class MainClass():
         #actuel, héhé). Ca aurait pu poser des problèmes d'optimisation si ça avait été
         #une image du jeu. Mais là en fait c'est l'icône de l'application, donc osef.
         #
-        #Il paraît qu'il mettre en place l'icône le plus tôt possible, en particulier avant de
-        #définir le mode graphique. Car sur Mac, on risque de voir apparaître fugitivement
-        #l'icône serpent de pygame, avant l'icône qu'on veut. Je teste ça et je vous le dit
-        #très bientôt. Yi haa.
+        #Il paraît qu'il faut mettre en place l'icône le plus tôt possible, en particulier
+        #avant de définir le mode graphique. Car sur Mac, on risque de voir apparaître
+        #fugitivement l'icône serpent de pygame, avant l'icône qu'on veut. Je teste ça et
+        #je vous le dit très bientôt. Yi haa.
         gamIcon = loadImg("gam_icon.gif", doConversion=False)
         pygame.display.set_icon(gamIcon)
 
@@ -147,7 +147,7 @@ class MainClass():
         #Par contre, il faut que la case à cocher "plein écran" du menu principal soit en
         #accord avec le mode actuel. Mais ça, le MenuManagerMain s'en occupe
 
-        #définition du titre de la fenêtre de jeu. Ne sert ps à grand chose, mais ça fait cool.
+        #définition du titre de la fenêtre de jeu. Ne sert pas à grand chose, mais ça fait cool.
         pygame.display.set_caption(GAME_CAPTION)
 
         #création de l'objet permettant de lancer des parties
@@ -306,8 +306,8 @@ class MainClass():
 
     def main(self):
         """
-        la fonction main, même si c'est pas la vraie fonction main, parce qu'elle est dans
-        la classe zemain.py. Oh on s'en fout. C'est bizarre mais c'est comme ça. Là !
+        la fonction main, même si la vraie fonction main est en fait dans la classe zemain.py.
+        Oh on s'en fout. C'est bizarre mais c'est comme ça. Là !
         """
 
         #classe effectuant l'animation à la con de présentation du jeu.

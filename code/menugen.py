@@ -85,7 +85,7 @@ IMG_DEDICACE_LONG_FILENAME = "dedicace.png"
 def generateAllMenuManager(dictFont, screen, funcMactPlaySeveralGames,
                            archivist, scoreManager, imgBgMainMenu, imgTitle):
     """
-    Cration de tous les menus. (Oui, j'ai écrit "cration", also sprach ma proffe d'histoire géo.
+    Cration de tous les menus. (Oui, j'ai écrit "cration", also sprach ma proffe d'histoire géo).
 
     entrées :
 

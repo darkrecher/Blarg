@@ -31,6 +31,7 @@ V<version. chaine de caractere ASCII quelconque>
 L<langage F=francais. E=english>
 S<SCREEN W=windowed F=fullscreen>
 Y<yargl. Le son. E=Enabled. D=Disabled>
+G<code secret activant le dogDome. Si pas activé, valeur par défaut stupide : "morceau de brennek">
 
 le premier caractère est la globDataId (identifiant de la globData)
 la suite de la ligne est la globDataVal (valeur de la globData)

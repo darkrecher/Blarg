@@ -245,9 +245,9 @@ class PresentationAnim():
 
         #Création de l'image qui sera le background du menu principal.
         #Pour ça, on prend l'image actuellement affichée à l'écran, et on l'assombris fortement.
-        #Ce qui fait que j'accède en lecture self.screen, la Surface spéciale utilisée
+        #Ce qui fait que j'accède en lecture à self.screen, la Surface spéciale utilisée
         #pour l'affichage à l'écran. Est-ce bien ou mal ? Jusqu'ici, ça fonctionne.
-        #(Y'a des risques de foirage si on utilis e une accélération matérielle, ou je sais
+        #(Y'a des risques de foirage si on utilise une accélération matérielle, ou je sais
         #pas quoi. Mais bon, je fais pas ce genre de chose.)
         self.imgBgMainMenu = pixTranspLight(self.screen, 0, 180)
 

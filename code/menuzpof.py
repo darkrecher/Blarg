@@ -100,7 +100,7 @@ class MenuManagerNameIsALie(MenuManager):
         #Et les MenuText à afficher si le edoGedoM est activé.
         self.listMenuTextDogDom = tuple(listMenuTextAll[INDEX_SEP_NORM_DOG:])
 
-        # --- Créatio nde la grande liste regroupant tous les MenuElem du menu ---
+        # --- Création de la grande liste regroupant tous les MenuElem du menu ---
 
         #manyQuit est le MenuElem liant toutes les touches et les clics de souris à la fonction
         #de quittage du menu en cours.
