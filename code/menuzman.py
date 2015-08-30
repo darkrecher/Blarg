@@ -128,9 +128,10 @@ class MenuManagerManual(MenuManager):
         #on commence par faire une liste de sous-liste, parce qu'on fait avec ce qu'on a.
         #tiens c'est marrant y'a une parenthèse fermante à la fin des 3 lignes,
         #mais c'est jamais pour signifier la même chose. Woah, bizarre.
-        lilistOfMenuElem = ((self.mimgManual, manyQuit),
-                            tuple(listMenuTextKey),
-                            tuple(self.listMenuText))
+        lilistOfMenuElem = (
+            (self.mimgManual, manyQuit),
+            tuple(listMenuTextKey),
+            tuple(self.listMenuText))
 
         #et maintenant, on fait une grande liste "aplatie", en concaténant toutes les sous-liste.
         self.listMenuElem = addThings(*lilistOfMenuElem)

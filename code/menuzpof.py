@@ -119,7 +119,7 @@ class MenuManagerNameIsALie(MenuManager):
         entrées : nameTyped. string unicode. nom saisi par le joueur.
         """
 
-        #et paf, on s'enregistre ça dans uen variable à soi.
+        #et paf, on s'enregistre ça dans une variable à soi.
         self.nameTyped = nameTyped
 
 

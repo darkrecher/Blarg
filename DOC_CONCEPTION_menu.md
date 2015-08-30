@@ -202,7 +202,7 @@ Cette classe contient 3 variables membres importantes :
 
  - `clickType` : indique la manière dont est exécutée `funcAction()` en fonction des événements de la souris. Les différentes valeurs possibles sont les constantes `MOUSE_*`, définies au début du fichier. (Soit ça réagit aux clics, soit ça réagit périodiquement tant que le curseur est dans le rectangle sensible, soit ça réagit jamais).
 
-Quel que soit la valeur de `clickType`, le `MenuSensitiveSquare` demande systématiquement à avoir le focus lorsque le curseur de souris passe sur le rectangle sensible.
+Quel que soit la valeur de `clickType`, le `MenuSensitiveSquare` demande systématiquement à avoir le focus lorsque le curseur de souris passe sur le rectangle sensible. Pas besoin de cliquer pour prendre le focus.
 
 TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat"... N'importe quoi. Même en français c'est moche, ce verbe "traiter".
 
@@ -283,7 +283,7 @@ Contrairement au `MenuSensitiveText`, le texte est toujours affiché en blanc, m
 
 Lorsqu'il n'y a pas le focus, le curseur est bleu (et non pas blanc). C'est important que le curseur soit d'une couleur différente que le texte, sinon ça embrouille.
 
-L'affichage du texte et du curseur est géré par la fonction `draw()`. La modification périodique de l'index indiquant la couleur du curseur est effectuée par la fonction `MenuSensitiveText.update()` (elle n'est pas overridée dans cette classe). Donc l'index évolue pareil, mais la liste de couleur (`glowColorList`) n'est pas la même entre le `MenuSensitiveText` et le `MenuEditableText`.
+L'affichage du texte et du curseur est géré par la fonction `draw()`. La modification périodique de la couleur du curseur est effectuée par la fonction `MenuSensitiveText.update()` (cette classe n'override pas la fonction). Donc l'index de couleur évolue pareil que dans le `MenuSensitiveText`, mais la liste de couleur (`glowColorList`) n'est pas la même.
 
 #### menukrec.py ####
 
@@ -343,6 +343,8 @@ En théorie, on devrait pouvoir mettre un sub-menu dans un sub-menu dans un sub-
 `mbuti` : "menu button image". Un élément de type `MenuSensitiveImage` (image cliquable).
 
 `mkey` : "menu key". Un élément de type `MenuSensitiveKey` (réaction à une touche spécifique).
+
+`many` : "menu any key". Un élément de type `MenuSensitiveAnyKeyButton` (réaction à n'importe quelle touche ou clic).
 
 "Création du menu" : Instanciation d'un `MenuManager`, ou d'une classe héritée.
 
@@ -485,13 +487,31 @@ C'est donc un peu étrange, car on a deux éléments qui réagissent à des appu
 
 #### menuzman/MenuManagerManual ####
 
-pourquoi y'a deux listes ?
+Menu non interactif, affichant le manuel du jeu. L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs :
 
-tuple(listMenuTextKey),
-                            tuple(self.listMenuText)
+ - `self.mimgManual` : grosse image affichant le manuel.
+ - `self.listMenuText` : Les `MenuText` décrivant les 3 actions du héros. "mouvement", "pan", "recharger".
+ - `listMenuTextKey` (définis dans `__init__`) : Les `MenuText` affichant les noms des touches associées aux actions.
 
+Les éléments de `listMenuTextKey` sont également stockés dans le dictionnaire `self.dicMenuElemKey`.
+ - Clé : identifiant de touche permettant au héro d'effectuer une action. (KEY_DIR_UP, KEY_FIRE, KEY_RELOAD, ...)
+ - Valeur : `MenuText`, affichant le nom de la touche mappée.
+
+Ce menu sera hérité pour créer `MenuManagerConfig` (menu permettant de configurer les touches). Certaines fonctions sont utilisées dans les deux menus : `initCommonStuff()` et `determKeyNameFont()`.
 
 #### menuznam/MenuManagerEnterName ####
+
+Menu apparaissant uniquement au premier lancement du jeu, pour demander au joueur de saisir son nom.
+
+Il contient les éléments suivants :
+
+ - `mimgFrameName` : image de la fenêtre de saisie du nom. J'ai appelé ça "frame name", pour faire comme si c'était une fenêtre. Mais en fait c'est juste une image statique donnant l'impression que c'est une sorte de fenêtre.
+ - `mtxtEnterName` : texte non interactif, indiquant au joueur qu'il doit entrer son nom.
+ - `self.meditPlayerName` : instance de `MenuEditableText`. Zone de saisie du texte.
+ - `mbutiOK` : instance de `MenuSensitiveImage`. Bouton OK.
+ - `mkeyQuitCancel`, `mkeyEnterOK_1`, `mkeyEnterOK_2` : réactions à des touches du clavier. Echap pour quitter et les deux touches entrée pour valider.
+
+Toute l'interface de saisie du texte est gérée directement par `self.meditPlayerName`. La valeur finale du texte saisi se trouve dans `self.nameTyped`. Ce menu ne s'en sert pas, mais le code extérieur peut la récupérer pour en faire ce qu'il veut.
 
 #### menuzpof/MenuManagerNameIsALie ####
 

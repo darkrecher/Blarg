@@ -94,7 +94,7 @@ class MenuManagerEnterName(MenuManager):
 
         #création des menuElem liant des touches à des fonctions.
 
-        #liaisonnage des deuc touches entrée à la fonction de validation du nom.
+        #liaisonnage des deux touches entrée à la fonction de validation du nom.
         #(C'est la même fonction que celle qui est liée à l'appui sur le bouton "OK")
         mkeyEnterOK_1 = MenuSensitiveKey(self.mactOK, pygl.K_RETURN)
         mkeyEnterOK_2 = MenuSensitiveKey(self.mactOK, pygl.K_KP_ENTER)
