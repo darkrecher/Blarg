@@ -515,7 +515,25 @@ Toute l'interface de saisie du texte est gérée directement par `self.meditPlay
 
 #### menuzpof/MenuManagerNameIsALie ####
 
+Menu apparaissant uniquement au premier lancement du jeu, après que le joueur ait saisi son nom.
+
+Menu non interactif. L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs.
+
+Le menu contient 4 `MenuText`, mais seuls deux sont affichés. Les deux premiers (`self.listMenuTextNorm`) dans le cas où le joueur a saisi un nom quelconque. Les deux derniers (`self.listMenuTextDogDom`) dans le cas où le joueur a saisi le nom secret permettant de débloquer le mode invincible.
+
+Par défaut, c'est le texte normal qui est affiché. Pour passer au texte du nom secret, le code extérieur doit appeler la fonction `MenuManagerNameIsALie.setNameTyped(self, nameTyped)`, avant d'activer le menu.
+
 #### menuzdea/MenuManagerHeroDead ####
+
+Menu apparaissant à la fin d'une partie, lorsque le joueur est mort.
+
+Contient des `MenuText` affichant le score et le nombre de magiciens tués/explosés lors de la partie. La mise à jour de ces valeurs est effectuée par la fonction `updateMenuTextStat()`, que le code extérieur doit appeler avant d'activer le menu.
+
+Ce menu contient deux éléments interactifs :
+
+ - `mkeyQuitEsc` : élément générique. Il réagit à l'appui sur la touche Echap, et renvoie le message `IHMSG_QUIT`, permettant d'indiquer qu'il faut quitter le menu.
+
+ - `mkeyPlayOnceMore` : élément réagissant à l'appui sur la touche Entrée. Il renvoie un tuple de deux message : `IHMSG_QUIT` et `IHMSG_PLAY_ONCE_MORE`. Ce dernier message, contrairement à tous les autres, est spécifique au jeu Blarg. Le système de menu ne s'en sert jamais. Lorsque le menu se quitte, le code extérieur contrôle la présence de ce message pour déterminer si il faut jouer une nouvelle partie ou pas. (Voir fonction `mactPlaySeveralGames` TODO lien).
 
 #### menuzsco/MenuManagerHighScore ####
 
