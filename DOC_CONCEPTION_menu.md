@@ -535,11 +535,37 @@ Ce menu contient deux éléments interactifs :
 
  - `mkeyPlayOnceMore` : élément réagissant à l'appui sur la touche Entrée. Il renvoie un tuple de deux message : `IHMSG_QUIT` et `IHMSG_PLAY_ONCE_MORE`. Ce dernier message, contrairement à tous les autres, est spécifique au jeu Blarg. Le système de menu ne s'en sert jamais. Lorsque le menu se quitte, le code extérieur contrôle la présence de ce message pour déterminer si il faut jouer une nouvelle partie ou pas. (Voir fonction `mactPlaySeveralGames` TODO lien).
 
+L'image de fond de ce menu est différente des autres. (Image du héros mort transformé en potion de mana).
+
 #### menuzsco/MenuManagerHighScore ####
+
+Menu affichant les scores. Menu non interactif. L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs.
+
+Lors de l'instanciation, il faut lui passer un `Archivist` en paramètre. Le menu s'occupe de récupérer les valeurs de score et d'effectuer les calculs nécessaires pour afficher les scores.
+
+L'`Archivist` ne stocke pas la valeur du meilleur score, uniquement les nombres de magiciens tués et explosés durant la partie ayant créé le meilleur score. (Il stocke d'autres statistiques, dont certaines ne servent à rien, mais c'est pas grave).
+
+Il faut donc recalculer le meilleur score à partir des nombres de magiciens. C'est le menu qui s'occupe de cette tâche, en appelant la fonction `scoremn.scoreFromKillBurst()`. C'est la même fonction utilisée pour calculer le score pendant le jeu. Ça permet de garantir que le calcul effectué est le même dans tous les cas. (Certes, c'est un calcul super simple, mais ça me semblait important de le définir à un seul endroit, car ce n'est pas une opération anodine).
+
+À chaque fois que le menu est activé, l'ensemble de ces `MenuText` est regénéré. Il y en a de 2 sortes. Les "statiques" affichant le texte statique, et les "scoriques", affichant les valeurs de score.
+
+Les MenuText sont organisés par bloc. Un bloc = un joueur. La fonction `buildOnePlayerMenuText()` génère les `MenuText` d'un bloc.
+
+La fonction `getHiScoreStat` récupère une stat de score à afficher.
+
+Tout cela est un peu alambiqué, mais c'est pas grave. C'est de l'alambiqué local.
+
+#### menuzcre/MenuManagerCredits ####
+
+Menu affichant le texte des crédits. Il est constitué des éléments suivants :
+
+ -
 
 #### menuzcon/MenuManagerConfig ####
 
-#### menuzcre/MenuManagerCredits ####
+
+
+
 
 
 
