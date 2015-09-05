@@ -132,6 +132,8 @@ Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuE
 
  - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les texte sélectionnables au milieu de l'écran, mais ne contient pas les mini-options tels que les choix de langue). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
 
+Dans la fonction `handleMenu()`, lorsque le `MenuManager` transmet des stimulis de touche, de mouvement de souris ou d'activation à un `MenuElem`, il met à jour au préalable sa variable `self.menuElemTakingEvent`. Ça permet de garder une référence vers le `MenuElem` recevant actuellement l'événement, ce qui peut être utile quand on se retrouve dans une `funcAction` un peu générique, qu'on aurait associé à plusieurs `MenuElem`.
+
 #### txtstock.py ####
 
 Contient la classe `TextStock`, qui stocke tous les textes du jeu (menu, présentation, ...).
@@ -497,7 +499,7 @@ Les éléments de `listMenuTextKey` sont également stockés dans le dictionnair
  - Clé : identifiant de touche permettant au héro d'effectuer une action. (KEY_DIR_UP, KEY_FIRE, KEY_RELOAD, ...)
  - Valeur : `MenuText`, affichant le nom de la touche mappée.
 
-Ce menu sera hérité pour créer `MenuManagerConfig` (menu permettant de configurer les touches). Certaines fonctions sont utilisées dans les deux menus : `initCommonStuff()` et `determKeyNameFont()`.
+Ce menu sera hérité pour créer `MenuManagerConfig` (menu permettant de configurer les touches). Certaines fonctions sont utilisées dans les deux menus : `initCommonStuff()`, `determKeyNameFont()`.
 
 #### menuznam/MenuManagerEnterName ####
 
@@ -575,34 +577,45 @@ Lorsqu'on reste appuyé sur les touches haut et bas, le scrolling se fait en con
 
 #### menuzcon/MenuManagerConfig ####
 
-Work In Progress.
+Menu permettant de configurer le jeu.
 
-TODO : expliquer le menuElemTakingEvent dans le menumanager.
+Il est hérité de `MenuManagerManual` (menu affichant la configuration). Le code qui détermine les texte des noms des touches ("left", "right", ...) est mutualisé dans `MenuManagerManual`. Dans le manuel, on met ces textes dans des `MenuText`, alors que dans la config, on les met dans des `MenuSensitiveText`.
 
-ça hérite de MenuManagerManual, pour afficher les mêmes trucs. Les touches sont des `MenuSensitiveText` et non pas des `MenuText`
+La config courante des touches est contenue dans `self.dicKeyMapping`. La structure de ce dictionnaire est la même que celle de `archiv.py/DEFAULT_KEY_MAPPING` (voir commentaire de description). Elle est également décrite plus haut (TODO : lien).
 
-togglesound
+D'autres petits bouts de code sont également mutualisés : image de la fenêtre, texte statique, initialisation de `dicKeyMapping` à partir de l'`archivist`.
 
-reset defaults (utilise des fonction de la classe-mère)
+L'élément `mtickSound` permet d'activer/désactiver le son (fonction `mactToggleSound()`). La valeur courante de l'activitude du son est stockée dans `self.mtickSound.literTickValue`. Ce n'est pas un booléen, cela correspond à la valeur litérale stockée dans l'archivist. La conversion vers le booléen est effectuée dans la fonction `theSoundYargler.changeSoundEnablation()`.
 
-y'a qu'un seul keyrecorder, qui est utilisé pour toutes les touches.
+Le bouton `mbuttResetDefaults` exécute la fonction `mactResetDefaults`. Cette fonction remet les touches par défaut et réactualise les textes des `MenuSensitiveText` affichant les noms des touches.
 
-enchaintement des actions quand on enregistre une touche.
+L'élément `self.mOneKeyRecorder` est une instance de `MenuOneKeyRecorder`. Il permet d'enregistrer un appui de touche du joueur, lorsqu'il veut changer la configuration. Il n'y a qu'un seul `MenuOneKeyRecorder`, qui est utilisé pour toutes les touches.
 
-bidouille pour pas exécuter funcAction si on enregistre espace ou entrée.
+Lorsque le joueur change la configuration d'une touche, l'enchaînement d'action suivant se produit :
 
-bidouille avec "#(mkeyQuitOrCancel doit être avant self.mOneKeyRecorder).", pour que esc désactive l'enregistrement puis quitte. et non pas le contraire.
+ - Le joueur clique sur le `MenuSensitiveText` d'une touche.
+ - La foncton `mactConfigKey` est exécutée. (C'est la même quelle que soit le `MenuSensitiveText` cliqué).
+   * La variable `self.menuElemKeyActive` prend la valeur du `MenuSensitiveText` cliqué.
+   * Exécution de `self.refreshMenuElemKeyActive(False, "???")`, afin d'afficher des points d'interrogation sur la touche actuellement en cours de configuration.
+   * Exécution de `mOneKeyRecorder.activateRecording()`, pour démarrer l'enregistrement des touches.
+ - Le joueur appuie sur une touche. Cela active la `funcAction()` du `self.mOneKeyRecorder`.
+ - La fonction `mactNewKeyTyped` est exécutée.
+   * Récupération du code et du caractère de la touche appuyée, stockés par le `self.mOneKeyRecorder`.
+   * Récupération de l'identifiant de touche concernée (`KEY_DIR_UP`, `KEY_FIRE`, ...), à partir de `self.menuElemKeyActive`.
+   * Mise à jour de `self.dicKeyMapping`.
+   * Exécution de la fonction `stopKeyRecording()`
+     * Exécution de `self.refreshMenuElemKeyActive()`, afin d'enlever les points d'interrogation et de mettre le nom de la nouvelle touche sur le `MenuSensitiveText` de la touche qui vient d'être configuré.
+     * Exécution de `mOneKeyRecorder.desactivateRecording()`, pour arrêter l'enregistrement des touches.
+ - Le joueur peut ensuite cliquer sur un autre `MenuSensitiveText` pour configurer une autre touche.
 
-ça sauvegarde quand on quitte. (d'ailleurs c'est mal foutu, faudrait un bouton OK et un bouton annuler)
+Il s'agit ici du cas nominal. Il y a un peu plus de code dans les fonctions citées, pour prendre en compte les cas tordus. Ils sont à peu près bien expliquées par les commentaires. Liste rapide des cas tordus :
+
+ - La plupart des autres fonctions de ce menu exécutent `stopKeyRecording()`, afin de désactiver l'enregistrement de touche courant lorsque l'utilisateur décide de faire autre chose.
+ - La variable `self.justRecordedIsAnActivationKey` permet de configurer une touche pour y associer espace ou entrée, sans réactiver un enregistrement de touche.
+ - L'élément `mkeyQuitOrCancel` est exécuté lorsque le joueur appuie sur Esc. Il ne fait pas forcément quitter le menu. Il annule l'enregistrement de touche en cours s'il y en a un, sinon il fait quitter le menu. Dans la liste de tous éléments du menu, `mkeyQuitOrCancel` doit être impérativement placé avant `self.mOneKeyRecorder`.
+ - On ne peut pas configurer une touche pour y associer Esc ou Tab. C'est fait exprès.
+
+Lorsqu'on quitte le menu, la nouvelle configuration (activation du son + touches) est automatiquement enregistrée dans l'`archivist`, qui le sauvegarde immédiatement dans le fichier. C'est un peu mal fichu car on ne peut pas quitter sans sauvegarder. Il faudrait un bouton "OK" et un bouton "Annuler", comme dans tout menu normal, mais j'avais la flemme de le faire.
 
 
-
-
-
-
-
-
-
-
-
-
+Voilà, cette documentation est finie. Bon courage pour ceux qui l'ont lu, et encore plus bon courage pour ceux qui voudraient en faire quelque chose !
