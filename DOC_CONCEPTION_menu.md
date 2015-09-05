@@ -559,9 +559,44 @@ Tout cela est un peu alambiqué, mais c'est pas grave. C'est de l'alambiqué loc
 
 Menu affichant le texte des crédits. Il est constitué des éléments suivants :
 
- -
+ - `self.msubCreditsText` : un `MenuSubMenu`, contenant des `MenuText` et de `MenuLink` décrivant les credits. Ce sub-menu est affiché sur la quasi-totalité de l'écran. Il y a juste une marge en haut et en bas.
+
+ - Deux `MenuSensitiveImage` en haut et en bas, en mode `MOUSE_HOVER` (l'activation de ces éléments se fait périodiquement, dès que le curseur de souris est dessus). Ces deux éléments font scroller le sub-menu. L'image du haut est plus petite que celle du bas, car je me suis dit que le joueur aura systématiquement envie de scroller vers le bas, mais pas forcément envie de scroller vers le haut.
+
+ - Un autre `MenuSensitiveImage` qui fait quitter le menu.
+
+ - L'élément générique `mkeyQuitEsc`, qui fait quitter lorsqu'on appuie sur la touche Esc.
+
+Un événement de clic dans le sub-menu est transmis aux `MenuElem` qui sont contenus dedans, en tenant compte du décalage du sub-menu dans l'écran principal, ainsi que du décalage de scrolling. L'événement peut alors arriver sur un `MenuLink`, qui est alors activé, et ouvre le navigateur web par défaut vers le lien en question.
+
+Il y a un comportement pas génial avec le sub-menu : le cyclage de focus parmi les éléments et les sous-éléments fonctionnent, mais ne tient pas compte du scrolling ni de ce qui est visible à l'écran. Donc lorsque le joueur appuie sur Tab, il voit le focus passer sur les `MenuSensitiveImage`, puis il le voit éventuellement passer sur quelques `MenuLink`, puis plus rien, car le focus est en train de cycler sur d'autres `MenuLink` non visible à l'écran. Au bout de quelques appuis sur Tab, le cyclage fait un tour et on revient sur les `MenuSensitiveImage`. Mais ça fait quand même bizarre. Et ça dépend de ce qui est visible à l'écran. Dans une hypothétique version future du système de menu, il faudrait arranger ça.
+
+Lorsqu'on reste appuyé sur les touches haut et bas, le scrolling se fait en continu. Ces actions ne sont pas déclenchées par des `MenuElem`, car je n'en ai pas créé qui soient capable de s'activer périodiquement tant qu'une touche reste appuyée. Ces actions sont déclenchées dans la fonction `periodicAction` du menu lui-même. On contrôle le contenu de `self.dictKeyPressed` (dictionnaire indiquant quelles touches sont actuellement appuyées), et on exécute éventuellement un coup de scrolling vers le haut et/ou vers le bas. La variable `self.dictKeyPressed` est périodiquement mise à jour par la classe-mère, dans la fonction `MenuManager.handleMenu()`.
 
 #### menuzcon/MenuManagerConfig ####
+
+Work In Progress.
+
+TODO : expliquer le menuElemTakingEvent dans le menumanager.
+
+ça hérite de MenuManagerManual, pour afficher les mêmes trucs. Les touches sont des `MenuSensitiveText` et non pas des `MenuText`
+
+togglesound
+
+reset defaults (utilise des fonction de la classe-mère)
+
+y'a qu'un seul keyrecorder, qui est utilisé pour toutes les touches.
+
+enchaintement des actions quand on enregistre une touche.
+
+bidouille pour pas exécuter funcAction si on enregistre espace ou entrée.
+
+bidouille avec "#(mkeyQuitOrCancel doit être avant self.mOneKeyRecorder).", pour que esc désactive l'enregistrement puis quitte. et non pas le contraire.
+
+ça sauvegarde quand on quitte. (d'ailleurs c'est mal foutu, faudrait un bouton OK et un bouton annuler)
+
+
+
 
 
 
