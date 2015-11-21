@@ -1,6 +1,6 @@
 # Document de conception de Blarg (jeu) #
 
-Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) sera décrit dans un autre document, qui n'est pas encore fait.
+Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) sera décrit dans un autre document, qui n'est pas encore fait. (TODO : en fait si, mais faut linker).
 
 
 ## Introduction ##
@@ -52,9 +52,9 @@ Boîte avec un titre plus compliqué : instance de classe aussi. Format du titre
 
 Cadre bleu clair : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
 
-Flèche bleue pleine, de A vers B : Référence "forte". L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
+Flèche bleue pleine, de A vers B : Référence "forte". L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
 
-Flèche bleue pointillée, de A vers B : Référence "faible". L'objet A n'a pas de référence vers l'objet B. Mais de temps en temps, on appelle une fonction de l'objet A en lui passant l'objet B en paramètre.
+Flèche bleue pointillée, de A vers B : Référence "faible". L'objet A n'a pas de référence vers l'objet B. Mais de temps en temps, on appelle une fonction de l'objet A en lui passant l'objet B en paramètre.
 
 Petite flèche bleue vers "SpriteSiGen" : Référence vers l'objet `SpriteSimpleGenerator`. Ces références ne sont pas représentées comme les autres, car ça ferait une flèche qui traverse tout le diagramme et ça ferait fouilis.
 
@@ -64,7 +64,7 @@ Flèche verte, de A vers B : héritage. L'objet B est dérivée de l'objet A.
 
 Grosse flèche grise pointillée : déplacement. À un moment de sa vie, l'objet est transféré d'un endroit à un autre.
 
-Boîte avec un cadre pointillé : l'objet est instancié par l'objet englobant, puis il est tout de suite transféré ailleurs.
+Boîte avec un cadre pointillé : l'objet est instancié par l'objet englobant, puis il est tout de suite transféré ailleurs.
 
 
 ## Rappel : fonctionnement des sprites avec pygame ##
@@ -73,25 +73,25 @@ Les sprites sont gérés par des objets `pygame.sprite.Sprite`. Durant un cycle 
 
  - Pour chaque sprite :
 
-    - Effacer à l'écran le rectangle englobant (défini par la position et la taille de l'image courant du sprite). S'il y a une image de fond, il faut la redessiner par-dessus.
+    - Effacer à l'écran le rectangle englobant (défini par la position et la taille de l'image courante du sprite). S'il y a une image de fond, il faut la redessiner par-dessus.
 
-    - Exécuter la fonction (overridée) `Sprite.update()`. Cette fonction modifie la position et/ou l'image courante du sprite.
+    - Exécuter `Sprite.update()` (fonction overridée) : modifie la position et/ou l'image courante du sprite.
 
-    - Exécuter la fonction `Sprite.draw()`. Dessine le sprite à l'écran.
+    - Exécuter `Sprite.draw()` : dessine le sprite à l'écran.
 
 - Exécuter la fonction `pygame.display.flip()`, afin de rafraîchir l'écran et d'afficher les changements. (Double buffer, tout ça...)
 
-Pygame permet de faciliter ce traitement, avec les groupes de sprite, en particulier, les `pygame.sprite.RenderUpdates`. On commence par mettre des sprites dans le groupe, avec la fonction `RenderUpdates.add()`. Ensuite, à chaque cycle de jeu, il faut effectuer les actions suivantes :
+Pygame permet de faciliter ce traitement, avec les groupes de sprite, en particulier, les `pygame.sprite.RenderUpdates`. On commence par exécuter la fonction `RenderUpdates.add()` pour mettre des sprites dans le groupe, puis, à chaque cycle de jeu, on effectue les actions suivantes :
 
- - `RenderUpdates.clear()`, en indiquant en paramètre l'écran, et l'image de fond à redessiner. Cette fonction enregistre en interne une liste de "rectangle sales". C'est à dire les zones de l'écran sur lesquelles un sprite a été clearé.
+ - `RenderUpdates.clear()`, en indiquant en paramètre l'écran et l'image de fond à redessiner. Cette fonction enregistre en interne une liste de "rectangle sales". C'est à dire les zones de l'écran sur lesquelles un sprite a été clearé.
 
- - Pour chaque sprite : exécuter sa fonction `update()`. On peut le faire individuellement, ou appeler la fonction `RenderUpdates.update()`, qui va updater tous les sprites du groupe.
+ - `RenderUpdates.update()` : exécute la fonction `update()` de chaque sprite du groupe. On peut aussi le faire individuellement en appelant les `update()` de chaque sprite.
 
  - `listDirtyRects = RenderUpdates.draw()`. Dessine à l'écran tous les sprites du groupe. Renvoie la liste des rectangle sales, correspondant à toutes les zones de l'écran où quelque chose a changé (clear et/ou draw).
 
- - Exécuter la fonction `pygame.display.flip()`, pour rafraîchir tout l'écran. Si on veut être plus subtil, on peut exécuter à la place `pygame.display.update(listDirtyRects)`. Cela rafraîchira uniquement les zones nécessaires.
+ - `pygame.display.flip()` : rafraîchit tout l'écran. Si on veut être plus subtil, on peut exécuter à la place `pygame.display.update(listDirtyRects)`, pour rafraîchir uniquement les zones nécessaires.
 
-Durant le jeu, on peut ajouter et enlever des sprites du groupe, avec les fonctions `add` et `remove`. Il faut le faire après le `clear`, et avant le `draw`.
+Durant un cycle, on peut ajouter et enlever des sprites du groupe, avec les fonctions `add` et `remove`. À exécuter entre le `clear` et le `draw`.
 
 
 ## Description du rôle de chaque classe ##
@@ -120,7 +120,7 @@ Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec :
 
 ### sprsiman/SpriteSimpleManager ###
 
-Contient une groupe de `SpriteSimple`. Effectue leurs updates, et les supprime lorsqu'ils sont arrivés en fin de vie.
+Contient un groupe de `SpriteSimple`. Effectue leurs updates, et les supprime lorsqu'ils sont arrivés en fin de vie.
 
 Le manager possède une référence vers le gros groupe `allSprites`. Il s'occupe d'updater et d'ajouter/enlever les `SpriteSimple` dont il a la charge, au fur et à mesure de leur cycle de vie.
 
@@ -161,7 +161,7 @@ Héritée de `pygame.sprite.Sprite`. Affiche la tête du héros. Cette classe es
 
 ### movpoint/MovingPoint ###
 
-classe héritée de `pygame.Rect`. Représente un point dans l'aire de jeu qui se déplace, la direction étant définie à l'instanciation. À chaque cycle, on exécute la fonction `advanceOneStep()`. La position courante est récupérée par le membre `Rect.topleft`.
+classe héritée de `pygame.Rect`. Représente un point se déplaçant dans l'aire de jeu, la direction étant définie à l'instanciation. À chaque cycle, la fonction `advanceOneStep()` est exécutée. La position courante est récupérée par le membre `Rect.topleft`.
 
 Comme on définit un mouvement dans une direction donnée, sans limite, il ne se termine jamais. La fonction `isMoveFinished()` renvoie toujours false.
 
@@ -172,9 +172,9 @@ Cette classe est utilisée pour calculer la trajectoire des balles tirées par l
 
 classe héritée de `MovingPoint`. Représente un point dans l'aire de jeu se déplaçant le long d'un segment de droite. Les points d'arrivée et de départ sont donnés à l'instanciation.
 
-À chaque exécution de `advanceOneStep()`, on se déplace d'un pixel (en diagonale ou pas, ça dépend de là où on est). La vitesse n'est donc pas constante entre deux cycles de jeu, mais on s'en fout.
+À chaque exécution de `advanceOneStep()`, on se déplace d'un pixel (en diagonale ou pas, ça dépend de la position courante). La vitesse n'est donc pas atomiquement constante entre deux cycles de jeu, mais on s'en fout.
 
-La fonction `IsMoveFinished()` renvoie True lorsque le point courant a atteint le point d'arrivée.
+La fonction `IsMoveFinished()` renvoie True lorsque la position courante est au point d'arrivée.
 
 Cette classe est utilisée pour calculer la trajectoire des magiciens se déplaçant le long d'une ligne (les `MagiLine`).
 
@@ -183,11 +183,11 @@ Cette classe est utilisée pour calculer la trajectoire des magiciens se dépla�
 
 À chaque fois que le héros tire, cette classe effectue les actions suivantes :
 
- - Calcul des trajectoires. Un tir fait partir 3 balles : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
+ - Calcul des trajectoires. Un tir fait partir 3 balles : une un peu vers le haut, une tout droit, et une un peu vers le bas. Elles ont une vitesse instantanée.
 
  - Détection des collisions entre les balles et les magiciens.
 
- - Exécution de la fonction `Magician.hitByBullet(Damage)` chaque fois qu'une des balles touche un magicien. La valeur renvoyée indique son état (vivant/tué/explosé). Lorsque plusieurs magiciens sont exactement sur la même abscisse et qu'une balle leur arrive dessus, ils sont tous touchés en même temps.
+ - Exécution de la fonction `Magician.hitByBullet(Damage)` pour chaque balle touchant un magicien. La valeur renvoyée indique son état (vivant/tué/explosé). Lorsque plusieurs magiciens sont exactement sur la même abscisse et qu'une balle leur arrive dessus, ils sont tous touchés en même temps.
 
  - Renvoi du nombre total de magiciens tués et explosés par le tir.
 
@@ -205,7 +205,7 @@ Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans
 
 ### scoremn/ScoreManager ###
 
-Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe qui gère le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
+Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe gérant le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
 
 Récupère le nombre de magiciens explosés et le nombre de magiciens tués sans être explosés, au fur et à mesure de la partie.
 
@@ -220,9 +220,9 @@ Affiche les cartouches à gauche de l'écran, et gère leurs animations :
 
  - reload : le héros vient de recharger. Une cartouche supplémentaire est affichée en bas de la pile.
  - fire : la balle la plus haute disparaît, et un nuage de fumée est dessiné. La douille reste.
- - rearm : la douille tout en haut, ainsi que toutes les autres cartouches de la pile, sont déplacées progressivement vers le haut. À la fin, la douille du haut disparaît.
+ - rearm : la douille tout en haut, ainsi que toutes les autres cartouches de la pile, sont déplacées progressivement vers le haut. À la fin, la douille du haut disparaît.
 
-Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes : `takeStimuliFire`, `takeStimuliRearm`, `takeStimuliReload`.
+Ces événements sont provoqués par le code extérieur, qui appelle les fonctions correspondantes : `takeStimuliReload`, `takeStimuliFire`, `takeStimuliRearm`.
 
 Cette classe contient des fonctions à appeler à chaque cycle, pour faire jouer les animations des cartouches, ajouter/enlever celles qui se rechargent, celles qui sont tirées, etc. Le blabla en début de fichier me semble suffisamment clair à ce sujet.
 
@@ -231,9 +231,9 @@ Cette classe contient des fonctions à appeler à chaque cycle, pour faire jouer
 
 Affiche les points de vie du joueur, en haut à gauche de l'écran (sous forme d'image représentant des vestes en jean, parce que c'est rigolo).
 
-Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean jusqu'à la faire disparaître progressivement. Le "progressivement" étant aléatoire, afin d'avoir quelque chose de classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier.
+Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean jusqu'à la faire disparaître progressivement. Le "progressivement" étant aléatoire, afin d'avoir quelque chose de classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier .py.
 
-À chaque cycle, le code extérieur doit appeler la fonction `determineIsUpdatingSthg()`, pour savoir si il y a un clignotement en cours. Si oui, il faut ensuite appeler `update()`.
+À chaque cycle, le code extérieur appele la fonction `determineIsUpdatingSthg()`, pour savoir s'il y a un clignotement en cours. Si oui, il faut ensuite appeler `update()`.
 
 Pour le code extérieur, la seule chose intéressante à récupérer de cette classe est le groupe de sprite `groupLifePoints`, contenant toutes les vestes en jean à afficher à un instant donné (clignotements pris en compte).
 
@@ -300,7 +300,7 @@ Détail des actions effectuées :
 
  - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets()`
 
-    - Calcul de la trajectoire des 3 bullets partant du fusil.
+    - Calcul de la trajectoire des 3 bullets partant du fusil.
 
     - Détermination des collisions entre les bullets et les magiciens.
 
@@ -397,9 +397,9 @@ Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiq
 
  - `currentState = DYING / BURSTING`
 
-    - Le magicien passe dans l'état `BURSTING` lorsqu'il se prend 3 bullets d'un seul coup (ce qui arrive lorsque le héros lui tire dessus d'assez près). Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
+    - Le magicien passe dans l'état `BURSTING` lorsqu'il se prend 3 bullets d'un seul coup (ce qui arrive lorsque le héros lui tire dessus d'assez près). Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
 
-    - Il passe dans l'état `DYING` lorsqu'il n'a plus de points de vie (il en a 2 au départ). Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
+    - Il passe dans l'état `DYING` lorsqu'il n'a plus de points de vie (il en a 2 au départ). Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
 
          * shit : le magicien se transforme en caca.
          * rotate : il tournoie dans les airs puis retombe.
@@ -498,7 +498,7 @@ Ces fonctions de génération de coordonnées sont les suivantes :
 
  - `generateLinePattern()` : coordonnées en ligne, horizontale ou verticale. Les coordonnées de début sont d'un côté de l'écran, celles de fin de l'autre côté. On peut avoir les coordonnées de fin inversées par rapport à celles du début. C'est à dire que les magiciens, au lieu de tous avancer le long de lignes parallèles, vont se croiser au centre. (Le magicien en haut à gauche termine en bas à droite, etc.).
 
- - `generateDiagPattern()` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. On place un premier magicien sur une diagonale, un second sur la suivante, et ainsi de suite, puis on revient sur la première diagonale, et ainsi de suite-suite.
+ - `generateDiagPattern()` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. On place un premier magicien sur une diagonale, un second sur la suivante, et ainsi de suite, puis on revient sur la première diagonale, et ainsi de suite-suite.
 
  - `generateRandPattern()` : coordonnées complètement au hasard. Aussi bien le départ que l'arrivée.
 
@@ -527,7 +527,7 @@ Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana`, qui se
 
  - `payGeneric()` : décide de payer ou pas pour quelque chose (par exemple : un pattern en plus, un magicien en plus dans un pattern, une montée de niveau d'un magicien, ...). La décision se fait en fonction d'un coefficient, et de la quantité de hardMana actuelle. Plus la quantité et le coef sont haut, plus on a de chances d'acheter l'élément. (Il faut bien évidemment avoir suffisamment de hardMana).
 
- - `dispatch()` : répartit la quantité actuelle dans deux classes `hardMana`, selon un coefficient de répartition déterminé plus ou moins au hasard.
+ - `dispatch()` : répartit la quantité actuelle dans deux classes `hardMana`, selon un coefficient de répartition déterminé plus ou moins au hasard.
 
  - `chooseAndPay()` : choisit un élément (ou rien) parmi une liste de chose à payer, chacune ayant un coût et un coefficient de probabilité de payage. On choisit parmi ceux qu'on peut se permettre d'acheter.
 
@@ -636,4 +636,5 @@ Pour jouer les sons, on instancie une seule classe `SoundYargler`, dès l'import
 
 `pat`, `pattern`, `genPattern` : pattern de génération d'une liste de magiciens, dans une vague : ligne/diagonale/cercle/random, avec les magiciens qui apparaissent d'un coup / qui apparaissent progressivement, ...
 
-`debuff` : action de diminuer le `HardMana` de la prochaine vague à créer avec de l'`antiHarM`. Le terme n'est pas très bien choisi mais c'est pas grave.
+
+    `debuff` : action de diminuer le `HardMana` de la prochaine vague à créer avec de l'`antiHarM`. Le terme n'est pas très bien choisi mais c'est pas grave.
