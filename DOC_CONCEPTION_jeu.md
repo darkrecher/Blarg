@@ -1,6 +1,8 @@
 # Document de conception de Blarg (jeu) #
 
-Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) sera décrit dans un autre document, qui n'est pas encore fait. (TODO : en fait si, mais faut linker).
+Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) est décrit dans le document suivant :
+
+https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md
 
 
 ## Introduction ##
