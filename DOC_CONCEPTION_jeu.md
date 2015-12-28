@@ -1,8 +1,8 @@
 # Document de conception de Blarg (jeu) #
 
-Ce document décrit la manière dont est organisé le code du jeu. Le code du système d'interface (menu principal, config, ...) est décrit dans le document suivant :
+Ce document décrit la manière dont est organisé le code du jeu.
 
-https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md
+Le code du système d'interface (menu principal, config, ...) est décrit dans le document https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md .
 
 
 ## Introduction ##
@@ -248,7 +248,7 @@ Gère tout le bazar concernant le héros :
 
  - Affichage.
 
- - Récupération des stimulis (ordre envoyés par le joueur, collision avec les magiciens)
+ - Récupération des stimulis (ordres envoyés par le joueur, collisions avec les magiciens)
 
  - Mouvement, limitation de la position aux bords de l'aire de jeu.
 
@@ -256,7 +256,7 @@ Gère tout le bazar concernant le héros :
 
  - Gestion du nombre de cartouche.
 
-Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Il instancie de lui-même un `heroHead` et un `heroBody`.
+Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Le héros instancie de lui-même un `heroHead` et un `heroBody`.
 
 #### Fonctionnement global du héros ####
 
@@ -270,15 +270,15 @@ Le héros possède une référence vers un `spriteSimpleGenerator`, lui permetta
 
  - Sang qui gicle lorsqu'il se fait toucher.
 
-La classe contient une super machine à état (variable membre `stateMachine`) permettant de gérer les comportements suivants :
+La classe contient une superbe machine à état (variable membre `stateMachine`) permettant de gérer les comportements suivants :
 
  - Rechargements et réarmements.
 
- - Images du heroBody à afficher en fonction de l'action en cours. Enchaînement automatique de ces images.
+ - Images du `heroBody` à afficher en fonction de l'action en cours. Enchaînement automatique de ces images.
 
- - Prise en compte des stimulis, ou stockage des stimulis si l'état actuel ne permet pas de le prendre immédiatement en compte.
+ - Prise en compte des stimulis, stockage des stimulis ne pouvant être immédiatement pris en compte (selon l'état courant de la machine).
 
- - Prise en compte des contraintes (par exemple : on recharge automatiquement après un tir si plus de cartouche)
+ - Prise en compte des contraintes. Exemple : on recharge automatiquement après un tir si plus de cartouche.
 
  - Déclenchement d'un tir.
 
@@ -286,7 +286,7 @@ Les explications détaillées de chaque état, ainsi que les contraintes implém
 
 #### Tir ####
 
-Le tir est déclenché après avoir vérifié qu'il y a au moins une cartouche, et que l'état actuel du héros permette de tirer.
+Le tir est déclenché après avoir vérifié qu'il y a au moins une cartouche et que l'état courant de la machine permette de tirer.
 
 Détail des actions effectuées :
 
@@ -294,19 +294,19 @@ Détail des actions effectuées :
 
  - Diminution du nombre de cartouche.
 
- - Envoi d'un son (bruit de coup de feu)
+ - Envoi d'un son (bruit de coup de feu).
 
- - Indication qu'il faut réarmer. (La machine à état le prendra en compte le moment venu)
+ - Indication qu'il faut réarmer. (La machine à état le prendra en compte le moment venu).
 
  - Détermination de la position exacte d'où partent les bullets.
 
- - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets()`
+ - Appel de la fonction `collHandlerBulletMagi.heroFiresBullets()` :
 
     - Calcul de la trajectoire des 3 bullets partant du fusil.
 
     - Détermination des collisions entre les bullets et les magiciens.
 
-    - Envoi des stimulis de dégâts aux magiciens touchés.
+    - Envoi des stimulis de dégât aux magiciens touchés.
 
  - Récupération du nombre de magiciens tués et explosés par le tir.
 
@@ -316,49 +316,51 @@ Détail des actions effectuées :
 
  - Génération d'un `simpleSprite` : la flamme au bout du fusil.
 
- - Remise à zéro du stimuli de FIRE, puisqu'il vient d'être effectué.
+ - Remise à zéro du stimuli de FIRE, puisqu'il vient d'être pris en compte.
 
 Toutes ces actions sont déclenchées immédiatement. Les objets extérieurs sont directement contactés. On ne passe pas par la main loop située dans `game.py/Game`.
 
 #### Collision avec un magicien ####
 
-Détail des actions déclenchées quand le héros se fait toucher (après avoir détecté une collision entre le héros et un magicien) :
+Lorsqu'une collision entre le héros et un magicien est détectée, le héros se fait toucher.
+
+Détail des actions effectuées :
 
  - Vérification que le héros n'est pas déjà dans un état où il a mal, ni où il est en train de mourir. (On est invincible pendant un petit temps juste après s'être fait toucher).
 
- - Diminution des points de vie de 1 (sauf si mode invincible)
+ - Diminution des points de vie de 1 (sauf si mode invincible).
 
- - Envoi d'un ordre au `lifePointViewer` pour afficher une veste en jean de moins (sauf si mode invincible).
+ - Envoi d'un ordre au `lifePointViewer` pour afficher un point de vie de moins (sauf si mode invincible).
 
  - Suppression du sourire sur le `heroHead`.
 
- - Annulation des stimulis stockés de tir et de rechargement. Le joueur n'aura qu'à réappuyer sur la touche correspondante. C'est comme ça, c'est le jeu.
+ - Annulation des stimulis stockés de tir et de rechargement. Le joueur devra réappuyer sur la touche correspondante. C'est comme ça, c'est le jeu.
 
- - Détermination du mouvement de Hurt, en fonction de la position relative du héros et du magicien qui l'a touché. (Le héros reculera pendant quelques cycles, dans la direction opposée au magicien).
+ - Détermination du mouvement de Hurt, en fonction de la position du héros par rapport au magicien qui l'a touché. (Le héros reculera pendant quelques cycles, dans la direction opposée au magicien).
 
  - Modification de l'image du `heroBody`. Gestion pourrie des décalages de sprite parce que j'ai pas implémenté de hotSpot.
 
  - S'il reste des points de vie :
 
-    - Génération de `SimpleSprite` représentant des gouttes de sang.
+    - Génération de plusieurs `SimpleSprite` représentant des gouttes de sang.
 
     - Changement de l'état actuel en `HURT`.
 
-    - Envoi d'un son ("argl !")
+    - Envoi d'un son ("Argl!").
 
- - Sinon (le héros doit mourir)
+ - Sinon, le héros doit mourir :
 
     - Pas de génération de gouttes de sang, mais déclenchement du compteur de génération de gouttes de sang. (Le sang giclera en continu pendant quelques secondes).
 
     - Changement de l'état actuel en `DYING`.
 
-    - L'animation de mort (la tête qui se tourne de droite à gauche, les sons, ...) sont gérés par la machine à état, qui effectue ces actions lorsque l'état est `DYING`.
+    - L'animation de mort (tête qui tourne) et les sons sont gérés par la machine à état. Elle effectue ces actions lorsque l'état est `DYING`.
 
     - Au bout de quelques secondes, on passera de `DYING` à `DEAD`.
 
 #### Fin de partie ####
 
-La classe `Hero` peut indirectement mettre fin à la partie, car la fonction `Game/playOneGame` examine périodiquement l'état du héros, et arrête la main loop si il vaut `DEAD`.
+La fonction `Game/playOneGame` examine périodiquement l'état de l'instance de la classe `Hero`. Elle arrête la main loop si l'état est `DEAD`.
 
 
 ### magician/Magician ###
