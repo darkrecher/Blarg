@@ -367,79 +367,80 @@ La fonction `Game/playOneGame` examine périodiquement l'état de l'instance de 
 
 Cette classe hérite de `pygame.sprite.Sprite`. Lorsqu'on l'instancie, on lui passe un `spriteSimpleGenerator`.
 
-Il s'agit de la classe de base, définissant le comportement générique d'un magicien : apparition, gestion des collisions avec le héros et les balles, animations de mort. Elle ne définit pas les mouvements, qui le sont dans les classes héritées.
+Il s'agit de la classe de base, définissant le comportement générique d'un magicien : apparition, gestion des collisions avec le héros et les balles, animations de mort. Elle ne définit pas les mouvements, qui sont dans les classes héritées.
 
 Le magician possède aussi une machine à état, plus simple que celle du héros. L'état courant est stocké dans la variable membre `currentState`.
 
-Le magician possède un `level` (variable numérique entière), censée représenter son niveau de difficulté (rapidité de déplacement, ...). Seules les classes héritées utilisent le `level` pour définir leur comportement.
+Le magician possède un `level` (variable numérique entière) représentant son niveau de difficulté (rapidité de déplacement, ...). Seules les classes héritées utilisent ce `level`.
 
-Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiquement à 1, et la fonction `resetToLevelOne()` est exécutée. Cela permet de ne pas trop "punir" le joueur. Déjà qu'il se fait toucher et perd un point de vie, on ne va pas en plus lui laisser un magicien ayant un haut `level` à proximité de lui.
+Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiquement à 1 et la fonction `resetToLevelOne()` est exécutée. Cela permet de ne pas trop "punir" le joueur. Il se fait toucher et perd un point de vie, on ne va pas en plus laisser à sa proximité un magicien ayant un haut `level` s'agitant comme un fou dans tous les sens.
 
 #### cycle de vie ####
 
  - Instanciation d'un `Magician`
 
-    - création d'un `SpriteSimple`, représentant l'animation d'apparition du magicien. (Que au début ça ressemble à une bite bleue, puis ça prend la forme du magicien, haha lol, si j'ose dire). On conserve une référence vers ce `SpriteSimple`, afin de savoir quand son animation se termine.
+    - Attribution de deux points de vie (variable `self.lifePoint`).
+
+    - création de `self.spriteAppearing`, un `SpriteSimple` représentant l'animation d'apparition du magicien. (Au début ça ressemble à une bite bleue, puis ça prend la forme du magicien, haha lol, si j'ose dire).
 
     - La game loop place le nouveau magicien dans le groupe de sprite `Game.groupMagicianAppearing`, mais pas dans `Game.allSprites`. C'est à dire que le magicien est updaté, mais pas dessiné.
 
  - `currentState = APPEARING`.
 
-    - La fonction `Magician.update()` exécute `Magician.updateAppearing()`. Cette fonction ne fait rien, à part attendre que l'animation d'apparition se termine. Lorsque c'est le cas, on passe à l'état suivant.
+    - La fonction `Magician.update()` exécute `Magician.updateAppearing()`. Cette fonction contrôle l'état de `self.spriteAppearing`, afin de savoir si l'animation d'apparition s'est terminée. Lorsque c'est le cas, le magicien passe à l'état suivant.
 
  - `currentState = ALIVE`
 
     - La game loop sort le magicien du groupe `Game.groupMagicianAppearing`, pour le placer dans deux groupes à la fois : `game.groupMagician` et `game.allSprites`. Le magicien est donc updaté et dessiné à chaque cycle de jeu.
 
-    - La fonction `Magician.update()` exécute `magician.updateNormal()`. Elle est censée s'occuper des mouvements, de la montée de level, etc. Dans la classe de base, cette fonction ne fait rien. Le magicien reste immobile.
+    - La fonction `Magician.update()` exécute `magician.updateNormal()`. Elle est censée s'occuper des mouvements, de l'augmentation du `level`, etc. Dans la classe de base, cette fonction ne fait rien. Le magicien reste immobile.
 
  - `currentState = HURT`
 
-    - (Cet état est facultatif, si le magicien perd tous ses points de vie d'un coup, il passe directement de `ALIVE` à `DYING` ou `BURSTING`.)
+    - Cet état peut ne jamais être activé. Si le magicien perd tous ses points de vie d'un coup, il passe directement de `ALIVE` à `DYING` ou `BURSTING`.
 
     - Exécution de `updateHurt()` à chaque cycle de jeu (fonction à overrider). Au bout d'un moment, le magicien revient à l'état `ALIVE`.
 
  - `currentState = DYING / BURSTING`
 
-    - Le magicien passe dans l'état `BURSTING` lorsqu'il se prend 3 bullets d'un seul coup (ce qui arrive lorsque le héros lui tire dessus d'assez près). Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
+    - L'état est `BURSTING` lorsque la magicien se prend 3 bullets d'un seul coup (ce qui arrive lorsque le héros lui tire dessus d'assez près). Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
 
-    - Il passe dans l'état `DYING` lorsqu'il n'a plus de points de vie (il en a 2 au départ). Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
+    - L'état est `DYING` lorsque le magicien n'a plus de points de vie. Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
 
          * shit : le magicien se transforme en caca.
          * rotate : il tournoie dans les airs puis retombe.
-         * naked : il s'envole tout nu, en faisant des prouts.
+         * naked : il s'envole tout nu en faisant des prouts.
 
-    - Pour les animations bursting, shit et rotate, le magicien génère immédiatement un ou plusieurs `SimpleSprite` correspondant à l'animation. Puis, dès le cycle de jeu suivant, il passe directement à l'état `DEAD`. L'animation n'est pas gérée par la classe elle-même.
+    - Pour bursting, shit et rotate, l'animation de mort n'est pas gérée par le magicien lui-même. Il crée immédiatement le ou les `SimpleSprite` correspondants, puis passe à l'état `DEAD` dès le cycle de jeu suivant.
 
-    - Pour l'animation naked, c'est un peu plus compliqué. Le sprite reste actif encore quelques temps, avec une image de magicien tout nu. La fonction `updateDyingNaked()` est exécutée à chaque cycle de jeu. Elle effectue les actions suivantes :
-         * Mouvement général vers le haut, additionné de petits mouvements aléatoires gauche et droite
-         * Génération aléatoirement périodique de `SpriteSimple` représentant de la fumée de prout
+    - Pour l'animation naked, c'est un peu plus compliqué. Le sprite reste actif quelques temps, avec une image de magicien tout nu. La fonction `updateDyingNaked()` est exécutée. Elle effectue les actions suivantes :
+         * Mouvement général vers le haut, additionné de petits mouvements aléatoires gauche et droite.
+         * Génération aléatoirement périodique de `SpriteSimple` représentant de la fumée de prout.
          * Émission de mini-sons de prouts, en même temps que les sprites de fumée.
+         * Passage à l'état `DEAD` lorsqu'il est complètement en dehors de l'écran.
 
  - `currentState = DEAD`
 
-    - La game loop retire le magicien des deux groupes de sprites. Il n'est plus updaté ni drawé, et il finit par être garbage-collecté puisqu'il n'est plus référencé nul part.
+    - La game loop retire le magicien des deux groupes de sprites. Il n'est plus updaté ni drawé, et finit par être garbage-collecté puisqu'il n'est plus référencé nul part.
 
 
 ### magiline/MagiLine ###
 
-Classe dérivée de `Magician`. Définit un magicien qui se déplace sur une ligne droite. À l'instanciation, on indique (entre autres) la position de départ et la position d'arrivée.
+Classe dérivée de `Magician`. Définit un magicien se déplaçant sur une ligne droite. À l'instanciation, on indique (entre autres) la position de départ et la position d'arrivée.
 
-Plus le `level` du Magiline est haut, plus il se déplace vite. Le level lui-même n'augmente pas.
+Plus le `level` du Magiline est haut, plus il se déplace vite. Le `level` lui-même n'augmente pas.
 
-Lorsque le Magiline est arrivé à son point de destination, on teste s'il est  à gauche de l'écran (limite définie par la constante `RESPECT_LINE_X`). Si c'est le cas, il se déplace vers la droite jusqu'à dépasser `RESPECT_LINE_X`. Ensuite, il ne bouge plus du tout.
+Lorsque le Magiline est arrivé à son point de destination, on vérifie qu'il ne soit pas trop à gauche de l'écran (limite définie par la constante `RESPECT_LINE_X`). Sinon, il se déplace un peu vers la droite. Ce dernier petit mouvement permet de s'assurer que le joueur pourra tuer le Magiline, en se plaçant entre lui et le bord gauche de l'écran. (Le héros ne peut pas se retourner et ne tire que vers la droite).
 
-Ce dernier mouvement permet de s'assurer que le joueur pourra tuer le Magiline. Car s'il reste trop à gauche, le héros (qui ne peut pas se retourner), ne peut pas se mettre devant lui pour lui tirer dessus.
+La fonction `updateNormal()`, exécutée à chaque cycle du jeu tant que le MagiLine est `ALIVE`, exécute la fonction référencée par `currentFuncupdateNorm`. Cette variable membre pointe sur une fonction d'update correspondant à l'action courante. Elle peut prendre les valeurs suivantes :
 
-La fonction `updateNormal()`, exécutée à chaque cycle du jeu tant que le magiline est `ALIVE`, exécute la fonction référencée par `currentFuncupdateNorm`. Cette variable membre pointe sur une fonction d'update qui change selon l'action à faire. Elle peut prendre les valeurs suivantes :
-
- - `updateNormMoveOnLine` : mouvement le long de la ligne.
+ - `updateNormMoveOnLine` : mouvement le long de la ligne pour aller jusqu'au point de destination.
  - `updateNormMoveRespectX` : mouvement pour se placer à droite de `RESPECT_LINE_X`.
  - `updateNormStayPut` : pas de mouvement.
 
-C'est un peu bizarre de faire comme ça, j'aurais peut-être dû faire un variable de sous-état, et un dictionnaire sous-état -> fonction, comme la classe de base qui a un dictionnaire état -> fonction. Mais bon, je fais ce que je veux, j'ai le droit d'être bizarre.
+J'aurais peut-être dû faire un variable de sous-état, et un dictionnaire sous-état -> fonction, comme la classe de base qui a un dictionnaire état -> fonction. Mais bon, je fais ce que je veux, j'ai le droit d'être bizarre.
 
-Lorsque le Magiline est touché, la fonction `updateHurt()` est exécutée, qui l'immobilise pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne sur laquelle il est censé se déplacer.
+Lorsque le Magiline est touché, la fonction `updateHurt()` est exécutée, qui l'immobilise pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne le long de laquelle il est censé se déplacer.
 
 
 ### magirand/MagiRand ###
