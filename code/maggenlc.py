@@ -275,7 +275,7 @@ class MagicianListCoordBuilder():
         self.hero = hero
 
 
-    def generateLinePattern(self, nbrMagi, whichCoord, c1Start, 
+    def generateLinePattern(self, nbrMagi, whichCoord, c1Start,
                             reverseStartSide, c1End=None, swapPos=None):
         """
         génère les coordonnéez pour un pattern de ligne (horiz on vertic)
@@ -385,7 +385,7 @@ class MagicianListCoordBuilder():
 
         entrées :
             listCoordStart : liste de Rect, contenant les coordonnées de départ des magiciens.
-                             Elles sont arrangés selon le pattern qu'on veut, on s'en fout.
+                             Elles sont arrangées selon le pattern qu'on veut, on s'en fout.
                              Mais ça doit être un pattern avec un centre, pour l'instant : (0, 0)
                              Certaines coord pourront se retrouver en dehors de l'écran.
                              Ce sera corrigé.
@@ -731,7 +731,7 @@ class MagicianListCoordBuilder():
 
             #Voilà j'ai fini de blablater, on peut reprendre.
 
-            param = (nbrMagi, self.hero.rectPos, isClockWise, 
+            param = (nbrMagi, self.hero.rectPos, isClockWise,
                      coordEnd, rayCoef)
 
             return funcPat(*param)
