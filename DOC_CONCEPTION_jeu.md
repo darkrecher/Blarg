@@ -430,7 +430,7 @@ Classe dérivée de `Magician`. Définit un magicien se déplaçant sur une lign
 
 Plus le `level` du Magiline est haut, plus il se déplace vite. Le `level` lui-même n'augmente pas.
 
-Lorsque le Magiline est arrivé à son point de destination, on vérifie qu'il ne soit pas trop à gauche de l'écran (limite définie par la constante `RESPECT_LINE_X`). Sinon, il se déplace un peu vers la droite. Ce dernier petit mouvement permet de s'assurer que le joueur pourra tuer le Magiline, en se plaçant entre lui et le bord gauche de l'écran. (Le héros ne peut pas se retourner et ne tire que vers la droite).
+Lorsque le Magiline est arrivé à son point de destination, s'il se retrouve trop à gauche de l'écran (la limite est définie par la constante `RESPECT_LINE_X`), il se déplace un peu vers la droite. Ce dernier petit mouvement permet de s'assurer que le joueur pourra tuer le Magiline, en se plaçant entre lui et le bord gauche de l'écran. (Le héros ne peut pas se retourner et ne tire que vers la droite).
 
 La fonction `updateNormal()`, exécutée à chaque cycle du jeu tant que le MagiLine est `ALIVE`, exécute la fonction référencée par `currentFuncupdateNorm`. Cette variable membre pointe sur une fonction d'update correspondant à l'action courante. Elle peut prendre les valeurs suivantes :
 
@@ -440,33 +440,33 @@ La fonction `updateNormal()`, exécutée à chaque cycle du jeu tant que le Magi
 
 J'aurais peut-être dû faire un variable de sous-état, et un dictionnaire sous-état -> fonction, comme la classe de base qui a un dictionnaire état -> fonction. Mais bon, je fais ce que je veux, j'ai le droit d'être bizarre.
 
-Lorsque le Magiline est touché, la fonction `updateHurt()` est exécutée, qui l'immobilise pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne le long de laquelle il est censé se déplacer.
+Lorsque le Magiline est touché, la fonction `updateHurt()` l'immobilise pendant quelques cycles. Il n'a pas de mouvemement de recul, sinon ça le sortirait de la ligne le long de laquelle il est censé se déplacer.
 
 
 ### magirand/MagiRand ###
 
 Classe dérivée de `Magician`. Définit un magicien qui se déplace au hasard.
 
-Ses mouvements ont une inertie. On met du hasard dans les accélérations X et Y. Ces accélérations agissent sur les vitesses de déplacement X et Y, qui agissent sur les positions X et Y.
+Ses mouvements ont une inertie. Il y a du hasard dans les accélérations X et Y. Ces accélérations agissent sur les vitesses de déplacement X et Y, qui agissent sur les positions X et Y.
 
-Le Magirand possède une `respectLine` (variable numérique entière, différente pour chaque instance), définissant la position d'une ligne verticale imaginaire. Lorsque le Magirand est à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rend le jeu difficile.
+Le Magirand possède une variable membre int `self.respectLine`, définissant la position d'une ligne verticale imaginaire. Lorsque le Magirand est à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rend le jeu difficile.
 
 Plus le `level` du Magirand est haut, plus ses accélérations et sa vitesse maximale sont haute, et plus la `respectLine` se décale vers la droite. Le `level` augmente avec le temps. Toutes ces valeurs sont réinitialisées lorsque le Magicand touche le héros et qu'il retombe au niveau 1.
 
-Lorsque le Magirand est touché, la fonction `updateHurt()` est exécutée. Cette fonction arrête les mouvements aléatoires pendant quelques cycles, et effectue un mouvement de recul vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse nulle.
+Lorsque le Magirand est touché, la fonction `updateHurt()` arrête les mouvements aléatoires pendant quelques cycles et applique un mouvement de recul vers la droite. Les mouvements aléatoires reprennent avec une accélération et une vitesse initiales nulles.
 
 
 ### maggen/MagicianGenerator ###
 
-Cette classe génère les magiciens durant le jeu. Elle utilise un `MagicianWaveGenerator` pour savoir quoi générer, et quand. (Voir plus loin).
+Cette classe génère les magiciens durant le jeu. Elle utilise un `MagicianWaveGenerator` pour savoir quoi générer et quand (voir [MagicianWaveGenerator](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#maggenwamagicianwavegenerator)).
 
-Le `MagicianGenerator` possède une référence vers le groupe de sprite `Game.groupMagicianAppearing`. La génération d'un magicien est réalisée par la fonction `MagicianGenerator.generateOneMagician()`. Elle consiste à instancier un magicien, et à l'ajouter dans le groupe de sprite. Il y a également un son émis, pour faire cool.
+Le `MagicianGenerator` possède une référence vers le groupe de sprite `Game.groupMagicianAppearing`. La génération d'un magicien est réalisée par la fonction `MagicianGenerator.generateOneMagician()`. Elle consiste à instancier un magicien et à l'ajouter dans le groupe de sprite. Un son est émis, pour faire cool.
 
-La génération durant le jeu est définie par des "patterns", de différents types. Par exemple : une ligne de magicien en haut de l'écran, un cercle autour du héros, dispersé au hasard, ...
+La génération durant le jeu est définie par des "patterns" de différents types. Par exemple : une ligne de magicien en haut de l'écran, un cercle autour du héros, placement au hasard, ...
 
 Un pattern, quel que soit son type, est une liste. Chaque élément est un tuple, représentant un magicien à générer. Le tuple contient deux sous-éléments :
 
- - `delay` : nombre de cycle à attendre avant de générer ce magicien. Ce nombre est cumulatif. Par exemple, si le premier magicien du pattern a 4 cycles, et le second 2, alors le second devra attendre 6 cycles au total pour être généré. L'ordre dans la liste est donc significatif. Si plusieurs magiciens à la suite ont un delay de 0, ils apparaîtront tous en même temps.
+ - `delay` : nombre de cycle à attendre avant de générer ce magicien. Ce nombre est cumulatif. Par exemple, si le premier magicien du pattern a 4 cycles, et le second 2, alors le second devra attendre un total de 6 cycles pour être généré. L'ordre dans la liste est donc significatif. Si plusieurs magiciens à la suite ont un delay de 0, ils apparaîtront tous en même temps.
 
  - Un sous-tuple, contenant les caractéristiques du magicien à générer :
 
@@ -477,60 +477,60 @@ Un pattern, quel que soit son type, est une liste. Chaque élément est un tuple
 
 Le `MagicianGenerator` possède une liste de patterns. À chaque cycle, lors de l'appel de la fonction `MagicianGenerator.update()`, les actions suivantes sont effectuées :
 
- - Diminution du compteur de temps  avant la prochaine vague de magicien.
+ - Diminution du compteur de temps avant la prochaine vague de magicien.
 
  - Éventuellement, diminution du compteur de temps bonus (voir plus loin).
 
- - S'il n'y a plus de temps, on demande au `MagicianWaveGenerator` de générer une nouvelle vague. Cela créera de nouveaux patterns, qu'on ajoute à la liste.
+ - S'il n'y a plus de temps, on demande au `MagicianWaveGenerator` de générer une nouvelle vague. Cela créera de nouveaux patterns, qui s'ajouteront à la liste.
 
  - Pour chaque pattern de la liste :
 
-    - Diminution du `delay` du premier élément. Lorsqu'on atteint 0, on génère un magicien, et éventuellement les suivants s'ils ont un `delay` de 0.
+    - Diminution du `delay` du premier élément. Lorsqu'il atteint 0, un magicien est généré. Les suivants le sont aussi s'ils avaient un `delay` de 0.
     - Suppression des patterns n'ayant plus d'éléments.
 
-Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, via la fonction `takeStimuliNoMoreActiveMagi()`. Cette fonction modifie le temps de génération avant la prochaine vague de magicien. Éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir plus loin).
+Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, via la fonction `takeStimuliNoMoreActiveMagi()`. Cette fonction modifie le temps de génération avant la prochaine vague de magiciens. Éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir [HardMana](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#hardmanahardmana)).
 
 
 ### maggenlc/MagicianListCoordBuilder ###
 
-Classe contenant des fonctions "statiques", renvoyant toutes deux listes de coordonnées (coord de début, coord de fin), ou bien une seule liste de coord de début. Ces listes de coordonnées sont ensuite utilisées pour les patterns de génération de magicien.
+Classe contenant des fonctions "statiques", renvoyant soit deux listes de coordonnées (coord de début, coord de fin), soit une seule (coord de début) + valeur None. Ces listes de coordonnées sont ensuite utilisées pour les patterns de génération de magicien.
 
-Cette classe contient une référence vers le héros. Elle n'en fait rien de spécial, c'est uniquement pour récupérer sa position courante.
+Cette classe contient une référence vers le héros, lui permettant de récupérer sa position courante.
 
-On ne transmet pas aux `MagicianListCoordBuilder` les autres infos liées au pattern : type de magicien, délai, levels, ... Elle n'en n'a pas besoin, elle ne calcule que les coordonnées. Par contre elle a besoin du nombre de magiciens à générer.
+On ne transmet pas aux `MagicianListCoordBuilder` les autres infos liées au pattern : type de magicien, délai, levels, ... Elle n'en n'a pas besoin, elle ne calcule que les coordonnées. Elle a juste besoin du nombre de magiciens à générer.
 
-Ces fonctions de génération de coordonnées sont les suivantes :
+Les fonctions de génération de coordonnées sont les suivantes :
 
- - `generateLinePattern()` : coordonnées en ligne, horizontale ou verticale. Les coordonnées de début sont d'un côté de l'écran, celles de fin de l'autre côté. On peut avoir les coordonnées de fin inversées par rapport à celles du début. C'est à dire que les magiciens, au lieu de tous avancer le long de lignes parallèles, vont se croiser au centre. (Le magicien en haut à gauche termine en bas à droite, etc.).
+ - `generateLinePattern()` : coordonnées en ligne, horizontale ou verticale. Les coordonnées de début sont d'un côté de l'écran, celles de fin de l'autre côté. Il peut y avoir inversion dans les deux listes, c'est à dire que les magiciens, au lieu de tous avancer le long de lignes parallèles, vont se croiser au centre. Le magicien en haut à gauche termine en bas à droite, etc.
 
- - `generateDiagPattern()` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. On place un premier magicien sur une diagonale, un second sur la suivante, et ainsi de suite, puis on revient sur la première diagonale, et ainsi de suite-suite.
+ - `generateDiagPattern()` : coordonnées sur 4 diagonales, construites à partir d'un centre donné. Un premier magicien est placé sur une diagonale, un suivant sur la suivante, et ainsi de suite. À la quatrième diagonale, on revient à la première.
 
  - `generateRandPattern()` : coordonnées complètement au hasard. Aussi bien le départ que l'arrivée.
 
- - `generateCirclePattern()` : coordonnées le long d'un cercle. Le centre du cercle est la position courante du héros.
+ - `generateCirclePattern()` : coordonnées le long d'un cercle de centre donné.
 
  - `generatePattern()` : fonction générique. On lui passe un type de pattern, et elle appelle l'une des 4 fonctions ci-dessus.
 
-Pour chacune de ces fonctions, on précise si on veut la liste de coordonnées de fin, ou si on veut juste un None à la place. Lorsqu'on a prévu de générer des Magirand, il n'y a en effet pas besoin de déterminer les coordonnées de fin.
+Pour chacune de ces fonctions, on précise si on veut les deux listes de coordonnées ou une seule. Lorsqu'on a prévu de générer des Magirand, il n'y a en effet pas besoin de déterminer les coordonnées de fin.
 
-Il y a parfois un peu de random dans la détermination des coordonnées (espacement entre les magiciens, ordre dans un sens ou dans l'autre, etc.). Rien de significatif pour la difficulté du jeu. Toute la gestion de la difficulté est faite par le `MagicianWaveGenerator`.
+Il y a parfois un peu de random (espacement entre les magiciens, ordre dans un sens ou dans l'autre, etc.), mais jamais rien de significatif pour la difficulté du jeu. C'est le `MagicianWaveGenerator` qui gère entièrement la difficulté des vagues.
 
-Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder`, afin de l'assister dans la généreration des patterns qu'il renvoie. (Trip: C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
+Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder` afin de l'assister dans sa génération de patterns. (Trip: C'est rigolo de lire qu'une classe assiste une autre. Ha ha ha).
 
 
 ### hardmana/HardMana ###
 
 La génération des magiciens se fait par vagues. Leur difficulté doit être progressive, mais en même temps, il faut du hasard. Afin de répondre à ces besoins, j'ai mis en place la notion de "hardMana".
 
-Le hardMana est une valeur numérique entière. Il représente une quantité de points, que le `MagicianWaveGenerator` peut dépenser pour augmenter la difficulté de la prochaine vague. À chaque nouvelle vague, on redonne du hardMana au `MagicianWaveGenerator`, et on lui en donne de plus en plus.
+Le hardMana est une valeur numérique entière. Il représente une quantité de points que le `MagicianWaveGenerator` dépense pour déterminer la difficulté de la prochaine vague. À chaque nouvelle vague, on réalimente le `MagicianWaveGenerator` avec de plus en plus de hardMana.
 
-Le hardMana disponible est réparti en plusieurs quantités, chacune attribuée à un type de dépense spécifique. La décision d'achat d'un élément dépend du hasard et de la quantité de hardMana disponible.
+Le hardMana disponible est réparti en plusieurs quantités, chacune attribuée à un type de dépense spécifique. La décision d'achat d'un élément dépend du hasard et de la quantité de hardMana restant.
 
-Lorsque le joueur élimine rapidement tous les magiciens d'une vague, on le récompense. On lui attribue de l'antiHardMana (antiHarM). Un point d'antiHarM annule un point de hardMana.
+Lorsque le joueur élimine rapidement tous les magiciens d'une vague, il est récompense et reçoit de l'antiHardMana (antiHarM). Un point d'antiHarM annule un point de hardMana.
 
-Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana`, qui sert à gérer, transférer et répartir ces points. Cette classe contient les fonctions suivantes :
+Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana` qui sert à gérer, transférer et répartir ces points. Cette classe contient les fonctions suivantes :
 
- - `payGeneric()` : décide de payer ou pas pour quelque chose (par exemple : un pattern en plus, un magicien en plus dans un pattern, une montée de niveau d'un magicien, ...). La décision se fait en fonction d'un coefficient, et de la quantité de hardMana actuelle. Plus la quantité et le coef sont haut, plus on a de chances d'acheter l'élément. (Il faut bien évidemment avoir suffisamment de hardMana).
+ - `payGeneric()` : prend la décision de payer ou pas quelque chose (par exemple : un pattern en plus, un magicien en plus dans un pattern, une montée de niveau d'un magicien, ...). La décision se fait en fonction d'un coefficient, et de la quantité de hardMana actuelle. Plus la quantité et le coef sont haut, plus on a de chances d'acheter l'élément. (Il faut bien évidemment avoir suffisamment de hardMana).
 
  - `dispatch()` : répartit la quantité actuelle dans deux classes `hardMana`, selon un coefficient de répartition déterminé plus ou moins au hasard.
 
@@ -538,11 +538,12 @@ Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana`, qui se
 
  - `divide()` : répartit équitablement la quantité actuelle en plusieurs classes `HardMana`.
 
- - `antiHarMDebuff()` : applique de l'antiHarm. Les quantités d'antiHarm sont également gérées par des classes `HardMana`. Sauf que quand on met ensemble du hardMana et de l'antiHarm, ça s'annule.
+ - `antiHarMDebuff()` : applique l'antiHarm. Les quantités d'antiHarm sont également gérées par des classes `HardMana`. Quand on met ensemble du hardMana et de l'antiHarm, ça s'annule.
 
 Tous les coefficients sont indiqués en 128ème. C'est un choix personnel d'implémentation, qui est peut-être discutable.
 
 Trip: Mais moi personnellement, je ne le discute pas, parce que je suis tout seul dans ma tête. (Je suis tout seul dans ma tête, n'est-ce pas ?).
+
 
 ### maggenwa/MagicianWaveGenerator ###
 
