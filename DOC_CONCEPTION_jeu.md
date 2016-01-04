@@ -522,19 +522,19 @@ Le `MagicianWaveGenerator` se crée une instance de `MagicianListCoordBuilder` a
 
 La génération des magiciens se fait par vagues. Leur difficulté doit être progressive, mais en même temps, il faut du hasard. Afin de répondre à ces besoins, j'ai mis en place la notion de "hardMana".
 
-Le hardMana est une valeur numérique entière. Il représente une quantité de points que le `MagicianWaveGenerator` dépense pour déterminer la difficulté de la prochaine vague. À chaque nouvelle vague, on réalimente le `MagicianWaveGenerator` avec de plus en plus de hardMana.
+Le hardMana est une valeur numérique entière. Il représente une quantité de points que le `MagicianWaveGenerator` utilise pour déterminer la difficulté de la prochaine vague. À chaque nouvelle vague, on réalimente le `MagicianWaveGenerator` avec de plus en plus de hardMana.
 
-Le hardMana disponible est réparti en plusieurs quantités, chacune attribuée à un type de dépense spécifique. La décision d'achat d'un élément dépend du hasard et de la quantité de hardMana restant.
+Le hardMana disponible est réparti dans différentes catégories et sert à "acheter" des éléments : pattern en plus dans la vague, magicien en plus dans un pattern, montée de niveau d'un magicien, etc. La décision d'achat dépend du hasard et de la quantité de hardMana restant dans la catégorie donnée.
 
-Lorsque le joueur élimine rapidement tous les magiciens d'une vague, il est récompense et reçoit de l'antiHardMana (antiHarM). Un point d'antiHarM annule un point de hardMana.
+Lorsque le joueur élimine rapidement tous les magiciens d'une vague, il est récompensé et reçoit de l'antiHardMana (antiHarM). Un point d'antiHarM annule un point de hardMana.
 
 Tout cela est un peu compliqué et j'ai donc créé la classe `HardMana` qui sert à gérer, transférer et répartir ces points. Cette classe contient les fonctions suivantes :
 
- - `payGeneric()` : prend la décision de payer ou pas quelque chose (par exemple : un pattern en plus, un magicien en plus dans un pattern, une montée de niveau d'un magicien, ...). La décision se fait en fonction d'un coefficient, et de la quantité de hardMana actuelle. Plus la quantité et le coef sont haut, plus on a de chances d'acheter l'élément. (Il faut bien évidemment avoir suffisamment de hardMana).
+ - `payGeneric()` : prend la décision de payer ou pas un élément. La décision se fait en fonction d'un coefficient et de la quantité de hardMana actuelle. Plus la quantité et le coef sont haut, plus on a de chances d'acheter l'élément. (Il faut bien évidemment avoir plus de hardMana que le prix d'achat).
 
  - `dispatch()` : répartit la quantité actuelle dans deux classes `hardMana`, selon un coefficient de répartition déterminé plus ou moins au hasard.
 
- - `chooseAndPay()` : choisit un élément (ou rien) parmi une liste de chose à payer, chacune ayant un coût et un coefficient de probabilité de payage. On choisit parmi ceux qu'on peut se permettre d'acheter.
+ - `chooseAndPay()` : choisit un élément (ou rien) parmi une liste de choses à acheter, chacune ayant un coût et un coefficient de probabilité d'achat. On choisit parmi ceux qu'on peut se permettre d'acheter.
 
  - `divide()` : répartit équitablement la quantité actuelle en plusieurs classes `HardMana`.
 
@@ -553,27 +553,27 @@ Gère la génération successive des vagues de magiciens.
 
  - Au début de la partie, la classe `Game` instancie un `MagicianGenerator`, qui s'instancie pour lui-même un `MagicianWaveGenerator`.
 
- - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0 (dans la variable membre `harMTotal`). La quantité allouée à chaque nouvelle vague est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague (`HARM_INCREMENTATION_OF_INCREMENTATION_PER_WAVE`).
+ - Le `MagicianWaveGenerator` possède une quantité initiale de hardMana de 0 (variable membre `self.harMTotal`). La quantité allouée à chaque nouvelle vague est définie par `MagicianWaveGenerator.incrForHarM`. Cette quantité est de 0 également, mais elle augmente de 20 à chaque vague (`HARM_INCREMENTATION_OF_INCREMENTATION_PER_WAVE`).
 
  - La variable `MagicianGenerator.counterNextWave` est initialisée à 0. Donc on crée automatiquement une première vague, en exécutant la fonction `MagicianWaveGenerator.elaborateNextWave()`.
 
- - Même avec un hardMana initial de 0, on obtient quelque chose. Car le premier pattern de génération d'une vague est gratuit, et le premier magicien d'un pattern est gratuit aussi.
+ - Même avec un hardMana initial de 0, on obtient quelque chose. Le premier pattern d'une vague est gratuit et le premier magicien d'un pattern est gratuit aussi.
 
-  - La fonction `elaborateNextWave()` renvoie une liste non vide de pattern, ainsi qu'une variable numérique `timeWave` : nombre de cycle avant la génération de la prochaine vague. Ce temps est calculé par le `MagicianWaveGenerator`.
+ - La fonction `elaborateNextWave()` renvoie une liste non vide de pattern, ainsi qu'une variable numérique `timeWave` (nombre de cycles avant la génération de la prochaine vague) calculée par le `MagicianWaveGenerator`.
 
- - Le `MagicianGenerator` génère le ou les magiciens définis dans le ou les patterns. (Soit tous d'un coup, soit petit à petit, ça dépend des patterns).
+ - Le `MagicianGenerator` génère le ou les magiciens définis dans le ou les patterns. (Soit tous d'un coup, soit petit à petit, selon les patterns).
 
  - `MagicianGenerator.counterNextWave` prend la valeur de `timeWave`.
 
- - exécution de `MagicianGenerator.update()` à chaque cycle de jeu : `counterNextWave` diminue de 1.
+ - À chaque cycle de jeu : exécution de `MagicianGenerator.update()`, `counterNextWave` diminue de 1.
 
  - Le joueur doit tuer les tous les magiciens de la vague. On imagine qu'il parvient à le faire avant que `counterNextWave` atteigne 0.
 
  - La fonction `Game.isMagicianActive()` détecte qu'il n'y a plus de magiciens actifs. La classe `Game` exécute alors la fonction `MagicianGenerator.takeStimuliNoMoreActiveMagi()`.
 
- - Si le temps restant avant la prochaine vague est inférieur à 70 cycles (`DELAY_MAX_BETWEEN_WAVE`), on récompense un peu le joueur : on ne fait rien jusqu'à la prochaine vague. Ça lui laisse le temps de se repositionner et de recharger son fusil.
+ - Si le temps restant avant la prochaine vague est inférieur à 70 cycles (`DELAY_MAX_BETWEEN_WAVE`), on récompense légèrement le joueur : on ne fait rien jusqu'à la prochaine vague. Ça lui laisse le temps de se repositionner et de recharger son fusil.
 
- - Si le temps est supérieur à 70 cycles, on récompense plus le joueur. On récupère le temps au-delà des 70 cycles, et on l'utilise pour deux choses :
+ - Si le temps est supérieur à 70 cycles, on récompense le joueur un peu plus. On récupère le temps au-delà des 70 cycles, et on l'utilise pour deux choses :
 
     - création d'antiHarM : 3 cycles de temps bonus créent un point d'antiHarM (`COEF_CONVERSION_HARM_FROM_TIME`). Envoi de cet antiHarM au `MagicianWaveGenerator`, qui le stocke dans sa variable interne `antiHarM`.
 
@@ -589,7 +589,7 @@ Gère la génération successive des vagues de magiciens.
 
  - Le joueur doit tuer les tous les magiciens de la vague. On imagine que ça lui prend du temps, et que `MagicianGenerator.counterNextWave` atteint 0 alors qu'il reste encore des magiciens actifs.
 
- - On ne génère pas encore la vague suivante. On décrémente `MagicianGenerator.counterBonusTime`, de 1 à chaque cycle. Si le joueur parvient à tuer tous les magiciens, on génère immédiatement la vague suivante, et on conserve le reste de `MagicianGenerator.counterBonusTime` pour plus tard.
+ - On ne génère pas encore la vague suivante. On décrémente `MagicianGenerator.counterBonusTime` de 1 à chaque cycle. Si le joueur parvient à tuer tous les magiciens, on génère immédiatement la vague suivante, et on conserve le reste de `MagicianGenerator.counterBonusTime` pour plus tard.
 
  - Sinon, le temps de bonus est entièrement vidé, et on génère la vague suivante, même s'il reste encore des magiciens actifs.
 
@@ -612,25 +612,25 @@ Remarque : les noms des tags délimitant les parties du fichier : `[dnipr]` et `
 
 ### yargler/SoundYargler ###
 
-Joue les sons. Ceux du jeu, et ceux du système de menu.
+Joue les sons. Ceux du jeu et ceux du système de menu.
 
 Les sons sont organisés par groupe. Un groupe correspond à un événement (ex : coup de feu, magicien qui se prend une balle, ...)
 
-Lorsque un événement devant émettre un son survient, la fonction `playSound(IDENTIFIANT_EVENEMENT)` est exécutée. Cette fonction choisit  au hasard un son parmi ceux du groupe de l'événement, et le joue.
+Lorsque un événement devant émettre un son survient, la fonction `playSound(IDENTIFIANT_EVENEMENT)` est exécutée. Cette fonction choisit au hasard un son parmi ceux du groupe de l'événement, et le joue.
 
-Ça permet d'avoir un minimum de diversité. Un magicien qui meurt fera parfois "Argg!", parfois "Heuargl!" ou encore "Ayaaarrr!!!". C'est important.
+Ça permet d'avoir un minimum de diversité. Un magicien qui meurt fera "Argg!" ou "Heuargl!" ou encore "Ayaaarrr!!!". C'est important.
 
-Le nom des fichiers sons reflètent ce rangement par groupe. Ils respectent le format suivant :
+Les noms des fichiers sons reflètent ce rangement par groupe. Ils respectent le format suivant :
 (identifiant du groupe) (index sur 2 chiffres) ".ogg".
 
 La liste des groupes et leurs identifiants sont décrits au début de `yargler.py` (variables `SND_*` et `DICT_SND_FILENAME`).
 
-Pour jouer les sons, on instancie une seule classe `SoundYargler`, dès l'importation du fichier `yargler.py`. L'objet instancié (`theSoundYargler`) n'est pas transmis en paramètre d'une fonction à l'autre. Ce serait lourdingue. On le récupère directement au moment d'importer le fichier. C'est une sorte de singleton à l'arrache.
+Pour jouer les sons, on instancie une seule classe `SoundYargler` dès l'importation du fichier `yargler.py`. L'objet instancié (`theSoundYargler`) n'est pas transmis en paramètre d'une fonction à l'autre. Ce serait lourdingue. On le récupère directement au moment d'importer le fichier. C'est une sorte de singleton à l'arrache.
 
 
 ## Vocabulaire ##
 
-`takeStimuli*` : préfixe de nom d'une fonction à appeler par du code extérieur, pour prévenir la classe possédant cette fonction qu'il s'est passé un truc. C'est pour exprimer que c'est une fonction "publique", et une sorte de callback, mais pas tout à fait. Ça s'appelle "takeStimuli" et non pas "sendStimuli", car la fonction est nommée du point de vue de la classe, et non du point de vue du code extérieur. C'est pas très bien. Tant pis, on fera mieux la prochaine fois.
+`takeStimuli*` : préfixe de nom d'une fonction à appeler par du code extérieur, pour prévenir la classe possédant cette fonction qu'il s'est passé un truc. C'est pour exprimer que c'est une fonction "publique", et que c'est une sorte de callback, mais pas tout à fait. Ça s'appelle "takeStimuli" et non pas "sendStimuli", car la fonction est nommée du point de vue de la classe, et non du point de vue du code extérieur. C'est pas très bien. Tant pis, on fera mieux la prochaine fois.
 
 `dogDom` : annagramme plus ou moins obfusquée de "god mode". Je ne voulais pas que ce soit trop facile de débloquer le mode invincible juste en bidouillant le code source. Une recherche des mots "god" et "invincible" dans tous les fichiers .py ne donne rien. J'utilise le mot-clé "dogDom" lorsque je dois mentionner la validation du god mode avec le code secret, et la sélection de ce mode dans le menu secret. Ha ha ha, je m'appelle Réchèr et j'obfusque du code python tout en le documentant par ailleurs. Oui je suis schizophrène, oui.
 
@@ -640,7 +640,6 @@ Pour jouer les sons, on instancie une seule classe `SoundYargler`, dès l'import
 
 `HardMana`, `harM`, `antiHarM`, `wave`, `magiCoefCost` : voir début du fichier `maggenwa.py`.
 
-`pat`, `pattern`, `genPattern` : pattern de génération d'une liste de magiciens, dans une vague : ligne/diagonale/cercle/random, avec les magiciens qui apparaissent d'un coup / qui apparaissent progressivement, ...
+`pat`, `pattern`, `genPattern` : pattern de génération d'une liste de magiciens dans une vague/wave. Ça peut être une ligne, une diagonale, un cercle, du random. Les magiciens peuvent apparaître d'un coup, progressivement, ...
 
-
-    `debuff` : action de diminuer le `HardMana` de la prochaine vague à créer avec de l'`antiHarM`. Le terme n'est pas très bien choisi mais c'est pas grave.
+`debuff` : action de diminuer le `HardMana` de la prochaine vague à créer avec de l'`antiHarM`. Le terme n'est pas très bien choisi mais c'est pas grave.
