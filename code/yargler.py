@@ -39,7 +39,7 @@ from common import (securedPrint, SOUND_DIRECTORY_NAME,
 #ou à un groupe de sons.
 (SND_MAG_BURST,         #magicien qui explose
  SND_MAG_DYING_ROTATE,  #magicien qui meurt en tournoyant dans les airs
- SND_MAG_DYING_SHIT,    #magicien qui meurt en se transformant en chaise
+ SND_MAG_DYING_SHIT,    #magicien qui meurt en se transformant en chiasse
  SND_GUN_REARM,         #réarmement du flingue
  SND_GUN_FIRE,          #coups de feu. Pan !
  SND_HERO_HURT,         #cri du héro quand il se fait toucher
@@ -50,8 +50,8 @@ from common import (securedPrint, SOUND_DIRECTORY_NAME,
  SND_MAG_APPEAR,        #magicien qui apparaît
  SND_PREZ_BLARG,        #le "Blarg" de la présentation
  SND_STORY_MUSIC,       #la chanson que je chante moi-même pendant le scrolling du scénario
- SND_MENU_SELECT,       #"blolop" de sélection d'une option du menu.
- SND_MENU_CYCLE,        #"plop" de cyclage de focus d'un éléments de menu vers un autre
+ SND_MENU_SELECT,       #"blolop" de sélection d'une option du menu
+ SND_MENU_CYCLE,        #"plop" de cyclage de focus d'un élément de menu vers un autre
 ) = range(15)
 
 #dictionnaire des infos permettant de charger tous les fichiers de sons.

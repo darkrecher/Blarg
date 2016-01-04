@@ -31,42 +31,42 @@ tous les dégommer. Passé ce temps, la wave suivante est "élaborée". une wave
 est un ensemble de pattern.
 (élaborer = générer, mais je trouve ça plus chouette "élaborer")
 
-pattern : suite de magiciens à générer. pour chaque magicien, on associe les infos
+pattern : suite de magiciens à générer. Pour chaque magicien, on associe les infos
 nécessaires à sa création (position, level, ...) et une valeur de "delay".
-car tous les magiciens d'un pattern n'apparaissent pas tous d'un coup.
-le delay est cumulatif. Ex : le premier magicien a un delay de 7, le suivant
-a un delay de 10. Le premier apparaîtra dans 7 cycles, le suivant dans 17 cycles.
-On peut faire apparaître plusieurs magiciens d'un coup en leur mettant des delay de 0
+Tous les magiciens d'un pattern n'apparaissent pas tous d'un coup.
+Le delay est cumulatif. Ex : le premier magicien a un delay de 7, le suivant
+en a un de 10. Le premier apparaîtra dans 7 cycles, le suivant dans 17 cycles.
+On peut faire apparaître plusieurs magiciens d'un coup en leur mettant des delay de 0.
 
-dans les infos du pattern, on trouve les coordonnées de départ des magiciens. Et eventuellement
-les coordonnées de fin. Elles ne sont utiles que pour les magiciens de type MAGI_LINE.
+Dans les infos du pattern, on trouve les coordonnées de départ des magiciens. Et éventuellement
+les coordonnées de fin, qui ne sont utiles que pour les magiciens de type MAGI_LINE.
 Elles définissent là où ils doivent se rendre.
-(les MAGI_RAND bougent au hasard, et n'ont donc pas de coord de fin)
+(les MAGI_RAND bougent au hasard, et n'ont donc pas de coord de fin).
 
-HardMana (HarM) : valeur numérique. "Mana de difficulté". Le waveGenerator dépenses ce mana
+HardMana (HarM) : valeur numérique. "Mana de difficulté". Le waveGenerator dépense ce mana
 pour acheter des patterns, les améliorer, etc...
 Entre deux waves, on redonne du HardMana au waveGenerator. Et on lui en redonne de plus
 en plus.
-Mais il faut racheter les patterns et les améliorations de pattern entre chaque wave.
+Mais il faut racheter les patterns et les améliorations de pattern à chaque wave.
 
 le waveGenerator dépense le plus possible du HardMana qu'il possède à chaque wave.
-Le petit reste qu'il n'a pas pu dépenser est reporté à la wave suivante.
+Le reste qu'il n'a pas pu dépenser est reporté à la wave suivante.
 Ceci est également valable à l'intérieur d'une wave. C'est à dire que quand le waveGen doit
 acheter un certain truc, et qu'il ne dépense pas tout le HarM alloué pour cela,
 alors le reste est reporté pour le prochain truc qu'il doit acheter.
 
 Le HardMana est une classe à part entière. Car on a parfois besoin de le répartir en
 plusieurs petits bouts, de décider si on achète un truc ou pas en fonction du Mana qu'on a, ...
-HardMana = harM : c'est la même chose mais en abrégé
+HardMana = harM : c'est la même chose mais en abrégé.
 
 anti-HardMana (AntiHarM) : C'est du mana inversé. Du "mana de facilité". Si le joueur termine
 une wave en moins de temps que le temps prévu, il gagne de l'AntiHarM.
 l'AntiHarM est dépensé tout de suite, pour diminuer la quantité de HarM allouée à la prochaine
 élaboration de wave. 1 HarM et 1 AntiHarM s'annulent.
 
-a chaque wave, le waveGenerator fabrique deux sortes de patterns
- - 1 pattern principal : toujours constitué de magiciens de type Rand (ils se déplacent au hasard)
- - 0, 1 ou plusieurs patterns supplémentaires. des magiciens Rand ou des magiciens Line.
+À chaque wave, le waveGenerator fabrique deux sortes de patterns :
+ - un pattern principal : toujours constitué de magiciens Rand (ils se déplacent au hasard).
+ - 0, un ou plusieurs patterns supplémentaires. Des magiciens Rand ou des magiciens Line.
 TRODO : nommage un peu pourri. Dans le code, j'appelle le pattern principal PatRand,
 et les patterns sup euh... Pat. Tout connement. C'est moche.
 
@@ -605,7 +605,7 @@ class MagicianWaveGenerator():
             tuple de 2 éléments :
              - int. temps (nbre de cycle) avant la création de la prochaine wave.
              - liste de patterns : les patterns à créer. Avec les temps de délai et les infos
-               de chaque magiciens. (voir le truc que renvoie la fonction mergeGenPatInfo)
+               de chaque magicien. (voir le truc que renvoie la fonction mergeGenPatInfo)
         """
 
         # --- RECUPERATION ET REPARTITION DU HARD-MANA ---
@@ -614,7 +614,7 @@ class MagicianWaveGenerator():
         self.addHarMForNextWave()
         bla("  harmTotal for this wave :",str(self.harMTotal))
 
-        #listes total des patterns qui seront générés pour cette wave
+        #liste total des patterns qui seront générés pour cette wave
         self.listOfGenPattern = []
         #nombre total de magiciens générés pour cette wave.
         self.nbrTotalMagiGenerated = 0
@@ -762,7 +762,7 @@ class MagicianWaveGenerator():
             #ça c'est le HarMana pour faire le transfert du pat précédent au pat courant.
             harMRemainingPrecedentPat = HardMana()
 
-            # --- ACHAT DSE MAGICIENS ET CONFIGURATION DE CHAQUE PATTERN SUP ---
+            # --- ACHAT DES MAGICIENS ET CONFIGURATION DE CHAQUE PATTERN SUP ---
 
             for patWithHarM in listPatWithHarM:
 

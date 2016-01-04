@@ -40,12 +40,12 @@ Ensuite on a la config des touches. Qui s'applique à tous les joueurs :
 [dnipr] : tag à la con, pour identifier le début de la config de touche
 <listKeyCode> : liste de valeurs numérique écrites en chaîne de caractère (décimal).
                 séparé par des virgules. C'est les codes des touches pour le jeu.
-                dans l'ordre : haut, bas, gauche, droite, feu, recharger
+                Dans l'ordre : haut, bas, gauche, droite, feu, recharger
 <listCharKey> : liste de chaîne de caractère. séparé par des octets à 0.
-                noms des touches correspondant aux codes. Y'a autant d'élément et c'est dans
+                Noms des touches correspondant aux codes. Y'a autant d'élément et c'est dans
                 le même ordre que les listKeyCode.
                 Je suis obligé de stocker ces putains de noms. Car ils ne se déduisent pas
-                automatiquement du code de la touche (Ca dépend de l'azert/qwerty/...)
+                automatiquement du code de la touche (Ca dépend de l'azerty/qwerty/...)
                 Ceci dit, y'a des fois, le nom c'est une chaîne vide. Parce qu'on peut
                 le déduire automatiquement quand même. Enfin c'est un peu bizarre.
                 Voir menuzcon.py
@@ -59,8 +59,8 @@ Ensuite on a les infos détaillées pour chaque joueur
 
 [knakes] : tag à la con, pour indiquer le début d'un joueur.
 <nom du joueur> : unicode string (enfin on va essayer)
-<playerStats> : liste de nombres écrit en chaîne de caractère décimale, séparé par des virgules.
-                Ce sont les scores, et autres. L'ordre des valeurs est important>
+<playerStats> : liste de nombres écrits en chaîne de caractère décimale, séparés par des virgules.
+                Ce sont les scores et autres. L'ordre des valeurs est important>
 
 [knakes]
 <nom du joueur suivant>
@@ -75,7 +75,7 @@ le format des GlobData : concaténations <clé><valeur> avec la clé d'une seule le
 L'une de ces lignes doit avoir la clé "V", et indiquer la version du format du fichier.
 Dans la suite du fichier, on peut faire n'importe quoi. On s'adaptera en fonction de la version.
 Pour la version actuelle, c'est "V42".
-Je n'en fait rien du tout. Mais c'est de la prévoyance pour la suite.
+Je n'en fais rien du tout. Mais c'est de la prévoyance pour la suite.
 
 vocabulaire :
 
@@ -90,7 +90,7 @@ playerBytes : toutes les données du joueur (équivalente à playerData),
               à écrire tel quel dans le fichier de sauvegarde / lue tel quel depuis le fichier.
 
 dans le code, il y a très souvent confusion entre les noms playerStat et playerData, car
-les playerData sont constitués uniquement des playerStat, et de rien d'autre.
+les playerData sont constitués uniquement des playerStat et rien d'autre.
 Si je voulais, je pourrais arranger ça. Mais c'est pas critique. Désolé pour la gêne occasionnée.
 
 Archivist.dicPlayerData : dictionnaire. clé : nom du joueur. valeur : sa playerData
@@ -111,28 +111,29 @@ référence vers des données de l'archiviste. C'est une copie.
 Le ScoreManager se modifie son playerStat dans son coin.
 Lors d'une sauvegarde, le ScoreManager apporte son playerStat à l'Archivist, en indiquant
 à quel playerName il se rapporte. l'archiviste le recopie pour lui, le place
-dans le bon endroit de son self.dicPlayerData, et sauvegarde le tout.
+dans le bon endroit de son self.dicPlayerData et sauvegarde le tout.
 
 L'archivist est conçu pour (à priori) ne pas tout faire planter si le fichier de sauvegarde
 est pourri ou introuvable. Si ça arrive, on prend les valeurs par défaut et on regénère
 un fichier correct.
-Il est également conçu pour pas tout faire planter si on peut pas écrire dans le fichier.
-On doit pouvoir jouer, et se faire la config qu'on veut, même dans ce cas.
+Il est également conçu pour pas tout faire planter si on ne peut pas écrire dans le fichier.
+On doit pouvoir jouer et se faire la config qu'on veut, même dans ce cas.
 Y'a juste que rien ne sera retenu. Ni les scores ni la config.
 
 les fonctions modifyXXXX permettent de changer des données dans l'archivist, et de
 sauvegarder le tout immédiatement après.
-"le tout" : c'est à dire : globData, config et données de tous les joueurs
-Cesfonctions renvoient un boolean, indiquant si la sauvegarde a réussie ou échouée.
-Pour l'instant y'a 3 fonctions comme ça. (Voir vers la fin du fichier)
+"le tout" : c'est à dire : globData, config et données de tous les joueurs.
+Ces fonctions renvoient un boolean, indiquant si la sauvegarde a réussie ou échouée.
+Pour l'instant y'a 3 fonctions comme ça. (Voir vers la fin du fichier).
 
 NDC (note du codeur) : Au départ, je voulais faire un truc de ouf avec ce jeu :
 la gestion de différents joueurs. Avec chacun un nom, une config, des stats et tout.
 Et on aurait pu en créer autant qu'on veut. Avec des chouettes menus. J'ai abandonné l'idée.
 En fait y'a que un joueur et demi possible. (Le joueur normal, et celui du edoM edoG).
-Du coup, il va peut être rester des bouts de code et des fonctions, qui étaient prévues
-pour cette gestion de multi-profil, et qui servent à rien.
+Du coup, il va peut être rester des bouts de code et des fonctions, prévues pour cette gestion
+de multi-profil, qui ne servent plus à rien.
 Cette NDC est valable pour les classes Archivist et ScoreManager
+
 TRODO pour plus tard : config différente pour chaque joueur. Et plusieurs joueurs, donc, oui.
 """
 
