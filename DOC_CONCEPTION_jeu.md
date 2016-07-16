@@ -254,9 +254,9 @@ Gère tout le bazar concernant le héros :
 
  - Mouvement, limitation de la position aux bords de l'aire de jeu.
 
- - Gestion des points de vie, animation de la mort du héros quand il n'a plus de points de vie.
+ - Gestion des points de vie, animation de mort quand points de vie à 0.
 
- - Gestion du nombre de cartouche.
+ - Gestion du nombre de cartouches.
 
 Lors de l'instanciation du héros, il faut lui envoyer les dictionnaires contenant les images du corps et de la tête. Le héros instancie de lui-même un `heroHead` et un `heroBody`.
 
@@ -383,7 +383,7 @@ Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiq
 
     - Attribution de deux points de vie (variable `self.lifePoint`).
 
-    - création de `self.spriteAppearing`, un `SpriteSimple` représentant l'animation d'apparition du magicien. (Au début ça ressemble à une bite bleue, puis ça prend la forme du magicien, haha lol, si j'ose dire).
+    - création de `self.spriteAppearing`, un `SpriteSimple` représentant l'animation d'apparition du magicien. (Au début ça ressemble à une bite bleue, puis ça prend la forme du magicien, haha lol).
 
     - La game loop place le nouveau magicien dans le groupe de sprite `Game.groupMagicianAppearing`, mais pas dans `Game.allSprites`. C'est à dire que le magicien est updaté, mais pas dessiné.
 
@@ -407,13 +407,13 @@ Lorsque le magicien se collisionne avec le héros, son `level` retombe automatiq
 
     - L'état est `BURSTING` lorsque la magicien se prend 3 bullets d'un seul coup (ce qui arrive lorsque le héros lui tire dessus d'assez près). Dans ce cas, l'animation de mort est toujours la même : des membres coupés qui volent.
 
-    - L'état est `DYING` lorsque le magicien n'a plus de points de vie. Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 différentes:
+    - L'état est `DYING` lorsque le magicien n'a plus de points de vie. Dans ce cas, une animation de mort est sélectionnée au hasard parmi 3 possibilités :
 
          * shit : le magicien se transforme en caca.
          * rotate : il tournoie dans les airs puis retombe.
          * naked : il s'envole tout nu en faisant des prouts.
 
-    - Pour bursting, shit et rotate, l'animation de mort n'est pas gérée par le magicien lui-même. Il crée immédiatement le ou les `SimpleSprite` correspondants, puis passe à l'état `DEAD` dès le cycle de jeu suivant.
+    - Pour bursting, shit et rotate, l'animation de mort n'est pas gérée par le magicien lui-même. Celui-ci crée immédiatement le ou les `SimpleSprite` correspondants, puis passe à l'état `DEAD` dès le cycle de jeu suivant.
 
     - Pour l'animation naked, c'est un peu plus compliqué. Le sprite reste actif quelques temps, avec une image de magicien tout nu. La fonction `updateDyingNaked()` est exécutée. Elle effectue les actions suivantes :
          * Mouvement général vers le haut, additionné de petits mouvements aléatoires gauche et droite.
@@ -451,7 +451,7 @@ Classe dérivée de `Magician`. Définit un magicien qui se déplace au hasard.
 
 Ses mouvements ont une inertie. Il y a du hasard dans les accélérations X et Y. Ces accélérations agissent sur les vitesses de déplacement X et Y, qui agissent sur les positions X et Y.
 
-Le Magirand possède une variable membre int `self.respectLine`, définissant la position d'une ligne verticale imaginaire. Lorsque le Magirand est à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rend le jeu difficile.
+Le Magirand possède une variable membre de type int : `self.respectLine`, définissant la position d'une ligne verticale imaginaire. Lorsque le Magirand est à gauche de cette limite, on lui ajoute un petit mouvement vers la droite. Le héros ayant tendance à rester du côté gauche, plus un magicien va vers la gauche, plus il rend le jeu difficile.
 
 Plus le `level` du Magirand est haut, plus ses accélérations et sa vitesse maximale sont haute, et plus la `respectLine` se décale vers la droite. Le `level` augmente avec le temps. Toutes ces valeurs sont réinitialisées lorsque le Magicand touche le héros et qu'il retombe au niveau 1.
 
@@ -618,7 +618,7 @@ Joue les sons. Ceux du jeu et ceux du système de menu.
 
 Les sons sont organisés par groupe. Un groupe correspond à un événement (ex : coup de feu, magicien qui se prend une balle, ...)
 
-Lorsque un événement devant émettre un son survient, la fonction `playSound(IDENTIFIANT_EVENEMENT)` est exécutée. Cette fonction choisit au hasard un son parmi ceux du groupe de l'événement, et le joue.
+Lorsqu'un événement devant émettre un son survient, la fonction `playSound(IDENTIFIANT_EVENEMENT)` est exécutée. Cette fonction choisit au hasard un son parmi ceux du groupe de l'événement, et le joue.
 
 Ça permet d'avoir un minimum de diversité. Un magicien qui meurt fera "Argg!" ou "Heuargl!" ou encore "Ayaaarrr!!!". C'est important.
 
