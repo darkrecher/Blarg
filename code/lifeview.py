@@ -22,7 +22,8 @@ date de la dernière relecture-commentage : 01/10/2010
 
 la classe pour gérer l'affichage des points de vie. ( = les vestes en jean)
 
-Dans tout ce module de code, "veste en jean" et "life point", ça désigne ezguegtement la même choz
+Dans tout ce module de code, les termes "veste en jean" et "life point"
+désignent ezguegtement la même choz.
 
 Lorsque le joueur perd un point de vie, on supprime pas tout de suite
 la veste en jean correspondante. On la fait clignoter un peu. C'est classe.
@@ -34,12 +35,12 @@ le blinkCounter et le blinkRandomCursor.
 
 A chaque cycle :
 
-  si le blinkRandomCursor > blinkCounter, la veste est affiché, sinon , elle ne l'est pas.
+  si le blinkRandomCursor > blinkCounter, la veste est affichée, sinon elle ne l'est pas.
 
   variation du blinkCounter : il diminue de 1 en 1, à partir de 50, jusqu'à 0
 
   variation du blinkRandomCursor : il varie en random de 0 à 50, mais avec une inertie.
-  on utilise une autre variable : blinkRandomEnd. random total de 0 à 50
+  on utilise une autre variable : blinkRandomEnd, un random total de 0 à 50
     - blinkRandomCursor tente d'atteindre blinkRandomEnd, en augmentant/diminuant de 5
     - lorsque blinkRandomCursor = blinkRandomEnd, on recalcule blinkRandomEnd,
       toujours en total random de 0 à 50

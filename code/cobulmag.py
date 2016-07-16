@@ -24,16 +24,16 @@ date de la dernère relecture-commentage : 08/10/2010
 la classe pour gérer les collisions entre les magiciens et les balles (bullets) du héros.
 
 Cette classe calcule la trajectoire de chaque bullet, contrôle si elles collisionnent un
-magicien, et transmette les infos nécessaires aux magiciens et au héros en fonction
-des collisions trouvées
+magicien, et transmet les infos nécessaires aux magiciens et au héros en fonction
+des collisions trouvées.
 
 ---
-Explication vaguement exact du cycle de vie d'un enfoiré de magicien.
+Explication vaguement exacte du cycle de vie d'un enfoiré de magicien.
 ---
 
 Les états d'un magicien évoluent dans cet ordre :
 
-APPEARING   ->    ALIVE/HURT    ->   DYING / BURSTING    ->    DEAD
+APPEARING   ->    ALIVE / HURT    ->   DYING / BURSTING    ->    DEAD
 
 Le CollHandlerBulletMagi possède une référence vers la liste de tous les magiciens.
 
@@ -51,7 +51,7 @@ se collisionnent avec quelles magiciens. Si plusieurs bullets vont sur le même m
 la fonction doit le détecter et les additionner
 
 Le déplacement des bullets est instantané. Dès qu'ils sont tirés, on regarde tout de
-suite si ils se collisionnent. C'est pas un objet qui se déplacent au fur à mesure du temps.
+suite si ils se collisionnent. C'est pas des objets qui se déplacent au fur à mesure du temps.
 (je trouve ça plus cool comme ça)
 
 Ensuite, pour chaque magicien s'étant pris une/des bullets, la fonction exécute
@@ -72,7 +72,7 @@ Un magicien est DYING quand il n'a plus de points de vie. (Il fait son anim de m
 
 Un magicien explose (BURSTING) quand il se prend trois bullets d'un coup.
 
-La fonction HeroFiresBullets comptabilise le nombre de magicien tué et le nombre explosé.
+La fonction HeroFiresBullets comptabilise le nombre de magiciens tués et le nombre explosés.
 Elle renvoie tout ça au héros, qui l'additionne dans ses scores personnels.
 
 Lorsqu'un magicien est DYING ou BURSTING, il se fait tout seul son animation de mourage.
