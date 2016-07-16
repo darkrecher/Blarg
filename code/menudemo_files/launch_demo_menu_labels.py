@@ -25,7 +25,7 @@ def mactCloseApp():
     # Un MenuElement peut communiquer avec le MenuManager en renvoyant
     # un tuple contenant des valeurs "IHMSG_xxx".
     # La liste de ces valeurs et leur signification sont dans common.py.
-    # Ça ne marche pas forcément pour toutes les fonctions overridable
+    # Ça ne marche pas forcément pour toutes les fonctions overridables
     # du MenuElement, mais là, ça marche.
     # La valeur IHMSG_TOTALQUIT sert à indiquer qu'on veut quitter
     # complètement l'application.

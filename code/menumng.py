@@ -21,7 +21,7 @@ Blarg version 1.0
 date de la dernière relecture-commentage : 09/02/2011
 
 le putain de menu manager, avec des éléments de menu dedans. Que il les gère,
-leur passe les stimuli, et tout et tout.
+leur passe les stimulis, et tout et tout.
 
 Les flèches haut/bas cyclent le focus sur une liste prédefinie d'éléments (pas forcément tous).
 La touche Tab cycle le focus sur tous les éléments focusables, c'est obligé.
@@ -516,7 +516,7 @@ class MenuManager():
 
     def changeLanguage(self):
         """
-        changement du language. (voir description dans MenuElem) (même si cet classe
+        changement du language. (voir description dans MenuElem) (même si cette classe
         n'est pas héritée de MenuElem. La description va bien quand même. Na!)
         """
 
