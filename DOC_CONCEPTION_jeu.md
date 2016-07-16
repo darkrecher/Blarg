@@ -58,9 +58,9 @@ Flèche bleue pleine, de A vers B : Référence "forte". L'objet A possède une 
 
 Flèche bleue pointillée, de A vers B : Référence "faible". L'objet A n'a pas de référence vers l'objet B. Mais de temps en temps, on appelle une fonction de l'objet A en lui passant l'objet B en paramètre.
 
-Petite flèche bleue vers "SpriteSiGen" : Référence vers l'objet `SpriteSimpleGenerator`. Ces références ne sont pas représentées comme les autres, car ça ferait une flèche qui traverse tout le diagramme et ça ferait fouilis.
+Petite flèche bleue vers "SpriteSiGen" : Référence (forte) vers l'objet `SpriteSimpleGenerator`. C'est une référence comme toutes les autres, mais on ne la représente pas de la manière standard, car ça ferait une flèche qui traverse tout le diagramme et ça se terminerait en un gros fouillis.
 
-Petite flèche bleue vers "SndYargl" : Référence vers l'objet `SoundYargler`.
+Petite flèche bleue vers "SndYargl" : Référence (forte) vers l'objet `SoundYargler`.
 
 Flèche verte, de A vers B : héritage. L'objet B est dérivée de l'objet A.
 
@@ -87,9 +87,9 @@ Pygame permet de faciliter ce traitement, avec les groupes de sprite, en particu
 
  - `RenderUpdates.clear()`, en indiquant en paramètre l'écran et l'image de fond à redessiner. Cette fonction enregistre en interne une liste de "rectangle sales". C'est à dire les zones de l'écran sur lesquelles un sprite a été clearé.
 
- - `RenderUpdates.update()` : exécute la fonction `update()` de chaque sprite du groupe. On peut aussi le faire individuellement en appelant les `update()` de chaque sprite.
+ - `RenderUpdates.update()` : exécute la fonction `update()` de chaque sprite du groupe.
 
- - `listDirtyRects = RenderUpdates.draw()`. Dessine à l'écran tous les sprites du groupe. Renvoie la liste des rectangle sales, correspondant à toutes les zones de l'écran où quelque chose a changé (clear et/ou draw).
+ - `listDirtyRects = RenderUpdates.draw()`. Dessine à l'écran tous les sprites du groupe. Renvoie la liste des rectangles sales, correspondant à toutes les zones de l'écran où quelque chose a changé (clear et/ou draw).
 
  - `pygame.display.flip()` : rafraîchit tout l'écran. Si on veut être plus subtil, on peut exécuter à la place `pygame.display.update(listDirtyRects)`, pour rafraîchir uniquement les zones nécessaires.
 
@@ -109,7 +109,7 @@ Elle n'exécute pas `update()`. Cette action est effectuée par divers autres bo
 
 ### common ###
 
-Module contenant des petites fonctions et des constantes utiles un peu partout. Voir commentaire de chacun d'eux pour des infos détaillées.
+Module contenant des petites fonctions et des constantes utiles un peu partout. Voir le commentaire de chacun d'eux pour des infos détaillées.
 
 
 ### sprsimpl/SpriteSimple ###
@@ -124,9 +124,9 @@ Classe héritée de `pygame.sprite.Sprite`. Permet de gérer des sprites avec :
 
 Contient un groupe de `SpriteSimple`. Effectue leurs updates, et les supprime lorsqu'ils sont arrivés en fin de vie.
 
-Le manager possède une référence vers le gros groupe `allSprites`. Il s'occupe d'updater et d'ajouter/enlever les `SpriteSimple` dont il a la charge, au fur et à mesure de leur cycle de vie.
+Cette classe possède une référence vers le gros groupe `allSprites`. Elle s'occupe d'updater et d'ajouter/enlever les `SpriteSimple` dont elle a la charge, au fur et à mesure de leur cycle de vie.
 
-Le manager ne s'occupe pas de clearer et dessiner ses sprites. C'est le groupe `allSprites` qui effectue ces tâches, comme il le fait pour tous les autres sprites du jeu.
+Elle ne s'occupe pas de clearer et dessiner ses sprites. C'est le groupe `allSprites` qui effectue ces tâches, comme il le fait pour tous les autres sprites du jeu.
 
 
 ### sprsigen/SpriteSimpleGenerator ###
@@ -137,7 +137,7 @@ Le `SpriteSimpleGenerator` contient une référence vers un `SpriteSimpleManager
 
 Cette classe est équivalente à un gros tas de constantes, permettant de générer des sprites avec des images, des mouvements et une configuration prédéfinis.
 
-La seule génération plus complexe que les autres est celle des bras et têtes coupées de magiciens. Ce sont des `SpriteSimple` comme les autres, mais il y a un petit traitement initial (avec du random) pour déterminer les images effectuant les gigotages et le tournoiement.
+La seule génération plus complexe que les autres est celle des bras et têtes coupées des magiciens. Ce sont des `SpriteSimple` comme les autres, mais il y a un petit traitement initial (avec du random) pour déterminer les images effectuant les gigotages et le tournoiement.
 
 
 ### lamoche/Lamoche ###
@@ -209,7 +209,7 @@ Lorsque le héros reçoit un stimuli de collision, il se met immédiatement dans
 
 Récupère les stats d'un joueur à partir d'une classe `Archivist` (la classe gérant le fichier de sauvegarde). Ces stats comprennent les high scores, ainsi que le nombre total de magiciens tués et explosés.
 
-Récupère le nombre de magiciens explosés et le nombre de magiciens tués sans être explosés, au fur et à mesure de la partie.
+Récupère le nombre de magiciens explosés, et tués sans être explosés, au fur et à mesure de la partie.
 
 Met à jour le score de la partie en cours, les high scores, et les totaux.
 
@@ -233,7 +233,7 @@ Cette classe contient des fonctions à appeler à chaque cycle, pour faire jouer
 
 Affiche les points de vie du joueur, en haut à gauche de l'écran (sous forme d'image représentant des vestes en jean, parce que c'est rigolo).
 
-Reçoit un stimuli lorsque le héros perd un point de vie, et fait clignoter une veste en jean jusqu'à la faire disparaître progressivement. Le "progressivement" étant aléatoire, afin d'avoir quelque chose de classe. Le fonctionnement détaillé du clignotement est expliqué au début du fichier .py.
+Cette classe reçoit un stimuli lorsque le héros perd un point de vie, elle fait alors clignoter une veste en jean jusqu'à la faire disparaître progressivement. Le "progressivement" est aléatoire, afin d'avoir quelque chose de classe. Le fonctionnement détaillé est expliqué au début du fichier.
 
 À chaque cycle, le code extérieur appele la fonction `determineIsUpdatingSthg()`, pour savoir s'il y a un clignotement en cours. Si oui, il faut ensuite appeler `update()`.
 
