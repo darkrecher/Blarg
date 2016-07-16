@@ -26,13 +26,13 @@ Les sprites de la tête et du corps. Les actions, les états, ...
 Un peu de vocabulaire :
 
 clamping : contrainte imposée à un objet rectangulaire, pour le forcer
-à rester dans un rectangle qui le contient.
+à rester dans un rectangle englobant.
 L'objet "héros" est clampingué dans le rectangle de l'écran du jeu.
 
 rearm : action de faire schla-schlak le fusil à pompe, pour virer
 la douille après avoir tiré une cartouche.
 
-recharge : remettre des cartouches dans le fusil.
+recharge/reload : remettre des cartouches dans le fusil.
 (quand il est complètement vide, ou quand il est pas
 complètement plein)
 
@@ -40,9 +40,9 @@ stimuli : valeur booléenne correspondant à une action
 que peut faire le héros (ex : tirer, recharger).
 si la valeur est True : le héros a reçu un signal
 indiquant qu'il doit faire l'action correspondante.
-(l'origine du signal est indéterminée mais osef)
-selon son état, le héros va faire l'action tout de suite, ou pas.
-lorsqu'il est reçu et accepté, un stimuli est toujours gardé en mémoire
+(l'origine du signal est indéterminée mais osef).
+Selon son état, le héros va faire l'action tout de suite, ou pas.
+Lorsqu'il est reçu et accepté, un stimuli est toujours gardé en mémoire
 jusqu'à ce qu'il soit traité.
 
 Note importante : on dit "un stimuli" et "des stimulis"
@@ -386,11 +386,11 @@ class Hero():
 
     def definestateMachine(self):
         """
-        putain de dictionnaire gérant les différents etats du héros.
+        putain de dictionnaire gérant les différents états du héros.
 
         clé : identifiant de l'état
         valeur : putain de gros tuple, contenant les
-                 infos corresopndantes à cet état
+                 infos correspondantes à cet état
           0) identifiant de l'image du corps.
           1) fonction à exécuter si on a reçu le stimuli FIRE.
              Ou None. Dans ce cas on ne fait rien et on garde le stimuli en reserve

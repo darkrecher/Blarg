@@ -43,13 +43,13 @@ les coordonnées de fin, qui ne sont utiles que pour les magiciens de type MAGI_L
 Elles définissent là où ils doivent se rendre.
 (les MAGI_RAND bougent au hasard, et n'ont donc pas de coord de fin).
 
-HardMana (HarM) : valeur numérique. "Mana de difficulté". Le waveGenerator dépense ce mana
-pour acheter des patterns, les améliorer, etc...
-Entre deux waves, on redonne du HardMana au waveGenerator. Et on lui en redonne de plus
+HardMana (HarM) : valeur numérique. "Mana de difficulté".
+Le MagicianWaveGenerator dépense ce mana pour acheter des patterns, les améliorer, etc...
+Entre deux waves, on redonne du HardMana au MagicianWaveGenerator. Et on lui en redonne de plus
 en plus.
 Mais il faut racheter les patterns et les améliorations de pattern à chaque wave.
 
-le waveGenerator dépense le plus possible du HardMana qu'il possède à chaque wave.
+le MagicianWaveGenerator dépense le plus possible du HardMana qu'il possède à chaque wave.
 Le reste qu'il n'a pas pu dépenser est reporté à la wave suivante.
 Ceci est également valable à l'intérieur d'une wave. C'est à dire que quand le waveGen doit
 acheter un certain truc, et qu'il ne dépense pas tout le HarM alloué pour cela,
@@ -64,7 +64,7 @@ une wave en moins de temps que le temps prévu, il gagne de l'AntiHarM.
 l'AntiHarM est dépensé tout de suite, pour diminuer la quantité de HarM allouée à la prochaine
 élaboration de wave. 1 HarM et 1 AntiHarM s'annulent.
 
-À chaque wave, le waveGenerator fabrique deux sortes de patterns :
+À chaque wave, le MagicianWaveGenerator fabrique deux sortes de patterns :
  - un pattern principal : toujours constitué de magiciens Rand (ils se déplacent au hasard).
  - 0, un ou plusieurs patterns supplémentaires. Des magiciens Rand ou des magiciens Line.
 TRODO : nommage un peu pourri. Dans le code, j'appelle le pattern principal PatRand,
@@ -787,7 +787,7 @@ class MagicianWaveGenerator():
         #la diminution du temps.
         self.harMTotal.grabAll(harMPatMain)
 
-        # --- CALCUL DE TIMEWAVE, ET DIMINUTION AVEC HARTIMEWAVE ---
+        # --- CALCUL DE TIMEWAVE, ET DIMINUTION AVEC HARMTIMEWAVE ---
         bla("   -------- diminution temps avec harMTimeWave  -----------")
 
         #calcul de la difficulté de la wave, et conversion pour avoir le timeWave.
