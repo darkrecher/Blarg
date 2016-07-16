@@ -102,9 +102,11 @@ Durant un cycle, on peut ajouter et enlever des sprites du groupe, avec les fonc
 
 Classe principale gérant le jeu en lui-même. Contient la game loop.
 
-Cette classe possède un `RenderUpdates`, appelé `allSprites`, contenant tous les sprites du jeu à afficher à l'instant T. La game loop exécute les fonctions `clear()` et `draw()` de `allSprites`.
+Cette classe possède un `RenderUpdates`, appelé `allSprites`, contenant presque tous les sprites du jeu à afficher à l'instant T. La game loop exécute les fonctions `clear()` et `draw()` de `allSprites`.
 
 Elle n'exécute pas `update()`. Cette action est effectuée par divers autres bouts de code. J'ai voulu faire comme ça car certains objets du jeu (en particulier le héros) sont représentés par plusieurs sprites. Il fallait donc mettre le code de gestion de ces objets dans des classes dédiées, et non pas dans un update d'un sprite quelconque qu'on n'aurait pas su à quel objet il se rapporte.
+
+`allSprites` contient donc "presque" tous les sprites du jeu. Les cartouches et les douilles (`ammoViewer.groupBulShell`) ainsi que les points de vie (`lifePointViewer.groupLifePoints`) sont gérés par d'autres modules de code. Il y a peut-être encore d'autres sprites non présents dans `allSprites` (je n'ai pas tout contrôlé), mais à priori non.
 
 
 ### common ###
