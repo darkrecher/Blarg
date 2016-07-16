@@ -1,6 +1,8 @@
 # Document de conception de Blarg (système de menu) #
 
-Ce document décrit la manière dont est organisé le système de menu de Blarg (menu principal, config des touches, affichage des scores, ...). Il ne décrit pas l'organisation du code du jeu en lui-même.
+Ce document décrit la manière dont est organisé le système de menu de Blarg (menu principal, config des touches, affichage des high scores, ...).
+
+L'organisation du code du jeu en lui-même est décrite dans cet autre document : https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md .
 
 ## Introduction ##
 
@@ -10,15 +12,15 @@ Durant la réalisation de ce jeu, le PEP8 a été foulé aux pieds, écartelé, 
 
 Le système de menu se veut le plus générique et le plus réutilisable possible. Même si en réalité, euh... Bref.
 
-Les noms des fichiers définissant le système de menu générique commencent tous par "menu". Les noms des fichiers définissant les menus spécifique à Blarg commencent tous par "menuz". J'aurais dû ranger tout ça correctement dans des répertoires, mais j'étais un vilain.
+Les noms des fichiers définissant le système de menu commencent tous par "menu". Les noms des fichiers définissant les menus spécifique à Blarg commencent tous par "menuz". J'aurais dû ranger tout ça correctement dans des répertoires, mais j'étais un vilain.
 
 ## Description du système de menu générique ##
 
 ### Menus d'exemple ###
 
-Des exemples simples et indépendants du jeu ont été créés, afin de donner une première idée de ce que peut faire le système de menu.
+Ces exemples sont indépendants du jeu et permettent de donner une première idée de ce que peut faire le système de menu.
 
-Pour les exécuter, ouvrir une console, et utiliser les commandes suivantes :
+Pour les exécuter, ouvrir une console et entrer les commandes suivantes :
 
     cd <emplacement_de_ce_repository>
     cd code
@@ -106,7 +108,7 @@ Contient la classe `MenuManager` gérant un menu, qui comporte des `MenuElem`.
 
 On peut créer un `MenuManager` de 2 manières différentes :
 
- - Utliser directement la classe de base. On l'instancie, on place dedans les `MenuElem` en redéfinissant la variable membre `listMenuElem`, puis on appelle la fonction `initFocusCyclingInfo()`. C'est ce qui est fait dans les codes d'exemple du chapitre précédent.
+ - Utiliser directement la classe de base. On l'instancie, on place dedans les `MenuElem` en redéfinissant la variable membre `listMenuElem`, puis on appelle la fonction `initFocusCyclingInfo()`. C'est ce qui est fait dans les codes d'exemple du chapitre précédent.
 
  - Dériver la classe. Dans l'`__init__`, on définit `listMenuElem`, puis on appelle `initFocusCyclingInfo()`. C'est ce qui est fait dans la plupart des menus de Blarg.
 
