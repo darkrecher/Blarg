@@ -233,7 +233,7 @@ class MenuManagerHighScore(MenuManager):
 
         if len(tupleStatKey) == 1:
 
-            #on n'a juste un identifiant principal, sans identifiant secondaire.
+            #on a juste un identifiant principal, sans identifiant secondaire.
             #Ca veut dire que l'identifiant principal spécifie une valeur numérique simple,
             #qui se trouve dans le dictionnaire du joueur. Donc, on la chope directement.
             statKey = tupleStatKey[0]

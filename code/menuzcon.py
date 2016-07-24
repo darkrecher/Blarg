@@ -532,7 +532,7 @@ class MenuManagerConfig(MenuManagerManual):
         theSoundYargler.changeSoundEnablation(globDataSoundCurrent)
 
         #son de sélection d'un truc : "blululup" !! (le son n'est pas joué si on vient
-        #de désactiver les sos juste avant).
+        #de désactiver les sons juste avant).
         theSoundYargler.playSound(SND_MENU_SELECT)
 
         return (IHMSG_REDRAW_MENU, )

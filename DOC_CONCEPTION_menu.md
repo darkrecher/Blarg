@@ -372,7 +372,7 @@ Il s'agit du point d'entrée du jeu. Ce fichier effectue les actions suivantes :
 
 #### mainclas/MainClass ####
 
-Les initialisations de tout le bazar sont effectuées en partie dans la fonction `__init__()` et en partie dans la fonction `main` (qui est appelée juste après l'init). Il n'y a pas vraiment de justification sur le fait que certaines actions sont dans l'init et d'autres sont dans le main. J'ai fait ça un peu au feeling.
+Les initialisations de tout le bazar sont effectuées en partie dans la fonction `__init__()` et en partie dans la fonction `main` (qui est appelée juste après l'init). Il n'y a pas vraiment de justification sur le fait que certaines actions sont dans l'init et d'autres dans le main. J'ai fait ça un peu au feeling.
 
 En vrac, les actions effectuées sont les suivantes :
 
@@ -384,7 +384,7 @@ En vrac, les actions effectuées sont les suivantes :
 
  - Création d'une fenêtre, ou activation du mode plein écran (selon la config et les paramètres). Récupération de l'objet `pygame.Surface` correspondant à la zone de dessin à l'écran.
 
- - Initialisation de la classe `Game` permettant de jouer des parties. (voir DOC_CONCEPTION_jeu) TODO : link
+ - Initialisation de la classe `Game` permettant de jouer des parties. [voir DOC_CONCEPTION_jeu](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#gamegame)
 
  - Déroulement de la mini-animation de présentation, définie dans le fichier `prezanim.py`.
 
@@ -414,9 +414,9 @@ Des erreurs peuvent survenir lors de l'initialisation (chargement des fichiers, 
 
 Exécute les actions à faire lors du premier lancement du jeu.
 
-Il y a quelques menus supplémentaires à afficher avant le menu principal (l'histoire du jeu, la description des touches, la saisie du nom du joueur). Les fonctions `handleMenu()` sont exécutés les unes après les autres. Il y a, dans chacun de ces menus, un moyen simple pour le joueur de le quitter, et donc de passer au suivant. En général, il suffit juste d'appuyer sur une touche.
+Il y a quelques menus supplémentaires à afficher avant le menu principal (l'histoire du jeu, la description des touches, la saisie du nom du joueur). Les fonctions `handleMenu()` sont exécutées les unes après les autres. Chacun de ces menus comporte un moyen simple pour le joueur de le quitter, et donc de passer au suivant. En général, il suffit juste d'appuyer sur une touche.
 
-Le nom saisi est enregistré dans le fichier de sauvegarde. Ensuite, il est hashé avec du SHA-512, puis comparé avec le hash du nom magique permettant de débloquer le mode invincible.
+Le nom saisi est enregistré dans le fichier de sauvegarde, hashé avec du SHA-512, et comparé avec le hash du nom magique permettant de débloquer le mode invincible.
 
 ##### fonction mactPlaySeveralGames() #####
 
@@ -424,21 +424,21 @@ Lance une ou plusieurs parties, les unes après les autres, et enregistre le sco
 
 Cette fonction est envoyée en paramètre au menu principal, ce qui lui permet de l'exécuter lorsque l'utilisateur clique sur l'option "Jouer".
 
-Pour plus de détail : doc conception jeu. chapitre "Lancement d'une partie" (TODO : link)
+Pour plus de détail : [doc conception jeu, chapitre "Lancement d'une partie"](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#lancement-dune-partie)
 
 #### prezanim/PresentationAnim ####
 
 Cette classe effectue les actions suivantes :
  - Chargement des images nécessaires à la présentation.
  - Affichage d'une première image, avec le texte "LOADINGE". Cette action est effectuée le plus vite possible, afin de montrer au joueur qu'il se passe bien quelque chose.
- - Pré-calcul des différentes images du titre. Il apparaîtra agrandi au début puis se réduit petit à petit.
+ - Pré-calcul des différentes images du titre. Il apparaît agrandi au début puis se réduit petit à petit.
  - Chargement des sons.
  - Exécution de l'animation. Un objet `pygame.time.Clock` gère le FPS. À chaque cycle, on affiche les images en les déplaçant.
    * Le magicien se déplace de droite à gauche.
    * Morac se déplace de gauche à droite, en même temps le magicien recule un peu.
    * Le titre apparaît en gros, puis se réduit.
 
-Lorsque l'animation est terminée, l'image finale est récupérée (fond + magicien + Morac + titre), elle est fortement assombrie, puis elle est stockée dans `imgBgMainMenu`. Le code extérieur (`MainClass`) récupérera cette image, qui sera utilisée comme fond pour le menu principal.
+Lorsque l'animation est terminée, l'image finale est récupérée (fond + magicien + Morac + titre), elle est fortement assombrie, puis stockée dans `imgBgMainMenu`. Le code extérieur (`MainClass`) récupérera cette image, qui sera utilisée comme fond pour le menu principal.
 
 L'image du texte "Blarg" est également récupérée et réutilisée de la même manière (variable `imgTitle`). Aucun traitement n'est appliqué dessus. C'est juste pour éviter de charger deux fois la même image à deux endroits différents du code.
 
@@ -447,8 +447,8 @@ L'image du texte "Blarg" est également récupérée et réutilisée de la même
 Contient une seule grosse fonction `generateAllMenuManager()`, qui effectue les actions suivantes :
 
  - Chargement de toutes les images nécessaires aux menus : boutons, pseudo-fenêtre, ...
- - Précalcul des images de tickBox (voir menutick.py TODO lien)
- - Création des menus, un par un, et rangement dans un dictionnaire `dicAllMenu`. Chaque menu est associé à une clé (valeur numérique). Les clés sont définis dans `menucomn.py`, il s'agit des variables commençant par `MENU_`, et elles sont utilisées un peu partout dans le code.
+ - Précalcul des images de tickBox. [Voir menutick.](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menutickpy)
+ - Création des menus, un par un, et rangement dans un dictionnaire `dicAllMenu`. Chaque menu est associé à une clé (valeur numérique). Celles-ci sont définies dans `menucomn.py`, il s'agit des variables commençant par `MENU_`.
  - Récupération de la langue courante, stockée dans le fichier de sauvegarde, transmise par l'`Archivist`.
  - Application du changement de langue courante sur tous les menus, afin de les initialiser.
  - Renvoi de `dicAllMenu`.
@@ -459,16 +459,16 @@ Classe définissant le menu principal du jeu. Il y a beaucoup de choses, mais c'
 
 Quelques détails :
 
-Il y a un `MenuImage` affichant le titre "Blarg". Pourtant, ce titre est déjà présent dans l'image de background du menu principal. (Voir prezanim TODO : link). Mais dans l'image de background, il est assombri. On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
+Il y a un `MenuImage` affichant le titre "Blarg". Pourtant, ce titre est déjà présent dans l'image de background, mais en assombri. [(Voir prezanim)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#prezanimpresentationanim). On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
 
-L'élément `mkeyQuitEsc` est utilisé dans plusieurs menus. Il réagit à un appui sur la touche Esc, et envoie un message demandant à quitter le menu en cours. Dans le menu principal, le fait de quitter le menu en cours fait quitter complètement le jeu.
+L'élément `mkeyQuitEsc` est utilisé dans plusieurs menus. Il réagit à un appui sur la touche Esc, et envoie un IHMSG demandant à quitter le menu en cours. Dans le menu principal, le fait de quitter le menu en cours fait quitter complètement le jeu.
 
 Les `MenuElem` sont rangés dans trois listes :
  - `listMenuElemButtText` : liste des options textes (jouer, high scores, ...)
  - `listMenuElemOther` : liste avec tous les autres éléments.
  - `listMenuElem` : tous les éléments (concaténation des deux listes précédentes).
 
-Ça permet de définir plus facilement le cyclage de focus avec les flèches haut et bas. (voir menumng.py TODO lien). Ce cyclage se fait sur les éléments de `listMenuElemButtText`.
+Ça permet de définir plus facilement le cyclage de focus avec les flèches haut et bas. [(Voir menumng)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menumngpy). Ce cyclage se fait sur les éléments de `listMenuElemButtText`.
 
 Ça permet aussi de rajouter plus facilement une option texte : on modifie `listMenuElemButtText` et on reconstruit `listMenuElem`. C'est ce qui est fait lorsqu'il faut rajouter l'option du mode invincible (fonction `MenuManagerMain.addDogDom`).
 
@@ -478,18 +478,18 @@ Pour rappel : "DogDom", "EdomEdog" et les termes de ce genre sont une façon stu
 
 Menu utilisé pour la transition entre la présentation du jeu et le menu principal.
 
-Ce menu attend que le joueur appuie sur une touche, puis il se quitte. (Le code extérieur s'occupe ensuite d'activer le menu principal). Il y a également un timer, qui fait quitter automatiquement le menu au bout de 100 cycles, si le joueur n'appuie pas sur une touche.
+Ce menu attend que le joueur appuie sur une touche, puis il se quitte. (Le code extérieur s'occupe ensuite d'activer le menu principal). Il y a également un timer, qui fait quitter automatiquement au bout de 100 cycles.
 
-Ce menu n'affiche absolument rien. Le seul `MenuElem` qu'il possède ne dessine rien à l'écran, et il n'a pas d'image de background. Donc lorsqu'on l'active, ce qui était précédemment affiché reste à l'écran, à savoir : la dernière image de l'animation de présentation.
+Ce menu n'affiche absolument rien. Il n'a pas d'image de background et le seul `MenuElem` qu'il possède ne dessine rien à l'écran. Donc lorsqu'on l'active, ce qui était précédemment affiché reste à l'écran, à savoir : la dernière image de l'animation de présentation.
 
 #### menuzsto/MenuManagerStory ####
 
 Contient 3 éléments :
- - un `MenuSubMenu` contenant plusieurs textes, décrivant l'histoire du jeu. La `Surface` d'affichage de ce submenu est plus grande (en hauteur) que l'écran. Tous les textes sont placés dans la partie basse de la `Surface`, on ne les voit pas au début. La fonction `periodicAction` du menu décale progressivement la zone à afficher à l'écran, vers le bas. On voit donc le texte qui apparaît progressivement, à partir du bas de l'écran.
+ - un `MenuSubMenu` contenant plusieurs textes décrivant l'histoire du jeu. La `Surface` d'affichage de ce submenu est plus grande (en hauteur) que l'écran. Tous les textes sont placés dans la partie basse de la `Surface`, on ne les voit pas au début. La fonction `periodicAction` du menu décale progressivement la zone à afficher à l'écran. On voit donc le texte apparaître, à partir du bas de l'écran.
  - le `mkeyQuitEsc`
  - un `MenuSensitiveAnyKeyButton`. Si le joueur appuie sur une touche et que le décalage de la zone n'est pas fini, on applique un gros décalage qui termine immédiatement le scroll. Si le décalage est fini, l'appui de touche fait quitter le menu.
 
-C'est donc un peu étrange, car on a deux éléments qui réagissent à des appuis de touche. Lorsque le joueur appuie sur Esc, il y a donc deux `funcAction` qui sont exécutées, et qui potentiellement peuvent demander tous les deux à quitter le menu en cours. Ça ne pose pas de problèmes.
+C'est donc un peu étrange, car on a deux éléments qui réagissent à des appuis de touche. Lorsque le joueur appuie sur Esc, Deux `funcAction` différentes sont exécutées. Elles peuvent demander à quitter le menu en cours en même temps. Ça ne pose pas de problèmes.
 
 #### menuzman/MenuManagerManual ####
 
@@ -523,11 +523,14 @@ Toute l'interface de saisie du texte est gérée directement par `self.meditPlay
 
 Menu apparaissant uniquement au premier lancement du jeu, après que le joueur ait saisi son nom.
 
-Menu non interactif. L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs.
+L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs.
 
-Le menu contient 4 `MenuText`, mais seuls deux sont affichés. Les deux premiers (`self.listMenuTextNorm`) dans le cas où le joueur a saisi un nom quelconque. Les deux derniers (`self.listMenuTextDogDom`) dans le cas où le joueur a saisi le nom secret permettant de débloquer le mode invincible.
+Le menu contient 4 `MenuText`, mais seuls deux sont affichés :
 
-Par défaut, c'est le texte normal qui est affiché. Pour passer au texte du nom secret, le code extérieur doit appeler la fonction `MenuManagerNameIsALie.setNameTyped(self, nameTyped)`, avant d'activer le menu.
+ - Soit les deux premiers (`self.listMenuTextNorm`) dans le cas où le joueur a saisi un nom quelconque,
+ - soit les deux derniers (`self.listMenuTextDogDom`) dans le cas où le joueur a saisi le nom secret permettant de débloquer le mode invincible.
+
+Par défaut, c'est le texte normal qui est affiché. Pour avoir le texte du nom secret, le code extérieur doit appeler la fonction `MenuManagerNameIsALie.setNameTyped(self, nameTyped)`, avant d'activer le menu.
 
 #### menuzdea/MenuManagerHeroDead ####
 
@@ -537,19 +540,19 @@ Contient des `MenuText` affichant le score et le nombre de magiciens tués/explo
 
 Ce menu contient deux éléments interactifs :
 
- - `mkeyQuitEsc` : élément générique. Il réagit à l'appui sur la touche Echap, et renvoie le message `IHMSG_QUIT`, permettant d'indiquer qu'il faut quitter le menu.
+ - `mkeyQuitEsc` : élément générique réagissant à la touche Echap pour quitter (message `IHMSG_QUIT`).
 
- - `mkeyPlayOnceMore` : élément réagissant à l'appui sur la touche Entrée. Il renvoie un tuple de deux message : `IHMSG_QUIT` et `IHMSG_PLAY_ONCE_MORE`. Ce dernier message, contrairement à tous les autres, est spécifique au jeu Blarg. Le système de menu ne s'en sert jamais. Lorsque le menu se quitte, le code extérieur contrôle la présence de ce message pour déterminer si il faut jouer une nouvelle partie ou pas. (Voir fonction `mactPlaySeveralGames` TODO lien).
+ - `mkeyPlayOnceMore` : élément réagissant à l'appui sur la touche Entrée. Il renvoie un tuple de deux messages : `(IHMSG_QUIT, IHMSG_PLAY_ONCE_MORE)`. Ce dernier message, contrairement à tous les autres, est spécifique au jeu Blarg. Le système de menu ne s'en sert jamais. Lorsque le menu se quitte, le code extérieur contrôle la présence de `IHMSG_PLAY_ONCE_MORE` pour déterminer si il faut jouer une nouvelle partie ou pas.
 
 L'image de fond de ce menu est différente des autres. (Image du héros mort transformé en potion de mana).
 
 #### menuzsco/MenuManagerHighScore ####
 
-Menu affichant les scores. Menu non interactif. L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs.
+Menu affichant les scores. L'élément `manyQuit` fait quitter sur un appui de touche ou un clic. Tous les autres éléments ne sont pas interactifs.
 
 Lors de l'instanciation, il faut lui passer un `Archivist` en paramètre. Le menu s'occupe de récupérer les valeurs de score et d'effectuer les calculs nécessaires pour afficher les scores.
 
-L'`Archivist` ne stocke pas la valeur du meilleur score, uniquement les nombres de magiciens tués et explosés durant la partie ayant créé le meilleur score. (Il stocke d'autres statistiques, dont certaines ne servent à rien, mais c'est pas grave).
+L'`Archivist` ne stocke pas la valeur du meilleur score, il stocke uniquement les nombres de magiciens tués et explosés durant la partie ayant créé le meilleur score. (Il stocke d'autres statistiques, dont certaines ne servent à rien, mais c'est pas grave).
 
 Il faut donc recalculer le meilleur score à partir des nombres de magiciens. C'est le menu qui s'occupe de cette tâche, en appelant la fonction `scoremn.scoreFromKillBurst()`. C'est la même fonction utilisée pour calculer le score pendant le jeu. Ça permet de garantir que le calcul effectué est le même dans tous les cas. (Certes, c'est un calcul super simple, mais ça me semblait important de le définir à un seul endroit, car ce n'est pas une opération anodine).
 
@@ -565,7 +568,7 @@ Tout cela est un peu alambiqué, mais c'est pas grave. C'est de l'alambiqué loc
 
 Menu affichant le texte des crédits. Il est constitué des éléments suivants :
 
- - `self.msubCreditsText` : un `MenuSubMenu`, contenant des `MenuText` et de `MenuLink` décrivant les credits. Ce sub-menu est affiché sur la quasi-totalité de l'écran. Il y a juste une marge en haut et en bas.
+ - `self.msubCreditsText` : un `MenuSubMenu`, contenant des `MenuText` et des `MenuLink` décrivant les credits. Ce sub-menu est affiché sur la quasi-totalité de l'écran. Il y a juste une marge en haut et en bas.
 
  - Deux `MenuSensitiveImage` en haut et en bas, en mode `MOUSE_HOVER` (l'activation de ces éléments se fait périodiquement, dès que le curseur de souris est dessus). Ces deux éléments font scroller le sub-menu. L'image du haut est plus petite que celle du bas, car je me suis dit que le joueur aura systématiquement envie de scroller vers le bas, mais pas forcément envie de scroller vers le haut.
 
@@ -573,9 +576,9 @@ Menu affichant le texte des crédits. Il est constitué des éléments suivants 
 
  - L'élément générique `mkeyQuitEsc`, qui fait quitter lorsqu'on appuie sur la touche Esc.
 
-Un événement de clic dans le sub-menu est transmis aux `MenuElem` qui sont contenus dedans, en tenant compte du décalage du sub-menu dans l'écran principal, ainsi que du décalage de scrolling. L'événement peut alors arriver sur un `MenuLink`, qui est alors activé, et ouvre le navigateur web par défaut vers le lien en question.
+Les événement de clic sur le sub-menu sont transmis aux `MenuElem` contenus dedans, (en tenant compte des décalages). L'événement peut alors arriver sur un `MenuLink`, qui est alors activé, et ouvre le navigateur web par défaut vers le lien en question.
 
-Il y a un comportement pas génial avec le sub-menu : le cyclage de focus parmi les éléments et les sous-éléments fonctionnent, mais ne tient pas compte du scrolling ni de ce qui est visible à l'écran. Donc lorsque le joueur appuie sur Tab, il voit le focus passer sur les `MenuSensitiveImage`, puis il le voit éventuellement passer sur quelques `MenuLink`, puis plus rien, car le focus est en train de cycler sur d'autres `MenuLink` non visible à l'écran. Au bout de quelques appuis sur Tab, le cyclage fait un tour et on revient sur les `MenuSensitiveImage`. Mais ça fait quand même bizarre. Et ça dépend de ce qui est visible à l'écran. Dans une hypothétique version future du système de menu, il faudrait arranger ça.
+Il y a un comportement pas génial avec le sub-menu : le cyclage de focus parmi les éléments et les sous-éléments fonctionnent, mais ne tient pas compte du scrolling ni de ce qui est visible à l'écran. Donc lorsque le joueur appuie sur Tab, il voit le focus passer sur les `MenuSensitiveImage`, puis il le voit éventuellement passer sur quelques `MenuLink`, puis plus rien, car le focus est en train de cycler sur d'autres `MenuLink` non visible à l'écran. Au bout de quelques appuis sur Tab, le cyclage fait un tour et on revient sur les `MenuSensitiveImage`. Mais ça fait quand même bizarre. Faudrait tenir compte de ce qui est visible à l'écran. Dans une hypothétique version future du système de menu, il faudrait arranger ça.
 
 Lorsqu'on reste appuyé sur les touches haut et bas, le scrolling se fait en continu. Ces actions ne sont pas déclenchées par des `MenuElem`, car je n'en ai pas créé qui soient capable de s'activer périodiquement tant qu'une touche reste appuyée. Ces actions sont déclenchées dans la fonction `periodicAction` du menu lui-même. On contrôle le contenu de `self.dictKeyPressed` (dictionnaire indiquant quelles touches sont actuellement appuyées), et on exécute éventuellement un coup de scrolling vers le haut et/ou vers le bas. La variable `self.dictKeyPressed` est périodiquement mise à jour par la classe-mère, dans la fonction `MenuManager.handleMenu()`.
 
@@ -585,11 +588,11 @@ Menu permettant de configurer le jeu.
 
 Il est hérité de `MenuManagerManual` (menu affichant la configuration). Le code qui détermine les texte des noms des touches ("left", "right", ...) est mutualisé dans `MenuManagerManual`. Dans le manuel, on met ces textes dans des `MenuText`, alors que dans la config, on les met dans des `MenuSensitiveText`.
 
-La config courante des touches est contenue dans `self.dicKeyMapping`. La structure de ce dictionnaire est la même que celle de `archiv.py/DEFAULT_KEY_MAPPING` (voir commentaire de description). Elle est également décrite plus haut (TODO : lien).
+La config courante des touches est contenue dans `self.dicKeyMapping`. La structure de ce dictionnaire est la même que celle de `archiv.py/DEFAULT_KEY_MAPPING`. Pour une description détaillée : voir commentaire dans le code ou [voir MenuManagerManual](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menuzmanmenumanagermanual).
 
 D'autres petits bouts de code sont également mutualisés : image de la fenêtre, texte statique, initialisation de `dicKeyMapping` à partir de l'`archivist`.
 
-L'élément `mtickSound` permet d'activer/désactiver le son (fonction `mactToggleSound()`). La valeur courante de l'activitude du son est stockée dans `self.mtickSound.literTickValue`. Ce n'est pas un booléen, cela correspond à la valeur litérale stockée dans l'archivist. La conversion vers le booléen est effectuée dans la fonction `theSoundYargler.changeSoundEnablation()`.
+L'élément `mtickSound` permet d'activer/désactiver le son (fonction `mactToggleSound()`). La valeur courante de l'activation du son est stockée dans `self.mtickSound.literTickValue`. Ce n'est pas un booléen, cela correspond à la valeur litérale stockée dans l'archivist. La conversion vers le booléen est effectuée par la fonction `theSoundYargler.changeSoundEnablation()`.
 
 Le bouton `mbuttResetDefaults` exécute la fonction `mactResetDefaults`. Cette fonction remet les touches par défaut et réactualise les textes des `MenuSensitiveText` affichant les noms des touches.
 
@@ -598,7 +601,7 @@ L'élément `self.mOneKeyRecorder` est une instance de `MenuOneKeyRecorder`. Il 
 Lorsque le joueur change la configuration d'une touche, l'enchaînement d'action suivant se produit :
 
  - Le joueur clique sur le `MenuSensitiveText` d'une touche.
- - La foncton `mactConfigKey` est exécutée. (C'est la même quelle que soit le `MenuSensitiveText` cliqué).
+ - La fonctoin `mactConfigKey` est exécutée. (C'est la même quelle que soit le `MenuSensitiveText` cliqué).
    * La variable `self.menuElemKeyActive` prend la valeur du `MenuSensitiveText` cliqué.
    * Exécution de `self.refreshMenuElemKeyActive(False, "???")`, afin d'afficher des points d'interrogation sur la touche actuellement en cours de configuration.
    * Exécution de `mOneKeyRecorder.activateRecording()`, pour démarrer l'enregistrement des touches.
@@ -608,7 +611,7 @@ Lorsque le joueur change la configuration d'une touche, l'enchaînement d'action
    * Récupération de l'identifiant de touche concernée (`KEY_DIR_UP`, `KEY_FIRE`, ...), à partir de `self.menuElemKeyActive`.
    * Mise à jour de `self.dicKeyMapping`.
    * Exécution de la fonction `stopKeyRecording()`
-     * Exécution de `self.refreshMenuElemKeyActive()`, afin d'enlever les points d'interrogation et de mettre le nom de la nouvelle touche sur le `MenuSensitiveText` de la touche qui vient d'être configuré.
+     * Exécution de `self.refreshMenuElemKeyActive()`, afin d'enlever les points d'interrogation et mettre le nom de la nouvelle touche sur le `MenuSensitiveText` de la touche qui vient d'être configuré.
      * Exécution de `mOneKeyRecorder.desactivateRecording()`, pour arrêter l'enregistrement des touches.
  - Le joueur peut ensuite cliquer sur un autre `MenuSensitiveText` pour configurer une autre touche.
 
