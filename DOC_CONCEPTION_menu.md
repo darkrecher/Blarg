@@ -214,6 +214,8 @@ TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidem
 
 Contient la classe `MenuSensitiveImage`, héritée de `MenuSensitiveSquare`. Affiche une image.
 
+On pourrait penser que cette classe ait également besoin d'hériter de `MenuImage`, mais en fait non.
+
 Cette classe réagit aux clics ou aux mousehovers sur l'image, comme un `MenuSensitiveSquare`.
 
 Lorsque l'élément prend le focus, l'image s'affiche progressivement en plus clair. Lorsqu'il perd le focus, ça revient progressivement vers le normal.
@@ -228,7 +230,7 @@ Contient la classe `MenuSensitiveText`, qui hérite à la fois de `MenuSensitive
 
 Je ne sais pas trop comment est censé être géré l'héritage multiple en python. Dans le corps des fonctions, j'ai parfois besoin d'appeler explicitement une fonction de l'une ou l'autre des classes-mères. Ça fonctionne, c'est tout ce que j'attends.
 
-Cette classe affiche un texte, comme `MenuText`. Elle réagit aux clics et aux mousehovers sur l'image, et exécute `funcAction()`, comme `MenuSensitiveSquare`.
+Cette classe affiche un texte, comme `MenuText`. Elle réagit aux clics et aux mousehovers et exécute `funcAction()`, comme `MenuSensitiveSquare`.
 
 Lorsque l'élément prend le focus, le texte se met en mode "glow". Il change de couleur pour aller du blanc vers le bleu vers le blanc vers le bleu, etc. Contrairement au `MenuSensitiveImage`, les changements de couleur se font en yo-yo continu, tant que l'élément possède le focus.
 
@@ -246,9 +248,9 @@ Contient la classe `MenuLink`, héritée de `MenuSensitiveText`.
 
 Texte cliquable et focusable. La fonction `funcAction()` pointe vers la fonction `mactQuitFullScreenAndGoToDaInterWeb`. Cette fonction désactive le mode plein écran (si on est actuellement dans ce mode) et ouvre le navigateur internet par défaut en lui fournissant l'url correspondant au texte de l'élément de menu.
 
-Pour ouvrir le navigateur par défaut vers une url, on utilise `webbrowser.open()` (présent dans la librairie standard). Comme on n'est pas sûr que cette librairie existe sur tous les systèmes, il y a un try-catch au moment de son import.
+Pour aller vers l'url, on utilise `webbrowser.open()`, présent dans la librairie standard. Comme on n'est pas sûr que cette librairie existe sur tous les systèmes, il y a un try-catch au moment de son import, lors du lancement du jeu.
 
-Si l'import a échoué, lorsque l'utilisateur clique sur l'élément, on se contente de logger l'url vers la sortie standard. Comme ça le jeu peut fonctionner sur des systèmes bizarres n'ayant pas de navigateur.
+Si l'import a échoué, on se contentera de logger l'url vers la sortie standard au moment où l'utilisateur clique sur le `menulink`. Comme ça le jeu peut fonctionner sur des systèmes bizarres n'ayant pas de navigateur.
 
 #### menutick.py ####
 
@@ -256,7 +258,7 @@ Contient la classe `MenuSensitiveTick`, qui hérite à la fois de `MenuSensitive
 
 Cet élément de menu affiche à la fois une image (case à cocher) et un texte. La variable membre `rectDrawZone` est égale à la fusion des deux rectangles de l'image et du texte. La variable membre `rectStimZone` est déduite de `rectDrawZone`, avec une petite marge à chaque bord, comme pour la plupart des autres éléments cliquables.
 
-Lorsque cet élément a le focus, l'image de la case (cochée ou pas) s'affiche progressivement en plus clair (comme le `MenuSensitiveImage`). Cet élément a donc besoin de deux listes d'images différentes. Une liste de case cochée, de plus en plus claires. Et une liste de case pas cochée, de plus en plus claires. Tout cela doit être initialisé préalablement et transmis lors de l'instanciation, via le paramètre `dicTickImage`.
+Lorsque cet élément a le focus, l'image de la case (cochée ou pas) s'affiche progressivement en plus clair (comme le `MenuSensitiveImage`). Cet élément a donc besoin de deux listes d'images différentes. Une liste de cases cochées, de plus en plus claires, et une liste de cases pas cochées, de plus en plus claires. Tout cela doit être initialisé préalablement et transmis lors de l'instanciation, via le paramètre `dicTickImage`.
 
 En l'état, la classe `MenuSensitiveTick` ne modifie pas la valeur de son cochage lorsqu'elle est activée. Pour cela, il faut overrider `funcAction()`, pour y appeler la méthode `toggleTick()`. J'ai fait exprès de rendre ça explicite, comme ça on peut désactiver le cochage/décochage si on a envie. Et on peut effectuer d'autres actions spécifiques dans `funcAction()`.
 
@@ -285,7 +287,7 @@ L'élément est un `MenuSensitiveSquare` (puisque c'est un `MenuSensitiveText`),
 
 Contrairement au `MenuSensitiveText`, le texte est toujours affiché en blanc, même lorsqu'il y a le focus. C'est le curseur qui change de couleur en continu : bleu -> blanc -> bleu -> blanc...
 
-Lorsqu'il n'y a pas le focus, le curseur est bleu (et non pas blanc). C'est important que le curseur soit d'une couleur différente que le texte, sinon ça embrouille.
+Lorsqu'il n'y a pas le focus, le curseur est bleu. C'est important qu'il soit d'une couleur différente que le texte, sinon ça embrouille.
 
 L'affichage du texte et du curseur est géré par la fonction `draw()`. La modification périodique de la couleur du curseur est effectuée par la fonction `MenuSensitiveText.update()` (cette classe n'override pas la fonction). Donc l'index de couleur évolue pareil que dans le `MenuSensitiveText`, mais la liste de couleur (`glowColorList`) n'est pas la même.
 
