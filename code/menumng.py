@@ -509,7 +509,7 @@ class MenuManager():
 
         # ---------- FIN DE LA PUTAIN DE GROSSE BOUCLE DE GESTION DU MENU ------------
 
-        #On renvoie le tuple cumulé de messagesd'ihm qui a fait quitter la grosse boucle du menu.
+        #On renvoie le tuple cumulé de messages d'ihm qui a fait quitter la grosse boucle du menu.
         #Y'en a besoin pour propager certains messages d'IHM, en particulier le TOTALQUIT.
         return ihmsgInfo
 

@@ -114,7 +114,7 @@ On peut créer un `MenuManager` de 2 manières différentes :
 
 Dans les deux cas, l'activation du menu se fait en appelant la fonction `handleMenu()`.
 
-Le terme "activation" est à peu près l'équivalent du "OnActivate" dans les menus Windows ou autre. Il désigne le fait d'afficher le menu, et de démarrer une boucle qui récupère et prend en compte les événements souris et clavier. La boucle s'arrête sur récupération d'un `IHMSG_QUIT` ou d'un `IHMSG_TOTALQUIT`.
+Le terme "activation" est à peu près l'équivalent du "OnActivate" dans les menus Windows ou autre. Il désigne le fait d'afficher le menu et de démarrer une boucle prenant en compte les événements souris et clavier. La boucle s'arrête sur récupération d'un `IHMSG_QUIT` ou d'un `IHMSG_TOTALQUIT`.
 
 Si on dérive, on peut également overrider les fonctions suivantes :
 
@@ -126,7 +126,7 @@ Si on dérive, on peut également overrider les fonctions suivantes :
 
  - `periodicAction()` : Fonction vide, s'exécute au début de chaque cycle, tant que le menu est activé.
 
-Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de les gérer ou pas, en fonction de leur focus, ou d'autres choses.
+Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de les gérer, en fonction de leur état de focus et d'autres choses.
 
 Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuElem`.
 
@@ -134,7 +134,7 @@ Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuE
 
  - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les texte sélectionnables au milieu de l'écran, mais ne contient pas les mini-options tels que les choix de langue). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
 
-Dans la fonction `handleMenu()`, lorsque le `MenuManager` transmet des stimulis de touche, de mouvement de souris ou d'activation à un `MenuElem`, il met à jour au préalable sa variable `self.menuElemTakingEvent`. Ça permet de garder une référence vers le `MenuElem` recevant actuellement l'événement, ce qui peut être utile quand on se retrouve dans une `funcAction` un peu générique, qu'on aurait associé à plusieurs `MenuElem`.
+Dans la fonction `handleMenu()`, lorsque le `MenuManager` transmet à un `MenuElem` des stimulis de touche, de mouvement de souris ou d'activation, il met préalablement à jour sa variable `self.menuElemTakingEvent`. Ça permet de garder une référence vers le `MenuElem` recevant actuellement l'événement, ce qui peut être utile quand on se retrouve dans une `funcAction` un peu générique, qu'on aurait associée à plusieurs `MenuElem`.
 
 #### txtstock.py ####
 
@@ -147,7 +147,7 @@ Les textes sont dans le dictionnaire `TextStock.DICT_LANGUAGE`.
     * clé : identifiants de langage. `LANG_FRENCH` ou `LANG_ENGL`
     * valeur : chaîne de caractère unicode avec le texte dedans.
 
-La classe contient une variable membre `language`, qui indique la langue courante. Il est possible de changer sa valeur.
+La classe contient une variable membre `language`, indiquant la langue courante. Il est possible de changer sa valeur.
 
 Le fichier `txtstock.py` effectue immédiatement une instanciation : `txtStock = TextStock()`. Lorsque les autres modules importent le fichier, ils utilisent cet objet instancié. Ça permet au code extérieur d'accéder à la valeur de langue courante sans se prendre la tête.
 
@@ -181,15 +181,15 @@ Non focusable, non cliquable, non activable.
 
 Contient la classe `MenuText`. Affiche un texte non interactif.
 
-Pour l'affichage et la config associée (alignement horizontal et vertical, police, couleur, ...), la classe utilise en interne un `Lamoche`, une classe également utilisée dans le jeu lui-même.
+Pour l'affichage et la config associée (alignement horizontal et vertical, police, couleur, ...), la classe utilise en interne un `Lamoche`.
 
-Le texte à afficher se définit à l'instanciation, on peut le faire de 2 manières différentes :
+Le texte à afficher se définit à l'instanciation, de l'une des manières suivantes :
 
- - Indiquer directement une chaîne de caractère dans le paramètre `text`, qui sera affichée tel quelle. Ensuite, le texte peut être changé par un appel à la fonction `changeFontAndText()`.
+ - Indiquer directement une chaîne de caractère dans le paramètre `text`, qui sera affichée tel quelle. Elle pourra ensuite être modifiée par la méthode `changeFontAndText()`.
 
- - Indiquer un identifiant de texte de `TextStock`. Le texte affichée sera celui défini dans `txtStock.DICT_LANGUAGE`, avec la langue courante. Ensuite, la langue peut être changée en appelant `txtStock.changeLanguage(newLanguage)` puis `MenuText.changeLanguage()`.
+ - Indiquer un identifiant de texte de `TextStock`. Le texte affichée sera celui défini dans `txtStock.DICT_LANGUAGE`, avec la langue courante. La langue pourra ensuite être changée en appelant `txtStock.changeLanguage(newLanguage)` puis `MenuText.changeLanguage()`.
 
-Le comportement du `MenuText` n'est pas vraiment prévu dans le cas où on s'amuse à panacher les 2 manières de définir le texte.
+Il est déconseillé de s'amuser à panacher les 2 manières de définir le texte (cas non prévu et non testé).
 
 <a class="mk-toclify" id="menusesqpy"></a>
 #### menusesq.py ####
@@ -200,7 +200,7 @@ On n'utilise jamais directement cette classe, mais on la fait dériver pour avoi
 
 Cette classe contient 3 variables membres importantes :
 
- - `rectStimZone` : rectangle définissant la zone sensible, dans l'écran. On peut la définir directement, ou à partir de la variable membre existante `rectDrawZone` (qui aurait été définie par un autre moyen, tel qu'un héritage mulitple).
+ - `rectStimZone` : rectangle définissant la zone sensible dans l'écran. On peut la définir directement, ou à partir de la variable membre existante `rectDrawZone` (qui aurait été définie par un autre moyen, tel qu'un héritage mulitple).
 
  - `funcAction()` : [voir `MenuElem`](#menuelempy).
 
@@ -208,15 +208,15 @@ Cette classe contient 3 variables membres importantes :
 
 Quel que soit la valeur de `clickType`, le `MenuSensitiveSquare` demande systématiquement à avoir le focus lorsque le curseur de souris passe sur le rectangle sensible. Pas besoin de cliquer pour prendre le focus.
 
-TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat"... N'importe quoi. Même en français c'est moche, ce verbe "traiter".
+TRIP: Désolé pour le nom de fonction `treatStimuliMouse`. Il faut bien évidemment lire `processStimuliMouse`. "Treat", "traiter", ... N'importe quoi. Même en français c'est moche.
 
 #### menuseim.py ####
 
 Contient la classe `MenuSensitiveImage`, héritée de `MenuSensitiveSquare`. Affiche une image.
 
-Cette classe réagit aux clics ou aux mousehovers sur l'image. (Comportement défini dans `MenuSensitiveSquare`).
+Cette classe réagit aux clics ou aux mousehovers sur l'image, comme un `MenuSensitiveSquare`.
 
-Lorsque l'élément prend le focus, l'image s'affiche progressivement en plus clair. Lorsqu'il perd le focus, l'image s'affiche progressivement du clair vers le normal.
+Lorsque l'élément prend le focus, l'image s'affiche progressivement en plus clair. Lorsqu'il perd le focus, ça revient progressivement vers le normal.
 
 Les transitions clair<->normal se font sur 8 images. La liste de ces images est stockée dans la variable membre `listImgWithLight`. Elle est précalculée à l'instanciation de la classe, à partir de l'image normale.
 
@@ -232,13 +232,13 @@ Cette classe affiche un texte, comme `MenuText`. Elle réagit aux clics et aux m
 
 Lorsque l'élément prend le focus, le texte se met en mode "glow". Il change de couleur pour aller du blanc vers le bleu vers le blanc vers le bleu, etc. Contrairement au `MenuSensitiveImage`, les changements de couleur se font en yo-yo continu, tant que l'élément possède le focus.
 
-Lorsque l'élément perd le focus, le texte fait une dernière petite transition pour passer progressivement de la couleur en cours vers le blanc.
+Lorsque l'élément perd le focus, le texte fait une dernière petite transition pour revenir progressivement de la couleur en cours vers le blanc.
 
-Les images de textes changeant de couleur ne sont pas pré-calculées. En interne, on change la couleur du `Lamoche` et on fait un `font.render()` à chaque fois.
+Les images du texte "glow" ne sont pas pré-calculées. En interne, on change la couleur du `Lamoche` et on fait un `font.render()` à chaque fois.
 
 La liste des couleurs pour le glow est définie dans la variable membre `glowColorList`.
 
-Le glow et la transition "glow->normal" sont effectuées par la fonction `update()`, exécutée à chaque cycle de jeu. Pendant un glow/transition, on ne réaffiche pas le menu en entier, mais uniquement cet élément.
+Le glow et la transition "glow->normal" sont effectuées par la fonction `update()`, à chaque cycle de jeu. Pendant un glow/transition, on ne réaffiche pas le menu en entier, mais uniquement cet élément. (`mustBeRefreshed = True` pendant tout le temps qu'on a le focus).
 
 #### menulink.py ####
 
