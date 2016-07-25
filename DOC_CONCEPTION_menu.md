@@ -52,7 +52,7 @@ Boîte avec un titre plus compliqué : instance de classe aussi. Format du titre
 
 Cadre bleu clair : zoom sur un endroit spécifique du diagramme, pour afficher plus de détails.
 
-Flèche bleue pleine, de A vers B : Référence. L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
+Flèche bleue pleine, de A vers B : Référence. L'objet A possède une référence vers l'objet B, qu'il garde tout le long de sa vie.
 
 Flèche verte, de A vers B : héritage. L'objet B est dérivée de l'objet A.
 
@@ -72,10 +72,10 @@ Un message est constitué d'un tuple de 0, 1 ou plusieurs IHMSG. Ceux-ci sont d�
  - `IHMSG_ELEM_CLICKED` : l'élément de menu s'est fait cliquer dessus.
  - `IHMSG_ELEM_WANTFOCUS` : l'élément de menu veut avoir le focus.
  - `IHMSG_CYCLE_FOCUS_OK` : lors d'un cyclage de focus (touche Tab), l'élément de menu actuellement focusé accepte de transmettre le focus à l'élément suivant.
- - `IHMSG_PLAY_ONCE_MORE` : message spécial utilisé dans un seul cas : quand on quitte le menu affichant que le héros est mort. Sert à indiquer que le joueur veut rejouer.
+ - `IHMSG_PLAY_ONCE_MORE` : message spécial utilisé dans un seul cas : lorsqu'on quitte le menu de fin de partie. Sert à indiquer que le joueur veut rejouer.
  - `IHMSG_CANCEL` : le joueur veut annuler le truc en cours.
 
-Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égale au tuple vide, afin d'exprimer explicitement la notion de message vide. (Une lubie s'apparentant à du typage spécifique). La constante s'appelle `IHMSG_VOID`.
+Pour indiquer un message sans aucun IHMSG, il suffit d'utiliser un tuple vide. Comme je suis super malin, je me suis dit que j'allais créer une constante égale au tuple vide, afin d'exprimer explicitement la notion de message vide (une lubie s'apparentant à du typage spécifique). La constante s'appelle `IHMSG_VOID`.
 
 Du coup, pour renvoyer un message vide, on écrit `IHMSG_VOID`, sans parenthèse. Pour renvoyer un message contenant un IHMSG, on écrit `(IHMSG_REDRAW_MENU, )`, avec parenthèses. Ça fait bizarre. Tant pis !
 
@@ -92,9 +92,9 @@ Contient la classe `MenuElem` : définition générique d'un élément de menu.
 
 La plupart des fonctions de cette classe sont vides. Pour créer un élément de menu effectuant des choses, il faut faire un héritage et overrider les fonctions nécessaires. Les commentaires de docstring détaillent le rôle de chaque fonction, ce qu'on peut mettre dedans, ce qu'elles doivent renvoyer, etc.
 
-Un élément de menu peut être placé dans un `MenuManager` ou dans un `MenuSubMenu` (un élément de menu spécial stockant d'autres éléments de menu, [voir `MenuSubMenu`](#menusubmpy)).
+Un `MenuElem` peut être placé dans un `MenuManager` ou dans un `MenuSubMenu` (un `MenuElem` spécial stockant d'autres `MenuElem`, [voir `MenuSubMenu`](#menusubmpy)).
 
-Un élément de menu peut définir `funcAction()` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`, pouvant contenir tout ce qu'on veut. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances ([voir `MenuSensitiveSquare`](#menusesqpy)).
+Un `MenuElem` peut définir `funcAction()` : une fonction sans paramètre d'entrée, renvoyant un tuple de `IHMSG_*`. Cette fonction représente l'activation de l'élément. Elle est exécutée par le `MenuManager`, lorsque l'élément est focusé et que l'utilisateur appuie sur Espace ou Entrée. La fonction peut également être exécutée dans d'autres circonstances ([voir `MenuSensitiveSquare`](#menusesqpy)).
 
 Si `funcAction()` vaut None, l'élément de menu n'est pas activable.
 
@@ -104,7 +104,7 @@ La fonction `cycleFocus()` aurait méritée d'être dans un fichier de code à p
 
 #### menumng.py ####
 
-Contient la classe `MenuManager` gérant un menu, qui comporte des `MenuElem`.
+Contient la classe `MenuManager` gérant un menu avec des `MenuElem` dedans.
 
 On peut créer un `MenuManager` de 2 manières différentes :
 
@@ -128,11 +128,11 @@ Si on dérive, on peut également overrider les fonctions suivantes :
 
 Le `MenuManager` envoie systématiquement tous les événements souris et clavier à tous ses éléments de menus, pas seulement à celui qui a le focus. C'est ensuite aux éléments de les gérer, en fonction de leur état de focus et d'autres choses.
 
-Pour gérer les cyclages de focus, le `MenuManager` maintient 2 listes de `MenuElem`.
+Pour gérer les cyclages de focus, le `MenuManager` possède 2 listes de `MenuElem`.
 
  - `listMenuElem` : liste contenant tous les éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur Tab.
 
- - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. (Par exemple, dans le menu principal de Blarg, cette liste contient les texte sélectionnables au milieu de l'écran, mais ne contient pas les mini-options tels que les choix de langue). Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
+ - `listMenuElemArrows` : liste contenant une partie des éléments de menu. Utilisée pour cycler lorsque le joueur appuie sur les flèches haut et bas. Par exemple, dans le menu principal de Blarg, cette liste contient les gros textes sélectionnables, mais ne contient pas les mini-options tels que les choix de langue. Cette liste peut être None, dans ce cas, les flèches haut et bas ne font rien.
 
 Dans la fonction `handleMenu()`, lorsque le `MenuManager` transmet à un `MenuElem` des stimulis de touche, de mouvement de souris ou d'activation, il met préalablement à jour sa variable `self.menuElemTakingEvent`. Ça permet de garder une référence vers le `MenuElem` recevant actuellement l'événement, ce qui peut être utile quand on se retrouve dans une `funcAction` un peu générique, qu'on aurait associée à plusieurs `MenuElem`.
 
