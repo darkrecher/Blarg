@@ -297,7 +297,7 @@ Contient la classe `MenuOneKeyRecorder`. Élément de menu non focusable et qui 
 
 Cet élément possède deux fonctions spécifiques : `activateRecording()` et `desactivateRecording()`, permettant d'activer et désactiver l'enregistrement des touches.
 
-Lorsque l'enregistrement est activé, les appuis de touches sont enregistrés. Seul le dernier appui est gardé en mémoire. Il est accessible par les variables membres `keyRecorded` (code numérique de la touche appuyée) et `charKeyRecorded` (caractère correspond à la touche appuyée).
+Lorsque l'enregistrement est activé, les appuis de touches sont enregistrés. Seul le dernier appui est gardé en mémoire. Il est accessible par les variables membres `keyRecorded` (code numérique de la touche appuyée) et `charKeyRecorded` (caractère correspondant à la touche appuyée).
 
 De plus, lorsque l'enregistrement est activé, `funcAction()` est exécutée à chaque appui de touche.
 
@@ -308,7 +308,7 @@ Dans Blarg, c'est cet élément qui permet de configurer les touches du jeu.
 
 Contient la classe `MenuSubMenu`. Élément de menu top génial, dans lequel on met d'autres éléments de menu. Ces "sous-éléments" peuvent être de n'importe quel type.
 
-Le sub-menu s'affiche dans un rectangle définie par `rectDrawZone` (transmis à l'instanciation). L'affichage ne déborde jamais de ce rectangle.
+Le sub-menu s'affiche dans un rectangle défini par `rectDrawZone` (transmis à l'instanciation). L'affichage ne déborde jamais de ce rectangle.
 
 Les coordonnées des sous-éléments sont définies par rapport à une zone interne au sub-menu, et non pas par rapport à l'écran. C'est à dire qu'un sous-élément en coordonnée (0, 0) apparaîtra à la coordonnée `(MenuSubMenu.rectDrawZone.x, MenuSubMenu.rectDrawZone.y)` de l'écran.
 
@@ -318,7 +318,7 @@ L'aspect graphique général du sub-menu est initialisé par la fonction `render
 
 La fonction `SubMenu.draw()` redessine les sous-éléments ayant leur valeur `mustBeRefreshed` à True, puis extrait un sous-rectangle de `surfaceInside` pour l'afficher à l'écran, à la position de `rectDrawZone`.
 
-Le sous-rectangle est défini par la variable membre `sourceRectToBlit`. Si la zone interne est plus grande que l'écran, `sourceRectToBlit` n'en prend qu'une partie. On ne voit donc pas le sub-menu en entier.
+Le sous-rectangle est défini par la variable membre `sourceRectToBlit`. Si la zone interne est plus grande que la taille de `rectDrawZone`, on ne verra pas le sub-menu en entier.
 
 Des fonctions spécifiques (`scrollVertically()` et `scrollSetPosition()`) permettent de déplacer verticalement `sourceRectToBlit`, afin de faire scroller la zone interne. On ne peut pas scroller horizontalement, car je n'en ai pas eu besoin pour Blarg.
 
@@ -388,11 +388,11 @@ En vrac, les actions effectuées sont les suivantes :
 
  - Déroulement de la mini-animation de présentation, définie dans le fichier `prezanim.py`.
 
- - Chargement de tous les sons du jeu. Cette action peut prendre quelques secondes, elle est donc effectuée dans `prezanim.py`, après l'affichage de la première image (avec le texte "LOADINGE"), et avant le déroulement de l'animation.
+ - Chargement de tous les sons du jeu. Cette action peut prendre quelques secondes, elle est donc effectuée dans `prezanim.py`, après l'affichage de la première image et du texte "LOADINGE", mais avant le déroulement de l'animation.
 
  - Création de tous les menus du jeu, via le fichier `menugen.py`. Rangement de ces menus dans le dictionnaire `MainClass.dicAllMenu`.
 
- - Si le chargement du fichier de sauvegarde par l'`Archivist` a raté (fichier inexistant, ou une raison pllus grave) : création et sauvegarde d'un fichier contenant des informations par défaut. Si la sauvegarde échoue également, on garde les données par défaut et on continue l'exécution (un message d'erreur est émis sur stdout).
+ - Si le chargement du fichier de sauvegarde par l'`Archivist` a raté (fichier inexistant, ou une raison plus grave) : création et sauvegarde d'un fichier contenant des informations par défaut. Si la sauvegarde échoue également, on garde les données par défaut et on continue l'exécution (un message d'erreur est émis sur stdout).
 
  - Si c'est le tout premier lancement du jeu (on le sait grâce à l'`Archivist`) : exécution de la fonction `MainClass.doFirstTimeLaunch()`.
 
@@ -406,17 +406,17 @@ En vrac, les actions effectuées sont les suivantes :
 
  - La fonction `MainClass.main()` se termine, ainsi que le code du fichier `zemain.py`.
 
-La classe `MainClass` contient une variable `nbrErreur`, qui est incrémentée lors de la détection d'une erreur. En général, un incrément est toujours accompagné d'une description de l'erreur envoyée sur la sortie standard. Mais peut-être pas tout le temps.
+La classe `MainClass` contient une variable `nbrErreur`. En général, une incrémentation de cette variable est toujours accompagnée d'une description de l'erreur sur la sortie standard. Mais peut-être pas tout le temps.
 
-Des erreurs peuvent survenir lors de l'initialisation (chargement des fichiers, etc.). Mais il n'y a pas de détection d'erreur pendant le `handleMenu()` du menu principal, ni des autres menus. Par contre, il peut y en avoir pendant le déroulement d'une partie. La fonction `theGame.playOneGame()`, renvoie, entre autres, une variable `errorInGame`.
+Des erreurs peuvent survenir lors de l'initialisation (chargement des fichiers, etc.) et pendant le déroulement d'une partie (la fonction `theGame.playOneGame()` renvoie, entre autres, une variable `errorInGame`). Par contre, il n'y a pas de détection d'erreur pendant l'exécution des `handleMenu()`.
 
 ##### fonction doFirstTimelaunch() #####
 
 Exécute les actions à faire lors du premier lancement du jeu.
 
-Il y a quelques menus supplémentaires à afficher avant le menu principal (l'histoire du jeu, la description des touches, la saisie du nom du joueur). Les fonctions `handleMenu()` sont exécutées les unes après les autres. Chacun de ces menus comporte un moyen simple pour le joueur de le quitter, et donc de passer au suivant. En général, il suffit juste d'appuyer sur une touche.
+Il y a quelques menus supplémentaires à afficher avant le menu principal (l'histoire du jeu, la description des touches, la saisie du nom du joueur). Les fonctions `handleMenu()` sont exécutées les unes après les autres. Chacun de ces menus comporte un moyen simple pour le joueur de le quitter (en général un appui sur n'importe quelle touche).
 
-Le nom saisi est enregistré dans le fichier de sauvegarde, hashé avec du SHA-512, et comparé avec le hash du nom magique permettant de débloquer le mode invincible.
+Le nom de joueur saisi est enregistré dans le fichier de sauvegarde, hashé avec du SHA-512, et comparé avec le hash du nom magique permettant de débloquer le mode invincible.
 
 ##### fonction mactPlaySeveralGames() #####
 
@@ -455,11 +455,11 @@ Contient une seule grosse fonction `generateAllMenuManager()`, qui effectue les 
 
 #### menuzmai/MenuManagerMain ####
 
-Classe définissant le menu principal du jeu. Il y a beaucoup de choses, mais c'est assez simple. Les commentaires dans le code sont suffisants.
+Classe définissant le menu principal du jeu. Il y a beaucoup de choses mais c'est assez simple. Les commentaires dans le code sont suffisants.
 
 Quelques détails :
 
-Il y a un `MenuImage` affichant le titre "Blarg". Pourtant, ce titre est déjà présent dans l'image de background, mais en assombri. [(Voir prezanim)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#prezanimpresentationanim). On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
+Il y a un `MenuImage` affichant le titre "Blarg". ce titre est déjà présent dans l'image de background, mais il est en assombri. [(Voir prezanim)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#prezanimpresentationanim). On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
 
 L'élément `mkeyQuitEsc` est utilisé dans plusieurs menus. Il réagit à un appui sur la touche Esc, et envoie un IHMSG demandant à quitter le menu en cours. Dans le menu principal, le fait de quitter le menu en cours fait quitter complètement le jeu.
 
@@ -470,9 +470,9 @@ Les `MenuElem` sont rangés dans trois listes :
 
 Ça permet de définir plus facilement le cyclage de focus avec les flèches haut et bas. [(Voir menumng)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menumngpy). Ce cyclage se fait sur les éléments de `listMenuElemButtText`.
 
-Ça permet aussi de rajouter plus facilement une option texte : on modifie `listMenuElemButtText` et on reconstruit `listMenuElem`. C'est ce qui est fait lorsqu'il faut rajouter l'option du mode invincible (fonction `MenuManagerMain.addDogDom`).
+Ça permet aussi de rajouter plus facilement une option texte : on modifie `listMenuElemButtText` et on reconstruit `listMenuElem`. C'est ce qui est fait lors du rajout de l'option du mode invincible (fonction `MenuManagerMain.addDogDom`).
 
-Pour rappel : "DogDom", "EdomEdog" et les termes de ce genre sont une façon stupidement obfusquée de mentionner le "god mode", le mode invincible.
+Pour rappel : "DogDom", "EdomEdog" et les termes de ce genre sont une façon stupidement obfusquée de mentionner le "god mode", c'est à dire le mode invincible.
 
 #### menuzwak/MenuManagerWaitOrPressAnyKey ####
 
