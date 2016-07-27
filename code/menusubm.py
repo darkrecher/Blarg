@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,26 +10,26 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 10/02/2011
+date de la derniÃ¨re relecture-commentage : 10/02/2011
 
-élément de menu qui contient, gère, et affiche d'autres trucs (une liste de menuElem)
+Ã©lÃ©ment de menu qui contient, gÃ¨re, et affiche d'autres trucs (une liste de menuElem)
 on peut faire scroller horizontalement et verticalement ces trucs
 
 BIG BIG TRODO : il y a du code commun entre le SubMenu et le MenuManager,
-factoriser tout ça quand on aura envie.
-Pas là. Là, j'en ai chié pour faire ce tas de merde, j'en ai marre.
+factoriser tout Ã§a quand on aura envie.
+Pas lÃ . LÃ , j'en ai chiÃ© pour faire ce tas de merde, j'en ai marre.
 
-BIG BIG TRODO ENCORE PIRE : peut être qu'en fait c'est complètement de la merde cette classe.
-Et que je peux obtenir les mêmes "aspects fonctionnels" avec des menuElem mobiles,
-et limités à une certaine zone d'affichage à l'écran.
+BIG BIG TRODO ENCORE PIRE : peut Ãªtre qu'en fait c'est complÃ¨tement de la merde cette classe.
+Et que je peux obtenir les mÃªmes "aspects fonctionnels" avec des menuElem mobiles,
+et limitÃ©s Ã  une certaine zone d'affichage Ã  l'Ã©cran.
 Mais nous verrons cela une autre fois.
 
 """
@@ -54,24 +54,24 @@ class MenuSubMenu(MenuElem):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
             rectDrawZone : Rect indiquant la zone dans laquelle on dessine les MenuElem
-            contenus à l'intérieur du subMenu. Ce rect est relatif à la surface de destination
-            du subMenu. C'est à dire, en général, le screen. Mais ça pourrait être autre chose.
-            On le spécifie en param dans la méthode draw.
-            Si y'a des MenuElem qui dépassent entièrement ou partiellement
-            de cette zone, ils seront coupés. (Tu couperas ça au montage, Potard)
-            (C'était une phrase qui date de 15 ans, de fun radio ou skyrock. Désolé).
+            contenus Ã  l'intÃ©rieur du subMenu. Ce rect est relatif Ã  la surface de destination
+            du subMenu. C'est Ã  dire, en gÃ©nÃ©ral, le screen. Mais Ã§a pourrait Ãªtre autre chose.
+            On le spÃ©cifie en param dans la mÃ©thode draw.
+            Si y'a des MenuElem qui dÃ©passent entiÃ¨rement ou partiellement
+            de cette zone, ils seront coupÃ©s. (Tu couperas Ã§a au montage, Potard)
+            (C'Ã©tait une phrase qui date de 15 ans, de fun radio ou skyrock. DÃ©solÃ©).
 
-            listMenuElemInside : liste de MenuElem à mettre dans ce subMenu.
-            Les coordonnées de ces MenuElem sont définies par rapport
-            aux coordonnées du SubMenu. Ce ne sont pas les coordonnées "absolues".
-            Ne pas mettre de coordonnées négatives, ça va pas s'afficher.
+            listMenuElemInside : liste de MenuElem Ã  mettre dans ce subMenu.
+            Les coordonnÃ©es de ces MenuElem sont dÃ©finies par rapport
+            aux coordonnÃ©es du SubMenu. Ce ne sont pas les coordonnÃ©es "absolues".
+            Ne pas mettre de coordonnÃ©es nÃ©gatives, Ã§a va pas s'afficher.
 
             scrollLimit : tuple de deux entiers Y1 et Y2. Indique les limites hautes et basses
             du scrolling vertical. (Donc Y1 negatif ou nul, et Y2 positif ou nul).
-            Enfin c'est pas obligé, mais si on fait autrement, ça fait bizarre et crétin.
-            Par défaut : Y1 = Y2 = 0. C'est à dire qu'on peut pas scroller du tout.
+            Enfin c'est pas obligÃ©, mais si on fait autrement, Ã§a fait bizarre et crÃ©tin.
+            Par dÃ©faut : Y1 = Y2 = 0. C'est Ã  dire qu'on peut pas scroller du tout.
         """
 
         #mother-class. ouech ouech.
@@ -81,31 +81,31 @@ class MenuSubMenu(MenuElem):
         self.acceptFocus = True
 
         #branchement de la fonction d'action vers une fonction interne.
-        #Voir description de cette fonction, tout à la fin de ce fichier.
-        #(Putain, je l'ai déjà dit, mais j'adore vraiment le mot "interne". Il fait trop bien)
+        #Voir description de cette fonction, tout Ã  la fin de ce fichier.
+        #(Putain, je l'ai dÃ©jÃ  dit, mais j'adore vraiment le mot "interne". Il fait trop bien)
         self.funcAction = self.funcTransmitActionOnFocus
 
-        #définition du rectangle d'affichage et du rectangle de sensibilité à la souris.
-        #(C'est le même. Ha !!!) Tiens en théorie je devrais peut être ajouter une petite
-        #marge, pour être sur de ne pas couper la marge d'un éventuel SensitiveText
-        #qui serait placée au bord du SubMenu. Ah. eh bien je m'en tamponne.
+        #dÃ©finition du rectangle d'affichage et du rectangle de sensibilitÃ© Ã  la souris.
+        #(C'est le mÃªme. Ha !!!) Tiens en thÃ©orie je devrais peut Ãªtre ajouter une petite
+        #marge, pour Ãªtre sur de ne pas couper la marge d'un Ã©ventuel SensitiveText
+        #qui serait placÃ©e au bord du SubMenu. Ah. eh bien je m'en tamponne.
         self.rectDrawZone = rectDrawZone
         self.rectStimZone = rectDrawZone
 
         self.listMenuElemInside = listMenuElemInside
 
-        #création de la surface interne contenant les dessins de tous les éléments internes.
+        #crÃ©ation de la surface interne contenant les dessins de tous les Ã©lÃ©ments internes.
         self.renderElemInside()
 
-        #zone de départ, de la surface interne, qui sera blittée vers la surface de destination.
-        #On part du coin haut-gauche de la surface interne, et on tronque à la taille de la zone
+        #zone de dÃ©part, de la surface interne, qui sera blittÃ©e vers la surface de destination.
+        #On part du coin haut-gauche de la surface interne, et on tronque Ã  la taille de la zone
         #d'affichage du SubMenu.  Quand on scrolle vertical, la coord Y de ce rect change.
         self.sourceRectToBlit = pygame.Rect((0, 0), self.rectDrawZone.size)
 
-        #Référence vers le MenuElem interne ayant le focus interne.
-        #Quand le SubMenu prend le focus, il est censé donner un "sous-focus" à l'un de ses
+        #RÃ©fÃ©rence vers le MenuElem interne ayant le focus interne.
+        #Quand le SubMenu prend le focus, il est censÃ© donner un "sous-focus" Ã  l'un de ses
         #MenuElem interne.
-        #(Concrètement, ça sert à rien que le SubMenu en lui même ait le focus, il s'en tape)
+        #(ConcrÃ¨tement, Ã§a sert Ã  rien que le SubMenu en lui mÃªme ait le focus, il s'en tape)
         self.focusedElemInside = None
 
         self.scrollTop, self.scrollBottom = scrollLimit
@@ -117,48 +117,48 @@ class MenuSubMenu(MenuElem):
         surface "interne". Pour afficher le SubMenu, on se contentera de blitter cette surface.
 
         TRODO pour plus tard : MEGA BOURRIN. Si on a un subMenu de 10m de haut avec
-        plein de blabla dedans (genre, les Credits), ça fait une surface de 10m de haut
-        qui squatte toute la mémoire pour pas grand chose.
+        plein de blabla dedans (genre, les Credits), Ã§a fait une surface de 10m de haut
+        qui squatte toute la mÃ©moire pour pas grand chose.
         Pour l'instant, je m'en tamponne la courge.
 
-        Et donc ça, c'est la fonction pour pré-dessiner la surface interne.
-        Son but, c'est de définir self.surfaceInside
+        Et donc Ã§a, c'est la fonction pour prÃ©-dessiner la surface interne.
+        Son but, c'est de dÃ©finir self.surfaceInside
         """
 
-        #Il faut d'abord déterminer la taille de cette surface interne, de façon
-        #à ce qu'elle puisse contenir tous les sous-MenuElem.
+        #Il faut d'abord dÃ©terminer la taille de cette surface interne, de faÃ§on
+        #Ã  ce qu'elle puisse contenir tous les sous-MenuElem.
         #Il faut donc trouver :
-        #la position du côté droit du sous-MenuElem le plus à droite, pour avoir la largeur,
+        #la position du cÃ´tÃ© droit du sous-MenuElem le plus Ã  droite, pour avoir la largeur,
         #et la position du bas du sous-MenuElem le plus en bas, pour avoir la hauteur.
-        #(on considère que le haut-gauche c'est 0,0, même si y'a pas de sous-MenuElem à cet
-        #endroit. Et c'est pour ça qu'il faut pas en mettre avec des coord négatives.
-        #Car ils seront en partie ou totalement coupés.)
+        #(on considÃ¨re que le haut-gauche c'est 0,0, mÃªme si y'a pas de sous-MenuElem Ã  cet
+        #endroit. Et c'est pour Ã§a qu'il faut pas en mettre avec des coord nÃ©gatives.
+        #Car ils seront en partie ou totalement coupÃ©s.)
 
-        #détermination de la largeur
-        #on récupère la liste des coordonnées X des côtés droit des sous-MenuElem
+        #dÃ©termination de la largeur
+        #on rÃ©cupÃ¨re la liste des coordonnÃ©es X des cÃ´tÃ©s droit des sous-MenuElem
         #(plus exactement, tous les MenuElem qui s'affichent, les autres osef)
         listXCoordRight = [ menuElem.rectDrawZone.right
                             for menuElem in self.listMenuElemInside
                             if menuElem.rectDrawZone is not None ]
 
-        #récupération de la coord max, c'est à dire la plus à droite.
+        #rÃ©cupÃ©ration de la coord max, c'est Ã  dire la plus Ã  droite.
         XCoordMax = max(listXCoordRight)
 
-        #détemrination de la longueur.
-        #on récupère la liste des coordonnées Y des bas de tous les sous-MenuElem qui s'affichent.
+        #dÃ©temrination de la longueur.
+        #on rÃ©cupÃ¨re la liste des coordonnÃ©es Y des bas de tous les sous-MenuElem qui s'affichent.
         listYCoordBottom =[ menuElem.rectDrawZone.bottom
                             for menuElem in self.listMenuElemInside
                             if menuElem.rectDrawZone is not None ]
 
-        #récupération de la coord max, c'est à dire la plus en bas
+        #rÃ©cupÃ©ration de la coord max, c'est Ã  dire la plus en bas
         YCoordMax = max(listYCoordBottom)
 
-        #création de la surface interne, avec la largeur et la hauteur trouvée.
+        #crÃ©ation de la surface interne, avec la largeur et la hauteur trouvÃ©e.
         self.surfaceInside = pygame.Surface( (XCoordMax, YCoordMax) )
 
         #couleur transparente = couleur noire. Ca veut dire que je pourrais jamais mettre
         #de noir quand je dessinerais mes MenuElem. Bon c'est zarb, mais j'y survivrais.
-        #Sinon, je sais pas ce que c'est que ce RLEACCEL, mais ça doit être cool.
+        #Sinon, je sais pas ce que c'est que ce RLEACCEL, mais Ã§a doit Ãªtre cool.
         self.surfaceInside.set_colorkey(COLOR_BLACK, pygl.RLEACCEL)
 
         #dessin des MenuElem sur la surface interne
@@ -168,45 +168,45 @@ class MenuSubMenu(MenuElem):
 
     def scrollVertically(self, moveY):
         """
-        fonction exécutée par le code extérieur. Elle permet de décaler les MenuElem,
+        fonction exÃ©cutÃ©e par le code extÃ©rieur. Elle permet de dÃ©caler les MenuElem,
         pour les afficher un peu plus haut ou un peu plus bas. Ca fait un scrolling.
 
-        entrées :
-            moveY : int (positif ou negatif). Nombre de pixel de déplacement vertical
+        entrÃ©es :
+            moveY : int (positif ou negatif). Nombre de pixel de dÃ©placement vertical
                     positif : vers le bas. negatif : vers le haut.
         """
 
-        #On bouge le rectangle définissant la zone de la surface interne à bliter.
+        #On bouge le rectangle dÃ©finissant la zone de la surface interne Ã  bliter.
         self.sourceRectToBlit.move_ip(0, moveY)
 
         #clamping vertical de ce rectangle.
 
-        #si on est allé trop haut, on se remet à la limite haute.
+        #si on est allÃ© trop haut, on se remet Ã  la limite haute.
         if self.sourceRectToBlit.top < self.scrollTop:
             self.sourceRectToBlit.top = self.scrollTop
 
-        #si on est allé trop bas, blablabla. Le clamping est toujours sur le Rect.top,
-        #parce que scrollLimit définit
-        #la zone dans laquelle a le droit de se trouver le point sup-gauche de la zone à blitter,
-        #et non pas la zone dans laquelle a le droit de se trouver toute la zone à blitter.
+        #si on est allÃ© trop bas, blablabla. Le clamping est toujours sur le Rect.top,
+        #parce que scrollLimit dÃ©finit
+        #la zone dans laquelle a le droit de se trouver le point sup-gauche de la zone Ã  blitter,
+        #et non pas la zone dans laquelle a le droit de se trouver toute la zone Ã  blitter.
         elif self.sourceRectToBlit.top > self.scrollBottom:
             self.sourceRectToBlit.top = self.scrollBottom
 
         #on fait pas de redessinage, ni de refresh.
-        #C'est le code extérieur qui doit s'occuper de ça.
+        #C'est le code extÃ©rieur qui doit s'occuper de Ã§a.
 
 
     def scrollSetPosition(self, position=0):
         """
-        fonction exécutée par le code extérieur. Elle permet de remettre à zero
+        fonction exÃ©cutÃ©e par le code extÃ©rieur. Elle permet de remettre Ã  zero
         la position verticale des MenuElem.
         """
 
-        #On réinitialise le rectangle définissant la zone de la surface interne à bliter.
+        #On rÃ©initialise le rectangle dÃ©finissant la zone de la surface interne Ã  bliter.
         self.sourceRectToBlit.y = position
 
-        #Pas de clamping. La position 0 est censée être comprise dans les limites autorisées,
-        #si ça l'est pas, c'est bizarre. Et on s'en occupe pas.
+        #Pas de clamping. La position 0 est censÃ©e Ãªtre comprise dans les limites autorisÃ©es,
+        #si Ã§a l'est pas, c'est bizarre. Et on s'en occupe pas.
 
         #et donc, comme pour scrollVertically, pas de redessinage, ni de refresh.
 
@@ -215,17 +215,17 @@ class MenuSubMenu(MenuElem):
         """
         Change le focus interne, pour le mettre sur un autre sous-MenuElem.
 
-        entrées :
+        entrÃ©es :
             elemAskingFocus : sous-MenuElem qui veut le focus.
 
         TRODO : putain de fonction pareil que le MenuManager. A factoriser
         """
 
-        #si le focus était déjà sur un autre élément, on le lui enlève.
+        #si le focus Ã©tait dÃ©jÃ  sur un autre Ã©lÃ©ment, on le lui enlÃ¨ve.
         if self.focusedElemInside is not None:
             self.focusedElemInside.takeStimuliLoseFocus()
 
-        #modification de l'attribut pointant vers le sous-elem focusé.
+        #modification de l'attribut pointant vers le sous-elem focusÃ©.
         self.focusedElemInside = elemAskingFocus
         #on donne le focus au sous-elem qui n'en veut.
         self.focusedElemInside.takeStimuliGetFocus()
@@ -236,12 +236,12 @@ class MenuSubMenu(MenuElem):
         prise en compte des mouvements et des clics de souris.
         (voir description dans la motheur-classe MenuElem)
 
-        Il faut transmettre les stimulis de souris à tous les sous-menuElem
+        Il faut transmettre les stimulis de souris Ã  tous les sous-menuElem
         """
 
-        #tuple contenant les messages d'ihm, à renvoyer au code appelant.
-        #il contiendra à peu près les messages d'ihm renvoyé par les sous-MenuElem.
-        #voir plus loin pour l'explication du "à peu près".
+        #tuple contenant les messages d'ihm, Ã  renvoyer au code appelant.
+        #il contiendra Ã  peu prÃ¨s les messages d'ihm renvoyÃ© par les sous-MenuElem.
+        #voir plus loin pour l'explication du "Ã  peu prÃ¨s".
         ihmsgInfoReturn = IHMSG_VOID
 
         if self.rectStimZone.collidepoint(mousePos):
@@ -249,35 +249,35 @@ class MenuSubMenu(MenuElem):
             #le stimuli de la souris se trouve dans la zone du SubMenu.
             #Faut donc le prendre en compte.
             #
-            #On doit transmettre ce stimuli de souris à tous les MenuElem interne.
-            #Mais pour cela, il faut appliquer les décalages. On doit convertir
-            #les coordonnées de la souris par rapport au code appelant, en
-            #les coordonnées de la souris en local, par rapport à ce SubMenu
+            #On doit transmettre ce stimuli de souris Ã  tous les MenuElem interne.
+            #Mais pour cela, il faut appliquer les dÃ©calages. On doit convertir
+            #les coordonnÃ©es de la souris par rapport au code appelant, en
+            #les coordonnÃ©es de la souris en local, par rapport Ã  ce SubMenu
 
-            #on part des coordonnées données par le code appelant. (A priori, c'est les
-            #coordonnées de la souris à l'écran. Sauf si on a un SubMenu dans un SubMenu.
-            #Mais ça on s'en fout).
+            #on part des coordonnÃ©es donnÃ©es par le code appelant. (A priori, c'est les
+            #coordonnÃ©es de la souris Ã  l'Ã©cran. Sauf si on a un SubMenu dans un SubMenu.
+            #Mais Ã§a on s'en fout).
             rectPosMouseInSubMenu = pyRectTuple(mousePos)
 
-            #on applique le décalage lié au scrolling vertical du SubMenu
+            #on applique le dÃ©calage liÃ© au scrolling vertical du SubMenu
             rectPosMouseInSubMenu.move_ip(self.sourceRectToBlit.topleft)
 
-            #et on applique le décalage par rapport à la position du SubMenu dans
-            #l'objet qui le contient. Faut retirer la coordonnée du SubMenu, parce que euh...
-            #Ouais là je saurais pas expliquer, mais faites un dessin, vous comprendrez.
+            #et on applique le dÃ©calage par rapport Ã  la position du SubMenu dans
+            #l'objet qui le contient. Faut retirer la coordonnÃ©e du SubMenu, parce que euh...
+            #Ouais lÃ  je saurais pas expliquer, mais faites un dessin, vous comprendrez.
             rectPosMouseInSubMenu.move_ip(oppRect(self.rectDrawZone).topleft)
 
-            #Voilà, ça c'est les coordonnées de la souris, locales au SubMenu
+            #VoilÃ , Ã§a c'est les coordonnÃ©es de la souris, locales au SubMenu
             posMouseInSubMenu = rectPosMouseInSubMenu.topleft
 
-            #on peut maintenant transmettre le stimuli à tous les sous-MenuElem, un par un.
+            #on peut maintenant transmettre le stimuli Ã  tous les sous-MenuElem, un par un.
             for menuElem in self.listMenuElemInside:
 
-                #crac, transmission. Et récupération des messages d'ihm
+                #crac, transmission. Et rÃ©cupÃ©ration des messages d'ihm
                 param = (posMouseInSubMenu, mouseDown, mousePressed)
                 ihmsgInfoNew = menuElem.takeStimuliMouse(*param)
 
-                #le sous-MenuElem a demandé le focus interne. On lui donne.
+                #le sous-MenuElem a demandÃ© le focus interne. On lui donne.
                 if IHMSG_ELEM_WANTFOCUS in ihmsgInfoNew:
                     self.focusOnElem(menuElem)
 
@@ -286,39 +286,39 @@ class MenuSubMenu(MenuElem):
                 ihmsgInfoReturn += ihmsgInfoNew
 
         #on ne doit pas propager les demandes de focus des sous-MenuElem au code appelant.
-        #Car on a déjà géré en interne ces demandes de focus.
+        #Car on a dÃ©jÃ  gÃ©rÃ© en interne ces demandes de focus.
         #Donc faut virer tous les messages IHMSG_ELEM_WANTFOCUS du tuple de message d'ihm.
-        #TRODO? : Ces messages d'ihm, ce serait pas mieux sous forme d'un dico de booléen avec
+        #TRODO? : Ces messages d'ihm, ce serait pas mieux sous forme d'un dico de boolÃ©en avec
         #tous les messages dedans ? Ou un set. Mais pas un tuple de merde avec du bordel.
         if self.focusOn:
-            #TRODO : regardez moi ça, c'est dégueulasse. Mayrdeu !!!
+            #TRODO : regardez moi Ã§a, c'est dÃ©gueulasse. Mayrdeu !!!
             ihmsgInfoReturn = tuple( [ihmsg for ihmsg in ihmsgInfoReturn
                                       if ihmsg != IHMSG_ELEM_WANTFOCUS] )
 
-        #C'est bon, on a filtré les WANTFOCUS. On renvoi le reste des messages d'ihm.
+        #C'est bon, on a filtrÃ© les WANTFOCUS. On renvoi le reste des messages d'ihm.
         return ihmsgInfoReturn
 
 
     def draw(self, surfaceDest):
         """
-        dessinage de l'élément de menu, sur une surface de destination.
+        dessinage de l'Ã©lÃ©ment de menu, sur une surface de destination.
         (voir description de la fonction dans la mother-classe MenuElem)
         """
 
-        #on redessine dans la surface interne tous les MenuElem qui doivent être refreshed.
+        #on redessine dans la surface interne tous les MenuElem qui doivent Ãªtre refreshed.
         for menuElem in self.listMenuElemInside:
 
             if menuElem.mustBeRefreshed:
                 menuElem.draw(self.surfaceInside)
 
         #on blitte la surfazce interne vers la surface de destination. On utilise le rect
-        #définissant la zone à blitter. Cette zone a été éventuellement décalée pour le scrolling,
-        #et éventuellement tronquée pour rentrer dans le RectDrawZone du SubMenu.
+        #dÃ©finissant la zone Ã  blitter. Cette zone a Ã©tÃ© Ã©ventuellement dÃ©calÃ©e pour le scrolling,
+        #et Ã©ventuellement tronquÃ©e pour rentrer dans le RectDrawZone du SubMenu.
         #
-        #petit rappel : le 2eme param du blit : self.rectDrawZone, sert uniquement à
+        #petit rappel : le 2eme param du blit : self.rectDrawZone, sert uniquement Ã 
         #indiquer le point de blittage sur la surface de destination. La taille
-        #de self.rectDrawZone n'est pas utilisée. C'est la taille du 1er param qui définit
-        #quelle est taille de la zone à blitter.
+        #de self.rectDrawZone n'est pas utilisÃ©e. C'est la taille du 1er param qui dÃ©finit
+        #quelle est taille de la zone Ã  blitter.
         param = (self.surfaceInside, self.rectDrawZone, self.sourceRectToBlit)
         surfaceDest.blit(*param)
 
@@ -330,13 +330,13 @@ class MenuSubMenu(MenuElem):
 
         ihmsgInfo = IHMSG_VOID
 
-        #y'a qu'à juste exécuter le update sur chaque MenuElem interne
+        #y'a qu'Ã  juste exÃ©cuter le update sur chaque MenuElem interne
         for menuElem in self.listMenuElemInside:
 
             ihmsgInfo += menuElem.update()
 
-            #le SubMenu doit être refreshed si au moins un
-            #de ces sous-MenuElem doit être refreshed. (Oh la jolie phrase !)
+            #le SubMenu doit Ãªtre refreshed si au moins un
+            #de ces sous-MenuElem doit Ãªtre refreshed. (Oh la jolie phrase !)
             if menuElem.mustBeRefreshed:
                 self.mustBeRefreshed = True
 
@@ -345,7 +345,7 @@ class MenuSubMenu(MenuElem):
 
     def takeStimuliLoseFocus(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que le SubMenu perd le focus
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que le SubMenu perd le focus
         """
 
         MenuElem.takeStimuliLoseFocus(self)
@@ -353,31 +353,31 @@ class MenuSubMenu(MenuElem):
         #si l'un des MenuElem interne a le focus interne, on le lui fait perdre
         if self.focusedElemInside is not None:
             self.focusedElemInside.takeStimuliLoseFocus()
-            #et on Nonifie la référence vers le sous-MenuElem ayant le focus interne.
-            #Haha : "Nonifier". Non, ça veut pas dire transformer en nonne.
+            #et on Nonifie la rÃ©fÃ©rence vers le sous-MenuElem ayant le focus interne.
+            #Haha : "Nonifier". Non, Ã§a veut pas dire transformer en nonne.
             self.focusedElemInside = None
 
 
     def takeStimuliGetFocus(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que le SubMenu prend le focus
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que le SubMenu prend le focus
         """
         #paf mother-class.
         MenuElem.takeStimuliGetFocus(self)
 
-        #Il n'y a rien de plus à faire. Du coup, on peut se avoir un SubMenu focusé,
+        #Il n'y a rien de plus Ã  faire. Du coup, on peut se avoir un SubMenu focusÃ©,
         #avec un focus interne sur rien du tout (self.focusedElemInside = None)
-        #Eh ben ça plantera pas.
+        #Eh ben Ã§a plantera pas.
         #Si on fait Tab, le SubMenu va focuser sur le premier sous-MenuElem de sa liste.
-        #Si on fait Entrée ou Espace, le SubMenu ne fera rien.
+        #Si on fait EntrÃ©e ou Espace, le SubMenu ne fera rien.
 
-        #TRODO pour plus tard : réfléchir philosophiquement si faudrait pas focuser
+        #TRODO pour plus tard : rÃ©flÃ©chir philosophiquement si faudrait pas focuser
         #sur le premier sous-MenuElem. Au lieu de focuser sur rien.
 
     def takeStimuliFocusCycling(self):
         """
-        fonction exécutée par le code extérieur, quand il veut prévenir que y'a un cyclage
-        de focus à faire.
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, quand il veut prÃ©venir que y'a un cyclage
+        de focus Ã  faire.
         (voir description de la fonction dans MenuElem)
         """
 
@@ -387,14 +387,14 @@ class MenuSubMenu(MenuElem):
         focusedElemNew = cycleFocus(*param)
 
         if focusedElemNew is None:
-            #l'élément focusé en interne est None. Ca veut dire qu'on est arrivé à la
-            #fin de la liste des éléments à focuser. Dans ce cas, on prévient
+            #l'Ã©lÃ©ment focusÃ© en interne est None. Ca veut dire qu'on est arrivÃ© Ã  la
+            #fin de la liste des Ã©lÃ©ments Ã  focuser. Dans ce cas, on prÃ©vient
             #le code appelant que le cyclage de focus principal peut se faire.
             #(Le SubMenu va paumer le focus, et on passera au MenuElem "pas-interne" suivant.
             return (IHMSG_CYCLE_FOCUS_OK, )
         else:
-            #l'élément focusé en interne est un sous-MenuElem. On met à jour la référence
-            #pointant vers l'élément focusé.
+            #l'Ã©lÃ©ment focusÃ© en interne est un sous-MenuElem. On met Ã  jour la rÃ©fÃ©rence
+            #pointant vers l'Ã©lÃ©ment focusÃ©.
             self.focusedElemInside = focusedElemNew
             #On renvoie un tuple avec aucun message d'ihm dedans.
             #Ca veut dire qu'on accepte pas de lacher son focus pour faire le cyclage de focus
@@ -404,22 +404,22 @@ class MenuSubMenu(MenuElem):
 
     def funcTransmitActionOnFocus(self):
         """
-        fonction permettant de transmettre un ordre d'exécution de funcAction
-        vers l'élément focusé en interne. (Quand le joueur a appuyé sur Entrée ou Espace)
-        Cette fonction est branché sur le funcAction du SubMenu, c'est à dire qu'elle
-        s'exécute lorsqu'on active le SubMenu.
-        Il faut exécuter la funcAction du sous-MenuElem, si c'est possible.
+        fonction permettant de transmettre un ordre d'exÃ©cution de funcAction
+        vers l'Ã©lÃ©ment focusÃ© en interne. (Quand le joueur a appuyÃ© sur EntrÃ©e ou Espace)
+        Cette fonction est branchÃ© sur le funcAction du SubMenu, c'est Ã  dire qu'elle
+        s'exÃ©cute lorsqu'on active le SubMenu.
+        Il faut exÃ©cuter la funcAction du sous-MenuElem, si c'est possible.
         """
 
-        #on regarde si y'a un élément focusé, et si cet élément possède une funcAction.
+        #on regarde si y'a un Ã©lÃ©ment focusÃ©, et si cet Ã©lÃ©ment possÃ¨de une funcAction.
         if self.focusedElemInside is not None:
             if self.focusedElemInside.funcAction is not None:
 
-                #on peut exécuter cette funcAction, et renvoyer les messages d'ibm
-                #qui en a résulté. (Décombé ? laul !!!)
+                #on peut exÃ©cuter cette funcAction, et renvoyer les messages d'ibm
+                #qui en a rÃ©sultÃ©. (DÃ©combÃ© ? laul !!!)
                 return self.focusedElemInside.funcAction()
 
-        #Sinon : y'a rien à faire. On glande, et on renvoie un tuple d'ihmsg vide.
+        #Sinon : y'a rien Ã  faire. On glande, et on renvoie un tuple d'ihmsg vide.
         return IHMSG_VOID
 
 
@@ -428,14 +428,14 @@ class MenuSubMenu(MenuElem):
         changement du language. (voir descrip dans MenuElem)
         """
 
-        #il faut propager le changement du language à tous les sous-éléments.
+        #il faut propager le changement du language Ã  tous les sous-Ã©lÃ©ments.
         for elemInside in self.listMenuElemInside:
             elemInside.changeLanguage()
 
-        #et il faut recréer la surface interne contenant ces éléments de menu.
-        #on redétermine la taille, on redessine tout, etc.
+        #et il faut recrÃ©er la surface interne contenant ces Ã©lÃ©ments de menu.
+        #on redÃ©termine la taille, on redessine tout, etc.
         #TRODO pour plus tard : MEGA BOURRIN AUSSI. Cette fonction trashe la surface
-        #de 10 m de haut pour en recréer une autre juste après. Et paf la mémoire !
-        #Je le corrige pas. Vaut mieux corriger le problème à sa source. (pas de surface de 10 m)
+        #de 10 m de haut pour en recrÃ©er une autre juste aprÃ¨s. Et paf la mÃ©moire !
+        #Je le corrige pas. Vaut mieux corriger le problÃ¨me Ã  sa source. (pas de surface de 10 m)
         self.renderElemInside()
 

@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,17 +10,17 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernère relecture-commentage : 11/10/2010
+date de la dernÃ¨re relecture-commentage : 11/10/2010
 
-la classe pour gérer le sprite qui affiche le corps du héros.
+la classe pour gÃ©rer le sprite qui affiche le corps du hÃ©ros.
 """
 
 import pygame
@@ -30,18 +30,18 @@ from common import pyRect
 #BIG TRODO
 #Pour l'instant on s'en sert pas de ces trucs, ici.
 #Quand je rangerais les trucs comme il faut, c'est le heroBody
-#qui gérera les décalages. Pour l'instant c'est le bordel
+#qui gÃ©rera les dÃ©calages. Pour l'instant c'est le bordel
 #DECAL_NORM_RAISE1   = (+3, -1)
 #DECAL_RAISE1_RAISE2 = (+1, -5)
 #DECAL_RAISE2_ARM    = ( 0, +1)
 #pour la version 2
 
-#meme décalae mais opposé
+#meme dÃ©calae mais opposÃ©
 #DECAL_RAISE2_RAISE1 = (-DECAL_RAISE1_RAISE2[0], -DECAL_RAISE1_RAISE2[1])
 #DECAL_RAISE1_NORM   = (-DECAL_NORM_RAISE1[0],   -DECAL_NORM_RAISE1[1])
 #DECAL_ARM_RAISE2    = (-DECAL_RAISE2_ARM[0],    -DECAL_RAISE2_ARM[1])
 
-#liste des identifieurs d'images du corps du héros.
+#liste des identifieurs d'images du corps du hÃ©ros.
 (IMG_NORMAL,
  IMG_RAISE_A,
  IMG_RAISE_B,
@@ -51,7 +51,7 @@ from common import pyRect
  IMG_HURT,
 ) = range(7)
 
-#préfixe dans les noms de fichiers image du corps du héros.
+#prÃ©fixe dans les noms de fichiers image du corps du hÃ©ros.
 IMG_FILENAME_PREFIX = "h"
 
 #liste de tuple de 2 elements. Correspondance entre l'identifieur de l'image
@@ -81,10 +81,10 @@ class HeroBody(pygame.sprite.Sprite):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
             dicHeroBodyImg : dictionnaire de correspondance
                              identifiant d'image -> image
-            posStart       : rect. position du coin superieur gauche du sprite, à l'écran.
+            posStart       : rect. position du coin superieur gauche du sprite, Ã  l'Ã©cran.
         """
         pygame.sprite.Sprite.__init__(self)
         self.dicHeroBodyImg = dicHeroBodyImg
@@ -93,24 +93,24 @@ class HeroBody(pygame.sprite.Sprite):
         self.image = dicHeroBodyImg[IMG_NORMAL]
 
         #la taille du sprite (pour les collisions), c'est la taille de l'image
-        #c'est pas systématiquement exact. par exemple si y'a un bout qui dépasse mais qu'est pas
-        #censé collisionner, genre un bout de fusil, faudrait le gérer autrement. là, osef.
-        #De plus, la taille du sprite n'est pas réactualisée quand on change l'image.
-        #osef une fois de plus, car toutes les images du corps ont à peu près la même taille.
+        #c'est pas systÃ©matiquement exact. par exemple si y'a un bout qui dÃ©passe mais qu'est pas
+        #censÃ© collisionner, genre un bout de fusil, faudrait le gÃ©rer autrement. lÃ , osef.
+        #De plus, la taille du sprite n'est pas rÃ©actualisÃ©e quand on change l'image.
+        #osef une fois de plus, car toutes les images du corps ont Ã  peu prÃ¨s la mÃªme taille.
         spriteSize = self.image.get_size()
         self.rect = pygame.Rect(posStart.topleft + spriteSize)
 
 
     def changeImg(self, imgIdNew, rectOffset=None):
         """
-        change l'image de la tête du héros
+        change l'image de la tÃªte du hÃ©ros
 
-        entrée :
-          imgIdNew   : identifiant de la nouvelle image à afficher.
+        entrÃ©e :
+          imgIdNew   : identifiant de la nouvelle image Ã  afficher.
           rectOffset : None, ou un rect.
-                       Si rect : c'est le décalage à appliquer au sprite
-                       pour pas que le corps du héros bouge stupidement.
-                       (gestion à l'arrache des hotPoint d'images de sprite)
+                       Si rect : c'est le dÃ©calage Ã  appliquer au sprite
+                       pour pas que le corps du hÃ©ros bouge stupidement.
+                       (gestion Ã  l'arrache des hotPoint d'images de sprite)
         """
 
         self.image = self.dicHeroBodyImg[imgIdNew]

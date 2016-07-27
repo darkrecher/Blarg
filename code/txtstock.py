@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,21 +10,21 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 01/03/2011
+date de la derniÃ¨re relecture-commentage : 01/03/2011
 
-classe de stockage de données, qui contient tous les textes, en anglais et en françay
+classe de stockage de donnÃ©es, qui contient tous les textes, en anglais et en franÃ§ay
 
-dérogation spéciale pour ce fichier. Les lignes de code peuvent dépasser 79 caractères.
-Car c'est que du texte, et ce serait super chiant de découper ça en plusieurs lignes.
-C'est déjà assez moche comme ça à lire.
+dÃ©rogation spÃ©ciale pour ce fichier. Les lignes de code peuvent dÃ©passer 79 caractÃ¨res.
+Car c'est que du texte, et ce serait super chiant de dÃ©couper Ã§a en plusieurs lignes.
+C'est dÃ©jÃ  assez moche comme Ã§a Ã  lire.
 """
 
 from common import LANG_FRENCH, LANG_ENGL, LANG_DEFAULT, NAME_HERO
@@ -36,11 +36,11 @@ class TextStock():
     tous les textes du jeu.
     """
 
-    #Identifiants de tous les textes utilisés dans le jeu.
-    #je les déclare tous à l'intérieur de la classe. Comme ça, le code extérieur pourra
+    #Identifiants de tous les textes utilisÃ©s dans le jeu.
+    #je les dÃ©clare tous Ã  l'intÃ©rieur de la classe. Comme Ã§a, le code extÃ©rieur pourra
     #les utiliser directement, sans les importer une par une. Parce que ce serait lourdingue.
-    #Je détaille pas la signification de chacun de ces identifiants. Ca se devine plus ou moins
-    #facilement en regardant à quelles chaînes de caractères ils sont associés. (Voir plus loin).
+    #Je dÃ©taille pas la signification de chacun de ces identifiants. Ca se devine plus ou moins
+    #facilement en regardant Ã  quelles chaÃ®nes de caractÃ¨res ils sont associÃ©s. (Voir plus loin).
 
     (
      #menu principal
@@ -53,14 +53,14 @@ class TextStock():
      MAIN_HISCORE,
      MAIN_DOGDOM,
      MAIN_FULLSCR,
-     #menu affichant le héros mort, transformé en potion de mana.
+     #menu affichant le hÃ©ros mort, transformÃ© en potion de mana.
      DEAD_PHRASE_1,
      DEAD_PHRASE_2,
      DEAD_BURST,
      DEAD_KILL,
      DEAD_SCORE,
      DEAD_KEYS,
-     #menu avec tout le blabla des crédits.
+     #menu avec tout le blabla des crÃ©dits.
      CRED_T_BLA,
      CRED_CLICK,
      CRED_INDIE,
@@ -104,7 +104,7 @@ class TextStock():
      CREDL_CC,
      #menu demandant au joueur d'entrer son nom
      ENTER_NAME,
-     #menu du ha ha ha scénario
+     #menu du ha ha ha scÃ©nario
      STORY_01,
      STORY_02,
      STORY_03,
@@ -132,19 +132,19 @@ class TextStock():
      STAT_HI_KILL,
      STAT_HI_BURST,
      STAT_SEP,
-     #animation de présentation du début.
+     #animation de prÃ©sentation du dÃ©but.
      PREZ_LOADING,
-     #menu qui vient juste après le choix du nom. Où on explique que le nom sert à rien.
+     #menu qui vient juste aprÃ¨s le choix du nom. OÃ¹ on explique que le nom sert Ã  rien.
      NAME_LIE_NORM_1,
      NAME_LIE_NORM_2,
      NAME_LIE_DOG_1,
      NAME_LIE_DOG_2,
     ) = range(86)
 
-    #atation, l'ordre c'est français, puis anglais. Je me suis permis de l'écrire dans
-    #une liste ordonnée, plutôt que de le déclarer sous forme de sous-dico,
-    #car ça m'aurait fait répéter 10 000 fois les clés LANG_ENGL et LANG_FRENCH.
-    #Si on met un seul elem, ça veut dire que l'anglais est pareil que le français
+    #atation, l'ordre c'est franÃ§ais, puis anglais. Je me suis permis de l'Ã©crire dans
+    #une liste ordonnÃ©e, plutÃ´t que de le dÃ©clarer sous forme de sous-dico,
+    #car Ã§a m'aurait fait rÃ©pÃ©ter 10 000 fois les clÃ©s LANG_ENGL et LANG_FRENCH.
+    #Si on met un seul elem, Ã§a veut dire que l'anglais est pareil que le franÃ§ais
     DICT_LANGUAGE_LIST = {
 
      #menu principal
@@ -153,33 +153,33 @@ class TextStock():
      MAIN_CREDITS   : (u"CREDITS",                    u"CREDITS", ),
      MAIN_QUIT      : (u"QUITTER",                    u"QUIT", ),
      MAIN_DOGDOM    : (u"EDOM EDOG"[::-1], ),
-     MAIN_RECHER    : (u"Créé par Réchèr :",          u"Created by Réchèr :", ),
+     MAIN_RECHER    : (u"CrÃ©Ã© par RÃ©chÃ¨r :",          u"Created by RÃ©chÃ¨r :", ),
      MAIN_INTRO     : (u"INTRO",                      u"INTRO", ),
      MAIN_CONFIG    : (u"CONFIG",                     u"CONFIG", ),
      MAIN_HISCORE   : (u"HIGH SCORES",                u"HIGH SCORES", ),
-     MAIN_FULLSCR   : (u"plein écran",                u"full screen", ),
+     MAIN_FULLSCR   : (u"plein Ã©cran",                u"full screen", ),
 
 
-     #menu affichant le héros mort, transformé en potion de mana.
+     #menu affichant le hÃ©ros mort, transformÃ© en potion de mana.
 
-     DEAD_PHRASE_1  : (u"Vous êtes mooorrrt !!",
+     DEAD_PHRASE_1  : (u"Vous Ãªtes mooorrrt !!",
                        u"You are deeeaaaad !!", ),
 
-     DEAD_PHRASE_2  : (u"Vous avez été transformé en potion de mana.",
+     DEAD_PHRASE_2  : (u"Vous avez Ã©tÃ© transformÃ© en potion de mana.",
                        u"You were transformed in a mana potion.", ),
 
-     DEAD_BURST     : (u"Nombre de magiciens explosés : ",
+     DEAD_BURST     : (u"Nombre de magiciens explosÃ©s : ",
                        u"Number of magicians burst :", ),
 
-     DEAD_KILL      : (u"Total de magiciens tués : ",
+     DEAD_KILL      : (u"Total de magiciens tuÃ©s : ",
                        u"Total magicians killed :", ),
 
-     DEAD_KEYS      : (u"Entrée : rejouer.   Esc : quitter",
+     DEAD_KEYS      : (u"EntrÃ©e : rejouer.   Esc : quitter",
                        u"Enter : play again.   Esc : quit", ),
 
      DEAD_SCORE     : (u"Score : ", ),
 
-     #menu avec tout le blabla des crédits.
+     #menu avec tout le blabla des crÃ©dits.
 
      CRED_T_BLA     : (u" --- MOI --- ",              u" --- ME --- ", ),
 
@@ -198,7 +198,7 @@ class TextStock():
      CRED_42        : (u"Moi et d'autres, dans un geekzine: ",
                        u"Me and others, in a geekzine:", ),
 
-     CRED_TWIT      : (u"Moi en poudre instantanée: ",
+     CRED_TWIT      : (u"Moi en poudre instantanÃ©e: ",
                        u"Me, in instant powder:", ),
 
      CREDL_INDIE    : (u"http://indiedb.com/members/recher", ),
@@ -218,7 +218,7 @@ class TextStock():
      CRED_ST_DONAT2 : (u"--- super-donateuse ---",
                        u"--- super-donatorette ---"),
      CRED_DONAT_KA  : (u"Ceska2007", ),
-     CRED_ST_DONAT3 : (u" --- joyeux mécènes ---",
+     CRED_ST_DONAT3 : (u" --- joyeux mÃ©cÃ¨nes ---",
                        u"--- joyesque donators ---"),
      CRED_DONAT_CU  : (u"Cuningham", ),
      CRED_DONAT_CO  : (u"Le Corse", ),
@@ -229,23 +229,23 @@ class TextStock():
      CRED_DONAT_LA  : (u"Platypus Creation", ),
      CREDL_DONAT_LA : (u"http://www.platypus-creation.com", ),
 
-     CRED_YOU       : (u"Et vous bien sûr !! qui contribuerez à mes prochains jeux !!",
+     CRED_YOU       : (u"Et vous bien sÃ»r !! qui contribuerez Ã  mes prochains jeux !!",
                        u"And you, of course !! Give me your money for my next game !", ),
 
      CRED_T_OTHER   : (u" --- AUTRES TRUCS SUPERS --- ",
                        u" ---  OTHER COOL THINGS  --- ", ),
 
-     CRED_YUSU      : (u"Police de caractère youpi:",
+     CRED_YUSU      : (u"Police de caractÃ¨re youpi:",
                        u"yeepeeeh fonts:", ),
 
      CREDL_YUSU     : (u"http://p.yusukekamiyamane.com", ),
 
-     CRED_PYG       : (u"Ce jeu a été créé avec pygame:",
+     CRED_PYG       : (u"Ce jeu a Ã©tÃ© crÃ©Ã© avec pygame:",
                        u"Game created with pygame:", ),
 
      CREDL_PYG      : (u"http://pygame.org", ),
 
-     CRED_LIC_1     : (u"Copyright 2010 Réchèr", ),
+     CRED_LIC_1     : (u"Copyright 2010 RÃ©chÃ¨r", ),
 
      CRED_LIC_2     : (u"Le code source, les sons et les images sont disponible, au choix,",
                        u"The source code, the images and the sounds are available", ),
@@ -258,10 +258,10 @@ class TextStock():
      CREDL_LAL      : (u"http://www.artlibre.org",
                        u"http://artlibre.org/licence/lal/en"),
 
-     CRED_CC_1      : (u"Creative Commons - Paternité - ",
+     CRED_CC_1      : (u"Creative Commons - PaternitÃ© - ",
                        u"Creative Commons - Attribution - ", ),
 
-     CRED_CC_2      : (u"Partage des Conditions Initiales à l'Identique 2.0 France",
+     CRED_CC_2      : (u"Partage des Conditions Initiales Ã  l'Identique 2.0 France",
                        u"              ShareAlike 2.0 France !!!", ),
 
      CREDL_CC       : (u"http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr",
@@ -271,18 +271,18 @@ class TextStock():
 
      ENTER_NAME     : (u"Entrez votre nom :",         u"Enter your name :", ),
 
-     #menu du ha ha ha scénario
+     #menu du ha ha ha scÃ©nario
 
-     STORY_01       : (u"Vous êtes " + NAME_HERO + u", un vendeur de fusil à pompe",
+     STORY_01       : (u"Vous Ãªtes " + NAME_HERO + u", un vendeur de fusil Ã  pompe",
                        u"You are " + NAME_HERO + u", a honest shotgun seller,", ),
 
-     STORY_02       : (u"tout ce qu'il y a de plus honnête.",
+     STORY_02       : (u"tout ce qu'il y a de plus honnÃªte.",
                        u"the best in your county.", ),
 
-     STORY_03       : (u"Un jour, vous êtes mystérieusement télétransportagé",
+     STORY_03       : (u"Un jour, vous Ãªtes mystÃ©rieusement tÃ©lÃ©transportagÃ©",
                        u"One day, you are mysteriously teletransportwhouffed", ),
 
-     STORY_04       : (u"dans un univers parallèle remplis de magiciens dopés aux amphétamines,",
+     STORY_04       : (u"dans un univers parallÃ¨le remplis de magiciens dopÃ©s aux amphÃ©tamines,",
                        u"in a parallel universe full of steroized mad magicians,", ),
 
      STORY_05       : (u"qui veulent vous transformer en potion de mana.",
@@ -294,7 +294,7 @@ class TextStock():
      STORY_SCRL_01  : (u"Note importante : ",
                        u"Important note :"),
 
-     STORY_SCRL_02  : (u"Dans Star Wars, le scrolling de l'intro n'avait d'égal que la bande-son.",
+     STORY_SCRL_02  : (u"Dans Star Wars, le scrolling de l'intro n'avait d'Ã©gal que la bande-son.",
                        u"In Star Wars, the intro scrolling was as cool as the musics."),
 
      STORY_SCRL_03  : (u"Pour ce jeu, c'est exactement pareil.",
@@ -311,13 +311,13 @@ class TextStock():
 
      #menu de configuration du jeu
 
-     CONFIG_CLICK_1 : (u"Cliquez sur une touche à l'écran pour la modifier, ",
+     CONFIG_CLICK_1 : (u"Cliquez sur une touche Ã  l'Ã©cran pour la modifier, ",
                        u"Click a key on the screen to modify it,", ),
 
      CONFIG_CLICK_2 : (u"puis appuyez sur la touche du clavier.",
                        u"then, press the corresponding key.", ),
 
-     CONFIG_RESET   : (u"Remettre config par défaut",
+     CONFIG_RESET   : (u"Remettre config par dÃ©faut",
                        u"Reset to default config", ),
 
      CONFIG_EXIT    : (u"Echap : sauver et quitter",
@@ -327,31 +327,31 @@ class TextStock():
 
      #menu des high scores et des statistiques.
 
-     STAT_ALL_KILL  : (u"Total tués :",               u"Total kills :", ),
-     STAT_ALL_BURST : (u"Total explosés :",           u"Total bursts :", ),
+     STAT_ALL_KILL  : (u"Total tuÃ©s :",               u"Total kills :", ),
+     STAT_ALL_BURST : (u"Total explosÃ©s :",           u"Total bursts :", ),
      STAT_HI_SCORE  : (u"Meilleur score :",           u"High score :", ),
 
-     STAT_HI_KILL   : (u"Plus grand nombre de magiciens tués :",
+     STAT_HI_KILL   : (u"Plus grand nombre de magiciens tuÃ©s :",
                        u"Highest number of magiicians killed :", ),
 
-     STAT_HI_BURST  : (u"Plus grand nombre de magiciens explosés :",
+     STAT_HI_BURST  : (u"Plus grand nombre de magiciens explosÃ©s :",
                        u"Highest number of magicians burst :", ),
 
      STAT_SEP       : (u"-" * 90, ),
 
-     #animation de présentation du début.
+     #animation de prÃ©sentation du dÃ©but.
 
      PREZ_LOADING   : (u"LOADINGE",                   u"LOADING"),
 
-     #menu qui vient juste après le choix du nom. Où on explique que le nom sert à rien.
-     #pas besoin de la traduction en anglais. Ce menu ne s'affiche qu'au début du jeu,
-     #et au début, c'est en français, par défaut. Désolé pour nos amis rosbifs. Sorry, people.
+     #menu qui vient juste aprÃ¨s le choix du nom. OÃ¹ on explique que le nom sert Ã  rien.
+     #pas besoin de la traduction en anglais. Ce menu ne s'affiche qu'au dÃ©but du jeu,
+     #et au dÃ©but, c'est en franÃ§ais, par dÃ©faut. DÃ©solÃ© pour nos amis rosbifs. Sorry, people.
 
-     #mini-obfuscation. C'est écrit à l'envers. Hu hu hu.
-     NAME_LIE_DOG_1 : (u"! edoM edoG el éuqolbéd zeva suoV ! snoitaticiléF"[::-1],),
-     NAME_LIE_DOG_2 : (u"! uoy kcuf : noniS ! icrem : aç ruop éyap zeva suov iS"[::-1],),
-     NAME_LIE_NORM_1: (u"En fait on s'en fout de votre nom à vous.",),
-     NAME_LIE_NORM_2: (u"Le héros s'appelle " + NAME_HERO + u". C'est ça l'important.",),
+     #mini-obfuscation. C'est Ã©crit Ã  l'envers. Hu hu hu.
+     NAME_LIE_DOG_1 : (u"! edoM edoG el Ã©uqolbÃ©d zeva suoV ! snoitaticilÃ©F"[::-1],),
+     NAME_LIE_DOG_2 : (u"! uoy kcuf : noniS ! icrem : aÃ§ ruop Ã©yap zeva suov iS"[::-1],),
+     NAME_LIE_NORM_1: (u"En fait on s'en fout de votre nom Ã  vous.",),
+     NAME_LIE_NORM_2: (u"Le hÃ©ros s'appelle " + NAME_HERO + u". C'est Ã§a l'important.",),
     }
 
 
@@ -360,30 +360,30 @@ class TextStock():
         constructeur. (thx captain obvious)
         """
 
-        #initialisation du langage courant. Le langage par défaut c'est le français.
+        #initialisation du langage courant. Le langage par dÃ©faut c'est le franÃ§ais.
         self.language = LANG_DEFAULT
 
         #dictionnaire qui contiendra les textes du jeu, mais sous forme de dictionnaire, donc.
-        #clé : identifiants de texte
+        #clÃ© : identifiants de texte
         #valeur : sous-dictionnaire :
-        #         clé : identifiants de langage. LANG_FRENCH ou LANG_ENGL
-        #         valeur : chaîne de caractère unicode avec le texte dedans.
+        #         clÃ© : identifiants de langage. LANG_FRENCH ou LANG_ENGL
+        #         valeur : chaÃ®ne de caractÃ¨re unicode avec le texte dedans.
         self.DICT_LANGUAGE = {}
 
-        #construction de self.DICT_LANGUAGE à partir de DICT_LANGUAGE_LIST
-        #chaque élément de la liste crée un élément du dictionnaire.
+        #construction de self.DICT_LANGUAGE Ã  partir de DICT_LANGUAGE_LIST
+        #chaque Ã©lÃ©ment de la liste crÃ©e un Ã©lÃ©ment du dictionnaire.
         for idText, tupleTextLanguage in TextStock.DICT_LANGUAGE_LIST.items():
 
             if len(tupleTextLanguage) == 1:
-                #le tuple de texte ne contient qu'une seul chaîne de caractère.
-                #On l'utilise pour le français et l'anglais.
+                #le tuple de texte ne contient qu'une seul chaÃ®ne de caractÃ¨re.
+                #On l'utilise pour le franÃ§ais et l'anglais.
                 frenchText = tupleTextLanguage[0]
                 englishText = tupleTextLanguage[0]
             else:
-                #le tuple contient deux chaînes de caractères, pour le français, et l'anglais.
+                #le tuple contient deux chaÃ®nes de caractÃ¨res, pour le franÃ§ais, et l'anglais.
                 frenchText, englishText = tupleTextLanguage
 
-            #création du sous-dictionnaire, et rangement dans le gros dico global.
+            #crÃ©ation du sous-dictionnaire, et rangement dans le gros dico global.
             self.DICT_LANGUAGE[idText] = { LANG_FRENCH : frenchText,
                                            LANG_ENGL   : englishText }
 
@@ -392,7 +392,7 @@ class TextStock():
         """
         change le langage courant.
 
-        entrées :
+        entrÃ©es :
             newLanguage. identifiants du nouveau langage. LANG_FRENCH ou LANG_ENGL.
         """
         self.language = newLanguage
@@ -400,19 +400,19 @@ class TextStock():
 
     def getText(self, idText):
         """
-        récupère un texte, selon l'identifiant donné, et le langage courant.
+        rÃ©cupÃ¨re un texte, selon l'identifiant donnÃ©, et le langage courant.
 
-        entrées :
-            idText. identifiant du texte à récupérer.
+        entrÃ©es :
+            idText. identifiant du texte Ã  rÃ©cupÃ©rer.
 
         plat-dessert :
-            chaîne unicode, contenant le texte.
+            chaÃ®ne unicode, contenant le texte.
         """
         return self.DICT_LANGUAGE[idText][self.language]
 
 
-#paf, instanciation à l'arrache. J'aime pas trop faire comme ça. Mais c'est quand même
+#paf, instanciation Ã  l'arrache. J'aime pas trop faire comme Ã§a. Mais c'est quand mÃªme
 #vachement plus simple que d'instancier la classe quelque part et de la passer en param
-#à tout le monde qu'en a besoin. Et comme en plus tout les textes sont définis sur place
-#(pas de chargement de fichier à faire), eh ben on a le droit.
+#Ã  tout le monde qu'en a besoin. Et comme en plus tout les textes sont dÃ©finis sur place
+#(pas de chargement de fichier Ã  faire), eh ben on a le droit.
 txtStock = TextStock()

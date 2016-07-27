@@ -1,24 +1,24 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 Blarg version 1.0
 
-Démo du système de menu
-Fichier principal, qui lance l'une des démos au choix, en fonction du
-paramètre passé, ou de ce que l'utilisateur saisit.
+DÃ©mo du systÃ¨me de menu
+Fichier principal, qui lance l'une des dÃ©mos au choix, en fonction du
+paramÃ¨tre passÃ©, ou de ce que l'utilisateur saisit.
 
-J'aurais pu faire un menu qui lance les exemples de menus, ça aurait été
-classe. Mais ça aurait rendu les exemples plus complexes, notamment au
-niveau des initialisations. Là, chaque exemple est stand-alone dans son
-fichier de launch, et ça va très bien.
+J'aurais pu faire un menu qui lance les exemples de menus, Ã§a aurait Ã©tÃ©
+classe. Mais Ã§a aurait rendu les exemples plus complexes, notamment au
+niveau des initialisations. LÃ , chaque exemple est stand-alone dans son
+fichier de launch, et Ã§a va trÃ¨s bien.
 
-Enfin... Pas tout à fait stand-alone à cause des imports, mais presque.
+Enfin... Pas tout Ã  fait stand-alone Ã  cause des imports, mais presque.
 
 Usage :
-Lancer le script en indiquant 1, 2 ou 3 en paramètre.
-Si le script est lancé sans paramètre, ou avec des paramètres incorrects,
-le numéro est demandé dans le prompt.
+Lancer le script en indiquant 1, 2 ou 3 en paramÃ¨tre.
+Si le script est lancÃ© sans paramÃ¨tre, ou avec des paramÃ¨tres incorrects,
+le numÃ©ro est demandÃ© dans le prompt.
 """
 
 

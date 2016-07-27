@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,52 +10,52 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 06/10/2010
+date de la derniÃ¨re relecture-commentage : 06/10/2010
 
-classe dérivée du magicien
-le magirand est un magicien qui se déplace au hasard. Plus son level est haut, plus il bouge vite.
+classe dÃ©rivÃ©e du magicien
+le magirand est un magicien qui se dÃ©place au hasard. Plus son level est haut, plus il bouge vite.
 Son level augmente avec le temps.
 
-Le magicien peut un peu dépasser de l'écran, mais que par la droite et/ou le bas,
-et quand il dépasse, on lui remet un petit mouvement vers la gauche et/ou le haut,
-pour le remettre progressivement dans l'écran.
+Le magicien peut un peu dÃ©passer de l'Ã©cran, mais que par la droite et/ou le bas,
+et quand il dÃ©passe, on lui remet un petit mouvement vers la gauche et/ou le haut,
+pour le remettre progressivement dans l'Ã©cran.
 
-Il se déplace au hasard. Mais y'a quand même une inertie dans ses mouvements.
+Il se dÃ©place au hasard. Mais y'a quand mÃªme une inertie dans ses mouvements.
 
 Vocabulaire :
 
-RespectLine : ligne verticale imaginaire (chaque instance de magirand à la sienne).
-Lorsque le magicien se trouve à gauche de cette limite, on lui ajoute un petit
+RespectLine : ligne verticale imaginaire (chaque instance de magirand Ã  la sienne).
+Lorsque le magicien se trouve Ã  gauche de cette limite, on lui ajoute un petit
 mouvement vers la droite.
 
-Cela permet d'éviter que le magicien se rapproche trop vite du bord gauche de l'écran,
-là où, à priori, se trouve le héros, puisqu'il tire ses coups
+Cela permet d'Ã©viter que le magicien se rapproche trop vite du bord gauche de l'Ã©cran,
+lÃ  oÃ¹, Ã  priori, se trouve le hÃ©ros, puisqu'il tire ses coups
 de flingue vers la droite.
 
-capacité d'accélération : Pour modifier la trajectoire du magicien,
-on ajoute un vecteur d'accélération à son vecteur de vitesse.
-le vecteur d'accélération est déterminé au hasard, mais il est borné à des valeurs
-limites. Ces valeurs limites, c'est la capacité d'accélération.
+capacitÃ© d'accÃ©lÃ©ration : Pour modifier la trajectoire du magicien,
+on ajoute un vecteur d'accÃ©lÃ©ration Ã  son vecteur de vitesse.
+le vecteur d'accÃ©lÃ©ration est dÃ©terminÃ© au hasard, mais il est bornÃ© Ã  des valeurs
+limites. Ces valeurs limites, c'est la capacitÃ© d'accÃ©lÃ©ration.
 En gros, c'est un peu l'inverse de l'inertie.
 
 Tous les X cycles de jeu, le magicien effectue un "LevelUp" : il devient un peu plus dangereux
-X est défini par la constante LEVEL_UP_PERIOD
+X est dÃ©fini par la constante LEVEL_UP_PERIOD
 
 LevelUp :
-La vitesse max du magicien augmente, ainsi que sa capacité d'accélération.
-Sa "RespectLine" est déplacée vers la gauche. Il pourra donc plus facilement aller
+La vitesse max du magicien augmente, ainsi que sa capacitÃ© d'accÃ©lÃ©ration.
+Sa "RespectLine" est dÃ©placÃ©e vers la gauche. Il pourra donc plus facilement aller
 emmerder le joueur.
 
-Au bout d'un moment, la vitesse max n'augmente plus. Pareil pour la capacité d'accélération.
-et la RespectLine ne se déplace plus.
+Au bout d'un moment, la vitesse max n'augmente plus. Pareil pour la capacitÃ© d'accÃ©lÃ©ration.
+et la RespectLine ne se dÃ©place plus.
 Et lorsque le magicien a atteint un LEVEL_MAX, il ne fait plus de LevelUp.
 
 Pour plus de blabla, voir la classe de base magician.py
@@ -70,68 +70,68 @@ from magician import (Magician,
                       MAGI_RECT_CLAMPING)
 
 
-#capacité d'accélaration initiale et maximale
+#capacitÃ© d'accÃ©laration initiale et maximale
 ACCEL_CAP_INIT = 1
 ACCEL_CAP_MAX  = 9
-#période (nombre de cycle de jeu) de renouvellement et d'application de l'accélération.
-#tous les ACCEL_PERIOD, le magicien redéfinit son accélération, et l'applique
-#une fois à son mouvement. Entre deux ACCEL_PERIOD, il n'y a pas d'accélération.
+#pÃ©riode (nombre de cycle de jeu) de renouvellement et d'application de l'accÃ©lÃ©ration.
+#tous les ACCEL_PERIOD, le magicien redÃ©finit son accÃ©lÃ©ration, et l'applique
+#une fois Ã  son mouvement. Entre deux ACCEL_PERIOD, il n'y a pas d'accÃ©lÃ©ration.
 ACCEL_PERIOD = 4
 
 #vitesse limite initiale et maximale.
-#(vitesse limite = vitesse max, j'ai pas forcément choisi le bon mot. osef)
+#(vitesse limite = vitesse max, j'ai pas forcÃ©ment choisi le bon mot. osef)
 SPEED_LIMIT_INIT = 2
 SPEED_LIMIT_MAX = 14
-#période d'application du vecteur de vitesse à la position.
-#le magicien ne bouge pas à tous les cycles de jeu). Il bouge tous les MOVE_PERIOD cycles
+#pÃ©riode d'application du vecteur de vitesse Ã  la position.
+#le magicien ne bouge pas Ã  tous les cycles de jeu). Il bouge tous les MOVE_PERIOD cycles
 MOVE_PERIOD = 2
 
-#période entre chaque LevelUp du magicien
+#pÃ©riode entre chaque LevelUp du magicien
 LEVEL_UP_PERIOD = 180
 #Le magicien peut augmenter son level jusqu'au LEVEL_MAX
 LEVEL_MAX = 15
 
 #abscisse initiale de la RespectLine
 RESPECT_LINE_INIT = GAME_RECT.left + (GAME_RECT.width * 4) / 5
-#distance de déplacement de la RespectLine lors d'un LevelUp
+#distance de dÃ©placement de la RespectLine lors d'un LevelUp
 REPECT_LINE_LEVELUP_DECREMENT = GAME_RECT.width / 5
-#mouvement à ajouter vers la droite si le magicien dépasse la respectLine
+#mouvement Ã  ajouter vers la droite si le magicien dÃ©passe la respectLine
 RESPECT_LINE_MOVEMENT = 2
 
-#mouvement à appliquer si le magicien sort de l'écran à droite ou en bas
-#mouvement appliqué vers la gauche
+#mouvement Ã  appliquer si le magicien sort de l'Ã©cran Ã  droite ou en bas
+#mouvement appliquÃ© vers la gauche
 BORDER_RIGHT_MOVEMENT = 3
-#mouvement appliqué vers le haut
+#mouvement appliquÃ© vers le haut
 BORDER_BOTTOM_MOVMENT = 3
 
-#dictionnaire définissant le mouvement de recul du magicien, en fonction
-#des dégats qu'il se prend dans la gueule.
-#clé : nombre de bullet que se prend le magicien d'un coup.
-#valeur : tuple de 2 éléments.
-# - hurtPeriod. nombre de cycle à attendre entre chaque mouvement de recul
-# - listMovementXWhenHurt. Déplacement X du recul du magicien. (pas de depl Y)
-#   cette liste est foutue à l'envers, parce que je trouvais ça plus cool comme ça.
-#   Par exemple, pour le cas où il se prend 1 bullet,
-#   le magicien va se déplacer de 4, et attendre 4 cycles
-#   puis se déplacer de 3, et attendre encore 4 cycles
-#   puis se redéplacer de 3, et attendre encore 4 cycles, etc.
+#dictionnaire dÃ©finissant le mouvement de recul du magicien, en fonction
+#des dÃ©gats qu'il se prend dans la gueule.
+#clÃ© : nombre de bullet que se prend le magicien d'un coup.
+#valeur : tuple de 2 Ã©lÃ©ments.
+# - hurtPeriod. nombre de cycle Ã  attendre entre chaque mouvement de recul
+# - listMovementXWhenHurt. DÃ©placement X du recul du magicien. (pas de depl Y)
+#   cette liste est foutue Ã  l'envers, parce que je trouvais Ã§a plus cool comme Ã§a.
+#   Par exemple, pour le cas oÃ¹ il se prend 1 bullet,
+#   le magicien va se dÃ©placer de 4, et attendre 4 cycles
+#   puis se dÃ©placer de 3, et attendre encore 4 cycles
+#   puis se redÃ©placer de 3, et attendre encore 4 cycles, etc.
 DIC_HURTINFOMOV_FROM_DAMAGE = {
     1 : (4, (0, 0, 0, 1, 1, 2, 2, 3, 3, 4)),
     2 : (4, (0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6)),
 }
-#mouvement de recul par défaut, si le magicien se prend un nombre de bullet
-#non spécifié par le dictionnaire ci-dessus.
+#mouvement de recul par dÃ©faut, si le magicien se prend un nombre de bullet
+#non spÃ©cifiÃ© par le dictionnaire ci-dessus.
 DEFAULT_HURTINFOMOV = DIC_HURTINFOMOV_FROM_DAMAGE[2]
 
-#pour info, y'a que le premier élément de ce dictionnaire qui sert vraiment à quelque chose.
-#car le magicien a 2 points de vie. Donc si il se prend 2 points de dégats ou plus,
-#on lui applique pas de mouvement de hurt, mais on le crève direct.
+#pour info, y'a que le premier Ã©lÃ©ment de ce dictionnaire qui sert vraiment Ã  quelque chose.
+#car le magicien a 2 points de vie. Donc si il se prend 2 points de dÃ©gats ou plus,
+#on lui applique pas de mouvement de hurt, mais on le crÃ¨ve direct.
 #J'aime bien faire de l'inutile, voyez.
 
 
 class MagiRand(Magician):
     """
-    magicien qui se déplace au hasard, youpi.
+    magicien qui se dÃ©place au hasard, youpi.
     """
 
     def __init__(self, dicMagicienImg, spriteSimpleGenerator,
@@ -139,14 +139,14 @@ class MagiRand(Magician):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
-            voir la classe-mère. C'est les mêmes
+        entrÃ©e :
+            voir la classe-mÃ¨re. C'est les mÃªmes
         """
-        #appel du constructeur de la classe-mère. (Maman !!!)
+        #appel du constructeur de la classe-mÃ¨re. (Maman !!!)
         Magician.__init__(self, dicMagicienImg,
                           spriteSimpleGenerator, posStart, level)
 
-        #init du mouvement et de l'accélération, à des valeurs de 0.
+        #init du mouvement et de l'accÃ©lÃ©ration, Ã  des valeurs de 0.
         self.razMovementAndAcceleration()
 
 
@@ -160,61 +160,61 @@ class MagiRand(Magician):
 
     def razMovementAndAcceleration(self):
         """
-        fixe le mouvement et l'accélération à (0,0) : pas de mouvement, et pas d'accel
-        initialise les compteurs pour les périodes de mouvement et d'accélération.
+        fixe le mouvement et l'accÃ©lÃ©ration Ã  (0,0) : pas de mouvement, et pas d'accel
+        initialise les compteurs pour les pÃ©riodes de mouvement et d'accÃ©lÃ©ration.
         """
 
-        #les vecteurs de mouvement et d'accélération sont stockés dand des Rects,
+        #les vecteurs de mouvement et d'accÃ©lÃ©ration sont stockÃ©s dand des Rects,
         #dont osef le width et le height.
         #Ca permet de profiter de toutes les fonctions cool des Rects (move, clamp, ...)
 
-        #compteur pour l'accélération
+        #compteur pour l'accÃ©lÃ©ration
         self.accelCounter = ACCEL_PERIOD
-        #accélération à (0, 0)
+        #accÃ©lÃ©ration Ã  (0, 0)
         self.currentAccel = pyRect()
 
         #compteur pour le mouvement
         self.moveCounter = MOVE_PERIOD
-        #mouvement à (0, 0)
+        #mouvement Ã  (0, 0)
         self.speed = pyRect()
 
 
     def resetToLevelOne(self):
         """
-        initialise/réinitialise le level à 1, et remet les caractéristiques dépendante du level
-        à leur valeur initiale pourrite.
+        initialise/rÃ©initialise le level Ã  1, et remet les caractÃ©ristiques dÃ©pendante du level
+        Ã  leur valeur initiale pourrite.
         """
 
         Magician.resetToLevelOne(self)
 
-        #capacité d'accélération et vitesse limite.
+        #capacitÃ© d'accÃ©lÃ©ration et vitesse limite.
         self.accelCap = ACCEL_CAP_INIT
         self.speedLimit = SPEED_LIMIT_INIT
-        #définit un rect, centré sur 0, et ayant comme demi-longueur self.speedLimit
+        #dÃ©finit un rect, centrÃ© sur 0, et ayant comme demi-longueur self.speedLimit
         #(voir corps de la fonction)
         self.defineSpeedLimitClampingFromSpeedLimit()
 
-        #compteur por la période d'augmentation du niveau
+        #compteur por la pÃ©riode d'augmentation du niveau
         self.levelUpCounter = LEVEL_UP_PERIOD
 
         self.respectLine = RESPECT_LINE_INIT
 
-        #mouvement et accélération à (0, 0).
-        #et init des compteurs pour les périodes de move et d'accel
+        #mouvement et accÃ©lÃ©ration Ã  (0, 0).
+        #et init des compteurs pour les pÃ©riodes de move et d'accel
         self.razMovementAndAcceleration()
 
 
     def defineSpeedLimitClampingFromSpeedLimit(self):
         """
-        définit l'attribut self.speedLimitClamping, en fonction de l'attribut self.speedLimit
-        self.speedLimitClamping est un rect centré sur 0,
+        dÃ©finit l'attribut self.speedLimitClamping, en fonction de l'attribut self.speedLimit
+        self.speedLimitClamping est un rect centrÃ© sur 0,
         et ayant comme demi-longueur self.speedLimit
         on pourra s'en servir pour limiter la vitesse courante,
         qui doit rester dans les valeurs de speedLimit.
-        Et y'aura juste besoin d'un simple clamping, plutôt qu'un tas de if à la con.
+        Et y'aura juste besoin d'un simple clamping, plutÃ´t qu'un tas de if Ã  la con.
         """
 
-        #on définit spd, juste pour raccourcir le nom, sinon c'est chiant.
+        #on dÃ©finit spd, juste pour raccourcir le nom, sinon c'est chiant.
         spd = self.speedLimit
         #le rect va du point (-spd, -spd) jusqu'au point (+spd, +spd)
         self.speedLimitClamping = pyRect(-spd, -spd, 2*spd, 2*spd)
@@ -222,7 +222,7 @@ class MagiRand(Magician):
 
     def levelUp(self):
         """
-        Le magicien fait un levelUp et il monte ses caractéristiques.
+        Le magicien fait un levelUp et il monte ses caractÃ©ristiques.
         """
 
         Magician.levelUp(self)
@@ -233,66 +233,66 @@ class MagiRand(Magician):
         #augmentation de la vitesse limite.
         if self.speedLimit < SPEED_LIMIT_MAX:
             self.speedLimit += 1
-            #la speedLimit a changé, donc on doit redéfinir le rect de clamping de speedLimit.
+            #la speedLimit a changÃ©, donc on doit redÃ©finir le rect de clamping de speedLimit.
             self.defineSpeedLimitClampingFromSpeedLimit()
 
-        #augmentation de la capacité d'accélération.
+        #augmentation de la capacitÃ© d'accÃ©lÃ©ration.
         if self.accelCap < ACCEL_CAP_MAX:
             self.accelCap += 1
 
 
     def hitByBulletButNotDead(self, Damage):
         """
-        fonction définissant les actions à faire quand le magicien s'est pris
+        fonction dÃ©finissant les actions Ã  faire quand le magicien s'est pris
         des bullets, mais qu'il n'en est pas mort. (il est HURT)
 
-        entrées :
-            Damage. int. Nombre de points de dégâts ( = nombre de bullets qui le touchent)
+        entrÃ©es :
+            Damage. int. Nombre de points de dÃ©gÃ¢ts ( = nombre de bullets qui le touchent)
         """
 
         Magician.hitByBulletButNotDead(self, Damage)
 
-        #on choisit dans le dico DIC_HURTINFOMOV_FROM_DAMAGE une période, et une liste
+        #on choisit dans le dico DIC_HURTINFOMOV_FROM_DAMAGE une pÃ©riode, et une liste
         #de mouvement de recul, en fonction du Damage que se prend le magicien.
-        #Il y a une période et une liste par défaut, si jamais le dico est pas assez complet.
+        #Il y a une pÃ©riode et une liste par dÃ©faut, si jamais le dico est pas assez complet.
         (self.hurtPeriod,
          self.listMovementXWhenHurt,
         ) = DIC_HURTINFOMOV_FROM_DAMAGE.get(Damage, DEFAULT_HURTINFOMOV)
 
-        #compteur pour la période de mouvement
+        #compteur pour la pÃ©riode de mouvement
         self.hurtCounter = self.hurtPeriod
-        #curseur sur le mouvement de recul en cours, dans la liste. (qu'on parcourt à l'envers
-        #mais ça je l'ai déjà dit)
+        #curseur sur le mouvement de recul en cours, dans la liste. (qu'on parcourt Ã  l'envers
+        #mais Ã§a je l'ai dÃ©jÃ  dit)
         self.hurtMovementCursor = len(self.listMovementXWhenHurt) - 1
 
 
     def updateNormal(self):
         """
-        update du magicien (fonction à lancer à chaque cycle de jeu)
-        cas où le magicien est dans son état normal (ALIVE)
+        update du magicien (fonction Ã  lancer Ã  chaque cycle de jeu)
+        cas oÃ¹ le magicien est dans son Ã©tat normal (ALIVE)
         """
 
         Magician.updateNormal(self)
 
-        # --- gérage de l'accélération et de la vitesse ---
+        # --- gÃ©rage de l'accÃ©lÃ©ration et de la vitesse ---
 
         self.accelCounter -= 1
 
         if self.accelCounter == 0:
 
             self.accelCounter = ACCEL_PERIOD
-            #on redéfinit l'accélération, avec des valeurs au hasard,
-            #bornée à la capacité d'accélération.
+            #on redÃ©finit l'accÃ©lÃ©ration, avec des valeurs au hasard,
+            #bornÃ©e Ã  la capacitÃ© d'accÃ©lÃ©ration.
             self.currentAccel = pyRect(centeredRandom(self.accelCap),
                                        centeredRandom(self.accelCap))
 
-        #application de l'accélération à la vitesse.
+        #application de l'accÃ©lÃ©ration Ã  la vitesse.
         self.speed.move_ip(self.currentAccel.topleft)
-        #clampage de la vitesse, pour qu'elle ne dépasse pas la vitesse limite,
+        #clampage de la vitesse, pour qu'elle ne dÃ©passe pas la vitesse limite,
         #ni en X, ni en -X, ni en Y, ni en -Y. (C'est rigolo ce que je dis)
         self.speed.clamp_ip(self.speedLimitClamping)
 
-        # --- gérage de la position, en fonction de la vitesse. ---
+        # --- gÃ©rage de la position, en fonction de la vitesse. ---
 
         self.moveCounter -= 1
 
@@ -304,26 +304,26 @@ class MagiRand(Magician):
             self.rect.move_ip(self.speed.topleft)
 
             #ajout du petit mouvement vers la droite si le magicien
-            #est à gauche de la RespectLine
+            #est Ã  gauche de la RespectLine
             if self.rect.left < self.respectLine:
                 self.rect.x += RESPECT_LINE_MOVEMENT
 
-            #ajout du mouvement vers la gauche si sorti de l'écran à droite
+            #ajout du mouvement vers la gauche si sorti de l'Ã©cran Ã  droite
             if self.rect.right > GAME_RECT.right:
                 self.rect.x -= BORDER_RIGHT_MOVEMENT
 
-            #ajout du mouvement vers le haut si sorti de l'écran en bas
+            #ajout du mouvement vers le haut si sorti de l'Ã©cran en bas
             if self.rect.bottom > GAME_RECT.bottom:
                 self.rect.y -= BORDER_BOTTOM_MOVMENT
 
-            #clampage pour que le magicien reste (à peu près) dans l'écran
+            #clampage pour que le magicien reste (Ã  peu prÃ¨s) dans l'Ã©cran
             self.rect.clamp_ip(MAGI_RECT_CLAMPING)
 
-            #rien n'est fait pour éloigner le magicien d'un bord de l'écran en haut et à gauche.
+            #rien n'est fait pour Ã©loigner le magicien d'un bord de l'Ã©cran en haut et Ã  gauche.
             #Du coup, il peut y rester coller pendant un certain temps.
-            #je trouve ça rigolo, ça fait comme une mouche à merde qui s'acharne contre une vitre.
+            #je trouve Ã§a rigolo, Ã§a fait comme une mouche Ã  merde qui s'acharne contre une vitre.
 
-        # --- gérage du LeveUp (uniquement si le level en cours n'a pas atteint LEVEL_MAX ---
+        # --- gÃ©rage du LeveUp (uniquement si le level en cours n'a pas atteint LEVEL_MAX ---
 
         if self.level < LEVEL_MAX:
 
@@ -336,14 +336,14 @@ class MagiRand(Magician):
 
     def updateHurt(self):
         """
-        update du magicien (fonction à lancer à chaque cycle de jeu)
-        cas où le magicien s'est pris une/plusieurs bullet. (HURT)
+        update du magicien (fonction Ã  lancer Ã  chaque cycle de jeu)
+        cas oÃ¹ le magicien s'est pris une/plusieurs bullet. (HURT)
 
         le magicien a un mouvement de recul, tous les X cycles.
-        Puis il revient à l'état ALIVE
+        Puis il revient Ã  l'Ã©tat ALIVE
         """
 
-        #là, on n'exécute pas la super-classe. Sinon le magicien se fait unHurt
+        #lÃ , on n'exÃ©cute pas la super-classe. Sinon le magicien se fait unHurt
         #tout de suite, et c'est pas ce qu'on veut.
 
         self.hurtCounter -= 1
@@ -352,22 +352,22 @@ class MagiRand(Magician):
 
             self.hurtCounter = self.hurtPeriod
 
-            #on récupère la distance de mouvement du Hurt, et on le fout en deplacement X
-            #pas de déplacement Y pendant un HURT. osef.
+            #on rÃ©cupÃ¨re la distance de mouvement du Hurt, et on le fout en deplacement X
+            #pas de dÃ©placement Y pendant un HURT. osef.
             moveXHurt = self.listMovementXWhenHurt[self.hurtMovementCursor]
             moveHurt = pyRect(moveXHurt, 0)
 
-            #application du mouvement du Hurt, et clamping du magicien dans l'écran.
+            #application du mouvement du Hurt, et clamping du magicien dans l'Ã©cran.
             self.rect.move_ip(moveHurt.topleft)
             self.rect.clamp_ip(MAGI_RECT_CLAMPING)
 
-            #déplacement du curseur pointant sur le mouvement de Hurt courant.
+            #dÃ©placement du curseur pointant sur le mouvement de Hurt courant.
             self.hurtMovementCursor -= 1
 
-            #Si le curseur arrive au début de la liste, on a fait tous les mouvements
-            #de recul du Hurt. Le magicien revient à son état normal (ALIVE)
+            #Si le curseur arrive au dÃ©but de la liste, on a fait tous les mouvements
+            #de recul du Hurt. Le magicien revient Ã  son Ã©tat normal (ALIVE)
             if self.hurtMovementCursor == 0:
 
-                #on réinitialise son mouvement et son accélération à (0, 0) (bien fait !)
+                #on rÃ©initialise son mouvement et son accÃ©lÃ©ration Ã  (0, 0) (bien fait !)
                 self.razMovementAndAcceleration()
                 self.unHurt()

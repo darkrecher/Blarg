@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,19 +10,19 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 21/03/2011
+date de la derniÃ¨re relecture-commentage : 21/03/2011
 
-menu tout simple, qui affiche un mini-blabla de 2 lignes juste après que le joueur ait entré
+menu tout simple, qui affiche un mini-blabla de 2 lignes juste aprÃ¨s que le joueur ait entrÃ©
 son nom, lors du premier lancement du jeu.
-Les 2 lignes de textes ne sont pas forcément les mêmes selon le nom saisi.
+Les 2 lignes de textes ne sont pas forcÃ©ment les mÃªmes selon le nom saisi.
 """
 
 import pygame
@@ -36,14 +36,14 @@ from txtstock import txtStock
 from menumng  import MenuManager
 
 
-#abscisse du milieu de l'écran. (captain obvious)
+#abscisse du milieu de l'Ã©cran. (captain obvious)
 X_MIDDLE = SCREEN_RECT.width / 2
 
-#liste d'info permettant de créer les MenuText de ce menu.
-#(En fait, on les affichera pas tous en même temps. On choisira en fonction du nom du joueur)
-#Chaque tuple contient 2 éléments :
-# - coordonnées du MenuText à l'écran.
-# - identifiant du texte à afficher, dans la classe txtStock.
+#liste d'info permettant de crÃ©er les MenuText de ce menu.
+#(En fait, on les affichera pas tous en mÃªme temps. On choisira en fonction du nom du joueur)
+#Chaque tuple contient 2 Ã©lÃ©ments :
+# - coordonnÃ©es du MenuText Ã  l'Ã©cran.
+# - identifiant du texte Ã  afficher, dans la classe txtStock.
 LIST_INFO_MENU_TEXT_ALL = (
     (( X_MIDDLE, 70), txtStock.NAME_LIE_NORM_1),
     (( X_MIDDLE, 90), txtStock.NAME_LIE_NORM_2),
@@ -51,29 +51,29 @@ LIST_INFO_MENU_TEXT_ALL = (
     (( X_MIDDLE, 90), txtStock.NAME_LIE_DOG_2),
 )
 
-#valeur d'index, dans LIST_INFO_MENU_TEXT_ALL, permettant de définir quels MenuText de cette
-#liste on doit afficher. Si on est en mode normal, on affiche tous les MenuText du début
-#de la liste jusqu'à INDEX_SEP_NORM_DOG (exclus). Si le edoGedoM a été activé, on affiche
-#tous les MenuText de INDEX_SEP_NORM_DOG (inclus) à la fin de la liste.
+#valeur d'index, dans LIST_INFO_MENU_TEXT_ALL, permettant de dÃ©finir quels MenuText de cette
+#liste on doit afficher. Si on est en mode normal, on affiche tous les MenuText du dÃ©but
+#de la liste jusqu'Ã  INDEX_SEP_NORM_DOG (exclus). Si le edoGedoM a Ã©tÃ© activÃ©, on affiche
+#tous les MenuText de INDEX_SEP_NORM_DOG (inclus) Ã  la fin de la liste.
 INDEX_SEP_NORM_DOG = 2
 
 
 class MenuManagerNameIsALie(MenuManager):
     """
-    menu pour afficher du blabla après la saisie du nom.
+    menu pour afficher du blabla aprÃ¨s la saisie du nom.
     """
 
     def __init__(self, surfaceDest, dicImg, fontLittle, archivist):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
 
             surfaceDest, dicImg : voir constructeur de MenuManager
 
-            fontLittle : objet pygame.font.Font. police de caractères affichant le texte en petit.
+            fontLittle : objet pygame.font.Font. police de caractÃ¨res affichant le texte en petit.
 
-            archivist : objet de la classe époney-ime, qui gère le fichier de sauvegarde,
+            archivist : objet de la classe Ã©poney-ime, qui gÃ¨re le fichier de sauvegarde,
                         et qui permet de savoir si on peut activer le edoGedoM.
         """
 
@@ -82,29 +82,29 @@ class MenuManagerNameIsALie(MenuManager):
         self.fontLittle = fontLittle
         self.archivist = archivist
 
-        #nom saisi par le joueur. On l'initialise à une valeur à la con, juste pour un peu
+        #nom saisi par le joueur. On l'initialise Ã  une valeur Ã  la con, juste pour un peu
         #plus de "robustesse". Haha.
         self.nameTyped = ""
 
-        # --- Création de tous les MenuElem (ils seront pas tous affichés) ---
+        # --- CrÃ©ation de tous les MenuElem (ils seront pas tous affichÃ©s) ---
 
-        #création de tous les MenuText, selon les infos indiquées dans LIST_INFO_MENU_TEXT_ALL.
+        #crÃ©ation de tous les MenuText, selon les infos indiquÃ©es dans LIST_INFO_MENU_TEXT_ALL.
         listMenuTextAll = [ MenuText(pyRectTuple(coord), fontLittle,
                                      idTxtStock, alignX=ALIGN_CENTER_X)
 
                             for coord, idTxtStock in LIST_INFO_MENU_TEXT_ALL
                           ]
 
-        #séparation en deux listes. Les MenuText à afficher si on est en mode normal
+        #sÃ©paration en deux listes. Les MenuText Ã  afficher si on est en mode normal
         self.listMenuTextNorm   = tuple(listMenuTextAll[:INDEX_SEP_NORM_DOG])
-        #Et les MenuText à afficher si le edoGedoM est activé.
+        #Et les MenuText Ã  afficher si le edoGedoM est activÃ©.
         self.listMenuTextDogDom = tuple(listMenuTextAll[INDEX_SEP_NORM_DOG:])
 
-        # --- Création de la grande liste regroupant tous les MenuElem du menu ---
+        # --- CrÃ©ation de la grande liste regroupant tous les MenuElem du menu ---
 
-        #manyQuit est le MenuElem liant toutes les touches et les clics de souris à la fonction
+        #manyQuit est le MenuElem liant toutes les touches et les clics de souris Ã  la fonction
         #de quittage du menu en cours.
-        #On ajoute dans la liste les MenuText du mode normal. (Par défaut, on considère qu'on
+        #On ajoute dans la liste les MenuText du mode normal. (Par dÃ©faut, on considÃ¨re qu'on
         #est dans ce mode).
         self.listMenuElem = (manyQuit, ) + self.listMenuTextNorm
 
@@ -113,25 +113,25 @@ class MenuManagerNameIsALie(MenuManager):
 
     def setNameTyped(self, nameTyped):
         """
-        fonction a exécuter par le code extérieur, permettant d'indiquer à ce menu
+        fonction a exÃ©cuter par le code extÃ©rieur, permettant d'indiquer Ã  ce menu
         quel est le nom que le joueur a saisi.
 
-        entrées : nameTyped. string unicode. nom saisi par le joueur.
+        entrÃ©es : nameTyped. string unicode. nom saisi par le joueur.
         """
 
-        #et paf, on s'enregistre ça dans une variable à soi.
+        #et paf, on s'enregistre Ã§a dans une variable Ã  soi.
         self.nameTyped = nameTyped
 
 
     def startMenu(self):
         """
-        fonction qui s'exécute au début de l'activation du menu
-        (voir description de la fonction dans la classe-mère)
+        fonction qui s'exÃ©cute au dÃ©but de l'activation du menu
+        (voir description de la fonction dans la classe-mÃ¨re)
         """
 
         #si le nom saisi permet d'activer le edoGedoM, alors il faut refaire la liste des
         #MenuElem du menu.
         if self.archivist.isDogDomEdocValid(self.nameTyped):
             #on garde le MenuElem qui fait quitter le menu. Et on prend les MenuText
-            #spécifiques au EdogEdom.
+            #spÃ©cifiques au EdogEdom.
             self.listMenuElem = (manyQuit, ) + self.listMenuTextDogDom

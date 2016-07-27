@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,24 +10,24 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 23/02/2011
+date de la derniÃ¨re relecture-commentage : 23/02/2011
 
-Elément de menu qui poutre sa race, parce que non seulement il affiche du texte comme un
-ouf malade, mais en plus, il est focusable, et en plus-plus, il réagit aux clics.
-tout ça pour faire un lien vers un site internet quelconque. Préférablement avec des nichons.
+ElÃ©ment de menu qui poutre sa race, parce que non seulement il affiche du texte comme un
+ouf malade, mais en plus, il est focusable, et en plus-plus, il rÃ©agit aux clics.
+tout Ã§a pour faire un lien vers un site internet quelconque. PrÃ©fÃ©rablement avec des nichons.
 
 Quand le joueur clique sur un lien. On lui ouvre son navigateur
-internet pour aller vers ledit lien. Mais il faut qu'il puisse le voir. Donc on lui enlève
-le plein écran, si il est en plein écran. Par contre, on n'enregistre pas dans le
-fichier de sauvegarde qu'on est passé en mode windowed. C'est du windowed provisoire.
+internet pour aller vers ledit lien. Mais il faut qu'il puisse le voir. Donc on lui enlÃ¨ve
+le plein Ã©cran, si il est en plein Ã©cran. Par contre, on n'enregistre pas dans le
+fichier de sauvegarde qu'on est passÃ© en mode windowed. C'est du windowed provisoire.
 """
 
 import pygame
@@ -51,7 +51,7 @@ except Exception, e:
 
 class MenuLink(MenuSensitiveText):
     """
-    texte qu'on clique dessus, et qui va vers le lien indiqué par le texte.
+    texte qu'on clique dessus, et qui va vers le lien indiquÃ© par le texte.
     """
 
     def __init__(self, rectPos, font, surfaceDest, idTxtStock=None,
@@ -59,42 +59,42 @@ class MenuLink(MenuSensitiveText):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
             rectPos, font, idTxtStock, text : voir description du contructeur de MenuText
 
             clickType, inflateDist : voir description du contructeur de MenuSensitiveSquare
 
             surfaceDest : surface principale, sur laquelle s'affiche tout le jeu.
                           ce MenuElem se permet de la modifier (puisqu'il se permet de
-                          quitter le plein écran). (Ce qui est bourrin, mais pas mieux).
+                          quitter le plein Ã©cran). (Ce qui est bourrin, mais pas mieux).
         """
 
         self.surfaceDest = surfaceDest
 
-        #initialisation de la classe, comme si c'était un MenuSensitiveText.
+        #initialisation de la classe, comme si c'Ã©tait un MenuSensitiveText.
         #D'ailleurs c'en est un, oui.
-        #pour cette classe, la funcAction est une fonction interne, et prédéfinie.
-        #Elle ouvre le navigateur vers le lien indiqué, et elle quitte le plein écran.
+        #pour cette classe, la funcAction est une fonction interne, et prÃ©dÃ©finie.
+        #Elle ouvre le navigateur vers le lien indiquÃ©, et elle quitte le plein Ã©cran.
         param = (self, rectPos, font,
                  self.mactQuitFullScreenAndGoToDaInterWeb,
                  idTxtStock, text, clickType, inflateDist)
 
         MenuSensitiveText.__init__(*param)
 
-        #le lien où que va le navigateur, c'est le texte affiché.
-        #Y'a pas le choix, et c'est fait exprès.
+        #le lien oÃ¹ que va le navigateur, c'est le texte affichÃ©.
+        #Y'a pas le choix, et c'est fait exprÃ¨s.
         self.url = self.theLamoche.text
 
 
     def mactQuitFullScreenAndGoToDaInterWeb(self):
         """
-        fonction qui, comme son nom l'indique, quitte le plein écran et va vers un lien
-        d'internet avec le navigateur par défaut de l'ordinateur du monsieur.
+        fonction qui, comme son nom l'indique, quitte le plein Ã©cran et va vers un lien
+        d'internet avec le navigateur par dÃ©faut de l'ordinateur du monsieur.
 
-        plat-dessert : tuple de message d'ihm. (Cette fonction est bindée en interne sur
+        plat-dessert : tuple de message d'ihm. (Cette fonction est bindÃ©e en interne sur
                        l'activation du MenuElem.) (C'est beau cette phrase)
         """
-        #son de sélection d'un truc : "blululup" !!
+        #son de sÃ©lection d'un truc : "blululup" !!
         theSoundYargler.playSound(SND_MENU_SELECT)
 
         ihmsgInfo = IHMSG_VOID
@@ -102,21 +102,21 @@ class MenuLink(MenuSensitiveText):
         if webbrowser is not None:
 
             #y'a moyen d'aller sur l'interweb. On va le faire, mais avant,
-            #on regarde si on est en plein écran.
+            #on regarde si on est en plein Ã©cran.
             if theGraphModeChanger.getScreenGlobDataVal() == SCREEN_FULL:
 
-                #nom à rallonge de mayrde
+                #nom Ã  rallonge de mayrde
                 tGM = theGraphModeChanger
 
-                #méchamment bourrin de changer la surface principale d'affichage ici, à l'arrache.
-                #(voir même blabla dans MenuManagerMain.mactToggleFullScreen)
+                #mÃ©chamment bourrin de changer la surface principale d'affichage ici, Ã  l'arrache.
+                #(voir mÃªme blabla dans MenuManagerMain.mactToggleFullScreen)
                 self.surfaceDest = tGM.setGraphMode(SCREEN_WINDOWED)
 
-                #On a changé de mode, donc faut tout redraw. C'est plus sûr
+                #On a changÃ© de mode, donc faut tout redraw. C'est plus sÃ»r
                 ihmsgInfo += (IHMSG_REDRAW_MENU, )
 
-            #Et ça c'est la fonction toute faite pour demander au navigateur par défaut
-            #d'aller sur le lien interweb spécifié.
+            #Et Ã§a c'est la fonction toute faite pour demander au navigateur par dÃ©faut
+            #d'aller sur le lien interweb spÃ©cifiÃ©.
             webbrowser.open(self.url)
 
         else:
@@ -132,9 +132,9 @@ class MenuLink(MenuSensitiveText):
         """
         changement du langage. (voir descrip dans MenuElem)
         """
-        #Si y'a une version anglaise et une version française du lien internet, tout cela
-        #est indiqué dans la classe txtStock, et le changeLanguage s'occupe de le gérer.
+        #Si y'a une version anglaise et une version franÃ§aise du lien internet, tout cela
+        #est indiquÃ© dans la classe txtStock, et le changeLanguage s'occupe de le gÃ©rer.
         MenuSensitiveText.changeLanguage(self)
-        #on remet à jour le lien internet en fonction du nouveau texte.
+        #on remet Ã  jour le lien internet en fonction du nouveau texte.
         self.url = self.theLamoche.text
 

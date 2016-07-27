@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,26 +10,26 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 21/02/2011
+date de la derniÃ¨re relecture-commentage : 21/02/2011
 
-Elément de menu qui réagit quand on clique ou qu'on reste cliqué dans une certaine zone
-rectangulaire de l'écran. Cet élément accepte le focus.
-Cet élément ne s'affiche pas à l'écran. Si on veut un élément qui réagit à la souris et qui
-s'affiche, voir les classe héritée de celle-ci (MenuSensitiveText, MenuSensitiveImg)
+ElÃ©ment de menu qui rÃ©agit quand on clique ou qu'on reste cliquÃ© dans une certaine zone
+rectangulaire de l'Ã©cran. Cet Ã©lÃ©ment accepte le focus.
+Cet Ã©lÃ©ment ne s'affiche pas Ã  l'Ã©cran. Si on veut un Ã©lÃ©ment qui rÃ©agit Ã  la souris et qui
+s'affiche, voir les classe hÃ©ritÃ©e de celle-ci (MenuSensitiveText, MenuSensitiveImg)
 """
 
-#blabla déplacé du fichier zemain à ici. Parce que je raconte vraiment n'importe quoi et
-#si on peut éviter de faire peur à d'éventuelles personnes qui hypothétiquement lirait mon code,
-#ça peut être socialement intéressant.
-#                  LE MOT "CHEVALS"  !!            voilà, merci. Ca va mieux.
+#blabla dÃ©placÃ© du fichier zemain Ã  ici. Parce que je raconte vraiment n'importe quoi et
+#si on peut Ã©viter de faire peur Ã  d'Ã©ventuelles personnes qui hypothÃ©tiquement lirait mon code,
+#Ã§a peut Ãªtre socialement intÃ©ressant.
+#                  LE MOT "CHEVALS"  !!            voilÃ , merci. Ca va mieux.
 
 
 
@@ -41,22 +41,22 @@ from common   import (pyRect, IHMSG_VOID,
 from menuelem import MenuElem
 import lamoche # useless ??
 
-#type de cliquage de souris auquel on peut réagir.
+#type de cliquage de souris auquel on peut rÃ©agir.
 
-(MOUSE_DOWN,     #le joueur vient de cliquer sur la zone, juste là maintenant.
-                 #l'activation n'est effectuée qu'une seul fois. Au moment du clic.
+(MOUSE_DOWN,     #le joueur vient de cliquer sur la zone, juste lÃ  maintenant.
+                 #l'activation n'est effectuÃ©e qu'une seul fois. Au moment du clic.
 
- MOUSE_PRESSED,  #le joueur a le bouton appuyé, sur la zone.
-                 #l'activation est effectuée en continu, à chaque cycle, tant que le bouton
-                 #de souris reste appuyé et que le curseur reste dans la zone.
+ MOUSE_PRESSED,  #le joueur a le bouton appuyÃ©, sur la zone.
+                 #l'activation est effectuÃ©e en continu, Ã  chaque cycle, tant que le bouton
+                 #de souris reste appuyÃ© et que le curseur reste dans la zone.
                  #TRODO pour plus tard : je me sers jamais de ce type de cliquage.
-                 #Et à mon avis il est buggé. Eh bien tant pis osef.
+                 #Et Ã  mon avis il est buggÃ©. Eh bien tant pis osef.
 
  MOUSE_HOVER,    #le joueur a pas besoin de cliquer. Faut juste qu'il soit sur la zone.
-                 #L'activation est exécutée en continu, à chaque
+                 #L'activation est exÃ©cutÃ©e en continu, Ã  chaque
                  #cycle, tant que le curseur de souris se trouve sur la zone.
 
- MOUSE_NONE,     #Ca réagit jamais. Mais ça chope le focus si jamais le curseur passe dessus.
+ MOUSE_NONE,     #Ca rÃ©agit jamais. Mais Ã§a chope le focus si jamais le curseur passe dessus.
 
  ) = range(4)
 
@@ -74,25 +74,25 @@ class MenuSensitiveSquare(MenuElem):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
-            funcAction :   référence vers la fonction à exécuter quand cet élément de menu est
-                activé. (Donc quand le joueur clique sur la zone rectangulaire sensible)
+        entrÃ©e :
+            funcAction :   rÃ©fÃ©rence vers la fonction Ã  exÃ©cuter quand cet Ã©lÃ©ment de menu est
+                activÃ©. (Donc quand le joueur clique sur la zone rectangulaire sensible)
 
-            rectStimZone : Rect. zone rectangulaire sensible qui fait s'activer cet élément.
-                les coordonnées sont exprimées localement, en fonction de l'objet conteneur
+            rectStimZone : Rect. zone rectangulaire sensible qui fait s'activer cet Ã©lÃ©ment.
+                les coordonnÃ©es sont exprimÃ©es localement, en fonction de l'objet conteneur
                 (menu ou submenu).
-                Si c'est un menu, ça correspond aux coordonnées à l'écran.
-                Si c'est un submenu, les décalages qui vont bien seront effectués
-                Valeur par défaut : RECT_ZERO, un rectangle avec width=0 et height=0
+                Si c'est un menu, Ã§a correspond aux coordonnÃ©es Ã  l'Ã©cran.
+                Si c'est un submenu, les dÃ©calages qui vont bien seront effectuÃ©s
+                Valeur par dÃ©faut : RECT_ZERO, un rectangle avec width=0 et height=0
 
-            clickType : type de cliquage auquel il faut réagir. (valeur MOUSE_* définie au début)
+            clickType : type de cliquage auquel il faut rÃ©agir. (valeur MOUSE_* dÃ©finie au dÃ©but)
 
             inflateDist : int. distance d'agrandissement de la zone de dessin, pour obtenir
-                la zone de sensibilité. Car c'est cool de mettre une zone de sensibilité
+                la zone de sensibilitÃ©. Car c'est cool de mettre une zone de sensibilitÃ©
                 un peu plus grande. Ainsi, si on a un tout petit bouton, le joueur n'a pas besoin
                 de viser pil poil bien comme un sniper avec sa souris.
-                Cette inflateDist est appliquée sur les 4 côtés de la zone de dessin.
-                Par contre, elle ne sert à rien du tout si on ne définit pas de rectDrawZone.
+                Cette inflateDist est appliquÃ©e sur les 4 cÃ´tÃ©s de la zone de dessin.
+                Par contre, elle ne sert Ã  rien du tout si on ne dÃ©finit pas de rectDrawZone.
         """
         MenuElem.__init__(self)
 
@@ -105,14 +105,14 @@ class MenuSensitiveSquare(MenuElem):
         """
         initialisation des infos concernant la zone sensible.
 
-        entrés : voir fonction __init__. C'est les mêmes.
+        entrÃ©s : voir fonction __init__. C'est les mÃªmes.
 
-        J'ai pas voulu mettre ce code directement dans l'__init__. Comme ça, on peut
-        l'exécuter de manière plus explicite dans les classes héritées.
-        (D'autant plus que je fais des héritages multiples car je suis un oufzor)
+        J'ai pas voulu mettre ce code directement dans l'__init__. Comme Ã§a, on peut
+        l'exÃ©cuter de maniÃ¨re plus explicite dans les classes hÃ©ritÃ©es.
+        (D'autant plus que je fais des hÃ©ritages multiples car je suis un oufzor)
         """
 
-        #ce menuElem peut être focusé.
+        #ce menuElem peut Ãªtre focusÃ©.
         self.acceptFocus = True
 
         self.funcAction = funcAction
@@ -120,37 +120,37 @@ class MenuSensitiveSquare(MenuElem):
         self.rectStimZone = rectStimZone
         self.inflateDist = inflateDist
 
-        #booléen indiquant si le curseur de souris se trouve actuellement sur la zone
+        #boolÃ©en indiquant si le curseur de souris se trouve actuellement sur la zone
         #sensible, ou pas. J'en ai besoin pour le type de cliquage MOUSE_HOVER.
-        #Et ça me simplifie un peu la vie pour les autres types, aussi.
+        #Et Ã§a me simplifie un peu la vie pour les autres types, aussi.
         self.mouseHoverOn = False
 
 
     def defineStimZoneFromDrawZone(self, newInflateDist=None):
         """
-        (re)définit la valeur self.rectStimZone = zone de sensibilité pour la souris,
+        (re)dÃ©finit la valeur self.rectStimZone = zone de sensibilitÃ© pour la souris,
         en fonction de la valeur self.rectDrawZone = zone sur laquelle on doit dessiner des trucs.
 
-        entrées :
+        entrÃ©es :
             newInflateDist : int, ou None.
-                 Si None : ne sert à rien.
+                 Si None : ne sert Ã  rien.
                  Si int : nouvelle valeur qui remplace la valeur actuelle de self.inflateDist
 
-            il faut avoir préalablement défini self.rectDrawZone. (pygame.Rect)
+            il faut avoir prÃ©alablement dÃ©fini self.rectDrawZone. (pygame.Rect)
 
-        plat-dessert : rien, mais redéfinition interne de self.rectStimZone
+        plat-dessert : rien, mais redÃ©finition interne de self.rectStimZone
         """
 
-        #prise en compte de la nouvelle valeur de self.inflateDist, si nécessaire.
+        #prise en compte de la nouvelle valeur de self.inflateDist, si nÃ©cessaire.
         if newInflateDist is not None:
             self.inflateDist = newInflateDist
 
-        #redéfinition de self.rectStimZone, si on a bien un self.rectDrawZone.
+        #redÃ©finition de self.rectStimZone, si on a bien un self.rectDrawZone.
         #Sinon, on ne peut rien faire.
         if self.rectDrawZone is not None:
 
             #on prend le rectangle de dessin (self.rectDrawZone), on le recopie,
-            #et on l'étend. C'est à dire qu'on repousse chacun des 4 côtés du rectangle,
+            #et on l'Ã©tend. C'est Ã  dire qu'on repousse chacun des 4 cÃ´tÃ©s du rectangle,
             #en ajoutant la marge de pixel inflateDist.
             self.rectStimZone = pygame.Rect(self.rectDrawZone)
             self.rectStimZone.inflate_ip(self.inflateDist, self.inflateDist)
@@ -158,30 +158,30 @@ class MenuSensitiveSquare(MenuElem):
 
     def treatStimuliMouse(self, mousePos, mouseDown, mousePressed):
         """
-        traite les stimulis lié la souris. Ca, c'est la fonction interne, qui
-        est appelée par la fonction un peu plus externe takeStimuliMouse.
+        traite les stimulis liÃ© la souris. Ca, c'est la fonction interne, qui
+        est appelÃ©e par la fonction un peu plus externe takeStimuliMouse.
 
-        Cette fonction n'exécute pas la fonction funcAction. Le but c'est qu'elle soit
-        un peu à peu près générique. Comme ça je peux m'en servir pour les classes que
-        j'hérite de celle-là.
-        Et ça fait du gâteau au chocolat, et moi j'aime bien le gâteau au chocolat.
+        Cette fonction n'exÃ©cute pas la fonction funcAction. Le but c'est qu'elle soit
+        un peu Ã  peu prÃ¨s gÃ©nÃ©rique. Comme Ã§a je peux m'en servir pour les classes que
+        j'hÃ©rite de celle-lÃ .
+        Et Ã§a fait du gÃ¢teau au chocolat, et moi j'aime bien le gÃ¢teau au chocolat.
 
-        entrées : voir menuElem.takeStimuliMouse. C'est les mêmes.
+        entrÃ©es : voir menuElem.takeStimuliMouse. C'est les mÃªmes.
 
         plat-dessert :
             ihmsgInfoReturn : tuple avec des messages d'ihm. On peut renvoyer les suivants
-             - IHMSG_ELEM_WANTFOCUS : l'élément veut le focus, car le curseur de souris
-               est passé dessus.
+             - IHMSG_ELEM_WANTFOCUS : l'Ã©lÃ©ment veut le focus, car le curseur de souris
+               est passÃ© dessus.
              - IHMSG_ELEM_CLICKED : y'a eu cliquage.
 
-        Et on met également à jour la variable self.mouseHoverOn.
+        Et on met Ã©galement Ã  jour la variable self.mouseHoverOn.
         """
 
-        #initialisation du tuple contenant les messages d'IHM à renvoyer
+        #initialisation du tuple contenant les messages d'IHM Ã  renvoyer
         ihmsgInfoReturn = IHMSG_VOID
 
         #on regarde si le pointeur de souris est dans le rectangle sensible.
-        #Parce que sinon, on n'en a rien à foutre.
+        #Parce que sinon, on n'en a rien Ã  foutre.
         if self.rectStimZone.collidepoint(mousePos):
 
             self.mouseHoverOn = True
@@ -189,12 +189,12 @@ class MenuSensitiveSquare(MenuElem):
             if not self.focusOn:
                 #on est dans la zone sensible, et on n'a pas le focus.
                 #on ajoute le message d'IHM indiquant que l'on veut le focus.
-                #Le code extérieur devra se démerder pour donner le focus à cet élément
-                #(sinon, il va être triste et il va pleurer, et ça il faut surtout pas)
+                #Le code extÃ©rieur devra se dÃ©merder pour donner le focus Ã  cet Ã©lÃ©ment
+                #(sinon, il va Ãªtre triste et il va pleurer, et Ã§a il faut surtout pas)
                 ihmsgInfoReturn += (IHMSG_ELEM_WANTFOCUS, )
 
-            #on vérifie si y'a eu un appuyage de souris correspondant à celui qui
-            #ferait réagir cet élément.
+            #on vÃ©rifie si y'a eu un appuyage de souris correspondant Ã  celui qui
+            #ferait rÃ©agir cet Ã©lÃ©ment.
             if any((self.clickType == MOUSE_DOWN    and mouseDown,
                     self.clickType == MOUSE_PRESSED and mousePressed)):
 
@@ -202,7 +202,7 @@ class MenuSensitiveSquare(MenuElem):
 
         else:
 
-            #le pointeur est pas dans la zone sensible. On remet à jour le mouseHoverOn.
+            #le pointeur est pas dans la zone sensible. On remet Ã  jour le mouseHoverOn.
             self.mouseHoverOn = False
 
         return ihmsgInfoReturn
@@ -216,8 +216,8 @@ class MenuSensitiveSquare(MenuElem):
         ihmsgInfo = self.treatStimuliMouse(mousePos, mouseDown, mousePressed)
 
         if IHMSG_ELEM_CLICKED in ihmsgInfo:
-            #yep. On exécute la fonction d'action bindée à cet élément,
-            #et on récupère les messages d'IHM que ça renvoie, pour les ajouter au tuple
+            #yep. On exÃ©cute la fonction d'action bindÃ©e Ã  cet Ã©lÃ©ment,
+            #et on rÃ©cupÃ¨re les messages d'IHM que Ã§a renvoie, pour les ajouter au tuple
             #qui regroupe tout.
             ihmsgInfo += self.funcAction()
 
@@ -226,13 +226,13 @@ class MenuSensitiveSquare(MenuElem):
 
     def update(self):
         """
-        Mise à jour périodique de divers trucs. (voir description dans la classe MenuElem)
+        Mise Ã  jour pÃ©riodique de divers trucs. (voir description dans la classe MenuElem)
         """
 
-        #Appel de la mother-class. ça ne sert à rien, car y'a rien dedans, mais ça fait cool.
+        #Appel de la mother-class. Ã§a ne sert Ã  rien, car y'a rien dedans, mais Ã§a fait cool.
         ihmsgInfo = MenuElem.update(self)
 
-        #exécution de la funcAction de manière périodique, si c'est demandé, et si
+        #exÃ©cution de la funcAction de maniÃ¨re pÃ©riodique, si c'est demandÃ©, et si
         #le curseur de la souris est sur la zone sensible.
         if self.clickType == MOUSE_HOVER and self.mouseHoverOn:
             ihmsgInfo += self.funcAction()

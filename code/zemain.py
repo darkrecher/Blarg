@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,31 +10,31 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 17/02/2011
+date de la derniÃ¨re relecture-commentage : 17/02/2011
 
 le fichier de code principal avec pas grand chose dedans, mais c'est cool.
 
-remarques générales sur la généralité de mon code :
+remarques gÃ©nÃ©rales sur la gÃ©nÃ©ralitÃ© de mon code :
 
-Les lignes de code ne dépassent jamais 80 caractères
-Les lignes de commentaire ne dépassent jamais 100 caractères.
+Les lignes de code ne dÃ©passent jamais 80 caractÃ¨res
+Les lignes de commentaire ne dÃ©passent jamais 100 caractÃ¨res.
 Ouais c'est bizarre. Mais j'avais envie.
 
-Quand je met le mot-clé "TRODO", c'est pour dire que y'a un truc à faire, mais je le ferais 
+Quand je met le mot-clÃ© "TRODO", c'est pour dire que y'a un truc Ã  faire, mais je le ferais
 plus tard (ou jamais). Normalement on dit "TODO" pour faire genre ouais je suis anglais. Mais
-moi j'avais envie d'un autre mot. Et puis ça fait "trou doux".
+moi j'avais envie d'un autre mot. Et puis Ã§a fait "trou doux".
 
-Pour définir des coordonnées, utiliser tout le temps des rect, avec width et height à 0
+Pour dÃ©finir des coordonnÃ©es, utiliser tout le temps des rect, avec width et height Ã  0
 et pas des tuple (X,Y). car y'a plein de fonctions cools avec les rects.
-Pour créer un rect avec que le X, Y, sans être obligé d'écrire les putains de 0 des sizes,
+Pour crÃ©er un rect avec que le X, Y, sans Ãªtre obligÃ© d'Ã©crire les putains de 0 des sizes,
 utiliser ma fonction common.pyRect. Et y'a un common.pyRectTuple aussi
 """
 
@@ -44,18 +44,18 @@ import pygame
 from common import securedPrint
 from mainclas import MainClass
 
-#paramètre à passer à la ligne de commande, permettant de lancer le jeu en mode fenêtre.
-#Car le mode plein écran déconne parfois sur PC, avec certaines config.
+#paramÃ¨tre Ã  passer Ã  la ligne de commande, permettant de lancer le jeu en mode fenÃªtre.
+#Car le mode plein Ã©cran dÃ©conne parfois sur PC, avec certaines config.
 PARAM_FORCE_WINDOWED_MODE = "FORCE_WINDOWED"
 
 # --- programme principal. ---
-#tiens elle sert à rien la ligne ci-dessus. On le voit bien que c'est le programme principal.
+#tiens elle sert Ã  rien la ligne ci-dessus. On le voit bien que c'est le programme principal.
 
 if __name__ == "__main__":
 
     securedPrint("coucou")
 
-    #Récupération éventuelle du paramètre, pour savoir si on doit se mettre en mode fenêtre.
+    #RÃ©cupÃ©ration Ã©ventuelle du paramÃ¨tre, pour savoir si on doit se mettre en mode fenÃªtre.
     if len(sys.argv) > 1 and sys.argv[1] == PARAM_FORCE_WINDOWED_MODE:
         forceWindowed = True
     else:
@@ -63,11 +63,11 @@ if __name__ == "__main__":
 
     pygame.init()
 
-    #création de la putain de classe qui contient tout le putain de code, et les
+    #crÃ©ation de la putain de classe qui contient tout le putain de code, et les
     #putains d'initialisations.
     theFuckingMainClass = MainClass(forceWindowed)
 
-    #lancement du putain de code de la putain de classe qui va exécuter le putain de jeu.
+    #lancement du putain de code de la putain de classe qui va exÃ©cuter le putain de jeu.
     theFuckingMainClass.main()
 
     pygame.quit()

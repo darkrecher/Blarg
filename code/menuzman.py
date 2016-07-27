@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,18 +10,18 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 06/03/2011
+date de la derniÃ¨re relecture-commentage : 06/03/2011
 
 menu affichant le manuel du jeu.
-"MMmmmhhh ... Manouel ! Tou aime é lé cochoné. Tou aime é lé contact !" (Désolé)
+"MMmmmhhh ... Manouel ! Tou aime Ã© lÃ© cochonÃ©. Tou aime Ã© lÃ© contact !" (DÃ©solÃ©)
 """
 
 import pygame
@@ -37,12 +37,12 @@ from menuimg  import MenuImage
 from txtstock import txtStock
 from menumng  import MenuManager
 
-#position de la grosse image affichant le manuel : les différentes actions possibles du héros,
+#position de la grosse image affichant le manuel : les diffÃ©rentes actions possibles du hÃ©ros,
 #avec les dessins des touches.
 POS_IMG_MANUAL = pyRect(50, 50)
 
-#Identifiants et positions des textes du manuel (y'a les noms des actions du héros)
-#les coordonnées sont par rapport à l'image du manuel. Pas par rapport au haut-gauche de l'écran.
+#Identifiants et positions des textes du manuel (y'a les noms des actions du hÃ©ros)
+#les coordonnÃ©es sont par rapport Ã  l'image du manuel. Pas par rapport au haut-gauche de l'Ã©cran.
 LIST_MENU_TEXT_INFO_MANUAL = (
     (txtStock.MANUAL_MOVE,   ( 15,  35)  ),
     (txtStock.MANUAL_FIRE,   ( 15, 100)  ),
@@ -50,7 +50,7 @@ LIST_MENU_TEXT_INFO_MANUAL = (
 )
 
 #identifiants des touches, et positions du texte donnant le nom de la touche.
-#Coordonnées définies par rapport à l'image du manuel, et indiquant le point milieu-haut
+#CoordonnÃ©es dÃ©finies par rapport Ã  l'image du manuel, et indiquant le point milieu-haut
 #du dessin de la touche. Ca veut dire qu'il faudra centrer horizontalement le texte.
 LIST_POS_KEY_NAME = (
     (KEY_DIR_UP,    (235,  14)),
@@ -73,26 +73,26 @@ class MenuManagerManual(MenuManager):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
 
             surfaceDest, dicImg : voir constructeur de MenuManager
 
-            fontDefault, fontLittle : objets pygame.font.Font. les polices de caractères
-                pour afficher le texte. Y'a la font par défaut, qu'on utilise partout,
+            fontDefault, fontLittle : objets pygame.font.Font. les polices de caractÃ¨res
+                pour afficher le texte. Y'a la font par dÃ©faut, qu'on utilise partout,
                 et la font pour afficher du texte en petit.
 
-            archivist : objet de la classe époney-ime, qui gère le fichier de sauvegarde
-                de la config et des high scores. C'est là dedans que y'a la config
+            archivist : objet de la classe Ã©poney-ime, qui gÃ¨re le fichier de sauvegarde
+                de la config et des high scores. C'est lÃ  dedans que y'a la config
                 des touches.
 
         Juste pour info : la classe MenuManagerManual ne demande pas de modif du fichier de
-        sauvegarde. L'objet archivist passé en param lui sert uniquement à récupérer, en
+        sauvegarde. L'objet archivist passÃ© en param lui sert uniquement Ã  rÃ©cupÃ©rer, en
         lecture, le mapping des touches actuels.
         """
 
         MenuManager.__init__(self, surfaceDest, dicImg)
 
-        #initialisation d'un tas de trucs. J'ai mis tout ça dans la fonction initCommonStuff,
+        #initialisation d'un tas de trucs. J'ai mis tout Ã§a dans la fonction initCommonStuff,
         #Pour pouvoir factoriser plus facilement le code avec celui du MenuManagerConfig.
         param = (fontDefault, fontLittle,
                  archivist, LIST_MENU_TEXT_INFO_MANUAL)
@@ -100,25 +100,25 @@ class MenuManagerManual(MenuManager):
         self.initCommonStuff(*param)
 
         #dictionnaire des menuElem indiquant la config des touches.
-        # clé : identifiant de touche. (KEY_DIR_UP, KEY_FIRE, KEY_RELOAD, ...)
-        # valeur : menuElem de type MenuText, affichant le nom de la touche mappée.
+        # clÃ© : identifiant de touche. (KEY_DIR_UP, KEY_FIRE, KEY_RELOAD, ...)
+        # valeur : menuElem de type MenuText, affichant le nom de la touche mappÃ©e.
         #Attention, c'est bien un MenuText. Dans la classe MenuManagerConfig, il y a aussi
         #un dictionnaire dicMenuElemKey. Mais il contient des objets MenuSensitiveText.
         self.dicMenuElemKey = {}
 
         #liste des MenuText qu'on trouve dans le dico dicMenuElemKey. J'en ai besoin juste
-        #vite fait provisoirement. Sinon vous pensez bien que je m'amuserais pas à avoir
-        #un dictionnaire et une liste stockant les mêmes choses.
+        #vite fait provisoirement. Sinon vous pensez bien que je m'amuserais pas Ã  avoir
+        #un dictionnaire et une liste stockant les mÃªmes choses.
         listMenuTextKey = []
 
-        #création des MenuText et rangement dans self.dicMenuElemKey et listMenuTextKey
+        #crÃ©ation des MenuText et rangement dans self.dicMenuElemKey et listMenuTextKey
         for idKey, coord in LIST_POS_KEY_NAME:
 
-            #calcul des coordonnées absolues du MenuText (par rapport au haut-gauche de l'écran)
+            #calcul des coordonnÃ©es absolues du MenuText (par rapport au haut-gauche de l'Ã©cran)
             rectCoord = POS_IMG_MANUAL.move(coord)
 
-            #Je ne définis ni le param idTxtStock, ni le param text.
-            #ça fait un MenuText affichant un texte vide. On le définira correctement plus tard.
+            #Je ne dÃ©finis ni le param idTxtStock, ni le param text.
+            #Ã§a fait un MenuText affichant un texte vide. On le dÃ©finira correctement plus tard.
             menuElem = MenuText(rectCoord, fontDefault, alignX=ALIGN_CENTER_X)
 
             listMenuTextKey.append(menuElem)
@@ -126,14 +126,14 @@ class MenuManagerManual(MenuManager):
 
         #Rassemblement de tous les MenuElem du menu, pour les mettre dans une grosse liste.
         #on commence par faire une liste de sous-liste, parce qu'on fait avec ce qu'on a.
-        #tiens c'est marrant y'a une parenthèse fermante à la fin des 3 lignes,
-        #mais c'est jamais pour signifier la même chose. Woah, bizarre.
+        #tiens c'est marrant y'a une parenthÃ¨se fermante Ã  la fin des 3 lignes,
+        #mais c'est jamais pour signifier la mÃªme chose. Woah, bizarre.
         lilistOfMenuElem = (
             (self.mimgManual, manyQuit),
             tuple(listMenuTextKey),
             tuple(self.listMenuText))
 
-        #et maintenant, on fait une grande liste "aplatie", en concaténant toutes les sous-liste.
+        #et maintenant, on fait une grande liste "aplatie", en concatÃ©nant toutes les sous-liste.
         self.listMenuElem = addThings(*lilistOfMenuElem)
 
         self.initFocusCyclingInfo()
@@ -143,18 +143,18 @@ class MenuManagerManual(MenuManager):
                         archivist, listMenuTextInfo):
         """
         Initialise les trucs communs au MenuManagerManual et MenuManagerConfig.
-        Rien à voir : j'ai un prof qui disait : "toilettage initial" à propos
-        d'un algo de calcul approché.
+        Rien Ã  voir : j'ai un prof qui disait : "toilettage initial" Ã  propos
+        d'un algo de calcul approchÃ©.
 
-        entrées :
+        entrÃ©es :
             fontDefault, fontLittle, archivist : voir constructeur de cette classe.
 
-            listMenuTextInfo : liste contenant les infos pour créer les MenuText de ce menu.
+            listMenuTextInfo : liste contenant les infos pour crÃ©er les MenuText de ce menu.
                 Y'a pas les MenuText affichant les noms des touches. Mais y'a tout les autres.
-                La liste doit contenir des tuples de 2 éléments :
-                 - identifiants du texte à afficher. (Ces identifiants sont dans txtStock.py)
-                 - sous-tuple de 2 int. Coordonnées de la position du texte, par rapport à
-                   la grosse image géante affichant le manuel.
+                La liste doit contenir des tuples de 2 Ã©lÃ©ments :
+                 - identifiants du texte Ã  afficher. (Ces identifiants sont dans txtStock.py)
+                 - sous-tuple de 2 int. CoordonnÃ©es de la position du texte, par rapport Ã 
+                   la grosse image gÃ©ante affichant le manuel.
 
         plat-dessert :
             Rien. Mais on initialise les variables self.listMenuText et self.mimgManual.
@@ -164,67 +164,67 @@ class MenuManagerManual(MenuManager):
         self.fontDefault = fontDefault
         self.fontLittle = fontLittle
 
-        # --- création des éléments MenuText statiques ---
+        # --- crÃ©ation des Ã©lÃ©ments MenuText statiques ---
 
         self.listMenuText = []
 
         for idTxtStock, coord in listMenuTextInfo:
 
-            #calcul des coordonnées absolues (décalage image du manuel -> écran)
+            #calcul des coordonnÃ©es absolues (dÃ©calage image du manuel -> Ã©cran)
             rectCoord = POS_IMG_MANUAL.move(coord)
             menuElem = MenuText(rectCoord, fontDefault, idTxtStock)
             self.listMenuText.append(menuElem)
 
-        # --- création des images du menu (bon y'en a qu'une) ---
+        # --- crÃ©ation des images du menu (bon y'en a qu'une) ---
 
-        #C'est la grosse image géante affichant le manuel du jeu
+        #C'est la grosse image gÃ©ante affichant le manuel du jeu
         imgManual = self.dicImg[IMG_MANUAL]
         self.mimgManual = MenuImage(POS_IMG_MANUAL, imgManual)
 
 
     def determKeyNameFont(self, keyMapped, charKeyMapped):
         """
-        détermine le nom de la touche à afficher, et la police de caractère à
+        dÃ©termine le nom de la touche Ã  afficher, et la police de caractÃ¨re Ã 
         utiliser pour afficher ce nom.
 
-        entrées :
+        entrÃ©es :
             keyMapped : int. Code de la touche dont il faut afficher le nom.
-            charKeyMapped : chaîne de caractère avec le nom de la touche,
-                chopé de puis le event.unicode. Y'a déjà eu le filtrage sur le charKeyMapped,
-                (les touches renvoyant un caractère non imprimables).
-                Ce filtrage est effectuée au moment de la saisie des touches,
+            charKeyMapped : chaÃ®ne de caractÃ¨re avec le nom de la touche,
+                chopÃ© de puis le event.unicode. Y'a dÃ©jÃ  eu le filtrage sur le charKeyMapped,
+                (les touches renvoyant un caractÃ¨re non imprimables).
+                Ce filtrage est effectuÃ©e au moment de la saisie des touches,
                 dans la fonction MenuManagerConfig.mactNewKeyTyped
-                A vérifier, mais sur Mac, le filtrage il risque de foirer.
+                A vÃ©rifier, mais sur Mac, le filtrage il risque de foirer.
 
-        plat-dessert : tuple de 2 éléments.
+        plat-dessert : tuple de 2 Ã©lÃ©ments.
              - keyName : string plus ou moins unicode. Le nom de la touche.
-             - keyFont : font à utiliser pour afficher ce nom.
+             - keyFont : font Ã  utiliser pour afficher ce nom.
                          (le texte est plus petit si le nom est long.)
         """
 
         if charKeyMapped != "":
-            #La touche a renvoyé un caractère, et il n'a pas été filtré. On peut donc
-            #utiliser ce caractère pour définir le nom de la touche. Cette utilisation prioritaire
-            #du caractère renvoyé permet de s'affranchir des conneries de différence
+            #La touche a renvoyÃ© un caractÃ¨re, et il n'a pas Ã©tÃ© filtrÃ©. On peut donc
+            #utiliser ce caractÃ¨re pour dÃ©finir le nom de la touche. Cette utilisation prioritaire
+            #du caractÃ¨re renvoyÃ© permet de s'affranchir des conneries de diffÃ©rence
             #entre claviers qwerty, azerty, etc...
             keyName = charKeyMapped
         else:
-            #la touche n'a pas de caractère. On utilise donc par défaut le nom de la touche
+            #la touche n'a pas de caractÃ¨re. On utilise donc par dÃ©faut le nom de la touche
             keyName = pygame.key.name(keyMapped)
 
         if len(keyName) == 1:
-            #Le nom de la touche n'a qu'un caractère. C'est peut être une lettre de l'alphabet.
-            #Dans ce cas, on l'écrit en majuscule. C'est plus cool.
+            #Le nom de la touche n'a qu'un caractÃ¨re. C'est peut Ãªtre une lettre de l'alphabet.
+            #Dans ce cas, on l'Ã©crit en majuscule. C'est plus cool.
             #(Si c'est pas une lettre, la fonction upper() ne modifie pas la valeur.
             keyName = keyName.upper()
-            #Comme y'a qu'un caractère à afficher (lettre ou pas lettre), on peut utiliser
-            #la police de caractère par défaut. Qui affichera en assez gros.
+            #Comme y'a qu'un caractÃ¨re Ã  afficher (lettre ou pas lettre), on peut utiliser
+            #la police de caractÃ¨re par dÃ©faut. Qui affichera en assez gros.
             keyFont = self.fontDefault
         else:
-            #Le nom de la touche a plusieurs caractères. On tronque un peu, sinon ça
-            #dépasse vraiment de chaque côté du pauvre petit dessin de la touche.
+            #Le nom de la touche a plusieurs caractÃ¨res. On tronque un peu, sinon Ã§a
+            #dÃ©passe vraiment de chaque cÃ´tÃ© du pauvre petit dessin de la touche.
             keyName = keyName[:10]
-            #on utilise la police de caractère écrites en petits. Pour limiter ces dépassements.
+            #on utilise la police de caractÃ¨re Ã©crites en petits. Pour limiter ces dÃ©passements.
             keyFont = self.fontLittle
 
         return keyName, keyFont
@@ -232,12 +232,12 @@ class MenuManagerManual(MenuManager):
 
     def startMenu(self):
         """
-        fonction qui s'exécute au début de l'activation du menu
-        (voir description de la fonction dans la classe-mère)
+        fonction qui s'exÃ©cute au dÃ©but de l'activation du menu
+        (voir description de la fonction dans la classe-mÃ¨re)
         """
 
-        #Il faut réinitialiser les textes des noms des touches à chaque activation du menu,
-        #car si le joueur a modifié la config des touches, ces textes ont changés.
+        #Il faut rÃ©initialiser les textes des noms des touches Ã  chaque activation du menu,
+        #car si le joueur a modifiÃ© la config des touches, ces textes ont changÃ©s.
         self.initTextOfMenuElemKey()
 
 
@@ -250,23 +250,23 @@ class MenuManagerManual(MenuManager):
         cette fonction fonctionnera (haha) dans les deux cas.
         """
 
-        #On récupère le mapping de touches depuis la "source". (l'archivist)
-        #Comme ça on est sûr d'avoir le mapping actuel.
+        #On rÃ©cupÃ¨re le mapping de touches depuis la "source". (l'archivist)
+        #Comme Ã§a on est sÃ»r d'avoir le mapping actuel.
         self.dicKeyMapping = dict(self.archivist.dicKeyMapping)
 
         #on parcourt le dictionnaire des MenuElem affichant les noms des touches,
-        #pour chacun d'eux, on récupère la config de la touche dans le mapping,
-        #on en déduit le nom et on le réactualise dans le MenuElem.
+        #pour chacun d'eux, on rÃ©cupÃ¨re la config de la touche dans le mapping,
+        #on en dÃ©duit le nom et on le rÃ©actualise dans le MenuElem.
         #
-        #Faut donc que y'ait les mêmes clés entre self.dicMenuElemKey et dicKeyMapping,
-        #sinon ça risque de péter. Mais moi je fais gaffe alors ça pète pas.
-        #Les clés, c'est les identifiants de touches. (KEY_DIR_UP, KEY_FIRE, ...)
+        #Faut donc que y'ait les mÃªmes clÃ©s entre self.dicMenuElemKey et dicKeyMapping,
+        #sinon Ã§a risque de pÃ©ter. Mais moi je fais gaffe alors Ã§a pÃ¨te pas.
+        #Les clÃ©s, c'est les identifiants de touches. (KEY_DIR_UP, KEY_FIRE, ...)
         for idKey, menuText in self.dicMenuElemKey.items():
 
-            #récupération du code et du caractère de la touche.
+            #rÃ©cupÃ©ration du code et du caractÃ¨re de la touche.
             keyMapped, charKeyMapped = self.dicKeyMapping[idKey]
-            #détermination du nom de la touche (et de la font à utiliser pour l'afficher)
+            #dÃ©termination du nom de la touche (et de la font Ã  utiliser pour l'afficher)
             (keyName, font) = self.determKeyNameFont(keyMapped, charKeyMapped)
 
-            #changement de la police de caractère et du texte du MenuElem
+            #changement de la police de caractÃ¨re et du texte du MenuElem
             menuText.changeFontAndText(font, keyName)

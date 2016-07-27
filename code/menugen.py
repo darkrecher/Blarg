@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,17 +10,17 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 28/03/2011
+date de la derniÃ¨re relecture-commentage : 28/03/2011
 
-grosse fonction qui crée tous les menus.
+grosse fonction qui crÃ©e tous les menus.
 """
 
 import pygame
@@ -41,7 +41,7 @@ from menuzsco import MenuManagerHighScore
 from menuzpof import MenuManagerNameIsALie
 from menuzmai import MenuManagerMain
 
-#moi j'aime bien importer plein de trucs, je trouve ça cool.
+#moi j'aime bien importer plein de trucs, je trouve Ã§a cool.
 from menucomn import (MENU_MAIN, MENU_CREDITS, MENU_HERO_DEAD, MENU_ENTER_NAME,
                       MENU_STORY, MENU_MANUAL, MENU_CONFIG, MENU_HISCORE,
                       MENU_PRESS_ANY_KEY, MENU_NAME_IS_A_LIE,
@@ -52,15 +52,15 @@ from menucomn import (MENU_MAIN, MENU_CREDITS, MENU_HERO_DEAD, MENU_ENTER_NAME,
                       IMG_BUTT_RESET, IMG_DEDICACE,
                       changeLanguageOnAllMenu)
 
-#liste de correspondance entre l'identifiant d'une image utilisée pour les menus et l'ihm,
-#et le nom du fichier image correspondant à charger (au format PNG).
-#liste de tuple de 2 éléments :
-# - identifiant de l'image. ils sont tous définis et décrits dans menucomn.py
-# - nom du fichier court à charger. (Pour avoir le nom long, ajouter ".png").
-#Toutes ces images sont à charger sans key transparency.
+#liste de correspondance entre l'identifiant d'une image utilisÃ©e pour les menus et l'ihm,
+#et le nom du fichier image correspondant Ã  charger (au format PNG).
+#liste de tuple de 2 Ã©lÃ©ments :
+# - identifiant de l'image. ils sont tous dÃ©finis et dÃ©crits dans menucomn.py
+# - nom du fichier court Ã  charger. (Pour avoir le nom long, ajouter ".png").
+#Toutes ces images sont Ã  charger sans key transparency.
 LIST_IMG_MENU_FILENAMES = (
- #IMG_BG_MAIN    : cette image n'est pas chargé par la classe. Elle a été fabriquée avant
- #IMG_TITLE_MAIN : cette image, pareil (pis en plus elle a une key transparency celle là.
+ #IMG_BG_MAIN    : cette image n'est pas chargÃ© par la classe. Elle a Ã©tÃ© fabriquÃ©e avant
+ #IMG_TITLE_MAIN : cette image, pareil (pis en plus elle a une key transparency celle lÃ .
  (IMG_BG_BLARG,       "bgdeath"),
  (IMG_FLAG_FRENCH,    "drapalfr"),
  (IMG_FLAG_ENGLISH,   "drapalen"),
@@ -75,7 +75,7 @@ LIST_IMG_MENU_FILENAMES = (
  (IMG_BUTT_RESET,     "buttconf"),
 )
 
-#Lui il est pas avec les autres, parce que faut charger l'image avec une key transparency à noir.
+#Lui il est pas avec les autres, parce que faut charger l'image avec une key transparency Ã  noir.
 IMG_DEDICACE_LONG_FILENAME = "dedicace.png"
 
 #I hate my "real" job !
@@ -85,56 +85,56 @@ IMG_DEDICACE_LONG_FILENAME = "dedicace.png"
 def generateAllMenuManager(dictFont, screen, funcMactPlaySeveralGames,
                            archivist, scoreManager, imgBgMainMenu, imgTitle):
     """
-    Cration de tous les menus. (Oui, j'ai écrit "cration", also sprach ma proffe d'histoire géo).
+    Cration de tous les menus. (Oui, j'ai Ã©crit "cration", also sprach ma proffe d'histoire gÃ©o).
 
-    entrées :
+    entrÃ©es :
 
-        dictFont : dictionnaire contenant toutes les polices de caractère du jeu.
-                   (même si en vrai y'en a que deux. (Enfin une avec 2 tailles)).
+        dictFont : dictionnaire contenant toutes les polices de caractÃ¨re du jeu.
+                   (mÃªme si en vrai y'en a que deux. (Enfin une avec 2 tailles)).
 
         screen : objet pygame.Surface. Surface principale sur laquelle s'affiche le jeu
-                 (en plein écran ou en fenêtre).
+                 (en plein Ã©cran ou en fenÃªtre).
 
-        funcMactPlaySeveralGames : référence vers la fonction permettant de lancer
+        funcMactPlaySeveralGames : rÃ©fÃ©rence vers la fonction permettant de lancer
                                    une ou plusieurs parties du jeu. (Faut la refiler
                                    au menu principal, vu que c'est lui qui lance les parties).
 
-        archivist : classe époneyime, permettant d'enregistrer et recharger le fichier
+        archivist : classe Ã©poneyime, permettant d'enregistrer et recharger le fichier
                     de sauvegarde et de config.
 
-        scoreManager : classe époneyime, qui gère les scores.
+        scoreManager : classe Ã©poneyime, qui gÃ¨re les scores.
 
-        imgBgMainMenu : pygame.Surface. Image de background des menus. Déjà assemblée durant
-                        l'animation de présentation, et assombrie.
+        imgBgMainMenu : pygame.Surface. Image de background des menus. DÃ©jÃ  assemblÃ©e durant
+                        l'animation de prÃ©sentation, et assombrie.
 
         imgTitle : pygame.Surface. Image du titre "Blarg" en jaune-orange.
 
     plat-dessert :
 
         dicAllMenu. dictionnaire contenant tous les menus.
-         - clé : identifiant du menu (variable de type MENU_*)
-         - valeur : instance d'une classe héritée de MenuManager. Ah que c'est le menu quoi.
+         - clÃ© : identifiant du menu (variable de type MENU_*)
+         - valeur : instance d'une classe hÃ©ritÃ©e de MenuManager. Ah que c'est le menu quoi.
     """
 
-    #récupération des 2 fonts, à partir du dictionnaire. (C'est vraiment géré n'importe
+    #rÃ©cupÃ©ration des 2 fonts, Ã  partir du dictionnaire. (C'est vraiment gÃ©rÃ© n'importe
     #comment ce truc. On fera mieux la prochaine fois).
     fontDefault = dictFont[FONT_DEFAULT_NAME][FONT_DEFAULT_SIZE]
     fontLittle = dictFont[FONT_DEFAULT_NAME][FONT_LITTLE_SIZE]
 
-    #chargement des fichiers images utilisés pour les menus, et remplissage
+    #chargement des fichiers images utilisÃ©s pour les menus, et remplissage
     #du dictionnaire contenant justement les images des menus.
     dicImg = loadImgInDict(LIST_IMG_MENU_FILENAMES, colorkey=None)
 
-    #complément de remplissage du dico des images des menus, avec ce qu'on a mis en param.
+    #complÃ©ment de remplissage du dico des images des menus, avec ce qu'on a mis en param.
     dicImg[IMG_BG_MAIN] = imgBgMainMenu
     dicImg[IMG_TITLE_MAIN] = imgTitle
 
-    #Et encore complément de dico, avec encore une image chargée depuis un fichier.
+    #Et encore complÃ©ment de dico, avec encore une image chargÃ©e depuis un fichier.
     #Je pouvais pas l'inclure dans le loadImgInDict ci-dessus, car la transparency est pas la
-    #même. (cette image a une key transparency sur le noir. Les autres n'en ont pas du tout.)
+    #mÃªme. (cette image a une key transparency sur le noir. Les autres n'en ont pas du tout.)
     dicImg[IMG_DEDICACE] = loadImg(IMG_DEDICACE_LONG_FILENAME)
 
-    #construction du dictionnaire de liste d'images utilisées pour les cases à cocher.
+    #construction du dictionnaire de liste d'images utilisÃ©es pour les cases Ã  cocher.
     #voir constructeur MenuSensitiveTick.__init__ pour la structure de ce dico.
     dicTickImage = {
         False : buildListImgLight(dicImg[IMG_TICK_FALSE], LIST_TRANSP_FOCUS),
@@ -144,14 +144,14 @@ def generateAllMenuManager(dictFont, screen, funcMactPlaySeveralGames,
     #dictionnaire qui contiendra tous les menus.
     dicAllMenu = {}
 
-    #pour tous les blocs de code à venir (jusqu'à "Menu principal"), on effectue les
+    #pour tous les blocs de code Ã  venir (jusqu'Ã  "Menu principal"), on effectue les
     #actions suivantes :
-    # - construction de la liste des paramètres à passer au constructeur du MenuManager
-    # - appel du constructeur du MenuManager, pour créer l'instance de la classe.
-    # - rangement de cette instance dans dicAllMenu, avec pour clé l'identifiant de menu
+    # - construction de la liste des paramÃ¨tres Ã  passer au constructeur du MenuManager
+    # - appel du constructeur du MenuManager, pour crÃ©er l'instance de la classe.
+    # - rangement de cette instance dans dicAllMenu, avec pour clÃ© l'identifiant de menu
     #   correspondant
     #
-    #De cette manière, on va créer une instance pour chaque classe héritée de MenuManager.
+    #De cette maniÃ¨re, on va crÃ©er une instance pour chaque classe hÃ©ritÃ©e de MenuManager.
 
     # --- menu Credits ---
 
@@ -160,28 +160,28 @@ def generateAllMenuManager(dictFont, screen, funcMactPlaySeveralGames,
     menuCredits = MenuManagerCredits(*param)
     dicAllMenu[MENU_CREDITS] = menuCredits
 
-    # --- menu affichant le héros mort transformé en potion de mana ---
+    # --- menu affichant le hÃ©ros mort transformÃ© en potion de mana ---
 
     param = (screen, dicImg, fontDefault)
 
     menuHeroDead = MenuManagerHeroDead(*param)
     dicAllMenu[MENU_HERO_DEAD] = menuHeroDead
 
-    # --- menu Frame Name (saisie du nom du joueur au début) ---
+    # --- menu Frame Name (saisie du nom du joueur au dÃ©but) ---
 
     param = (screen, dicImg, fontDefault)
 
     menuEnterName = MenuManagerEnterName(*param)
     dicAllMenu[MENU_ENTER_NAME] = menuEnterName
 
-    # --- menu qu'affiche le scrolling de l'histoire. (Wouu, y'a un vrai scénario) ---
+    # --- menu qu'affiche le scrolling de l'histoire. (Wouu, y'a un vrai scÃ©nario) ---
 
     param = (screen, dicImg, fontLittle)
 
     menuStory = MenuManagerStory(*param)
     dicAllMenu[MENU_STORY] = menuStory
 
-    # --- menu affichant le manuel du jeu (même si en vrai c'est qu'une image à l'arrache) ---
+    # --- menu affichant le manuel du jeu (mÃªme si en vrai c'est qu'une image Ã  l'arrache) ---
 
     param = (screen, dicImg, fontDefault, fontLittle, archivist)
 
@@ -203,7 +203,7 @@ def generateAllMenuManager(dictFont, screen, funcMactPlaySeveralGames,
     menuHighScore = MenuManagerHighScore(*param)
     dicAllMenu[MENU_HISCORE] = menuHighScore
 
-    # --- menu affichant un vague blabla après que le joueur ait saisi son nom. ---
+    # --- menu affichant un vague blabla aprÃ¨s que le joueur ait saisi son nom. ---
 
     param = (screen, dicImg, fontLittle, archivist)
 
@@ -226,16 +226,16 @@ def generateAllMenuManager(dictFont, screen, funcMactPlaySeveralGames,
     menuManagerMain = MenuManagerMain(*param)
     dicAllMenu[MENU_MAIN] = menuManagerMain
 
-    # --- Voilà, c'est fini. On a créé tous les menus existants.
+    # --- VoilÃ , c'est fini. On a crÃ©Ã© tous les menus existants.
 
-    #récupération du langage courant, indiqué dans le fichier de sauvegarde de la config.
+    #rÃ©cupÃ©ration du langage courant, indiquÃ© dans le fichier de sauvegarde de la config.
     currentLang = archivist.dicGlobData[GLOB_DATA_ID_LANG]
 
     if currentLang != LANG_DEFAULT:
-        #le langage courant n'est pas le langage par défaut (celui avec lequel tous les
-        #menus ont été créés). Il faut donc prévenir tous les menus existants qu'ils
-        #doivent faire changer leur langue à tous leurs MenuElem. Et on indique le bon
-        #langage, celui qu'on a trouvé dans le fichier de sauvegarde. Of course.
+        #le langage courant n'est pas le langage par dÃ©faut (celui avec lequel tous les
+        #menus ont Ã©tÃ© crÃ©Ã©s). Il faut donc prÃ©venir tous les menus existants qu'ils
+        #doivent faire changer leur langue Ã  tous leurs MenuElem. Et on indique le bon
+        #langage, celui qu'on a trouvÃ© dans le fichier de sauvegarde. Of course.
         changeLanguageOnAllMenu(currentLang, dicAllMenu)
 
     return dicAllMenu

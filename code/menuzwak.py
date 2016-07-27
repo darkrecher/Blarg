@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,17 +10,17 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 21/03/2011
+date de la derniÃ¨re relecture-commentage : 21/03/2011
 
-Menu utilisé pour la présentation au début. Il affiche que d'alle, et attend qu'on appuie sur une
+Menu utilisÃ© pour la prÃ©sentation au dÃ©but. Il affiche que d'alle, et attend qu'on appuie sur une
 touche ou qu'on clique pour se quitter. Si le joueur ne fait rien , le menu se quitte tout seul au
 bout d'un certain temps.
 """
@@ -42,22 +42,22 @@ class MenuManagerWaitOrPressAnyKey(MenuManager):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
 
             surfaceDest : voir constructeur de MenuManager. (Pour ce MenuManager,
                 je me sers pas de cette surface. Mais le param est obligatoire).
-                J'ai pas voulu le rendre facultatif, car il est passé aux MenuElem internes,
-                et tout ça. Ca marcherait si on colle None dans ce param, et qu'il n'y a
-                pas d'images de fond, et pas de MenuElem affichant quelque chose. Donc ça
+                J'ai pas voulu le rendre facultatif, car il est passÃ© aux MenuElem internes,
+                et tout Ã§a. Ca marcherait si on colle None dans ce param, et qu'il n'y a
+                pas d'images de fond, et pas de MenuElem affichant quelque chose. Donc Ã§a
                 marcherait pour ce menu en particulier. Mais je veux pas prendre le risque.
                 La robustesse, c'est mieux.
 
-            waitLimit : int. Nombre de cycle à attendre avant de quitter automatiquement le menu.
+            waitLimit : int. Nombre de cycle Ã  attendre avant de quitter automatiquement le menu.
         """
 
         #on passe pas le dicImg, donc le menu ne peut pas choper l'image de
-        #fond par défaut, donc il affiche pas d'image de fond. C'est ce que je veux.
-        #Parce qu'en fait l'image de présentation est déjà affichée à l'écran. On n'y touche pas.
+        #fond par dÃ©faut, donc il affiche pas d'image de fond. C'est ce que je veux.
+        #Parce qu'en fait l'image de prÃ©sentation est dÃ©jÃ  affichÃ©e Ã  l'Ã©cran. On n'y touche pas.
         MenuManager.__init__(self, surfaceDest)
 
         self.waitLimit = waitLimit
@@ -65,23 +65,23 @@ class MenuManagerWaitOrPressAnyKey(MenuManager):
         self.waitCounter = 0
 
         #Y'a qu'un seul MenuElem, et il affiche rien. C'est le MenuElem qui fait quitter le
-        #menu en cours dès qu'on appuie sur une touche (n'importe laquelle), ou qu'on clique.
+        #menu en cours dÃ¨s qu'on appuie sur une touche (n'importe laquelle), ou qu'on clique.
         self.listMenuElem = (manyQuit, )
 
 
     def periodicAction(self):
         """
-        Fonction périodique, qui s'exécute à chaque cycle.
+        Fonction pÃ©riodique, qui s'exÃ©cute Ã  chaque cycle.
         (voir description de la fonction dans MenuManager)
         """
 
         #augmentation du compteur. Oui, captain obvious.
         self.waitCounter += 1
 
-        #Si on a compté jusqu'à la fin, on envoie le message d'ihm de quittage du menu en cours.
+        #Si on a comptÃ© jusqu'Ã  la fin, on envoie le message d'ihm de quittage du menu en cours.
         if self.waitCounter >= self.waitLimit:
             return (IHMSG_QUIT, )
 
-        #Sinon, ben y'a rien à branler
+        #Sinon, ben y'a rien Ã  branler
         return IHMSG_VOID
 

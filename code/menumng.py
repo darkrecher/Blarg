@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,33 +10,33 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 09/02/2011
+date de la derniÃ¨re relecture-commentage : 09/02/2011
 
-le putain de menu manager, avec des éléments de menu dedans. Que il les gère,
+le putain de menu manager, avec des Ã©lÃ©ments de menu dedans. Que il les gÃ¨re,
 leur passe les stimulis, et tout et tout.
 
-Les flèches haut/bas cyclent le focus sur une liste prédefinie d'éléments (pas forcément tous).
-La touche Tab cycle le focus sur tous les éléments focusables, c'est obligé.
+Les flÃ¨ches haut/bas cyclent le focus sur une liste prÃ©definie d'Ã©lÃ©ments (pas forcÃ©ment tous).
+La touche Tab cycle le focus sur tous les Ã©lÃ©ments focusables, c'est obligÃ©.
 Ainsi, quel que soit les trucs bizarres d'IHM que je ferais, le pauvre joueur qu'a pas de
-souris pourra toujours utiliser toutes les options, grâce à Tab. Ce sera chiant, mais faisable.
+souris pourra toujours utiliser toutes les options, grÃ¢ce Ã  Tab. Ce sera chiant, mais faisable.
 
 mini-vocab :
-création du menu : Création de l'instance du menu, à partir de la classe.
-(En général, c'est des classes héritées de celle-ci.
+crÃ©ation du menu : CrÃ©ation de l'instance du menu, Ã  partir de la classe.
+(En gÃ©nÃ©ral, c'est des classes hÃ©ritÃ©es de celle-ci.
 
-activation du menu : le menu est placé à l'écran. Et le joueur peut utiliser ses options.
+activation du menu : le menu est placÃ© Ã  l'Ã©cran. Et le joueur peut utiliser ses options.
 
 BIG BIG TRODO : il y a du code commun entre le SubMenu et le MenuManager,
-factoriser tout ça quand on aura envie.
-Pas là. Là, j'en ai chié pour faire ce tas de merde, j'en ai marre.
+factoriser tout Ã§a quand on aura envie.
+Pas lÃ . LÃ , j'en ai chiÃ© pour faire ce tas de merde, j'en ai marre.
 """
 
 import pygame
@@ -51,15 +51,15 @@ from menuelem import MenuElem, cycleFocus
 from yargler  import theSoundYargler, SND_MENU_CYCLE
 
 #Liste des touches provoquant une activation du MenuElem sur lequel y'a le focus.
-#(activation = exécution de la fonction funcAction du MenuElem)
-#TRODO : pour plus tard : tout stocker + le K_TAB, et mapper ça avec un niveau intermédiaire.
+#(activation = exÃ©cution de la fonction funcAction du MenuElem)
+#TRODO : pour plus tard : tout stocker + le K_TAB, et mapper Ã§a avec un niveau intermÃ©diaire.
 LIST_KEY_ACTIVATING_MENU = (
  pygl.K_SPACE,    #la touche espace
- pygl.K_RETURN,   #la touche entrée
- pygl.K_KP_ENTER, #la touche entrée du pavé numérique.
+ pygl.K_RETURN,   #la touche entrÃ©e
+ pygl.K_KP_ENTER, #la touche entrÃ©e du pavÃ© numÃ©rique.
 )
-#(Je rappelle aux gens qu'on dit "pavé numérique", et non pas "clavier numérique". Merci de pas
-#tout confondre. Le clavier, c'est tout le bazar avec les touches. Et y'a des pavés dedans. Là.
+#(Je rappelle aux gens qu'on dit "pavÃ© numÃ©rique", et non pas "clavier numÃ©rique". Merci de pas
+#tout confondre. Le clavier, c'est tout le bazar avec les touches. Et y'a des pavÃ©s dedans. LÃ .
 
 
 
@@ -72,114 +72,114 @@ class MenuManager():
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
 
             surfaceDest : pygame.Surface, sur laquelle on veut afficher le menu.
-                          En général, on choisit la surface principale pointant sur l'écran.
-                          Mais ça pourrait être autre chose.
+                          En gÃ©nÃ©ral, on choisit la surface principale pointant sur l'Ã©cran.
+                          Mais Ã§a pourrait Ãªtre autre chose.
 
             dicImg      : dictionnaire {identifiant d'image -> image}, contenant
-                          toutes les images utilisées pour les menu.
+                          toutes les images utilisÃ©es pour les menu.
                           (Le menuManager ne piochera que dans quelques images du dico)
-                          En fait, on passe tout le temps le même dico, celui
-                          créé dans la classe menucomn.py.
-                          J'aurais du faire un import plutôt qu'un passage en param,
+                          En fait, on passe tout le temps le mÃªme dico, celui
+                          crÃ©Ã© dans la classe menucomn.py.
+                          J'aurais du faire un import plutÃ´t qu'un passage en param,
                           mais je suis un peu con. D'ailleurs j'ai fait cette connerie
                           pour plein d'autres trucs.
                           Si le param vaut None, le menuManager ne pourra pas utiliser d'image.
 
             idImgBgMenu : identifiant d'une image contenue dans dicImg.
-                          indique l'image à utiliser comme image de fond pour ce menu.
-                          Si on laisse à None, on prend par défaut l'image IMG_BG_MAIN
+                          indique l'image Ã  utiliser comme image de fond pour ce menu.
+                          Si on laisse Ã  None, on prend par dÃ©faut l'image IMG_BG_MAIN
                           Si dicImg vaut None, ce menu n'affiche pas d'image de fond.
 
         Normalement, on doit overrider cette fonction d'init.
-        (En appelant celle du MenuManager au début),
-        Et dans l'override, on doit définir self.listMenuElem.
+        (En appelant celle du MenuManager au dÃ©but),
+        Et dans l'override, on doit dÃ©finir self.listMenuElem.
         C'est la liste contenant tous les menuElem du menuManager.
-        L'ordre de cette liste est important, il détermine l'ordre d'affichage,
+        L'ordre de cette liste est important, il dÃ©termine l'ordre d'affichage,
         et l'ordre du cyclage de focus.
-        On peut plus ou moins modifier self.listMenuElem en live. Mais peut être pas trop
-        (j'ai pas vraiment testé, j'en ai pas eu besoin).
-        Dans l'init overridé, c'est cool de finir par un appel à la fonction initFocusCyclingInfo.
-        Si on oublie, ça fonctionne quand même, mais on peut pas cycler avec Tab.
+        On peut plus ou moins modifier self.listMenuElem en live. Mais peut Ãªtre pas trop
+        (j'ai pas vraiment testÃ©, j'en ai pas eu besoin).
+        Dans l'init overridÃ©, c'est cool de finir par un appel Ã  la fonction initFocusCyclingInfo.
+        Si on oublie, Ã§a fonctionne quand mÃªme, mais on peut pas cycler avec Tab.
         """
 
         self.surfaceDest = surfaceDest
         self.dicImg = dicImg
 
-        #récupération de l'image de background, si c'est possible.
+        #rÃ©cupÃ©ration de l'image de background, si c'est possible.
         if dicImg is not None:
             if idImgBgMenu is not None:
-                #y'en a une, et elle est clairement spécifiée
+                #y'en a une, et elle est clairement spÃ©cifiÃ©e
                 self.imgBgMenu = dicImg[idImgBgMenu]
             else:
-                #y'en a une, mais c'est celle par défaut
+                #y'en a une, mais c'est celle par dÃ©faut
                 self.imgBgMenu = dicImg[IMG_BG_MAIN]
         else:
             #y'en a pas.
             self.imgBgMenu = None
 
-        #donc, la liste contenant tous les éléments de ce MenuManager. Là y'a rien
+        #donc, la liste contenant tous les Ã©lÃ©ments de ce MenuManager. LÃ  y'a rien
         #dedans, et faut mettre des trucs.
         self.listMenuElem = ()
 
-        #Référence vers le MenuElem actuarialement focusé. (haha, "actuariat", c'est un vrai mot)
+        #RÃ©fÃ©rence vers le MenuElem actuarialement focusÃ©. (haha, "actuariat", c'est un vrai mot)
         self.focusedElem = None
 
-        #Cette variable doit être une liste de menuElem. Tous les menuElem mentionnés dans
-        #cette liste doivent être présent dans self.listMenuElem. Lorsque le joueur
-        #appuiera sur haut et bas, ça fera un cyclage de focus dans cette "liste restreinte".
+        #Cette variable doit Ãªtre une liste de menuElem. Tous les menuElem mentionnÃ©s dans
+        #cette liste doivent Ãªtre prÃ©sent dans self.listMenuElem. Lorsque le joueur
+        #appuiera sur haut et bas, Ã§a fera un cyclage de focus dans cette "liste restreinte".
         #exemple : le main Menu, avec les commandes principales jouer, credits, etc...
-        #On peut laisser la variable à None. Dans ce cas, il ne se passe rien quand on fait
+        #On peut laisser la variable Ã  None. Dans ce cas, il ne se passe rien quand on fait
         #haut et bas.
-        #Le cyclage avec Tab n'est pas à définir explicitement. Mais j'en aidéjà parlé plus haut.
+        #Le cyclage avec Tab n'est pas Ã  dÃ©finir explicitement. Mais j'en aidÃ©jÃ  parlÃ© plus haut.
         self.listMenuElemArrows = None
 
-        #indique si il y a au moins un élément, dans self.listMenuElem, qui acccepte le focus.
+        #indique si il y a au moins un Ã©lÃ©ment, dans self.listMenuElem, qui acccepte le focus.
         #C'est important de le savoir. Quand on fait Tab, ou haut/bas,
-        #et que aucun élément n'accepte le focus, alors il ne faut rien faire.
+        #et que aucun Ã©lÃ©ment n'accepte le focus, alors il ne faut rien faire.
         #(Sinon on boucle-infinite en cherchant un elem focusable).
-        #pour l'instant, self.listMenuElem est vide, donc on fixe la variable à False.
+        #pour l'instant, self.listMenuElem est vide, donc on fixe la variable Ã  False.
         self.isOneElemAcceptFocus = False
 
         #pointeur sur le menuElem qui est en train de traiter l'event courant (souris, clavier...)
         #C'est utile de retenir cette info, pour les menuElem qui ont la
-        #même funcAction. (Genre les config de touches dans menuzcon.MenuManagerConfig).
+        #mÃªme funcAction. (Genre les config de touches dans menuzcon.MenuManagerConfig).
         self.menuElemTakingEvent = None
 
 
     def initFocusCyclingInfo(self, indexFocusedElem=None,
                              indexMenuElemArrowBounds=None):
         """
-        initialisation des infos liées au cyclage de focus sur les MenuElem.
+        initialisation des infos liÃ©es au cyclage de focus sur les MenuElem.
 
         indexFocusedElem : None ou int. si int : index du MenuElem qui prend
-                           le focus, lors de l'activation du menu, au départ.
+                           le focus, lors de l'activation du menu, au dÃ©part.
                            Si None : personne n'a le focus.
 
         indexMenuElemArrowBounds : None ou tuple de 2 int. Index min et max des MenuElems,
-                                   définissant une sous-liste, sur laquelle on fait
-                                   le cyclage du focus avec les flèches haut et bas.
+                                   dÃ©finissant une sous-liste, sur laquelle on fait
+                                   le cyclage du focus avec les flÃ¨ches haut et bas.
 
-        Cette fonction est à exécuter une fois qu'on a définit listMenuElem.
-        (Genre, à la fin de l'init overridé de la classe-fille)
+        Cette fonction est Ã  exÃ©cuter une fois qu'on a dÃ©finit listMenuElem.
+        (Genre, Ã  la fin de l'init overridÃ© de la classe-fille)
         """
 
-        #donnage du focus à l'élément qui doit le recevoir.
-        #Pas de contrôle de indexFocusedElem  < taille de la liste.
+        #donnage du focus Ã  l'Ã©lÃ©ment qui doit le recevoir.
+        #Pas de contrÃ´le de indexFocusedElem  < taille de la liste.
         #On est grand, on ne fait pas n'importe quoi avec son propre code.
         if indexFocusedElem is not None:
             self.focusOnElem(self.listMenuElem[indexFocusedElem])
 
-        #définition (ou pas) de la liste restreinte indexMenuElemArrowBounds.
+        #dÃ©finition (ou pas) de la liste restreinte indexMenuElemArrowBounds.
         if indexMenuElemArrowBounds is not None:
             (min, max) = indexMenuElemArrowBounds
             self.listMenuElemArrows = self.listMenuElem[min:max]
 
-        #définition de self.isOneElemAcceptFocus. boolean indiquant si il y a au moins un
+        #dÃ©finition de self.isOneElemAcceptFocus. boolean indiquant si il y a au moins un
         #MenuElem dans la liste qui accepte le focus.
-        #construction d'une liste de booléen : tous les menuElem.acceptFocus
+        #construction d'une liste de boolÃ©en : tous les menuElem.acceptFocus
         listAccepFocus = [ menuElem.acceptFocus
                            for menuElem in self.listMenuElem
                          ]
@@ -190,39 +190,39 @@ class MenuManager():
 
     def showBackground(self):
         """
-        fonction affichant le fond, derrière le menu. Fonction à overrider, ou pas.
+        fonction affichant le fond, derriÃ¨re le menu. Fonction Ã  overrider, ou pas.
         """
-        #On balance l'image de fond à l'écran, (en haut à gauche), si elle existe.
+        #On balance l'image de fond Ã  l'Ã©cran, (en haut Ã  gauche), si elle existe.
         if self.imgBgMenu is not None:
             self.surfaceDest.blit(self.imgBgMenu, (0, 0))
 
 
     def beforeDrawMenu(self):
         """
-        fonction à overrider. On met ce qu'on veut dedans.
-        Elle s'exécute juste avant le redessinage total de menu
+        fonction Ã  overrider. On met ce qu'on veut dedans.
+        Elle s'exÃ©cute juste avant le redessinage total de menu
         """
         pass
 
 
     def drawMenu(self):
         """
-        fonction affichant le fond et tous les éléments du menu.
+        fonction affichant le fond et tous les Ã©lÃ©ments du menu.
 
-        Attention, quand on exécute drawMenu, ça se voit pas encore à l'écran.
-        Faut faire un coup de flip, (ou pygame.display.update si j'avais géré des dirtyRects,
-        mais il se trouve que je les ai pas gérés dans les menus, car je voulais pas me prendre
+        Attention, quand on exÃ©cute drawMenu, Ã§a se voit pas encore Ã  l'Ã©cran.
+        Faut faire un coup de flip, (ou pygame.display.update si j'avais gÃ©rÃ© des dirtyRects,
+        mais il se trouve que je les ai pas gÃ©rÃ©s dans les menus, car je voulais pas me prendre
         la gueule.)
 
         """
 
-        #exécution de code overridé, si y'en a.
+        #exÃ©cution de code overridÃ©, si y'en a.
         self.beforeDrawMenu()
 
         #dessin du fond.
         self.showBackground()
 
-        #appel de la méthode draw de tous les MenuElem. (Y'en a qui dessineront rien, mais osef)
+        #appel de la mÃ©thode draw de tous les MenuElem. (Y'en a qui dessineront rien, mais osef)
         for menuElem in self.listMenuElem:
             menuElem.draw(self.surfaceDest)
 
@@ -231,34 +231,34 @@ class MenuManager():
         """
         change le focus pour le mettre sur un autre MenuElem.
 
-        entrées :
+        entrÃ©es :
             elemAskingFocus : MenuElem qui veut choper le focus.
-                              Il vaut mieux que ce soit un élément appartenant à self.listMenuElem
-                              Sinon c'est crétin, et je sais pas ce que ça donne.
+                              Il vaut mieux que ce soit un Ã©lÃ©ment appartenant Ã  self.listMenuElem
+                              Sinon c'est crÃ©tin, et je sais pas ce que Ã§a donne.
         """
 
-        #si le focus était déjà sur un autre élément, on le lui enlève.
+        #si le focus Ã©tait dÃ©jÃ  sur un autre Ã©lÃ©ment, on le lui enlÃ¨ve.
         if self.focusedElem is not None:
             self.focusedElem.takeStimuliLoseFocus()
 
-        #modification de l'attribut pointant vers l'élément focusé.
+        #modification de l'attribut pointant vers l'Ã©lÃ©ment focusÃ©.
         self.focusedElem = elemAskingFocus
-        #on donne le focus à l'élément qui le veut.
+        #on donne le focus Ã  l'Ã©lÃ©ment qui le veut.
         self.focusedElem.takeStimuliGetFocus()
 
 
     def startMenu(self):
         """
-        fonction à overrider. On met ce qu'on veut dedans.
-        Elle s'exécute au début de l'activation d'un menu
+        fonction Ã  overrider. On met ce qu'on veut dedans.
+        Elle s'exÃ©cute au dÃ©but de l'activation d'un menu
         """
         pass
 
 
     def periodicAction(self):
         """
-        fonction à overrider. On met ce qu'on veut dedans.
-        Elle s'exécute au début de chaque cycle, durant la gestion du menu
+        fonction Ã  overrider. On met ce qu'on veut dedans.
+        Elle s'exÃ©cute au dÃ©but de chaque cycle, durant la gestion du menu
 
         plat-dessert : tuple avec des messages d'ihm (genre IHMSG_REDRAW_MENU, ou autre)
         """
@@ -267,69 +267,69 @@ class MenuManager():
 
     def handleMenu(self):
         """
-        fonction principale pour activer le menu, puis le gérer, l'afficher,
-        choper les events émis par le joueur, et effectuer les actions qui en décombent.
+        fonction principale pour activer le menu, puis le gÃ©rer, l'afficher,
+        choper les events Ã©mis par le joueur, et effectuer les actions qui en dÃ©combent.
         (Non, qui lui incombent). Ha ha
         """
 
         self.startMenu()
 
-        #Le rafraîchissement et la prise en compte des events se fait 30 fois par seconde.
+        #Le rafraÃ®chissement et la prise en compte des events se fait 30 fois par seconde.
         #Ca suffit bien, pour des menus merdiques.
         #(Sinon, on risque de piquer toute la CPU, ou je sais pas quoi).
-        #Désolé, j'avais envie de faire mon savant en disant "la CPU". Ca fait classe. Hey hey !
+        #DÃ©solÃ©, j'avais envie de faire mon savant en disant "la CPU". Ca fait classe. Hey hey !
         waitingFPS = 30
         clock = pygame.time.Clock()
 
-        #on traite tous les événements en attente. Ca vide le buffer du clavier.
+        #on traite tous les Ã©vÃ©nements en attente. Ca vide le buffer du clavier.
         pygame.event.pump()
 
         #initialisation du tuple de messages d'ihm. Lors d'un cycle, ce tuple contiendra
-        #le cumul de tous les messages d'ihm renvoyés par les MenuElem lors de leurs diverses
-        #actions. C'est un peu bourrin de tout cumuler comme ça, mais ça marche.
-        #Là, pour l'instant, y'a rien dedans.
+        #le cumul de tous les messages d'ihm renvoyÃ©s par les MenuElem lors de leurs diverses
+        #actions. C'est un peu bourrin de tout cumuler comme Ã§a, mais Ã§a marche.
+        #LÃ , pour l'instant, y'a rien dedans.
         ihmsgInfo = IHMSG_VOID
 
         #premier gros dessin global de tout le menu, pour l'activation.
         self.drawMenu()
 
-        #gros flip global pour tout rafraîchir.
+        #gros flip global pour tout rafraÃ®chir.
         pygame.display.flip()
 
-        #liste qui stockera les codes des touches qui viennent tout juste "paf" d'être appuyées.
+        #liste qui stockera les codes des touches qui viennent tout juste "paf" d'Ãªtre appuyÃ©es.
         #(la liste augmente quand on chope des events de KEY_DOWN. Elle diminue un par un,
-        #au fur et à mesure qu'on traite ces appuyages.
+        #au fur et Ã  mesure qu'on traite ces appuyages.
         listKeyDown = []
-        #liste contenant la valeur unicode renvoyé par les events d'appuyages de touches.
-        #certains appuyages de touche ne corresponde à aucun caractère. Dans ce cas,
-        #on récupèrera une chaîne vide.
-        #Du coup, il y a autant d'élément dans cette liste que dans celle ci-dessus.
-        #C'est un peu idiot, j'aurais du faire une seule liste contenant des tuples de 2 éléments.
-        #TRODO pour plus tard : changer ça.
+        #liste contenant la valeur unicode renvoyÃ© par les events d'appuyages de touches.
+        #certains appuyages de touche ne corresponde Ã  aucun caractÃ¨re. Dans ce cas,
+        #on rÃ©cupÃ¨rera une chaÃ®ne vide.
+        #Du coup, il y a autant d'Ã©lÃ©ment dans cette liste que dans celle ci-dessus.
+        #C'est un peu idiot, j'aurais du faire une seule liste contenant des tuples de 2 Ã©lÃ©ments.
+        #TRODO pour plus tard : changer Ã§a.
         listKeyDownChar = []
 
-        #récupération d'un dictionnaire {identifiant de touche -> boolean}, indiquant
-        #quelles touches sont actuellement appuyées (pas "paf")
+        #rÃ©cupÃ©ration d'un dictionnaire {identifiant de touche -> boolean}, indiquant
+        #quelles touches sont actuellement appuyÃ©es (pas "paf")
         self.dictKeyPressed = pygame.key.get_pressed()
 
         # ---------- GROSSE BOUCLE DE GESTION DU MENU ------------
 
         while IHMSG_QUIT not in ihmsgInfo:
 
-            #super classe clock, qui gère toute seule le "30 fois par seconde"
+            #super classe clock, qui gÃ¨re toute seule le "30 fois par seconde"
             clock.tick(waitingFPS)
 
-            #réinitialisation du tuple des messages d'ihm à : rien du tout.
+            #rÃ©initialisation du tuple des messages d'ihm Ã  : rien du tout.
             ihmsgInfo = IHMSG_VOID
 
-            #exécution de la fonction périodique. Avec tout et n'importe quoi dedans, ou pas.
-            #Cette fonction a le droit de vérifier les touches déjà appuyés, en consultant
-            #le dico self.dictKeyPressed. Car je l'ai initialisé juste avant. Youpi !
+            #exÃ©cution de la fonction pÃ©riodique. Avec tout et n'importe quoi dedans, ou pas.
+            #Cette fonction a le droit de vÃ©rifier les touches dÃ©jÃ  appuyÃ©s, en consultant
+            #le dico self.dictKeyPressed. Car je l'ai initialisÃ© juste avant. Youpi !
             ihmsgInfo += self.periodicAction()
 
-            #boolean indiquant si il s'est passé des trucs avec la souris (mouvement, bouton, ...)
+            #boolean indiquant si il s'est passÃ© des trucs avec la souris (mouvement, bouton, ...)
             isEventAboutMouse = False
-            #boolean indiquant si le bouton de la souris vient tout juste "paf" d'être appuyé.
+            #boolean indiquant si le bouton de la souris vient tout juste "paf" d'Ãªtre appuyÃ©.
             mouseDown = False
 
             # --- Scrutationnage des events.  ---
@@ -337,13 +337,13 @@ class MenuManager():
             for event in pygame.event.get():
 
                 if event.type == pygl.QUIT:
-                    #event de fermage de fenêtre
-                    #(mais pas Alt-F4, qui ne semble pas être pris en compte).
+                    #event de fermage de fenÃªtre
+                    #(mais pas Alt-F4, qui ne semble pas Ãªtre pris en compte).
                     #on se barre de la fonction avec le message d'ihm TOTALQUIT.
-                    #Ce message doit être remonté vers tous les menus et les MenuElem
-                    #en cours d'exécution, jusqu'à quitter le programme proprement.
-                    #Et on se barre tout de suite, tel le bourrin. Car si on a demandé
-                    #à quitter, autant le faire le plus vite possible. Sans fioritures-tralala.
+                    #Ce message doit Ãªtre remontÃ© vers tous les menus et les MenuElem
+                    #en cours d'exÃ©cution, jusqu'Ã  quitter le programme proprement.
+                    #Et on se barre tout de suite, tel le bourrin. Car si on a demandÃ©
+                    #Ã  quitter, autant le faire le plus vite possible. Sans fioritures-tralala.
                     return (IHMSG_QUIT, IHMSG_TOTALQUIT)
 
                 elif event.type == pygl.MOUSEBUTTONDOWN:
@@ -352,30 +352,30 @@ class MenuManager():
                     mouseDown = True
 
                 elif event.type == pygl.MOUSEMOTION:
-                    #le joueur a bougé la souris
+                    #le joueur a bougÃ© la souris
                     isEventAboutMouse = True
 
                 elif event.type == pygl.KEYDOWN:
                     #le joueur vient de "paf" appuyer sur une touche.
                     #on ajoute l'identifiant de la touche et sa valeur unicode,
                     #aux listes contenant les appuyages de touches.
-                    #comme dit ailleurs, l'unicode gère tout seul les majuscules, ô, Û, ...
+                    #comme dit ailleurs, l'unicode gÃ¨re tout seul les majuscules, Ã´, Ã›, ...
                     listKeyDown.append(event.key)
                     listKeyDownChar.append(event.unicode)
 
-            #réactualisation du dictionnaire {identifiant de touche -> boolean}
+            #rÃ©actualisation du dictionnaire {identifiant de touche -> boolean}
             self.dictKeyPressed = pygame.key.get_pressed()
 
-            #recup du boolean indiquant si le bouton droit de la souris est appuyé ou pas
+            #recup du boolean indiquant si le bouton droit de la souris est appuyÃ© ou pas
             mousePressed = pygame.mouse.get_pressed()[0]
 
             if mousePressed:
                 isEventAboutMouse = True
 
-            # --- dépilage des events d'appuyage de touche ---
+            # --- dÃ©pilage des events d'appuyage de touche ---
 
             #En fait, on prend que le premier appuyage.
-            #Les autres seront gérés dans les cycles suivants
+            #Les autres seront gÃ©rÃ©s dans les cycles suivants
 
             if len(listKeyDown) > 0:
                 keyCodeDown = listKeyDown.pop(0)
@@ -390,11 +390,11 @@ class MenuManager():
             if keyCodeDown is not None:
                 for menuElem in self.listMenuElem:
 
-                    #Réactualisation du menuElem qui est en cours de traitement d'event.
-                    #voir explication à propos de cette variable dans self.__init
+                    #RÃ©actualisation du menuElem qui est en cours de traitement d'event.
+                    #voir explication Ã  propos de cette variable dans self.__init
                     self.menuElemTakingEvent = menuElem
 
-                    #on transmet les events, et on récupère les messages d'ihm qu'on ajoute
+                    #on transmet les events, et on rÃ©cupÃ¨re les messages d'ihm qu'on ajoute
                     #au tuple qui cumule tout.
                     param = (self.dictKeyPressed, keyCodeDown, keyCharDown)
                     ihmsgInfo += menuElem.takeStimuliKeys(*param)
@@ -403,26 +403,26 @@ class MenuManager():
 
             if isEventAboutMouse:
 
-                #récupéréation des coordonnées (X, Y) du curseur de la souris.
+                #rÃ©cupÃ©rÃ©ation des coordonnÃ©es (X, Y) du curseur de la souris.
                 mousePos = pygame.mouse.get_pos()
 
                 for menuElem in self.listMenuElem:
 
-                    #Réactualisation du menuElem qui est en cours de traitement d'event.
+                    #RÃ©actualisation du menuElem qui est en cours de traitement d'event.
                     self.menuElemTakingEvent = menuElem
 
                     #on transmet les event, et on stocke les messages d'ihm dans un
                     #tuple provisoire. On met pas directement tout dans le tuple principal,
-                    #car on doit retenir ce que renvoie chaque MenuElem séparément,
-                    #(voir juste après)
+                    #car on doit retenir ce que renvoie chaque MenuElem sÃ©parÃ©ment,
+                    #(voir juste aprÃ¨s)
                     param = (mousePos, mouseDown, mousePressed)
                     ihmsgInfoNew = menuElem.takeStimuliMouse(*param)
 
-                    #Si le MenuElem a renvoyé un message de demande de focus, on le lui file tout
-                    #de suite. (d'où le besoin de pas cumuler tout de suite, mm'voyez)
-                    #J'ai pas ajouté ce traitement spécifique dans les events d'appuyage
+                    #Si le MenuElem a renvoyÃ© un message de demande de focus, on le lui file tout
+                    #de suite. (d'oÃ¹ le besoin de pas cumuler tout de suite, mm'voyez)
+                    #J'ai pas ajoutÃ© ce traitement spÃ©cifique dans les events d'appuyage
                     #de touches. Car les appuyage de touche ne font jamais changer le focus.
-                    #Mais ça pourrait. TRODO pour plus tard : l'ajouter.
+                    #Mais Ã§a pourrait. TRODO pour plus tard : l'ajouter.
                     if IHMSG_ELEM_WANTFOCUS in ihmsgInfoNew:
                         self.focusOnElem(menuElem)
 
@@ -432,19 +432,19 @@ class MenuManager():
             # --- Prise en compte des events de touche pour la gestion interne du menu ---
 
             if keyCodeDown in LIST_KEY_ACTIVATING_MENU:
-                #le joueur a appuyé sur l'une des touches Entrée ou sur Espace.
-                #Si y'a le focus sur un élément, et que cet élément a une fonction d'action,
-                #alors il faut l'exécuter.
-                #Et on ajoute les messages d'ihm récupérés au tuple ihmsgInfo.
+                #le joueur a appuyÃ© sur l'une des touches EntrÃ©e ou sur Espace.
+                #Si y'a le focus sur un Ã©lÃ©ment, et que cet Ã©lÃ©ment a une fonction d'action,
+                #alors il faut l'exÃ©cuter.
+                #Et on ajoute les messages d'ihm rÃ©cupÃ©rÃ©s au tuple ihmsgInfo.
                 if self.focusedElem is not None:
                     if self.focusedElem.funcAction is not None:
-                        #petite réactualisation hopla de l'elem en train de traiter l'event.
+                        #petite rÃ©actualisation hopla de l'elem en train de traiter l'event.
                         self.menuElemTakingEvent = self.focusedElem
                         ihmsgInfo += self.focusedElem.funcAction()
 
             if keyCodeDown == pygl.K_TAB and self.isOneElemAcceptFocus:
 
-                #Le joueur a appuyé sur Tab. Et il y a au moins un MenuElem qui accepte le focus
+                #Le joueur a appuyÃ© sur Tab. Et il y a au moins un MenuElem qui accepte le focus
                 #on fait un cyclage du focus sur toute la liste de MenuElem du menu
                 param = (self.focusedElem, self.listMenuElem, True)
                 self.focusedElem = cycleFocus(*param)
@@ -454,24 +454,24 @@ class MenuManager():
 
             if keyCodeDown in (pygl.K_UP, pygl.K_DOWN):
 
-                #Le joueur a appuyé sur la flèche du haut ou du bas.
+                #Le joueur a appuyÃ© sur la flÃ¨che du haut ou du bas.
                 #Si on a une "liste restreinte" de menuElem, dans laquelle on a
-                #prévu de faire un cyclage de focus, alors il faut le faire (le cyclage).
+                #prÃ©vu de faire un cyclage de focus, alors il faut le faire (le cyclage).
                 if self.listMenuElemArrows is not None:
 
-                    #début de la liste de param à transmettre à la fonction de cyclage de focus.
-                    #Le "True" à la fin sert à indiquer qu'on a le droit
+                    #dÃ©but de la liste de param Ã  transmettre Ã  la fonction de cyclage de focus.
+                    #Le "True" Ã  la fin sert Ã  indiquer qu'on a le droit
                     #de faire le tour du compteur dans la liste.
                     param = [self.focusedElem, self.listMenuElemArrows, True]
 
                     #ajout du dernier param : direction dans laquelle on cycle le focus,
-                    #selon la touche appuyée.
+                    #selon la touche appuyÃ©e.
                     if keyCodeDown == pygl.K_UP:
                         param.append(-1)
                     else:
                         param.append(+1)
 
-                    #cyclage du focus. En récupérant le nouvel elem focusé.
+                    #cyclage du focus. En rÃ©cupÃ©rant le nouvel elem focusÃ©.
                     self.focusedElem = cycleFocus(*param)
 
                     #son du cyclage de focus : pop !!
@@ -482,44 +482,44 @@ class MenuManager():
             if IHMSG_TOTALQUIT in ihmsgInfo:
                 return (IHMSG_QUIT, IHMSG_TOTALQUIT)
 
-            # --- rafraichissement/redessinage du menu à l'écran ---
+            # --- rafraichissement/redessinage du menu Ã  l'Ã©cran ---
 
-            #update de tous les éléments de focus. (C'est une fonction avec tout et nimp dedans.)
+            #update de tous les Ã©lÃ©ments de focus. (C'est une fonction avec tout et nimp dedans.)
             for menuElem in self.listMenuElem:
                 ihmsgInfo += menuElem.update()
 
-            #les update, ou bien les autres trucs fait avant, ont peut-être demandé
-            #un gros redessinage général du menu.
+            #les update, ou bien les autres trucs fait avant, ont peut-Ãªtre demandÃ©
+            #un gros redessinage gÃ©nÃ©ral du menu.
             if IHMSG_REDRAW_MENU in ihmsgInfo:
 
-                #on dessine / redessine entièrement le menu (ainsi que son fond)
+                #on dessine / redessine entiÃ¨rement le menu (ainsi que son fond)
                 self.drawMenu()
 
             else:
 
                 #pas besoin de redessiner tout le menu, ni l'image de fond.
-                #On ne redessine que les éléments qui demandent à être refreshed.
-                #(par exemple, du texte focusé qui glow, ou une image qui glow aussi)
+                #On ne redessine que les Ã©lÃ©ments qui demandent Ã  Ãªtre refreshed.
+                #(par exemple, du texte focusÃ© qui glow, ou une image qui glow aussi)
                 for menuElem in self.listMenuElem:
                     if menuElem.mustBeRefreshed:
                         menuElem.draw(self.surfaceDest)
 
-            #gros flip global pour rafraîchir le dessin/refresh qu'on vient de faire.
+            #gros flip global pour rafraÃ®chir le dessin/refresh qu'on vient de faire.
             pygame.display.flip()
 
         # ---------- FIN DE LA PUTAIN DE GROSSE BOUCLE DE GESTION DU MENU ------------
 
-        #On renvoie le tuple cumulé de messages d'ihm qui a fait quitter la grosse boucle du menu.
+        #On renvoie le tuple cumulÃ© de messages d'ihm qui a fait quitter la grosse boucle du menu.
         #Y'en a besoin pour propager certains messages d'IHM, en particulier le TOTALQUIT.
         return ihmsgInfo
 
 
     def changeLanguage(self):
         """
-        changement du language. (voir description dans MenuElem) (même si cette classe
-        n'est pas héritée de MenuElem. La description va bien quand même. Na!)
+        changement du language. (voir description dans MenuElem) (mÃªme si cette classe
+        n'est pas hÃ©ritÃ©e de MenuElem. La description va bien quand mÃªme. Na!)
         """
 
-        #il faut propager le changement du language à tous les éléments internes, et c'est tout.
+        #il faut propager le changement du language Ã  tous les Ã©lÃ©ments internes, et c'est tout.
         for menuElem in self.listMenuElem:
             menuElem.changeLanguage()

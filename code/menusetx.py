@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,18 +10,18 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 22/02/2011
+date de la derniÃ¨re relecture-commentage : 22/02/2011
 
-Elément de menu qui poutre sa race, parce que non seulement il affiche du texte comme un
-ouf malade, mais en plus, il est focusable, et en plus-plus, il réagit aux clics.
+ElÃ©ment de menu qui poutre sa race, parce que non seulement il affiche du texte comme un
+ouf malade, mais en plus, il est focusable, et en plus-plus, il rÃ©agit aux clics.
 """
 
 import pygame
@@ -34,17 +34,17 @@ from menutxt  import MenuText
 
 
 #liste d'une composante de couleur (R, V ou B, c'est comme on veut), permettant
-#de faire un dégradé : (composante max) -> (composante à 0) -> (re-composantee max)
+#de faire un dÃ©gradÃ© : (composante max) -> (composante Ã  0) -> (re-composantee max)
 #
-#ça tombe pas tout à fait juste au niveau des valeurs des couleurs, mais osef.
-#C'est à cause des range.
-#On commence à 255, 239, 223, etc... on va à 0. Et quand on remonte vers le max, ça
-#reprend pas les mêmes valeurs, c'est décalé de 1. On fait ..., 224, 240
-#C'est bizarre, mais on s'en fout complètement. Ca a pas besoin d'être exact.
+#Ã§a tombe pas tout Ã  fait juste au niveau des valeurs des couleurs, mais osef.
+#C'est Ã  cause des range.
+#On commence Ã  255, 239, 223, etc... on va Ã  0. Et quand on remonte vers le max, Ã§a
+#reprend pas les mÃªmes valeurs, c'est dÃ©calÃ© de 1. On fait ..., 224, 240
+#C'est bizarre, mais on s'en fout complÃ¨tement. Ca a pas besoin d'Ãªtre exact.
 GLOW_TEXT_COMPONENT_LIST = tuple(range(255, 0, -16) + range(0, 255, 16))
 
-#liste de tuple de couleur RVB utilisé pour faire le glow des menuElem de type Texte,
-#quand ils ont le focus. C'est un dégradé blanc -> bleu -> blanc
+#liste de tuple de couleur RVB utilisÃ© pour faire le glow des menuElem de type Texte,
+#quand ils ont le focus. C'est un dÃ©gradÃ© blanc -> bleu -> blanc
 GLOW_TEXT_COLOR_LIST = tuple( [ (component, component, 255)
                                 for component in GLOW_TEXT_COMPONENT_LIST
                               ]
@@ -52,8 +52,8 @@ GLOW_TEXT_COLOR_LIST = tuple( [ (component, component, 255)
 
 
 
-#héritage multiple qu'on est obligé de préciser, pour brancher les fonctions
-#qu'on veut. Mais sinon moi je fait pas de vrai héritage multiple. Car c'est zarb
+#hÃ©ritage multiple qu'on est obligÃ© de prÃ©ciser, pour brancher les fonctions
+#qu'on veut. Mais sinon moi je fait pas de vrai hÃ©ritage multiple. Car c'est zarb
 class MenuSensitiveText(MenuSensitiveSquare, MenuText):
     """
     texte qu'on clique dessus, ou pas
@@ -66,11 +66,11 @@ class MenuSensitiveText(MenuSensitiveSquare, MenuText):
         """
         constructeur. (thx captain obvious)
 
-        Au niveau de l'ordre des params, j'ai essayé de faire de mon mieux pour avoir quelque
-        chose de logique, homogène par rapport aux autres classes, et pratique au niveau
-        des valeurs par défaut. Eh bien je garantis pas que j'y suis arrivé. Et pis j'm'en fous.
+        Au niveau de l'ordre des params, j'ai essayÃ© de faire de mon mieux pour avoir quelque
+        chose de logique, homogÃ¨ne par rapport aux autres classes, et pratique au niveau
+        des valeurs par dÃ©faut. Eh bien je garantis pas que j'y suis arrivÃ©. Et pis j'm'en fous.
 
-        entrée :
+        entrÃ©e :
             rectPos, font, idTxtStock, text :
                 voir description du contructeur de MenuText
 
@@ -81,28 +81,28 @@ class MenuSensitiveText(MenuSensitiveSquare, MenuText):
                 voir description du constructeur de Lamoche
         """
 
-        #là, on peut appeler le constructeur du MenuText, car ça fait exactement la même
-        #chose. (Et après, on fait des trucs en plus. Mais faut faire gaffe quand on
-        #fait ça. A la moindre différence, vaut mieux factoriser le code avec des fonctions,
-        #plutôt qu'avec des constructeurs.
+        #lÃ , on peut appeler le constructeur du MenuText, car Ã§a fait exactement la mÃªme
+        #chose. (Et aprÃ¨s, on fait des trucs en plus. Mais faut faire gaffe quand on
+        #fait Ã§a. A la moindre diffÃ©rence, vaut mieux factoriser le code avec des fonctions,
+        #plutÃ´t qu'avec des constructeurs.
         MenuText.__init__(self, rectPos, font, idTxtStock, text,
                           antialias, color, background, alignX, alignY)
 
-        #initialisation de la zone sensible du menuElem, que la souris réagit dessus.
+        #initialisation de la zone sensible du menuElem, que la souris rÃ©agit dessus.
         param = (self, funcAction, RECT_ZERO, clickType, inflateDist)
         MenuSensitiveSquare.initSensiInterface(*param)
 
-        #et hop, après l'initialisation, la vraie définition de la zone de où qu'elle est.
+        #et hop, aprÃ¨s l'initialisation, la vraie dÃ©finition de la zone de oÃ¹ qu'elle est.
         MenuSensitiveSquare.defineStimZoneFromDrawZone(self)
 
-        # -- définition des variables utilisées pour faire glower le texte quand il a le focus --
+        # -- dÃ©finition des variables utilisÃ©es pour faire glower le texte quand il a le focus --
 
-        #index pointant sur la couleur courante du texte, dans la liste des couleurs du dégradé
-        #qui fait le glow. L'index 0 correspond à la couleur normale (blanche, comme dirait
-        #Coluche). C'est cette couleur qui est utilisée quand l'élément n'est pas focusé.
+        #index pointant sur la couleur courante du texte, dans la liste des couleurs du dÃ©gradÃ©
+        #qui fait le glow. L'index 0 correspond Ã  la couleur normale (blanche, comme dirait
+        #Coluche). C'est cette couleur qui est utilisÃ©e quand l'Ã©lÃ©ment n'est pas focusÃ©.
         self.glowColorIndex = 0
 
-        #step d'incrémentaion dans la liste des couleurs. (C'est -1 ou +1, pour reculer
+        #step d'incrÃ©mentaion dans la liste des couleurs. (C'est -1 ou +1, pour reculer
         #ou avancer dans la liste.
         self.glowColorIndexInc = +1
 
@@ -111,41 +111,41 @@ class MenuSensitiveText(MenuSensitiveSquare, MenuText):
 
     def changeLanguage(self):
         """
-        on est obligé de linker explicitement la fonction vers le MenuText
+        on est obligÃ© de linker explicitement la fonction vers le MenuText
         (l'une des deux mother-class de cette classe).
 
-        J'ai bien indiqué un héritage multiple. Mais ça suffit pas.
-        Si j'ai bien compris d'où vient le problème, c'est que le MenuSensitiveSquare
-        (que j'hérite en premier), a lui aussi sa fonction changeLanguage.
+        J'ai bien indiquÃ© un hÃ©ritage multiple. Mais Ã§a suffit pas.
+        Si j'ai bien compris d'oÃ¹ vient le problÃ¨me, c'est que le MenuSensitiveSquare
+        (que j'hÃ©rite en premier), a lui aussi sa fonction changeLanguage.
         (Elle est vide, et elle vient du MenuElem, mais elle existe).
-        Et c'est cette fonction qui est prise en priorité. Bon, ça se défend comme argument.
+        Et c'est cette fonction qui est prise en prioritÃ©. Bon, Ã§a se dÃ©fend comme argument.
 
-        Du coup, je transmet l'appel vers la fonction que je veux vraiment exécuter.
+        Du coup, je transmet l'appel vers la fonction que je veux vraiment exÃ©cuter.
         C'est bof, mais je vois pas d'autres solution
         """
         MenuText.changeLanguage(self)
 
-        #Alors là on pourrait croire qu'il faut appeler la fonction defineStimZoneFromDrawZone,
+        #Alors lÃ  on pourrait croire qu'il faut appeler la fonction defineStimZoneFromDrawZone,
         #Vu que le changeLanguage change le texte, donc faut modifier cascadalement la zone
-        #de sensibilité au clics. Mais en fait y'a pas besoin. Le changeLanguage du MenuText
+        #de sensibilitÃ© au clics. Mais en fait y'a pas besoin. Le changeLanguage du MenuText
         #appelle la fonction changeFontAndText. Et l'astuce, c'est que en vrai,
-        #ça appelle la fonction changeFontAndText du MenuSensitiveText ! (Puisque là on est
+        #Ã§a appelle la fonction changeFontAndText du MenuSensitiveText ! (Puisque lÃ  on est
         #dedans le MenuSensitiveText). Et dans ce changeFontAndText, j'ai mis un appel
-        #à defineStimZoneFromDrawZone. (Voir juste en dessous).
-        #Héhé c'est quand même la classe ce truc.
+        #Ã  defineStimZoneFromDrawZone. (Voir juste en dessous).
+        #HÃ©hÃ© c'est quand mÃªme la classe ce truc.
 
 
     def changeFontAndText(self, newFont=None, newText=None):
         """
-        Changer le texte et/ou la font, et modifier en conséquence la zone rectangulaire dans
-        laquelle cet élément s'affiche, ainsi que la zone rectangulaire de sensibilité aux clics.
+        Changer le texte et/ou la font, et modifier en consÃ©quence la zone rectangulaire dans
+        laquelle cet Ã©lÃ©ment s'affiche, ainsi que la zone rectangulaire de sensibilitÃ© aux clics.
 
-        entrées :
-            (voir description de la fonction dans la classe MenuElem, c'est les mêmes)
+        entrÃ©es :
+            (voir description de la fonction dans la classe MenuElem, c'est les mÃªmes)
         """
         MenuText.changeFontAndText(self, newFont, newText)
 
-        #Modification de la zone de sensibilité aux clics en fonction de la zone de dessin.
+        #Modification de la zone de sensibilitÃ© aux clics en fonction de la zone de dessin.
         MenuSensitiveSquare.defineStimZoneFromDrawZone(self)
 
 
@@ -153,95 +153,95 @@ class MenuSensitiveText(MenuSensitiveSquare, MenuText):
         """
         (voir description de la fonction dans MenuElem)
 
-        Si on est focusé, il faut redessiner à chaque cycle, pour faire glower le texte.
+        Si on est focusÃ©, il faut redessiner Ã  chaque cycle, pour faire glower le texte.
         Si on vient de paumer le focus, il faut continuer de redessiner, car on
-        remet progressivement la couleur du texte à la couleur normale (celle d'index 0).
-        Si on a pas le focus, et qu'on est sur la couleur normale, rien à faire.
+        remet progressivement la couleur du texte Ã  la couleur normale (celle d'index 0).
+        Si on a pas le focus, et qu'on est sur la couleur normale, rien Ã  faire.
         """
 
         ihmsgInfo = MenuSensitiveSquare.update(self)
 
-        #Si on a pas le focus, et que le texte a la couleur normale, y'a rien à faire.
-        #on fixe mustBeRefreshed à False, comme ça l'élément ne se réaffichera pas.
-        #Ca fonctionne comme il faut car l'update est fait avant le draw. Donc si, arrivé
-        #à cet endroit du code, l'index de couleur est 0, c'est bien la couleur
-        #réellement affichée à l'écran. (Y'a pas d'histoer à la con que il faudrait
-        #réafficher une dernière petite fois avant d'arrêter. Tralala)
+        #Si on a pas le focus, et que le texte a la couleur normale, y'a rien Ã  faire.
+        #on fixe mustBeRefreshed Ã  False, comme Ã§a l'Ã©lÃ©ment ne se rÃ©affichera pas.
+        #Ca fonctionne comme il faut car l'update est fait avant le draw. Donc si, arrivÃ©
+        #Ã  cet endroit du code, l'index de couleur est 0, c'est bien la couleur
+        #rÃ©ellement affichÃ©e Ã  l'Ã©cran. (Y'a pas d'histoer Ã  la con que il faudrait
+        #rÃ©afficher une derniÃ¨re petite fois avant d'arrÃªter. Tralala)
         if not self.focusOn and self.glowColorIndex == 0:
             self.mustBeRefreshed = False
             return ihmsgInfo
 
-        #on a le focus, ou pas. (osef en fait). Ce dont on est sûr, c'est qu'il faut
-        #faire glower le texte. Donc on avance l'index dans la direction prédéfinie.
+        #on a le focus, ou pas. (osef en fait). Ce dont on est sÃ»r, c'est qu'il faut
+        #faire glower le texte. Donc on avance l'index dans la direction prÃ©dÃ©finie.
         self.glowColorIndex += self.glowColorIndexInc
 
-        #si l'index a dépassé la taille de la liste, ça fait le tour du compteur et on
-        #revient à 0.
+        #si l'index a dÃ©passÃ© la taille de la liste, Ã§a fait le tour du compteur et on
+        #revient Ã  0.
         if self.glowColorIndex >= len(self.glowColorList):
             self.glowColorIndex = 0
 
         #pas la peine de faire le test du tour du compteur dans l'autre sens.
-        #car si on avance à reculons dans la liste pour retomber sur le 0,
-        #c'est pour s'y arrêter. (voir plus loin, le lostFocus)
+        #car si on avance Ã  reculons dans la liste pour retomber sur le 0,
+        #c'est pour s'y arrÃªter. (voir plus loin, le lostFocus)
 
         return ihmsgInfo
 
 
     def draw(self, surfaceDest):
         """
-        dessinage de l'élément de menu, sur une surface de destination.
+        dessinage de l'Ã©lÃ©ment de menu, sur une surface de destination.
         (voir description de la fonction dans la classe MenuElem)
         """
 
-        #il faut remettre à jour la couleur du texte dans le lamoche.
-        #on chope la couleur courante dans la liste de dégradé, en fonction de l'index
-        #et on balance ça au lamoche
+        #il faut remettre Ã  jour la couleur du texte dans le lamoche.
+        #on chope la couleur courante dans la liste de dÃ©gradÃ©, en fonction de l'index
+        #et on balance Ã§a au lamoche
 
-        #Y'a pas à réfléchir si il faut réactualiser ou pas la couleur. Faut tout le temps
-        #le faire quand on arrive à cet endroit du code.
-        #Dans les moments où y'a pas le focus, cette fonction n'est pas appelée, car
-        #mustBeRefreshed est revenu à False.
+        #Y'a pas Ã  rÃ©flÃ©chir si il faut rÃ©actualiser ou pas la couleur. Faut tout le temps
+        #le faire quand on arrive Ã  cet endroit du code.
+        #Dans les moments oÃ¹ y'a pas le focus, cette fonction n'est pas appelÃ©e, car
+        #mustBeRefreshed est revenu Ã  False.
         currentColor = self.glowColorList[self.glowColorIndex]
         self.theLamoche.updateAttrib(color=currentColor)
-        #et hop, plus qu'à rebliter l'image sur la surface de destination.
+        #et hop, plus qu'Ã  rebliter l'image sur la surface de destination.
         surfaceDest.blit(self.theLamoche.image, self.rectDrawZone)
 
 
     def takeStimuliGetFocus(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que ce menuElem prend le focus
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que ce menuElem prend le focus
         """
 
-        #hop paf mother-class. (On choisit carrément la mother-motherclass. De toutes façons
+        #hop paf mother-class. (On choisit carrÃ©ment la mother-motherclass. De toutes faÃ§ons
         #ni le MenuText ni le MenuSensitiveSquare ne surcharge cette fonction.
-        #L'important, c'est que ça fixe self.focusOn à True
+        #L'important, c'est que Ã§a fixe self.focusOn Ã  True
         MenuElem.takeStimuliGetFocus(self)
 
-        #Quand on a le focus, on réfléchit pas. La direction de déplacement de l'index
+        #Quand on a le focus, on rÃ©flÃ©chit pas. La direction de dÃ©placement de l'index
         #de glow, c'est vers l'avant, et pis c'est tout.
         self.glowColorIndexInc = +1
 
-        #et il faudra redessiner l'élément à chaque cycle, et pis c'est tout aussi.
+        #et il faudra redessiner l'Ã©lÃ©ment Ã  chaque cycle, et pis c'est tout aussi.
         self.mustBeRefreshed = True
 
 
     def takeStimuliLoseFocus(self):
         """
-        fonction exécutée par le code extérieur, pour prévenir que ce menuElem perd le focus
+        fonction exÃ©cutÃ©e par le code extÃ©rieur, pour prÃ©venir que ce menuElem perd le focus
         """
 
-        #hop paf mother-class. Et ça fixe self.focusOn à False. Captbain obvious, oui.
+        #hop paf mother-class. Et Ã§a fixe self.focusOn Ã  False. Captbain obvious, oui.
         MenuElem.takeStimuliLoseFocus(self)
 
-        #il faut faire revenir la couleur du texte à l'index 0. Mais on le fait en prenant
-        #le chemin le plus court possible. C'est à dire que si on est dans la deuxième moitié
-        #de la liste de dégradé de couleur, on reste dans la direction +1. (Et avec le tour
-        #du compteur, on arrive à 0).
-        #Si on est dans la première moitié de la liste, vaut mieux revenir en arrière.
+        #il faut faire revenir la couleur du texte Ã  l'index 0. Mais on le fait en prenant
+        #le chemin le plus court possible. C'est Ã  dire que si on est dans la deuxiÃ¨me moitiÃ©
+        #de la liste de dÃ©gradÃ© de couleur, on reste dans la direction +1. (Et avec le tour
+        #du compteur, on arrive Ã  0).
+        #Si on est dans la premiÃ¨re moitiÃ© de la liste, vaut mieux revenir en arriÃ¨re.
         #donc on change la direction pour -1.
         if self.glowColorIndex < (len(self.glowColorList) >> 1):
             self.glowColorIndexInc = -1
 
-        #le mustBeRefreshed se remettra à False tout seul, grâce à la fonction update,
-        #une fois que la couleur sera revenue à l'index 0.
+        #le mustBeRefreshed se remettra Ã  False tout seul, grÃ¢ce Ã  la fonction update,
+        #une fois que la couleur sera revenue Ã  l'index 0.
 

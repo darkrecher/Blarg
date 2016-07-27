@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,21 +10,21 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 27/03/2011
+date de la derniÃ¨re relecture-commentage : 27/03/2011
 
 Menu principal avec la principalitude des choses eud'dans.
 
-bon c'est le bordel là. On va essayer de ranger un peu tout ça.
+bon c'est le bordel lÃ . On va essayer de ranger un peu tout Ã§a.
 
-mact : menuAction : fonction de type funcAction, qu'on binde sur un élément de menu
+mact : menuAction : fonction de type funcAction, qu'on binde sur un Ã©lÃ©ment de menu
 (par ex : un bouton)
 
 mbutt :     MenuElem de type bouton text (MenuSensitiveText)
@@ -32,8 +32,8 @@ mbuttLink : MenuElem de type bouton text (MenuSensitiveText), qui fait un lien v
 mbuti : MenuElem de type bouton image (MenuSensitiveImage)
 mkey :  MenuElem de type MenuSensitiveKey
 
-En général, on met le MenuElem et sa fonction bindée ont le même nom.
-Y'a que le préfixe qui change.
+En gÃ©nÃ©ral, on met le MenuElem et sa fonction bindÃ©e ont le mÃªme nom.
+Y'a que le prÃ©fixe qui change.
 
 mtxt : MenuText
 
@@ -44,10 +44,10 @@ menu : MenuManager
 menuXXXListElem : liste de MenuElem qu'on place dans un MenuManager.
 msubmXXXListElem : liste de MenuElem qu'on place dans un MenuSubMenu.
 
-TRODO : est-ce que ça serait pas mieux ailleurs, tout le blabla de comm ci-dessus ?
+TRODO : est-ce que Ã§a serait pas mieux ailleurs, tout le blabla de comm ci-dessus ?
 
-BIG BIG TRODO : c'est chiant de se trainer cette référence à fontDefault partout.
-La prochaine fois, importer la police dès le début, et la foutre dans le common. PUTAIN !
+BIG BIG TRODO : c'est chiant de se trainer cette rÃ©fÃ©rence Ã  fontDefault partout.
+La prochaine fois, importer la police dÃ¨s le dÃ©but, et la foutre dans le common. PUTAIN !
 """
 
 import pygame
@@ -76,10 +76,10 @@ from menucomn import (MENU_MAIN, MENU_CREDITS, MENU_STORY, MENU_MANUAL,
                       mactQuit, mkeyQuitEsc, changeLanguageOnAllMenu,
                       theGraphModeChanger)
 
-#dictionnaire de correspondance pour la case à cocher du plein écran/windowed.
-# - clé : valeur booléenne de la case à cocher. (True = coché)
-# - valeur : valeur littérale associée. Ce sont les valeurs possibles de la GLOB_DATA_ID_SCREEN,
-#   stockées dans l'archivist.
+#dictionnaire de correspondance pour la case Ã  cocher du plein Ã©cran/windowed.
+# - clÃ© : valeur boolÃ©enne de la case Ã  cocher. (True = cochÃ©)
+# - valeur : valeur littÃ©rale associÃ©e. Ce sont les valeurs possibles de la GLOB_DATA_ID_SCREEN,
+#   stockÃ©es dans l'archivist.
 SCREEN_GLOB_DATA_FROM_TICK_VALUE = {
     False : SCREEN_WINDOWED,
     True  : SCREEN_FULL,
@@ -87,7 +87,7 @@ SCREEN_GLOB_DATA_FROM_TICK_VALUE = {
 
 #position du coin sup gauche des options MenuSensitiveText (JOUER, CONFIG, ...)
 POS_OPTION = pyRect(180, 80)
-#décalage (x, y) entre 2 options.
+#dÃ©calage (x, y) entre 2 options.
 DECAL_OPTION = (0, 25)
 
 
@@ -103,22 +103,22 @@ class MenuManagerMain(MenuManager):
         """
         konztrukteuur. Ya !
 
-        entrées :
+        entrÃ©es :
             surfaceDest, dicImg : voir constructeur de MenuManager
 
-            fontDefault, fontLittle : objets pygame.font.Font. les polices de caractères.
+            fontDefault, fontLittle : objets pygame.font.Font. les polices de caractÃ¨res.
 
-            dicTickImage : dictionnaire contenant les images de la case à cocher.
+            dicTickImage : dictionnaire contenant les images de la case Ã  cocher.
                            voir constructeur de MenuSensitiveTick
 
-            archivist : objet de la classe époney-ime, qui gère le fichier de sauvegarde.
+            archivist : objet de la classe Ã©poney-ime, qui gÃ¨re le fichier de sauvegarde.
 
-            scoreManager : objet de la classe époney-ime, qui gère les scores.
+            scoreManager : objet de la classe Ã©poney-ime, qui gÃ¨re les scores.
                            Y'en a besoin pour fixer le nom du joueur en cours, en fonction du mode
                            de jeu. (Selon qu'on fait une partie en mode normale, ou en edoGedoM.
 
-            funcMactPlaySeveralGames : référence vers la fonction permettant de lancer une partie.
-                         (Elle est définie dans mainclas.py, ceci dit osef de ça)
+            funcMactPlaySeveralGames : rÃ©fÃ©rence vers la fonction permettant de lancer une partie.
+                         (Elle est dÃ©finie dans mainclas.py, ceci dit osef de Ã§a)
 
             dicAllMenu : dictionnaire contenant tous les menus du jeu.
                          Y'en a besoin car le menu principal appelle les autres menus.
@@ -132,15 +132,15 @@ class MenuManagerMain(MenuManager):
         self.fontLittle = fontLittle
         self.dicAllMenu = dicAllMenu
 
-        # --- Création des MenuSensitiveText définissant les options (JOUER, ...) ---
+        # --- CrÃ©ation des MenuSensitiveText dÃ©finissant les options (JOUER, ...) ---
 
         #liste qui contiendra les MenuSensitiveText d'options. C'est une info que je stocke
         #en self. Car j'en ai besoin aussi dans la fonction addDogDom. (Voir fin de ce fichier)
         self.listMenuElemButtText = []
 
-        #Infos pour créer les MenuSensitiveText d'option. C'est une liste de tuple de 2 éléments :
-        # - référence vers la fonction à appeler quand l'option est activée.
-        # - texte à afficher dans le MenuSensitiveText
+        #Infos pour crÃ©er les MenuSensitiveText d'option. C'est une liste de tuple de 2 Ã©lÃ©ments :
+        # - rÃ©fÃ©rence vers la fonction Ã  appeler quand l'option est activÃ©e.
+        # - texte Ã  afficher dans le MenuSensitiveText
         listMainMenuButtTextInfo = (
             (self.mactPlaySeveralGameNorm, txtStock.MAIN_PLAY),
             (self.mactConfig,              txtStock.MAIN_CONFIG),
@@ -155,8 +155,8 @@ class MenuManagerMain(MenuManager):
 
         for funcOnClick, idTxtStock in listMainMenuButtTextInfo:
 
-            #création du MenuSensitiveText d'option, avec le bon texte, la bonne fonction liée,
-            #et à la bonne position. (et avec la font par défaut, mais osef)
+            #crÃ©ation du MenuSensitiveText d'option, avec le bon texte, la bonne fonction liÃ©e,
+            #et Ã  la bonne position. (et avec la font par dÃ©faut, mais osef)
 
             param = (self.posCurrentMenuButtText, self.fontDefault,
                      funcOnClick, idTxtStock)
@@ -166,35 +166,35 @@ class MenuManagerMain(MenuManager):
             #ajout dans la liste regroupant tous les MenuSensitiveText d'options.
             self.listMenuElemButtText.append(menuElemButtText)
 
-            #réactualisation de la position pour l'option suivante. (On décale un peu vers le bas)
+            #rÃ©actualisation de la position pour l'option suivante. (On dÃ©cale un peu vers le bas)
             self.posCurrentMenuButtText.move_ip(DECAL_OPTION)
 
-        # --- Création des autres MenuElem. Y'a un peu de tout ---
+        # --- CrÃ©ation des autres MenuElem. Y'a un peu de tout ---
 
-        #texte statique "créé par Réchèr", en bas à gauche de l'écran.
+        #texte statique "crÃ©Ã© par RÃ©chÃ¨r", en bas Ã  gauche de l'Ã©cran.
         param = (pyRect(5, 273), fontLittle, txtStock.MAIN_RECHER)
         mtxtRecher = MenuText(*param)
 
-        #Lien vers mon blog recher.wordpress.com. en bas-bas à gauche.
+        #Lien vers mon blog recher.wordpress.com. en bas-bas Ã  gauche.
         param = (pyRect(5, 285), fontLittle,
                  self.surfaceDest, txtStock.CREDL_BLOG)
 
         mbuttLinkRecher = MenuLink(*param)
 
-        #image du titre "BLARG" en jaune orange. Cette image recouvre le titre déjà dessiné
+        #image du titre "BLARG" en jaune orange. Cette image recouvre le titre dÃ©jÃ  dessinÃ©
         #dans l'image de background principale. Pourquoi donc ? Car tout est assombri dans
         #l'image de background. Mais je voulais qu'on continue de voir le titre en clair. Alors je
-        #réaffiche l'image originale, pil poil exactement par dessus. (J'utilise pas cette
+        #rÃ©affiche l'image originale, pil poil exactement par dessus. (J'utilise pas cette
         #astuce dans les autres menus. Du coup, on voit le titre
-        #qui s'assombrit / se désassombrit. Mais je trouve ça cool).
+        #qui s'assombrit / se dÃ©sassombrit. Mais je trouve Ã§a cool).
         mimgTitle = MenuImage(pyRect(130, 4), dicImg[IMG_TITLE_MAIN])
 
-        #image de la dédicace, à gauche de l'écran. En vrai, y'a pas forcément de dédicace.
-        #Une image est systématiquement affichée, mais elle peut être vide
-        #(C'est un carré noir avec la keyTransparency sur le noir, justement.)
+        #image de la dÃ©dicace, Ã  gauche de l'Ã©cran. En vrai, y'a pas forcÃ©ment de dÃ©dicace.
+        #Une image est systÃ©matiquement affichÃ©e, mais elle peut Ãªtre vide
+        #(C'est un carrÃ© noir avec la keyTransparency sur le noir, justement.)
         mimgDedic = MenuImage(pyRect(10, 70), dicImg[IMG_DEDICACE])
 
-        #création des deux petites images des drapeaux anglais et français,
+        #crÃ©ation des deux petites images des drapeaux anglais et franÃ§ais,
         #qui font changer la langue quand on clique dessus.
 
         param = (pyRect(345, 280), dicImg[IMG_FLAG_FRENCH],
@@ -207,12 +207,12 @@ class MenuManagerMain(MenuManager):
 
         mbutiEnglish = MenuSensitiveImage(*param)
 
-        #récupération du mode graphique actuel plein écran / fenêtré. On s'en sert pour
-        #le transmettre à la case à cocher du mode graphique. Afin qu'elle soit en accord
-        #avec la réalité actuelle des choses.
+        #rÃ©cupÃ©ration du mode graphique actuel plein Ã©cran / fenÃªtrÃ©. On s'en sert pour
+        #le transmettre Ã  la case Ã  cocher du mode graphique. Afin qu'elle soit en accord
+        #avec la rÃ©alitÃ© actuelle des choses.
         screenGlobDataVal = theGraphModeChanger.getScreenGlobDataVal()
 
-        #création de la case à cocher permettant de changer le mode graphique.
+        #crÃ©ation de la case Ã  cocher permettant de changer le mode graphique.
         #Putain c'est un bon tas de bordel ces param. Pas mieux.
         self.mtickVideoMode = MenuSensitiveTick(
             pyRect(210, 280), fontLittle, self.mactToggleFullScreen,
@@ -220,9 +220,9 @@ class MenuManagerMain(MenuManager):
             dicLiteralFromBool=SCREEN_GLOB_DATA_FROM_TICK_VALUE,
             literalValInit=screenGlobDataVal)
 
-        # --- Rangement de tous les MenuElem créés, dans la grande liste globale. ---
+        # --- Rangement de tous les MenuElem crÃ©Ã©s, dans la grande liste globale. ---
 
-        #Création d'une liste contenant tous les MenuElem, excepté les MenuSensitiveText d'option.
+        #CrÃ©ation d'une liste contenant tous les MenuElem, exceptÃ© les MenuSensitiveText d'option.
         #Je stocke cette liste en self, because voir addDogDom.
         self.listMenuElemOther = [
             mkeyQuitEsc, mimgTitle, mimgDedic, mtxtRecher, mbuttLinkRecher,
@@ -230,16 +230,16 @@ class MenuManagerMain(MenuManager):
         ]
 
         #Et hop, rassemblage des deux sous-listes dans la grande liste principale avec tout.
-        #et au passage : tuplifiage pour accélérer l'exécution du code.
+        #et au passage : tuplifiage pour accÃ©lÃ©rer l'exÃ©cution du code.
         listMenuElemTotal = self.listMenuElemButtText + self.listMenuElemOther
         self.listMenuElem = tuple(listMenuElemTotal)
 
-        #récupération du nombre de MenuSensitiveText d'options.
+        #rÃ©cupÃ©ration du nombre de MenuSensitiveText d'options.
         nbrMenuButt = len(self.listMenuElemButtText)
 
-        #définition du cyclage de focus. En plus du cyclage classique avec Tab, on peut
-        #faire en cyclage restreint aux MenuSensitiveText d'options, avec les flèches
-        #haut et bas. Ah et pis aussi on se focus par défaut sur la première option : JOUER.
+        #dÃ©finition du cyclage de focus. En plus du cyclage classique avec Tab, on peut
+        #faire en cyclage restreint aux MenuSensitiveText d'options, avec les flÃ¨ches
+        #haut et bas. Ah et pis aussi on se focus par dÃ©faut sur la premiÃ¨re option : JOUER.
         self.initFocusCyclingInfo(0, (0, nbrMenuButt))
 
 
@@ -248,15 +248,15 @@ class MenuManagerMain(MenuManager):
         fonction ajoutant l'option pour jouer en mode edoMedoG
 
         J'aurais pu mettre l'ajout de cette option directement dans le __init__, (on aurait
-        indiqué avec un param booléen si on en veut ou pas). et après j'aurais
-        modifié un peu le code extérieur pour que la création du MenuManagerMain soit
-        effectuée après qu'on ait déterminé si faut ajouter cette option ou pas. Ca aurait été un
-        peu plus simple, dans l'ensemble. Mais je le fais pas. Car j'aurais peut-être besoin,
-        dans une hypothétique version 2, que cette option puisse s'ajouter en live.
+        indiquÃ© avec un param boolÃ©en si on en veut ou pas). et aprÃ¨s j'aurais
+        modifiÃ© un peu le code extÃ©rieur pour que la crÃ©ation du MenuManagerMain soit
+        effectuÃ©e aprÃ¨s qu'on ait dÃ©terminÃ© si faut ajouter cette option ou pas. Ca aurait Ã©tÃ© un
+        peu plus simple, dans l'ensemble. Mais je le fais pas. Car j'aurais peut-Ãªtre besoin,
+        dans une hypothÃ©tique version 2, que cette option puisse s'ajouter en live.
         """
 
-        #création de l'option à ajouter. On l'ajoute en bas des autres options déjà créées.
-        #On a stocké cette position dans la variable self.posCurrentMenuButtText.
+        #crÃ©ation de l'option Ã  ajouter. On l'ajoute en bas des autres options dÃ©jÃ  crÃ©Ã©es.
+        #On a stockÃ© cette position dans la variable self.posCurrentMenuButtText.
         param = (self.posCurrentMenuButtText, self.fontDefault,
                  self.mactPlaySeveralGameNotNorm, txtStock.MAIN_DOGDOM)
 
@@ -268,41 +268,41 @@ class MenuManagerMain(MenuManager):
         #refabrication de la liste regroupant tous les MenuElem.
         self.listMenuElem = self.listMenuElemButtText + self.listMenuElemOther
 
-        #récupération du nombre de MenuSensitiveText d'options. Vu qu'y en a un de plus.
+        #rÃ©cupÃ©ration du nombre de MenuSensitiveText d'options. Vu qu'y en a un de plus.
         nbrMenuButt = len(self.listMenuElemButtText)
 
-        #redéfinition du cyclage de focus. (Voir le commentaire de cette même ligne de code
-        #dans la fonction __init__ pour plus de détail).
+        #redÃ©finition du cyclage de focus. (Voir le commentaire de cette mÃªme ligne de code
+        #dans la fonction __init__ pour plus de dÃ©tail).
         self.initFocusCyclingInfo(0, (0, nbrMenuButt))
 
 
     def mactChangeLanguage(self, newLanguage):
         """
-        fonction générique pour changer de language. Elle est préfixée par "mact", mais elle
-        est pas directement linkée à un MenuElem. Elle est appelée dans des fonctions "mact"
-        linkée. (Voir ci-dessous).
+        fonction gÃ©nÃ©rique pour changer de language. Elle est prÃ©fixÃ©e par "mact", mais elle
+        est pas directement linkÃ©e Ã  un MenuElem. Elle est appelÃ©e dans des fonctions "mact"
+        linkÃ©e. (Voir ci-dessous).
 
-        entrée : identifiant de type GLOB_DATA_ID_LANG, indiquant la nouvelle langue.
+        entrÃ©e : identifiant de type GLOB_DATA_ID_LANG, indiquant la nouvelle langue.
 
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
-        #son de sélection d'un truc : "blululup" !!
+        #son de sÃ©lection d'un truc : "blululup" !!
         theSoundYargler.playSound(SND_MENU_SELECT)
 
         #changement du langage dans tous les menus. Tralala captain obvious oui.
         changeLanguageOnAllMenu(newLanguage, self.dicAllMenu)
 
         #enregistrement de la langue qu'on vient d'activer, dans l'archivist, et donc
-        #par-là-même-consécutivement dans le fichier de sauvegarde.
+        #par-lÃ -mÃªme-consÃ©cutivement dans le fichier de sauvegarde.
         self.archivist.modifyGlobData( {GLOB_DATA_ID_LANG : newLanguage} )
 
-        #on demande un redessinage du menu principal (pour réécrire les textes qui auront changé).
+        #on demande un redessinage du menu principal (pour rÃ©Ã©crire les textes qui auront changÃ©).
         return (IHMSG_REDRAW_MENU, )
 
 
     def mactChangeLanguageEnglish(self):
         """
-        fonction qui s'exécute quand on appuie sur le drapal anglais.
+        fonction qui s'exÃ©cute quand on appuie sur le drapal anglais.
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
         return self.mactChangeLanguage(LANG_ENGL)
@@ -310,7 +310,7 @@ class MenuManagerMain(MenuManager):
 
     def mactChangeLanguageFrench(self):
         """
-        fonction qui s'exécute quand on appuie sur le drapal français.
+        fonction qui s'exÃ©cute quand on appuie sur le drapal franÃ§ais.
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
         return self.mactChangeLanguage(LANG_FRENCH)
@@ -318,42 +318,42 @@ class MenuManagerMain(MenuManager):
 
     def activateSomeMenus(self, listIdMenu):
         """
-        active plusieurs menus, les uns après les autres.
-        Si le joueur demande à quitter totalement le jeu, l'enchaînement de menus est
+        active plusieurs menus, les uns aprÃ¨s les autres.
+        Si le joueur demande Ã  quitter totalement le jeu, l'enchaÃ®nement de menus est
         interrompu, et on quitte la fonction tout de suite (avec le IHMSG_TOTALQUIT, of course).
 
-        entrées :
-            listIdMenu : liste d'identifiant de menu (MENU_*) à activer.
-                         on peut bien entendu indiquer une liste d'un seul élément.
+        entrÃ©es :
+            listIdMenu : liste d'identifiant de menu (MENU_*) Ã  activer.
+                         on peut bien entendu indiquer une liste d'un seul Ã©lÃ©ment.
 
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
 
-        #son de sélection d'un truc : "blululup" !!
+        #son de sÃ©lection d'un truc : "blululup" !!
         theSoundYargler.playSound(SND_MENU_SELECT)
 
         ihmsgInfo = IHMSG_VOID
 
         for idMenu in listIdMenu:
 
-            #récupération du menu à activer, et activation.
+            #rÃ©cupÃ©ration du menu Ã  activer, et activation.
             menuToActivate = self.dicAllMenu[idMenu]
             ihmsgInfo += menuToActivate.handleMenu()
 
             if IHMSG_TOTALQUIT in ihmsgInfo:
-                #durant le gérage de ce menu, le joueur a demandé à quitter.
-                #on interrompt tout, et on propage le message de TOTALQUIT au code extérieur,
-                #qui est censé s'en occuper.
+                #durant le gÃ©rage de ce menu, le joueur a demandÃ© Ã  quitter.
+                #on interrompt tout, et on propage le message de TOTALQUIT au code extÃ©rieur,
+                #qui est censÃ© s'en occuper.
                 return (IHMSG_QUIT, IHMSG_TOTALQUIT)
 
-        #on a activé tous les menus demandés. On demande un redessinage, pour redessiner
+        #on a activÃ© tous les menus demandÃ©s. On demande un redessinage, pour redessiner
         #le menu principal. Youpi !
         return (IHMSG_REDRAW_MENU, )
 
 
     def mactStory(self):
         """
-        fonction s'exécutant quand on appuie sur l'option "INTRO". (plat-dessert : tuple d'ihm)
+        fonction s'exÃ©cutant quand on appuie sur l'option "INTRO". (plat-dessert : tuple d'ihm)
         """
         #on active le menu affichant l'histoire du jeu, puis le menu affichant le manuel.
         return self.activateSomeMenus( (MENU_STORY, MENU_MANUAL) )
@@ -361,7 +361,7 @@ class MenuManagerMain(MenuManager):
 
     def mactConfig(self):
         """
-        fonction s'exécutant quand on appuie sur l'option "CONFIG". (plat-dessert : tuple d'ihm)
+        fonction s'exÃ©cutant quand on appuie sur l'option "CONFIG". (plat-dessert : tuple d'ihm)
         """
         #on active un seul menu. Celui permettant de configurer le jeu.
         return self.activateSomeMenus( (MENU_CONFIG, ) )
@@ -369,7 +369,7 @@ class MenuManagerMain(MenuManager):
 
     def mactHighScore(self):
         """
-        fonction s'exécutant quand on appuie sur l'option "HISCORE". (plat-dessert : tuple d'ihm)
+        fonction s'exÃ©cutant quand on appuie sur l'option "HISCORE". (plat-dessert : tuple d'ihm)
         """
         #oui bon, captain obvious. Ca va bien, ok ?
         return self.activateSomeMenus( (MENU_HISCORE, ) )
@@ -377,63 +377,63 @@ class MenuManagerMain(MenuManager):
 
     def mactCredits(self):
         """
-        fonction s'exécutant quand on appuie sur l'option "CREDITS". (plat-dessert : tuple d'ihm)
+        fonction s'exÃ©cutant quand on appuie sur l'option "CREDITS". (plat-dessert : tuple d'ihm)
         """
-        #bla blah yadah yadah yadaah. J'écoute le CD "mega années 90 volume 2" et j'ai pas honte.
+        #bla blah yadah yadah yadaah. J'Ã©coute le CD "mega annÃ©es 90 volume 2" et j'ai pas honte.
         return self.activateSomeMenus( (MENU_CREDITS, ) )
 
 
     def beforeDrawMenu(self):
         """
-        fonction qui s'exécute avant chaque redessinage total du menu.
-        (overridé du MenuManager)
+        fonction qui s'exÃ©cute avant chaque redessinage total du menu.
+        (overridÃ© du MenuManager)
         """
 
-        #il faut re-synchroniser la case à cocher affichant le mode plein-écran/fenêtre avec
-        #le mode graphique actuel. Car ça a peut être changé, pour une raison ou une autre.
+        #il faut re-synchroniser la case Ã  cocher affichant le mode plein-Ã©cran/fenÃªtre avec
+        #le mode graphique actuel. Car Ã§a a peut Ãªtre changÃ©, pour une raison ou une autre.
 
-        #récupération du mode graphique indiqué par la case à cocher.
-        #(on récupère un identifiant de type GLOB_DATA_ID_SCREEN)
+        #rÃ©cupÃ©ration du mode graphique indiquÃ© par la case Ã  cocher.
+        #(on rÃ©cupÃ¨re un identifiant de type GLOB_DATA_ID_SCREEN)
         screenGlobDataValTick = self.mtickVideoMode.literTickValue
-        #récupération du mode graphique affiché en réalité.
+        #rÃ©cupÃ©ration du mode graphique affichÃ© en rÃ©alitÃ©.
         screenGlobDataValReal = theGraphModeChanger.getScreenGlobDataVal()
 
-        #si les deux identifiants de mode graphique sont en désaccord, on inverse l'état de
-        #la case à cocher, pour que ça devienne bon. Attention, ce genre d'astuce à l'arrache
-        #fonctionne parce que la case à cocher n'a que deux états différents. Sinon faudrait
-        #lui transmettre explicitement l'état souhaité.
+        #si les deux identifiants de mode graphique sont en dÃ©saccord, on inverse l'Ã©tat de
+        #la case Ã  cocher, pour que Ã§a devienne bon. Attention, ce genre d'astuce Ã  l'arrache
+        #fonctionne parce que la case Ã  cocher n'a que deux Ã©tats diffÃ©rents. Sinon faudrait
+        #lui transmettre explicitement l'Ã©tat souhaitÃ©.
         if screenGlobDataValTick != screenGlobDataValReal:
             self.mtickVideoMode.toggleTick()
 
 
     def mactToggleFullScreen(self):
         """
-        fonction qui s'exécute quand le joueur clique sur la case à cocher du mode graphique.
+        fonction qui s'exÃ©cute quand le joueur clique sur la case Ã  cocher du mode graphique.
 
-        fun fact : l'archivist est forcément synchro avec le contenu du fichier sauvegardé,
-        la case à cocher du plein écran est forcément synchro avec le fait d'être en
-        plein écran ou pas. Mais y'a pas forcément de synchro entre la case à cocher
-        et le contenu du fichier. C'est à cause des clics sur les liens internet,
-        qui désactivent le plein écran sans le sauvegarder, ou du paramètre FORCE_WINDOWED
+        fun fact : l'archivist est forcÃ©ment synchro avec le contenu du fichier sauvegardÃ©,
+        la case Ã  cocher du plein Ã©cran est forcÃ©ment synchro avec le fait d'Ãªtre en
+        plein Ã©cran ou pas. Mais y'a pas forcÃ©ment de synchro entre la case Ã  cocher
+        et le contenu du fichier. C'est Ã  cause des clics sur les liens internet,
+        qui dÃ©sactivent le plein Ã©cran sans le sauvegarder, ou du paramÃ¨tre FORCE_WINDOWED
 
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
 
-        #son de sélection d'un truc : "blululup" !!
+        #son de sÃ©lection d'un truc : "blululup" !!
         theSoundYargler.playSound(SND_MENU_SELECT)
 
-        #Le MenuTick ne toggle pas son état coché/pas coché de sa propre initiative.
+        #Le MenuTick ne toggle pas son Ã©tat cochÃ©/pas cochÃ© de sa propre initiative.
         #Faut lui appeler sa fonction.
         self.mtickVideoMode.toggleTick()
 
-        #maintenant qu'on l'a togglé, on récupère sa valeur litérale. Qui est un identifiant
-        #GLOB_DATA_ID_SCREEN, et qui correspond au mode graphique souhaité.
+        #maintenant qu'on l'a togglÃ©, on rÃ©cupÃ¨re sa valeur litÃ©rale. Qui est un identifiant
+        #GLOB_DATA_ID_SCREEN, et qui correspond au mode graphique souhaitÃ©.
         screenGlobDataVal = self.mtickVideoMode.literTickValue
 
-        #Donc, on change le mode graphique, en spécifiant le nouveau qu'on veut.
-        #C'est méchamment bourrin de changer la surface principale d'affichage ici, à l'arrache.
-        #Mais ça marche. Heureusement que les objets Surface sont passés par valeur. Du coup,
-        #tout le monde a le même, et quand je le change ici, ça s'applique partout.
+        #Donc, on change le mode graphique, en spÃ©cifiant le nouveau qu'on veut.
+        #C'est mÃ©chamment bourrin de changer la surface principale d'affichage ici, Ã  l'arrache.
+        #Mais Ã§a marche. Heureusement que les objets Surface sont passÃ©s par valeur. Du coup,
+        #tout le monde a le mÃªme, et quand je le change ici, Ã§a s'applique partout.
         self.surfaceDest = theGraphModeChanger.setGraphMode(screenGlobDataVal)
 
         #Enregistrement de la nouvelle valeur du mode graphique dans l'archivist
@@ -441,8 +441,8 @@ class MenuManagerMain(MenuManager):
         newDicGlobData = { GLOB_DATA_ID_SCREEN : screenGlobDataVal }
         self.archivist.modifyGlobData(newDicGlobData)
 
-        #Faut redessiner entièrement le menu. Après un changement de mode graphique,
-        #c'est quand même la moindre des choses. Ah bah oui hein ma bonne dame.
+        #Faut redessiner entiÃ¨rement le menu. AprÃ¨s un changement de mode graphique,
+        #c'est quand mÃªme la moindre des choses. Ah bah oui hein ma bonne dame.
         return (IHMSG_REDRAW_MENU, )
 
 
@@ -451,18 +451,18 @@ class MenuManagerMain(MenuManager):
         joue une ou plusieurs parties, en mode normal.
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
-        #son de sélection d'un truc : "blululup" !!
+        #son de sÃ©lection d'un truc : "blululup" !!
         theSoundYargler.playSound(SND_MENU_SELECT)
 
-        #on dit au scoreManager de sélectionner le joueur correspondant au mode normal.
+        #on dit au scoreManager de sÃ©lectionner le joueur correspondant au mode normal.
         #Afin d'enregistrer les scores de cette/ces parties au bon endroit.
         self.scoreManager.selectPlayer(NAME_HERO)
 
-        #on joue une ou plusieurs parties les unes après les autres (c'est le joueur qui choisit).
-        #On indique False en param pour préciser que c'est le mode normal.
+        #on joue une ou plusieurs parties les unes aprÃ¨s les autres (c'est le joueur qui choisit).
+        #On indique False en param pour prÃ©ciser que c'est le mode normal.
         #La fonction de jouage de partie peut renvoyer un message IHMSG_TOTALQUIT, qu'il faut
         #alors propager. Ou elle peut juste renvoyer un message IHMSG_REDRAW_MENU, mais faut le
-        #propager aussi. Bref, on propage tout et voilà.
+        #propager aussi. Bref, on propage tout et voilÃ .
         return self.funcMactPlaySeveralGames(False)
 
 
@@ -471,10 +471,10 @@ class MenuManagerMain(MenuManager):
         joue une ou plusieurs parties, en mode edoMedoG.
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
-        #son de sélection d'un truc : "blululup" !!
+        #son de sÃ©lection d'un truc : "blululup" !!
         theSoundYargler.playSound(SND_MENU_SELECT)
 
-        #voir fonction mactPlaySeveralGameNorm. C'est pareil sauf que c'est pas le même nom
-        #sélectionné par le scoreManager, et pas le même param envoyé à la fonction pour jouer.
+        #voir fonction mactPlaySeveralGameNorm. C'est pareil sauf que c'est pas le mÃªme nom
+        #sÃ©lectionnÃ© par le scoreManager, et pas le mÃªme param envoyÃ© Ã  la fonction pour jouer.
         self.scoreManager.selectPlayer(NAME_DOGDOM)
         return self.funcMactPlaySeveralGames(True)

@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,131 +10,131 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 15/02/2011
+date de la derniÃ¨re relecture-commentage : 15/02/2011
 
-Classe qui gère le chargement et le loadage des donnays dans un fichiay (config + score)
+Classe qui gÃ¨re le chargement et le loadage des donnays dans un fichiay (config + score)
 
 format du fichier de sauvegarde :
 
-au début y'a les GlobData. L'ordre n'est pas imposé.
-On s'y retrouve avec les clés (globDataId), qui identifient les données.
+au dÃ©but y'a les GlobData. L'ordre n'est pas imposÃ©.
+On s'y retrouve avec les clÃ©s (globDataId), qui identifient les donnÃ©es.
 
 V<version. chaine de caractere ASCII quelconque>
 L<langage F=francais. E=english>
 S<SCREEN W=windowed F=fullscreen>
 Y<yargl. Le son. E=Enabled. D=Disabled>
-G<code secret activant le dogDome. Si pas activé, valeur par défaut stupide : "morceau de brennek">
+G<code secret activant le dogDome. Si pas activÃ©, valeur par dÃ©faut stupide : "morceau de brennek">
 
-le premier caractère est la globDataId (identifiant de la globData)
+le premier caractÃ¨re est la globDataId (identifiant de la globData)
 la suite de la ligne est la globDataVal (valeur de la globData)
 
-Ensuite on a la config des touches. Qui s'applique à tous les joueurs :
-[dnipr] : tag à la con, pour identifier le début de la config de touche
-<listKeyCode> : liste de valeurs numérique écrites en chaîne de caractère (décimal).
-                séparé par des virgules. C'est les codes des touches pour le jeu.
+Ensuite on a la config des touches. Qui s'applique Ã  tous les joueurs :
+[dnipr] : tag Ã  la con, pour identifier le dÃ©but de la config de touche
+<listKeyCode> : liste de valeurs numÃ©rique Ã©crites en chaÃ®ne de caractÃ¨re (dÃ©cimal).
+                sÃ©parÃ© par des virgules. C'est les codes des touches pour le jeu.
                 Dans l'ordre : haut, bas, gauche, droite, feu, recharger
-<listCharKey> : liste de chaîne de caractère. séparé par des octets à 0.
-                Noms des touches correspondant aux codes. Y'a autant d'élément et c'est dans
-                le même ordre que les listKeyCode.
-                Je suis obligé de stocker ces putains de noms. Car ils ne se déduisent pas
-                automatiquement du code de la touche (Ca dépend de l'azerty/qwerty/...)
-                Ceci dit, y'a des fois, le nom c'est une chaîne vide. Parce qu'on peut
-                le déduire automatiquement quand même. Enfin c'est un peu bizarre.
+<listCharKey> : liste de chaÃ®ne de caractÃ¨re. sÃ©parÃ© par des octets Ã  0.
+                Noms des touches correspondant aux codes. Y'a autant d'Ã©lÃ©ment et c'est dans
+                le mÃªme ordre que les listKeyCode.
+                Je suis obligÃ© de stocker ces putains de noms. Car ils ne se dÃ©duisent pas
+                automatiquement du code de la touche (Ca dÃ©pend de l'azerty/qwerty/...)
+                Ceci dit, y'a des fois, le nom c'est une chaÃ®ne vide. Parce qu'on peut
+                le dÃ©duire automatiquement quand mÃªme. Enfin c'est un peu bizarre.
                 Voir menuzcon.py
 
-Trip:Bien Réchèr. T'as pété dans le bus. Ca sent le soufre. Tu vas tuer tout le monde avec tes
-conneries. En plus les gens vont passer à côté de toi. Et pif et paf. Et pif et paf.
-Baisse la tête. Reste concentré. Fais semblant de rien. Tout le monde n'y verra et
+Trip:Bien RÃ©chÃ¨r. T'as pÃ©tÃ© dans le bus. Ca sent le soufre. Tu vas tuer tout le monde avec tes
+conneries. En plus les gens vont passer Ã  cÃ´tÃ© de toi. Et pif et paf. Et pif et paf.
+Baisse la tÃªte. Reste concentrÃ©. Fais semblant de rien. Tout le monde n'y verra et
 sentira que du fuego. FUEGO !!
 
-Ensuite on a les infos détaillées pour chaque joueur
+Ensuite on a les infos dÃ©taillÃ©es pour chaque joueur
 
-[knakes] : tag à la con, pour indiquer le début d'un joueur.
+[knakes] : tag Ã  la con, pour indiquer le dÃ©but d'un joueur.
 <nom du joueur> : unicode string (enfin on va essayer)
-<playerStats> : liste de nombres écrits en chaîne de caractère décimale, séparés par des virgules.
+<playerStats> : liste de nombres Ã©crits en chaÃ®ne de caractÃ¨re dÃ©cimale, sÃ©parÃ©s par des virgules.
                 Ce sont les scores et autres. L'ordre des valeurs est important>
 
 [knakes]
 <nom du joueur suivant>
 etc...
 
-La liste des joueurs n'a pas d'ordre précis.
+La liste des joueurs n'a pas d'ordre prÃ©cis.
 
-les lignes vides sont pas autorisées. Faut pas déconner, mayrde.
+les lignes vides sont pas autorisÃ©es. Faut pas dÃ©conner, mayrde.
 
-ATTATION !! truc qu'il faut obligatoirement garder d'une version à l'autre du jeu :
-le format des GlobData : concaténations <clé><valeur> avec la clé d'une seule lettre.
-L'une de ces lignes doit avoir la clé "V", et indiquer la version du format du fichier.
+ATTATION !! truc qu'il faut obligatoirement garder d'une version Ã  l'autre du jeu :
+le format des GlobData : concatÃ©nations <clÃ©><valeur> avec la clÃ© d'une seule lettre.
+L'une de ces lignes doit avoir la clÃ© "V", et indiquer la version du format du fichier.
 Dans la suite du fichier, on peut faire n'importe quoi. On s'adaptera en fonction de la version.
 Pour la version actuelle, c'est "V42".
-Je n'en fais rien du tout. Mais c'est de la prévoyance pour la suite.
+Je n'en fais rien du tout. Mais c'est de la prÃ©voyance pour la suite.
 
 vocabulaire :
 
-playerStat : les données de hiscore, et le nombres de magiciens tués/explosés du joueur.
+playerStat : les donnÃ©es de hiscore, et le nombres de magiciens tuÃ©s/explosÃ©s du joueur.
 
-playerData : toutes les données du joueur, equivalentes au contenu du fichier de sauvegarde,
-             mais utilisables, placées dans un dico.
-             playerData contient les playerStat. (Bon en fait, ça contient que ça,
+playerData : toutes les donnÃ©es du joueur, equivalentes au contenu du fichier de sauvegarde,
+             mais utilisables, placÃ©es dans un dico.
+             playerData contient les playerStat. (Bon en fait, Ã§a contient que Ã§a,
              mais y'aurait pu y avoir d'autres trucs).
-playerBytes : toutes les données du joueur (équivalente à playerData),
+playerBytes : toutes les donnÃ©es du joueur (Ã©quivalente Ã  playerData),
               mais sous forme d'une suite d'octets,
-              à écrire tel quel dans le fichier de sauvegarde / lue tel quel depuis le fichier.
+              Ã  Ã©crire tel quel dans le fichier de sauvegarde / lue tel quel depuis le fichier.
 
-dans le code, il y a très souvent confusion entre les noms playerStat et playerData, car
-les playerData sont constitués uniquement des playerStat et rien d'autre.
-Si je voulais, je pourrais arranger ça. Mais c'est pas critique. Désolé pour la gêne occasionnée.
+dans le code, il y a trÃ¨s souvent confusion entre les noms playerStat et playerData, car
+les playerData sont constituÃ©s uniquement des playerStat et rien d'autre.
+Si je voulais, je pourrais arranger Ã§a. Mais c'est pas critique. DÃ©solÃ© pour la gÃªne occasionnÃ©e.
 
-Archivist.dicPlayerData : dictionnaire. clé : nom du joueur. valeur : sa playerData
+Archivist.dicPlayerData : dictionnaire. clÃ© : nom du joueur. valeur : sa playerData
                           (ce qui fait que dicPlayerData est un dico de dico, youpi)
 
-le Archivist.dicPlayerData est toujours rigoureusement égal au contenu du fichier de sauvegarde.
-Quand on met à jour le dicPlayerData, pour une raison ou pour une autre,
-on le sauvegarde en même temps dans le fichier, en totalité.
-(On réécrit tout le fichier, j'ai pas trouvé mieux. Et osef)
+le Archivist.dicPlayerData est toujours rigoureusement Ã©gal au contenu du fichier de sauvegarde.
+Quand on met Ã  jour le dicPlayerData, pour une raison ou pour une autre,
+on le sauvegarde en mÃªme temps dans le fichier, en totalitÃ©.
+(On rÃ©Ã©crit tout le fichier, j'ai pas trouvÃ© mieux. Et osef)
 
-Pareil pour les globData. On a toujours égalité entre Archivist.dicGlobData, et ce qu'il
-y'a d'écrit dans le fichier de sauvegarde.
+Pareil pour les globData. On a toujours Ã©galitÃ© entre Archivist.dicGlobData, et ce qu'il
+y'a d'Ã©crit dans le fichier de sauvegarde.
 
 Et pareil pour la config des touches.
 
 la classe ScoreManager contient un selectedPlayerStat. Mais c'est pas une
-référence vers des données de l'archiviste. C'est une copie.
+rÃ©fÃ©rence vers des donnÃ©es de l'archiviste. C'est une copie.
 Le ScoreManager se modifie son playerStat dans son coin.
-Lors d'une sauvegarde, le ScoreManager apporte son playerStat à l'Archivist, en indiquant
-à quel playerName il se rapporte. l'archiviste le recopie pour lui, le place
+Lors d'une sauvegarde, le ScoreManager apporte son playerStat Ã  l'Archivist, en indiquant
+Ã  quel playerName il se rapporte. l'archiviste le recopie pour lui, le place
 dans le bon endroit de son self.dicPlayerData et sauvegarde le tout.
 
-L'archivist est conçu pour (à priori) ne pas tout faire planter si le fichier de sauvegarde
-est pourri ou introuvable. Si ça arrive, on prend les valeurs par défaut et on regénère
+L'archivist est conÃ§u pour (Ã  priori) ne pas tout faire planter si le fichier de sauvegarde
+est pourri ou introuvable. Si Ã§a arrive, on prend les valeurs par dÃ©faut et on regÃ©nÃ¨re
 un fichier correct.
-Il est également conçu pour pas tout faire planter si on ne peut pas écrire dans le fichier.
-On doit pouvoir jouer et se faire la config qu'on veut, même dans ce cas.
+Il est Ã©galement conÃ§u pour pas tout faire planter si on ne peut pas Ã©crire dans le fichier.
+On doit pouvoir jouer et se faire la config qu'on veut, mÃªme dans ce cas.
 Y'a juste que rien ne sera retenu. Ni les scores ni la config.
 
-les fonctions modifyXXXX permettent de changer des données dans l'archivist, et de
-sauvegarder le tout immédiatement après.
-"le tout" : c'est à dire : globData, config et données de tous les joueurs.
-Ces fonctions renvoient un boolean, indiquant si la sauvegarde a réussie ou échouée.
-Pour l'instant y'a 3 fonctions comme ça. (Voir vers la fin du fichier).
+les fonctions modifyXXXX permettent de changer des donnÃ©es dans l'archivist, et de
+sauvegarder le tout immÃ©diatement aprÃ¨s.
+"le tout" : c'est Ã  dire : globData, config et donnÃ©es de tous les joueurs.
+Ces fonctions renvoient un boolean, indiquant si la sauvegarde a rÃ©ussie ou Ã©chouÃ©e.
+Pour l'instant y'a 3 fonctions comme Ã§a. (Voir vers la fin du fichier).
 
-NDC (note du codeur) : Au départ, je voulais faire un truc de ouf avec ce jeu :
-la gestion de différents joueurs. Avec chacun un nom, une config, des stats et tout.
-Et on aurait pu en créer autant qu'on veut. Avec des chouettes menus. J'ai abandonné l'idée.
+NDC (note du codeur) : Au dÃ©part, je voulais faire un truc de ouf avec ce jeu :
+la gestion de diffÃ©rents joueurs. Avec chacun un nom, une config, des stats et tout.
+Et on aurait pu en crÃ©er autant qu'on veut. Avec des chouettes menus. J'ai abandonnÃ© l'idÃ©e.
 En fait y'a que un joueur et demi possible. (Le joueur normal, et celui du edoM edoG).
-Du coup, il va peut être rester des bouts de code et des fonctions, prévues pour cette gestion
-de multi-profil, qui ne servent plus à rien.
+Du coup, il va peut Ãªtre rester des bouts de code et des fonctions, prÃ©vues pour cette gestion
+de multi-profil, qui ne servent plus Ã  rien.
 Cette NDC est valable pour les classes Archivist et ScoreManager
 
-TRODO pour plus tard : config différente pour chaque joueur. Et plusieurs joueurs, donc, oui.
+TRODO pour plus tard : config diffÃ©rente pour chaque joueur. Et plusieurs joueurs, donc, oui.
 """
 
 import codecs
@@ -161,15 +161,15 @@ try:
     import hashlib
 except:
     hashlibEnabled = False
-    securedPrint("Woups. Fail importation truc pour l'invincibilité. Désolé")
+    securedPrint("Woups. Fail importation truc pour l'invincibilitÃ©. DÃ©solÃ©")
 
 
-#indique l'ordre dans lequel écrire les playerStat dans le fichier, et leur type.
-#TRODO pour plus tard : c'est une connerie un dico qui stocke des types différents.
-#Jamais faut faire ça, après on se complique la vie.
-#Enfin ce dico là, c'est pas une connerie. Il stocke des type. Et les types ont tous le même
+#indique l'ordre dans lequel Ã©crire les playerStat dans le fichier, et leur type.
+#TRODO pour plus tard : c'est une connerie un dico qui stocke des types diffÃ©rents.
+#Jamais faut faire Ã§a, aprÃ¨s on se complique la vie.
+#Enfin ce dico lÃ , c'est pas une connerie. Il stocke des type. Et les types ont tous le mÃªme
 #type. Mais le dico playerStat, dans l'archiviste, il stocke des tuples et des entiers.
-#C'est très très con.
+#C'est trÃ¨s trÃ¨s con.
 LIST_PLAYER_STAT_KEY_TYPE = (
     (TOTAL_BURST  , int),
     (TOTAL_KILL   , int),
@@ -179,13 +179,13 @@ LIST_PLAYER_STAT_KEY_TYPE = (
 )
 
 #dictionnaire de correspondance :
-#clé d'un type de playerStat -> nombre de données numérique dans cette playerStat
+#clÃ© d'un type de playerStat -> nombre de donnÃ©es numÃ©rique dans cette playerStat
 DIC_NBR_DATA_FROM_PLAYER_STAT_TYPE = {
     dict : 2,
     int  : 1,
 }
 #pour les playerStat de type "dict" (les hiscores),
-#indique l'ordre dans lequel écrire les valeurs de ce dict dans le fichier
+#indique l'ordre dans lequel Ã©crire les valeurs de ce dict dans le fichier
 HISCORE_KEYS_ORDERED = (BURST, KILL)
 
 #longueur des globDataId
@@ -194,8 +194,8 @@ LEN_GLOB_DATA_ID = 1
 #valeurs des globDataId
 GLOB_DATA_ID_LANG    = "L"  #langue du jeu
 GLOB_DATA_ID_VERSION = "V"  #version du format du fichier de sauvegarde
-GLOB_DATA_ID_SCREEN  = "S"  #mode plein écran ou pas.
-GLOB_DATA_ID_SOUND   = "Y"  #son activé ou pas. Y comme Yargler
+GLOB_DATA_ID_SCREEN  = "S"  #mode plein Ã©cran ou pas.
+GLOB_DATA_ID_SOUND   = "Y"  #son activÃ© ou pas. Y comme Yargler
 GLOB_DATA_ID_DOGDOM  = "G"  #code qui activent le edog edom, ou pas.
 
 #liste des globDataId
@@ -206,31 +206,31 @@ LIST_GLOB_DATA_ID = (GLOB_DATA_ID_VERSION,
                      GLOB_DATA_ID_DOGDOM,
                     )
 
-#TRODO : pour plus tard. Une classe globData ? Ca déchargerait un peu l'archivist.
-#liste des valeurs autorisés, pour les globData qui ont un domaine de valeur restreint.
-#Pour les globData qui sont pas dans ce dico, y'a pas de restriction c'est la fête.
+#TRODO : pour plus tard. Une classe globData ? Ca dÃ©chargerait un peu l'archivist.
+#liste des valeurs autorisÃ©s, pour les globData qui ont un domaine de valeur restreint.
+#Pour les globData qui sont pas dans ce dico, y'a pas de restriction c'est la fÃªte.
 GLOB_DATA_AUTHORIZED_VALUE = {
     GLOB_DATA_ID_LANG   : LIST_LANG,
     GLOB_DATA_ID_SCREEN : LIST_SCREEN,
     GLOB_DATA_ID_SOUND  : LIST_SOUND,
 }
 
-#mouarf ! le séparator entre une globDataId et sa valeur est une chaîne vide. Hahaha !!! LAUL !!!
+#mouarf ! le sÃ©parator entre une globDataId et sa valeur est une chaÃ®ne vide. Hahaha !!! LAUL !!!
 GLOB_DATA_ID_SEPARATOR = ""
-#position du caractère dans une ligne de globData, à partir duquel on a la globDataVal
+#position du caractÃ¨re dans une ligne de globData, Ã  partir duquel on a la globDataVal
 GLOB_DATA_VAL_POSITION = LEN_GLOB_DATA_ID + len(GLOB_DATA_ID_SEPARATOR)
-#Tag du fichier, indiquant les données d'un joueur.
+#Tag du fichier, indiquant les donnÃ©es d'un joueur.
 PLAYER_DATA_SEP = "[knakes]"
-#caractère de séparation entre deux playerStat.
+#caractÃ¨re de sÃ©paration entre deux playerStat.
 PLAYER_STAT_SEPARATOR = ","
 #captain obvious
 LINE_SEPARATOR = "\n"
 
-#config de touche par défaut. dictionnaire :
-# - clé : identifiant de l'action que peut faire le héros.
+#config de touche par dÃ©faut. dictionnaire :
+# - clÃ© : identifiant de l'action que peut faire le hÃ©ros.
 # - valeur : tuple de 2 elem :
-#    * le code de la touche (valeur numérique)
-#    * le nom de la touche. Mais on a le droit de foutre des chaînes vides en fait. Haha.
+#    * le code de la touche (valeur numÃ©rique)
+#    * le nom de la touche. Mais on a le droit de foutre des chaÃ®nes vides en fait. Haha.
 DEFAULT_KEY_MAPPING = {
     KEY_DIR_UP    : (pygl.K_UP,    "",),
     KEY_DIR_DOWN  : (pygl.K_DOWN,  "",),
@@ -245,16 +245,16 @@ LIST_KEY_ORDERED = (KEY_DIR_UP, KEY_DIR_DOWN,
                     KEY_DIR_RIGHT, KEY_DIR_LEFT,
                     KEY_FIRE, KEY_RELOAD)
 
-#tag du fichier, indiquant le début de la config des touches.
+#tag du fichier, indiquant le dÃ©but de la config des touches.
 KEY_MAPPING_DATA_SEP = "[dnipr]"
 
-#séparateur pour les éléments de listKeyCode
+#sÃ©parateur pour les Ã©lÃ©ments de listKeyCode
 KEY_CODE_DATA_SEPARATOR = ","
-#séparateur pour les éléments de listCharKey
+#sÃ©parateur pour les Ã©lÃ©ments de listCharKey
 KEY_CHAR_DATA_SEPARATOR = "\x01"
 
-#valeur chiffré du edoMedoGedoC. Le nom bizarre, c'est pour faire une vague obfuscation.
-#En fait il faut le lire à l'envers. (Je le dis que ici, même si j'utilise cette astuce
+#valeur chiffrÃ© du edoMedoGedoC. Le nom bizarre, c'est pour faire une vague obfuscation.
+#En fait il faut le lire Ã  l'envers. (Je le dis que ici, mÃªme si j'utilise cette astuce
 #pourrie un peu partout. Youpi, trop je suis un expert obfuscateur.)
 HASHED_DOGDOMEDOC = "963f925fbb7bde454cf3e9ac1e37f30002a18b181f8999fd" + \
                     "00768c5ffbd3d69e50960befeda641eaf8cd30a45f0990d4" + \
@@ -264,38 +264,38 @@ HASHED_DOGDOMEDOC = "963f925fbb7bde454cf3e9ac1e37f30002a18b181f8999fd" + \
 
 class Archivist():
     """
-    voir tout le blabla au début de ce fichier de code
+    voir tout le blabla au dÃ©but de ce fichier de code
     """
 
     def __init__(self, filePathName=SAVE_FILE_PATHNAME):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
             filePathName : string. chemin et nom du fichier de sauvegarde.
 
-        Pour l'init, on n'a pas encore chargé de données depuis un fichier. Alors
-        on met toutes les valeurs par défaut.
+        Pour l'init, on n'a pas encore chargÃ© de donnÃ©es depuis un fichier. Alors
+        on met toutes les valeurs par dÃ©faut.
         """
 
         self.filePathName = filePathName
 
         self.dicPlayerData = {}
 
-        #initialisation des globData avec des valeurs par défaut.
+        #initialisation des globData avec des valeurs par dÃ©faut.
         self.dicGlobData = {
             GLOB_DATA_ID_LANG    : LANG_DEFAULT,
             GLOB_DATA_ID_VERSION : SAVE_FILE_VERSION,
             GLOB_DATA_ID_SCREEN  : SCREEN_DEFAULT,
             GLOB_DATA_ID_SOUND   : SOUND_DEFAULT,
-            GLOB_DATA_ID_DOGDOM  : "morceau de brennek",  #valeur qui sert à rien
+            GLOB_DATA_ID_DOGDOM  : "morceau de brennek",  #valeur qui sert Ã  rien
         }
 
-        #config des touches par défaut.
+        #config des touches par dÃ©faut.
         self.dicKeyMapping = dict(DEFAULT_KEY_MAPPING)
 
-        #calcul du nombre de données numériques constituant les playerStat
-        #Y'en aura besoin pour faire des contrôles lors de la lecture du fichier.
+        #calcul du nombre de donnÃ©es numÃ©riques constituant les playerStat
+        #Y'en aura besoin pour faire des contrÃ´les lors de la lecture du fichier.
         listNbrPlayerStat = [ DIC_NBR_DATA_FROM_PLAYER_STAT_TYPE[elem[1]]
                               for elem in LIST_PLAYER_STAT_KEY_TYPE
                             ]
@@ -304,27 +304,27 @@ class Archivist():
 
         #handler vers le fichier de sauvegarde.
         self.loadedFile = None
-        #booléen indiquant si c'est la toute première fois que le jeu est lancé, ou pas.
+        #boolÃ©en indiquant si c'est la toute premiÃ¨re fois que le jeu est lancÃ©, ou pas.
         #On part du principe que lorsqu'on ne trouve pas le fichier de sauvegarde,
-        #c'est la toute première fois que le jeu est lancé. On garde les données par défaut,
-        #et y'aura une sauvegarde du fichier peu de temps après le lancement du jeu.
-        #Et pour les exécutions suivantes, tout ira bien.
+        #c'est la toute premiÃ¨re fois que le jeu est lancÃ©. On garde les donnÃ©es par dÃ©faut,
+        #et y'aura une sauvegarde du fichier peu de temps aprÃ¨s le lancement du jeu.
+        #Et pour les exÃ©cutions suivantes, tout ira bien.
         self.firstTimeLaunch = True
 
         #TRODO (osef, ce sera quand y'aura du multi-profil : voir si on peut pas stocker
-        #sous forme de byteData toutes les infos des players non sélectionnés.
-        #Pour pas avoir à tout recalculer lors des sauvegardes en live.
+        #sous forme de byteData toutes les infos des players non sÃ©lectionnÃ©s.
+        #Pour pas avoir Ã  tout recalculer lors des sauvegardes en live.
 
 
     def failToLoadArchive(self, errorMessage):
         """
-        Balance un message à la gueule du joueur, si le fichier de sauvegarde est pourri.
+        Balance un message Ã  la gueule du joueur, si le fichier de sauvegarde est pourri.
 
-        entrée :
+        entrÃ©e :
             errorMessage : unicode string. Message d'erreur indiquant la raison
-                           détaillée de pourquoi le fichier est pourri.
+                           dÃ©taillÃ©e de pourquoi le fichier est pourri.
         """
-        #emission sur stdout du message global, du nom du fichier et du message détaillé
+        #emission sur stdout du message global, du nom du fichier et du message dÃ©taillÃ©
         securedPrint(u"Chargement du fichier de sauvegarde fail.")
         securedPrint(self.filePathName)
         securedPrint(errorMessage)
@@ -337,33 +337,33 @@ class Archivist():
     def readNextLine(self):
         """
         pitite fonction toute simple pour lire la ligne suivante du fichier de sauvegarde,
-        et la renvoyer, dans le plat-dessert. (Putain que je suis drôle avec ça !)
+        et la renvoyer, dans le plat-dessert. (Putain que je suis drÃ´le avec Ã§a !)
         """
-        #et on vire le caractère de saut de ligne à la fin, car tout le monde s'en fout.
+        #et on vire le caractÃ¨re de saut de ligne Ã  la fin, car tout le monde s'en fout.
         return self.loadedFile.readline().strip(LINE_SEPARATOR)
 
 
     def playerBytesFromPlayerData(self, playerName, playerData):
         """
         conversion d'un playerData (tag de playerData + nom + playerStat
-        en la suite d'octets à écrire tel quel dans le fichier de sauvegarde.
+        en la suite d'octets Ã  Ã©crire tel quel dans le fichier de sauvegarde.
 
-        entrées :
+        entrÃ©es :
             playerName : string unicode. Nom du joueur
-            playerData : dictionnaire playerData avec toutes les données du joueur.
+            playerData : dictionnaire playerData avec toutes les donnÃ©es du joueur.
 
         plat-dessert :
             playerBytes. string unicode, correspondant aux playerDatas.
         """
         playerStatFlat = []
 
-        #récupération de toutes les playerStat, à partir des playerData
-        #et rangement dans une liste "plate", dans un ordre prédefini.
-        #(et au passage, conversion des valeur numériques en string, youpi)
+        #rÃ©cupÃ©ration de toutes les playerStat, Ã  partir des playerData
+        #et rangement dans une liste "plate", dans un ordre prÃ©defini.
+        #(et au passage, conversion des valeur numÃ©riques en string, youpi)
         for playerStatKey, playerStatType in LIST_PLAYER_STAT_KEY_TYPE:
             if playerStatType is dict:
                 #la playerStat est de type dictionnaire. Il faut donc prendre
-                #toutes les valeurs de ce dico, dans un ordre précis
+                #toutes les valeurs de ce dico, dans un ordre prÃ©cis
                 for hiScoreKey in HISCORE_KEYS_ORDERED:
                     statVal = playerData[playerStatKey][hiScoreKey]
                     playerStatFlat.append(str(statVal))
@@ -372,13 +372,13 @@ class Archivist():
                 statVal = playerData[playerStatKey]
                 playerStatFlat.append(str(statVal))
 
-        #création de la suite d'octets correspondant aux playerStat.
-        #les valeurs numériques sont écrites en base 10, et séparées par une virgule.
-        #Non, la taille du fichier de sauvegarde n'est pas optimisé. Eh bien osef.
+        #crÃ©ation de la suite d'octets correspondant aux playerStat.
+        #les valeurs numÃ©riques sont Ã©crites en base 10, et sÃ©parÃ©es par une virgule.
+        #Non, la taille du fichier de sauvegarde n'est pas optimisÃ©. Eh bien osef.
         playerStatBytes = PLAYER_STAT_SEPARATOR.join(playerStatFlat)
 
         #on colle tout le bazar pour faire la suite d'octets total correspondant
-        #à toutes les infos de ce joueur.
+        #Ã  toutes les infos de ce joueur.
         playerAllBytes = "".join( (PLAYER_DATA_SEP, LINE_SEPARATOR,
                                    playerName, LINE_SEPARATOR,
                                    playerStatBytes, LINE_SEPARATOR)
@@ -388,16 +388,16 @@ class Archivist():
 
     def playerStatFromPlayerBytes(self, line):
         """
-        récupère les stats d'un joueur, à partir de la ligne d'octets lues depuis le fichier
-        de sauvegarde. Les valeurs sont placées dans un dictionnaire, et renvoyées.
-        Attention, c'est pas l'équivalent de la fonction ci-dessus : playerBytesFromPlayerData
-        Dans cette fonction, on ne récupère que les Stat. Et non pas toutes les Data du player.
-        TRODO pour plus tard : d'ailleurs c'est crétin que ce soit pas équivalent.
+        rÃ©cupÃ¨re les stats d'un joueur, Ã  partir de la ligne d'octets lues depuis le fichier
+        de sauvegarde. Les valeurs sont placÃ©es dans un dictionnaire, et renvoyÃ©es.
+        Attention, c'est pas l'Ã©quivalent de la fonction ci-dessus : playerBytesFromPlayerData
+        Dans cette fonction, on ne rÃ©cupÃ¨re que les Stat. Et non pas toutes les Data du player.
+        TRODO pour plus tard : d'ailleurs c'est crÃ©tin que ce soit pas Ã©quivalent.
 
-        entrées :
-            line : string. Ligne contenant les playerStat, tel qu'elles ont été lues
-                   depuis le fichier de sauvegarde. C'est censé être une suite de
-                   valeurs numériques sous forme de string, séparées par des virgules.
+        entrÃ©es :
+            line : string. Ligne contenant les playerStat, tel qu'elles ont Ã©tÃ© lues
+                   depuis le fichier de sauvegarde. C'est censÃ© Ãªtre une suite de
+                   valeurs numÃ©riques sous forme de string, sÃ©parÃ©es par des virgules.
 
         plat-dessert :
             si le format de line est correct : la fonction renvoie le dico playerStat
@@ -406,8 +406,8 @@ class Archivist():
             d'erreur et ferme le fichier de sauvegarde.
         """
 
-        #récupération de la liste des stats, sous forme de string.
-        #en prenant en compte le fait qu'elles sont séparées par des virgules.
+        #rÃ©cupÃ©ration de la liste des stats, sous forme de string.
+        #en prenant en compte le fait qu'elles sont sÃ©parÃ©es par des virgules.
         listStrPlayerStat = line.split(PLAYER_STAT_SEPARATOR)
 
         #fail si pas le bon nombre de stats
@@ -415,14 +415,14 @@ class Archivist():
             self.failToLoadArchive(u"nombre stat key beurk")
             return None
 
-        #conversion string -> numériques de la liste des stats.
+        #conversion string -> numÃ©riques de la liste des stats.
         #si y'en a qui sont pas convertibles, on ne les garde pas.
         #(normalement, elles le sont toutes)
         listIntPlayerStat = [ int(elem) for elem in listStrPlayerStat
                               if elem.isdigit()
                             ]
 
-        #fail si les stats ont pas pu être toutes converties en valeurs numériques.
+        #fail si les stats ont pas pu Ãªtre toutes converties en valeurs numÃ©riques.
         if len(listIntPlayerStat) != self.nbrPlayerStat:
             self.failToLoadArchive(u"stat key pas int")
             return None
@@ -430,14 +430,14 @@ class Archivist():
         playerStat = {}
 
         #rangement des stats dans le dictionnaire playerStat, en tenant compte de l'ordre
-        #dans lequel elles ont été stockées dans le fichier de sauvegarde.
-        #les instructions "pop(0)" permettent de récupérer la première stat de la liste,
-        #et en même temps de la virer de cette même liste.
+        #dans lequel elles ont Ã©tÃ© stockÃ©es dans le fichier de sauvegarde.
+        #les instructions "pop(0)" permettent de rÃ©cupÃ©rer la premiÃ¨re stat de la liste,
+        #et en mÃªme temps de la virer de cette mÃªme liste.
         for statKey, statKeyType in LIST_PLAYER_STAT_KEY_TYPE:
 
             if statKeyType is dict:
                 #la stat est un sous-dictionnaire. il faut prendre plusieurs valeurs de la liste,
-                #dans un ordre prédefini.
+                #dans un ordre prÃ©defini.
                 playerStat[statKey] = {}
                 for hiScoreKey in HISCORE_KEYS_ORDERED:
                     playerStat[statKey][hiScoreKey] = listIntPlayerStat.pop(0)
@@ -451,41 +451,41 @@ class Archivist():
     def buildBytesKeyMapping(self):
         """
         A partir de la conguration des touches, construit une liste d'octet
-        (plus ou moins unicode, je sais pas, je suis pas sur d'avoir pigé le truc),
-        à écrire tel quel dans le fichier de sauvegarde
+        (plus ou moins unicode, je sais pas, je suis pas sur d'avoir pigÃ© le truc),
+        Ã  Ã©crire tel quel dans le fichier de sauvegarde
 
-        Il y a les codes des touches (valeurs numériques) et les noms des touches (unicode)
+        Il y a les codes des touches (valeurs numÃ©riques) et les noms des touches (unicode)
 
         plat-dessert :
-            bytesKeyMapping : string unicode à écrire tel quel dans le fichier,
-                              correspondant à la config de touche.
+            bytesKeyMapping : string unicode Ã  Ã©crire tel quel dans le fichier,
+                              correspondant Ã  la config de touche.
 
         """
         listKey = []
         listCharKey = []
 
-        #création de la liste des codes de touches, et de la liste des noms, à partir
-        #du dictionnaire de config. On prends ces infos dans un ordre bien déterminé.
+        #crÃ©ation de la liste des codes de touches, et de la liste des noms, Ã  partir
+        #du dictionnaire de config. On prends ces infos dans un ordre bien dÃ©terminÃ©.
         for idKey in LIST_KEY_ORDERED:
 
             (keyMapped, charKeyMapped) = self.dicKeyMapping[idKey]
 
-            #keyMapped, c'est une valeur numérique. On peut la changer en str sans problèmes.
+            #keyMapped, c'est une valeur numÃ©rique. On peut la changer en str sans problÃ¨mes.
             listKey.append(str(keyMapped))
 
-            #charKeyMapped, c'est de l'unicode. Surtout ne pas écrire str(charKeyMapped) !
-            #Car si certains caractèrs sont pas ascii, ça pète. On laisse comme ça,
-            #et à priori, quand on l'écrira tel quel dans le fichier, ça pètera pas à la gueule.
-            #spoiler : en fait ça va pas péter car on définit un encodage, au moment
-            #d'ouvrir le fichier pour écrire/lire dedans.
+            #charKeyMapped, c'est de l'unicode. Surtout ne pas Ã©crire str(charKeyMapped) !
+            #Car si certains caractÃ¨rs sont pas ascii, Ã§a pÃ¨te. On laisse comme Ã§a,
+            #et Ã  priori, quand on l'Ã©crira tel quel dans le fichier, Ã§a pÃ¨tera pas Ã  la gueule.
+            #spoiler : en fait Ã§a va pas pÃ©ter car on dÃ©finit un encodage, au moment
+            #d'ouvrir le fichier pour Ã©crire/lire dedans.
             listCharKey.append(charKeyMapped)
 
-        #on rassemble ces listes en une grande chaîne de caractère (unicode ou pas),
-        #en utilisant les séparateurs qui vont bien.
+        #on rassemble ces listes en une grande chaÃ®ne de caractÃ¨re (unicode ou pas),
+        #en utilisant les sÃ©parateurs qui vont bien.
         strListKey = KEY_CODE_DATA_SEPARATOR.join(listKey)
         strListCharKey = KEY_CHAR_DATA_SEPARATOR.join(listCharKey)
 
-        #et on colle tout ce bordel dans une grande-grande chaîne.
+        #et on colle tout ce bordel dans une grande-grande chaÃ®ne.
         #(sans oublier le tag qui annonce la config des touches)
         bytesKeyMapping = "".join( (KEY_MAPPING_DATA_SEP, LINE_SEPARATOR,
                                     strListKey, LINE_SEPARATOR,
@@ -497,31 +497,31 @@ class Archivist():
 
     def dicKeyMappingFromBytes(self, listLine):
         """
-        convertit les octets lus depuis le fichier de sauvegarde, censé contenir la config
+        convertit les octets lus depuis le fichier de sauvegarde, censÃ© contenir la config
         des touches, en le dictionnaire de config des touches.
 
-        C'est pas tout à fait équivalent à la fonction ci-dessus, (buildBytesKeyMapping),
+        C'est pas tout Ã  fait Ã©quivalent Ã  la fonction ci-dessus, (buildBytesKeyMapping),
         car on chope que les deux lignes contenant les codes et les noms. On ne chope
         pas le tag indiquant la config des touches.
 
-        TRODO pour plus tard : faire que ça soye équivalent.
+        TRODO pour plus tard : faire que Ã§a soye Ã©quivalent.
 
-        entrées :
-            listLine : liste de 2 éléments.
+        entrÃ©es :
+            listLine : liste de 2 Ã©lÃ©ments.
                         - string unicode, lue depuis le fichier, contenant les codes des touches
                         - string unicode, lue depuis le fichier, contenant les noms des touches
 
         plat-dessert :
-            boolean. True : la conversion s'est déroulée sans problèmes.
+            boolean. True : la conversion s'est dÃ©roulÃ©e sans problÃ¨mes.
                      False : la conversion a fail.
 
             De plus, cette fonction remplit l'attribut self.dicKeyMapping, avec les
-            valeurs récupérées depuis listLine.
+            valeurs rÃ©cupÃ©rÃ©es depuis listLine.
 
-        TRODO pour plus tard : homogénéiser les sorties de cette fonction avec
-        playerStatFromPlayerBytes. Là on sort un boolean, l'autre on sort le dico ou None.
+        TRODO pour plus tard : homogÃ©nÃ©iser les sorties de cette fonction avec
+        playerStatFromPlayerBytes. LÃ  on sort un boolean, l'autre on sort le dico ou None.
         C'est nimp. Et pis ce serait mieux de faire des noms un peu plus explicites,
-        qui commencent tous par load ou save. Là c'est vraiment le bordel toute cette classe.
+        qui commencent tous par load ou save. LÃ  c'est vraiment le bordel toute cette classe.
         """
 
         #TRODO : si on a envie, un jour :  remplacer tous les "key" par des "keyCode"
@@ -529,47 +529,47 @@ class Archivist():
         strListKeyCode = listLine[0]
         strListCharKey = listLine[1]
 
-        #récupération des codes et des noms des touches sous forme d'une liste,
-        #en se basant sur les séparateurs adequats.
+        #rÃ©cupÃ©ration des codes et des noms des touches sous forme d'une liste,
+        #en se basant sur les sÃ©parateurs adequats.
         listKeyCode = strListKeyCode.split(KEY_CODE_DATA_SEPARATOR)
         listCharKey = strListCharKey.split(KEY_CHAR_DATA_SEPARATOR)
 
-        #si pas assez de valeurs dans la liste des codes de touches, ça fail.
+        #si pas assez de valeurs dans la liste des codes de touches, Ã§a fail.
         if len(listKeyCode) < len(LIST_KEY_ORDERED):
             self.failToLoadArchive(u"pas assez de valeur dans config touches")
             return False
 
-        #conversion string -> numériques de la liste des KeyCode.
+        #conversion string -> numÃ©riques de la liste des KeyCode.
         #si y'en a qui sont pas convertibles, on ne les garde pas.
         #(normalement, ils le sont tous)
         listIntKeyCode = [ int(elem) for elem in listKeyCode
                            if elem.isdigit()
                          ]
-        #si tous les codes de touches n'ont pas pu être convertis en int, ça fail.
+        #si tous les codes de touches n'ont pas pu Ãªtre convertis en int, Ã§a fail.
         if len(listIntKeyCode) < len(LIST_KEY_ORDERED):
             self.failToLoadArchive(u"valeur pourrite dans config touches")
             return False
 
-        #pas de contrôle sur listCharKey. (ce sont des strings unicode)
+        #pas de contrÃ´le sur listCharKey. (ce sont des strings unicode)
 
-        #et pas vraiment de contrôle sur le nombre de valeurs de listCharKey.
-        #Car il y a un risque que ça se soit mal splitté à cause de mon séparateur pourri : \x01.
-        #Si ça arrive,  ça ne mérite pas de tout faire sauter. On balance juste un petit warning.
-        #Toutes façons osef de ces noms de touches. c'est juste pour l'affichage dans la config.
-        #J'ai mis "différent de", et non pas "inférieur à". Car l'éventuel couille de splittage
+        #et pas vraiment de contrÃ´le sur le nombre de valeurs de listCharKey.
+        #Car il y a un risque que Ã§a se soit mal splittÃ© Ã  cause de mon sÃ©parateur pourri : \x01.
+        #Si Ã§a arrive,  Ã§a ne mÃ©rite pas de tout faire sauter. On balance juste un petit warning.
+        #Toutes faÃ§ons osef de ces noms de touches. c'est juste pour l'affichage dans la config.
+        #J'ai mis "diffÃ©rent de", et non pas "infÃ©rieur Ã ". Car l'Ã©ventuel couille de splittage
         #peut survenir aussi bien dans un sens que dans l'autre.
         if len(listCharKey) != len(LIST_KEY_ORDERED):
             securedPrint(u"WARNINGE LOAD : conf str keys un peu flappie")
 
-        #on prend tous les éléments des deux listes (keyCode et charKey),
+        #on prend tous les Ã©lÃ©ments des deux listes (keyCode et charKey),
         #et on les range dans le dictionnaire de la config de touche, en respectant
         #le bon ordre.
         for idKey in LIST_KEY_ORDERED:
 
             keyCode = listIntKeyCode.pop(0)
 
-            #si y'a pas assez d'élément dans charKey, à cause couille dans le splittage,
-            #eh ben c'est pas grave, on complète la fin avec des chaînes vides.
+            #si y'a pas assez d'Ã©lÃ©ment dans charKey, Ã  cause couille dans le splittage,
+            #eh ben c'est pas grave, on complÃ¨te la fin avec des chaÃ®nes vides.
             if len(listCharKey) > 0:
                 charKey = listCharKey.pop(0)
             else:
@@ -582,70 +582,70 @@ class Archivist():
 
     def loadArchive(self):
         """
-        Charge toutes les données (globData + les playerData) depuis le fichier de
+        Charge toutes les donnÃ©es (globData + les playerData) depuis le fichier de
         sauvegarde. Et range le tout dans les attributs de la classe qui vont bien
 
         plat-dessert : boolean
-            True : le fichier existe et a été chargé, ou bien
-                   le fichier existe pas, et on a pris les valeurs par défaut.
+            True : le fichier existe et a Ã©tÃ© chargÃ©, ou bien
+                   le fichier existe pas, et on a pris les valeurs par dÃ©faut.
                    (pas de fichier = fonctionnement normal, mais premier lancement du jeu)
 
             False : le fichier existe, mais il est pourri.
-                    des messages d'erreurs ont été émis.
+                    des messages d'erreurs ont Ã©tÃ© Ã©mis.
 
-        si le fichier est pourri, on aura peut-être quand même réussi à lire quelques globData.
-        On les garde. Et celles qu'on a pas lues, elles auront les valeurs par défaut.
-        Pour la config de touches, c'est pareil. On les a lu entièrement, un peu, ou pas du tout.
-        Ca ne dérange pas, car on les a initialisés avec des valeurs par défaut. (Au pire, y'a un
-        peu de valeurs qui viennent du fichier, et un peu de valeurs par défaut)
-        Par contre, pour les joueurs, on s'en fout des bouts d'infos éventuellement récupéré.
-        On réinitialisera tout avec les valeurs par défaut. (Ca se passe pas ici, mais dans la
+        si le fichier est pourri, on aura peut-Ãªtre quand mÃªme rÃ©ussi Ã  lire quelques globData.
+        On les garde. Et celles qu'on a pas lues, elles auront les valeurs par dÃ©faut.
+        Pour la config de touches, c'est pareil. On les a lu entiÃ¨rement, un peu, ou pas du tout.
+        Ca ne dÃ©range pas, car on les a initialisÃ©s avec des valeurs par dÃ©faut. (Au pire, y'a un
+        peu de valeurs qui viennent du fichier, et un peu de valeurs par dÃ©faut)
+        Par contre, pour les joueurs, on s'en fout des bouts d'infos Ã©ventuellement rÃ©cupÃ©rÃ©.
+        On rÃ©initialisera tout avec les valeurs par dÃ©faut. (Ca se passe pas ici, mais dans la
         fonction initAndSaveNewArchive.
-        C'est un peu bizarre de faire comme ça. Mais là j'ai plus envie de changer. De toutes
-        façons, si jamais je fais une nouvelle version, y'aura vraiment du multi-profil. Et faudra
-        repenser entièrement ce putain d'archivist.
+        C'est un peu bizarre de faire comme Ã§a. Mais lÃ  j'ai plus envie de changer. De toutes
+        faÃ§ons, si jamais je fais une nouvelle version, y'aura vraiment du multi-profil. Et faudra
+        repenser entiÃ¨rement ce putain d'archivist.
         """
 
-        #tentative de lecture du fichier. Si pas possible, on considère que c'est parce qu'il
-        #existe pas. (On ne prend pas en compte d'éventuelles autres raisons bizarres).
+        #tentative de lecture du fichier. Si pas possible, on considÃ¨re que c'est parce qu'il
+        #existe pas. (On ne prend pas en compte d'Ã©ventuelles autres raisons bizarres).
         try:
-            #encodage en utf-8. A priori, ça explose pas trop quand on prend les octets lus
-            #pour en faire une chaîne unicode. (Les accents, tout ça, il s'y retrouve).
-            #je pige pas exactement comment ça marche, mais ça marche.
+            #encodage en utf-8. A priori, Ã§a explose pas trop quand on prend les octets lus
+            #pour en faire une chaÃ®ne unicode. (Les accents, tout Ã§a, il s'y retrouve).
+            #je pige pas exactement comment Ã§a marche, mais Ã§a marche.
             self.loadedFile = codecs.open(SAVE_FILE_PATHNAME,
                                           mode="r", encoding="utf-8")
         except:
             #pas de fichier. On renvoie True pour dire que tout est OK, mais on se barre direct.
-            #la variable self.firstTimeLaunch, initalisée à True, n'a pas été modifiée.
-            #il faudra donc créer un joueur par défaut.
+            #la variable self.firstTimeLaunch, initalisÃ©e Ã  True, n'a pas Ã©tÃ© modifiÃ©e.
+            #il faudra donc crÃ©er un joueur par dÃ©faut.
             return True
 
-        #autre try except. Celui-ci est bourrin. Mais si il foire, ce sera à cause d'une couille
-        #totalement imprévue. Et on considèrera que le chargement du fichier a merdé.
-        #Le but de ce try except géant, c'est qu'on puisse jouer même si on n'a pas pu
+        #autre try except. Celui-ci est bourrin. Mais si il foire, ce sera Ã  cause d'une couille
+        #totalement imprÃ©vue. Et on considÃ¨rera que le chargement du fichier a merdÃ©.
+        #Le but de ce try except gÃ©ant, c'est qu'on puisse jouer mÃªme si on n'a pas pu
         #charger/sauver des fichiers, pour une raison qui me serait inconnue.
         try:
             line = self.readNextLine()
 
             # ------- LECTURE DES GLOBDATA -------
 
-            #on arrête de les lire dès qu'on est à la fin du fichier, ou qu'on rencontre un
-            #tag de données quelconque, indiquant qu'on doit passer à autre chose
+            #on arrÃªte de les lire dÃ¨s qu'on est Ã  la fin du fichier, ou qu'on rencontre un
+            #tag de donnÃ©es quelconque, indiquant qu'on doit passer Ã  autre chose
             while line not in ("", PLAYER_DATA_SEP, KEY_MAPPING_DATA_SEP):
 
                 #la ligne lue doit avoir une taille suffisante pour contenir au moins la globDataId
-                #et le séparateur. (Mais la globDataVal peut être vide).
+                #et le sÃ©parateur. (Mais la globDataVal peut Ãªtre vide).
                 if len(line) >= GLOB_DATA_VAL_POSITION:
 
-                    #récupération de l'id et de la valeur de la globData
+                    #rÃ©cupÃ©ration de l'id et de la valeur de la globData
                     globDataId = line[:LEN_GLOB_DATA_ID]
                     globDataVal = line[GLOB_DATA_VAL_POSITION:]
 
-                    #pas de message d'erreur si on trouve une globDataId qui ne correspond à rien.
+                    #pas de message d'erreur si on trouve une globDataId qui ne correspond Ã  rien.
                     #on la stocke, et on s'en servira pas, et c'est tout.
-                    #ça permet de loader des versions plus récentes du fichier sans exploser
+                    #Ã§a permet de loader des versions plus rÃ©centes du fichier sans exploser
 
-                    #vérification si la globData est restreinte à un domaine de valeur
+                    #vÃ©rification si la globData est restreinte Ã  un domaine de valeur
                     #nom trop long. Fuck
                     globi = GLOB_DATA_AUTHORIZED_VALUE
                     listAuthorizedValues = globi.get(globDataId)
@@ -659,7 +659,7 @@ class Archivist():
                             #c'est bon, c'est dans le domaine de valeur. On prend la globData
                             self.dicGlobData[globDataId] = globDataVal
                         else:
-                            #C'est pas bon. On laisse la globData a sa valeur par défaut.
+                            #C'est pas bon. On laisse la globData a sa valeur par dÃ©faut.
                             securedPrint(u"WARNINGE loading:globdata erronay")
 
                 else:
@@ -670,67 +670,67 @@ class Archivist():
             # ------- LECTURE DE LA CONFIG DES TOUCHES -------
 
             if line == KEY_MAPPING_DATA_SEP:
-                #y'a deux lignes de données pour le mapping de keys.
-                #(Si c'est fait autrement, ça devrait pas, et na).
+                #y'a deux lignes de donnÃ©es pour le mapping de keys.
+                #(Si c'est fait autrement, Ã§a devrait pas, et na).
                 line1 = self.readNextLine()
                 line2 = self.readNextLine()
 
-                #interprétation des deux lignes de données pour choper la config.
+                #interprÃ©tation des deux lignes de donnÃ©es pour choper la config.
                 if not self.dicKeyMappingFromBytes( (line1, line2) ):
-                    #Lecture de la config fail. On renvoie pas de message. Ca a déjà été fait.
+                    #Lecture de la config fail. On renvoie pas de message. Ca a dÃ©jÃ  Ã©tÃ© fait.
                     return False
 
                 line = self.readNextLine()
 
             # ------- LECTURE DES STATS DES JOUEURS -------
 
-            #lecture des données de chaque joueur. chaque itération de ce while lit toutes les
-            #données d'un joueur. (C'est à dire qu'on lit plusieurs lignes du fichier)
+            #lecture des donnÃ©es de chaque joueur. chaque itÃ©ration de ce while lit toutes les
+            #donnÃ©es d'un joueur. (C'est Ã  dire qu'on lit plusieurs lignes du fichier)
             while line == PLAYER_DATA_SEP:
 
                 # -- recup du nom du joueur. --
-                #Ca fail si il n'y a plus de données dans le fichier.
+                #Ca fail si il n'y a plus de donnÃ©es dans le fichier.
                 line = self.readNextLine()
 
-                #Ca fail aussi si on a chopé une ligne vide.
+                #Ca fail aussi si on a chopÃ© une ligne vide.
                 if line == "":
                     self.failToLoadArchive(u"nom joueur manquant")
                     return False
 
                 #on prend directement la ligne, pour en faire le nom du joueur. A priori,
-                #c'est déjà bien foutu en unicode comme il faut.
+                #c'est dÃ©jÃ  bien foutu en unicode comme il faut.
                 playerName = line
 
-                # -- lecture et contrôle des playerStat, et rangement dans le dictionnaire. --
+                # -- lecture et contrÃ´le des playerStat, et rangement dans le dictionnaire. --
 
                 line = self.readNextLine()
 
                 #conversion playerBytes -> playerStat.
-                #et création de toutes les playerData, à partir de ... Ah ben en
+                #et crÃ©ation de toutes les playerData, Ã  partir de ... Ah ben en
                 #fait dans les playerData y'a que les playerStat, et rien de plus.
-                #Bon ben si c'est comme ça, alors voilà. J'ai plus rien à faire ici moi.
+                #Bon ben si c'est comme Ã§a, alors voilÃ . J'ai plus rien Ã  faire ici moi.
                 playerData = self.playerStatFromPlayerBytes(line)
 
                 if playerData is None:
-                    #la lecture des playerStat a fail, mais on n'émet pas de message d'erreur,
-                    #car déjà fait par la fonction playerStatFromPlayerBytes
+                    #la lecture des playerStat a fail, mais on n'Ã©met pas de message d'erreur,
+                    #car dÃ©jÃ  fait par la fonction playerStatFromPlayerBytes
                     return False
 
-                #il faut créer un clone de playerData, faut pas juste donner une référence,
-                #sinon ce sera effacé lors de la prochaine boucle. D'où le dict(  )
+                #il faut crÃ©er un clone de playerData, faut pas juste donner une rÃ©fÃ©rence,
+                #sinon ce sera effacÃ© lors de la prochaine boucle. D'oÃ¹ le dict(  )
                 self.dicPlayerData[playerName] = dict(playerData)
 
                 line = self.readNextLine()
 
             # ------- DERNIERES PETITES VERIFS AVANT DE S'EN ALLER -------
 
-            #Il faut avoir loadé le joueur qui a le nom du héros. Sinon on est mal
-            #les autres on s'en fout (Le Réchèr et le EdomEdog)
+            #Il faut avoir loadÃ© le joueur qui a le nom du hÃ©ros. Sinon on est mal
+            #les autres on s'en fout (Le RÃ©chÃ¨r et le EdomEdog)
             if NAME_HERO not in self.dicPlayerData:
                 self.failToLoadArchive(u"joueur principal non defini. Zutre.")
                 return False
 
-            #On est censé être à la fin du fichier. Si c'est pas le cas, fail.
+            #On est censÃ© Ãªtre Ã  la fin du fichier. Si c'est pas le cas, fail.
             if line != "":
                 self.failToLoadArchive(u"unexpected not-end of file")
                 return False
@@ -742,8 +742,8 @@ class Archivist():
             self.failToLoadArchive(u"impossible de charger les donnees.")
             return False
 
-        #le fichier de sauvegarde existe, il a pu être lu entièrement, et aucune connerie
-        #n'a été détectée. Donc on indique que c'est pas le premier lancement du jeu,
+        #le fichier de sauvegarde existe, il a pu Ãªtre lu entiÃ¨rement, et aucune connerie
+        #n'a Ã©tÃ© dÃ©tectÃ©e. Donc on indique que c'est pas le premier lancement du jeu,
         #et que tout va bien youpi.
         self.firstTimeLaunch = False
         return True
@@ -752,30 +752,30 @@ class Archivist():
     def saveArchive(self):
         """
         Sauvegarde dans le fichier le contenu de tout le bazar de l'archivist.
-        Les infos en elle-même ne sont pas modifiés. On sauvegarde tout tel quel
+        Les infos en elle-mÃªme ne sont pas modifiÃ©s. On sauvegarde tout tel quel
 
         plat-dessert :
-            boolean. Indique si la sauvegarde a fail, ou si elle a réussite.
+            boolean. Indique si la sauvegarde a fail, ou si elle a rÃ©ussite.
         """
 
-        #on essaie d'ouvrir le fichier en écriture.
-        #bloc try except géant. C'est un peu facile, mais au moins c'est sécurised
-        #Le but de ce try except géant, c'est qu'on puisse jouer même si on peut pas sauver
+        #on essaie d'ouvrir le fichier en Ã©criture.
+        #bloc try except gÃ©ant. C'est un peu facile, mais au moins c'est sÃ©curised
+        #Le but de ce try except gÃ©ant, c'est qu'on puisse jouer mÃªme si on peut pas sauver
         #des fichiers, pour une raison qui me serait inconnue.
 
         try:
 
 
-            #crac boum encodage. (Voir fonction loadArchive, j'ai rien à dire de plus)
+            #crac boum encodage. (Voir fonction loadArchive, j'ai rien Ã  dire de plus)
             saveFile = codecs.open(SAVE_FILE_PATHNAME,
                                    mode="w", encoding="utf-8")
 
             #formatage des globData. On en met une par ligne.
-            # <clé> <separateur (qui est une chaîne vide, hahaha)> <valeur>
+            # <clÃ©> <separateur (qui est une chaÃ®ne vide, hahaha)> <valeur>
             #on n'enregistre dans le fichier de sauvegarde que les glob data qu'on connait
-            #c'est à dire celles dont la clé est dans LIST_GLOB_DATA_ID.
-            #si on en a trouvé d'autres lors du loadage du fichier, on considère
-            #qu'elles servent à rien, donc on les sauve pas.
+            #c'est Ã  dire celles dont la clÃ© est dans LIST_GLOB_DATA_ID.
+            #si on en a trouvÃ© d'autres lors du loadage du fichier, on considÃ¨re
+            #qu'elles servent Ã  rien, donc on les sauve pas.
             listGlobData = [ "".join( (str(globDataKey),
                                        GLOB_DATA_ID_SEPARATOR,
                                        str(self.dicGlobData[globDataKey]),
@@ -784,19 +784,19 @@ class Archivist():
                              for globDataKey in LIST_GLOB_DATA_ID
                            ]
 
-            #on met toute les lignes de globData bout à bout et on les écrit dans le fichier.
+            #on met toute les lignes de globData bout Ã  bout et on les Ã©crit dans le fichier.
             bytesGlobData = "".join(listGlobData)
             saveFile.write(bytesGlobData)
 
-            #conversion de la config des touches en une grosse chaîne unicode qu'on peut
-            #écrire telle quelle dans le fichier.
-            #TRODO pour plus tard : niveau de détail pas homogène entre l'écriture des globData
-            #et l'écriture de la config des touches. C'est moche, mais c'est pas grave.
+            #conversion de la config des touches en une grosse chaÃ®ne unicode qu'on peut
+            #Ã©crire telle quelle dans le fichier.
+            #TRODO pour plus tard : niveau de dÃ©tail pas homogÃ¨ne entre l'Ã©criture des globData
+            #et l'Ã©criture de la config des touches. C'est moche, mais c'est pas grave.
             bytesKeyMapping = self.buildBytesKeyMapping()
 
             saveFile.write(bytesKeyMapping)
 
-            #parcours du dico des playerData. on les écrit toute, une par une.
+            #parcours du dico des playerData. on les Ã©crit toute, une par une.
             for playerName, playerData in self.dicPlayerData.items():
                 param = (playerName, playerData)
                 playerBytes = self.playerBytesFromPlayerData(*param)
@@ -815,22 +815,22 @@ class Archivist():
 
     def modifyPlayerData(self, playerName, newPlayerData):
         """
-        Prend en compte les nouvelles données du joueur spécifié en param,
-        et sauvegarde toutes les données dans le fichier.
+        Prend en compte les nouvelles donnÃ©es du joueur spÃ©cifiÃ© en param,
+        et sauvegarde toutes les donnÃ©es dans le fichier.
 
-        entrées:
-            PlayerName : nom du joueur pour lequel les playerData doivent être changées.
-            newPlayerData : nouvelles données dudit joueur.
+        entrÃ©es:
+            PlayerName : nom du joueur pour lequel les playerData doivent Ãªtre changÃ©es.
+            newPlayerData : nouvelles donnÃ©es dudit joueur.
 
         plat-dessert :
-            boolean. Indique si la sauvegarde a fail, ou si elle a réussite.
+            boolean. Indique si la sauvegarde a fail, ou si elle a rÃ©ussite.
         """
 
-        #ajout du nouveau joueur dans dicPlayerData. ou mise à jour du joueur
-        #déjà existant. (On sait pas si on ajoute ou si on modifie, et on s'en fout)
+        #ajout du nouveau joueur dans dicPlayerData. ou mise Ã  jour du joueur
+        #dÃ©jÃ  existant. (On sait pas si on ajoute ou si on modifie, et on s'en fout)
         #
-        #Je clone les playerData pour les stocker dans les attributs, car au départ,
-        #elles viennent des paramètres passés à la fonction.
+        #Je clone les playerData pour les stocker dans les attributs, car au dÃ©part,
+        #elles viennent des paramÃ¨tres passÃ©s Ã  la fonction.
         #Je dois m'en garder un exemplaire que pour moi.
         playerDataCloned = dict(newPlayerData)
         self.dicPlayerData[playerName] = playerDataCloned
@@ -841,27 +841,27 @@ class Archivist():
 
     def modifyGlobData(self, dicNewGlobData):
         """
-        Prend en compte de nouvelles valeurs de globData, spécifiées dans un dictionnaire
-        et sauvegarde toutes les données dans le fichier.
+        Prend en compte de nouvelles valeurs de globData, spÃ©cifiÃ©es dans un dictionnaire
+        et sauvegarde toutes les donnÃ©es dans le fichier.
 
-        entrées:
+        entrÃ©es:
             dicNewGlobData : dictionnaire contenant une ou plusieurs valeurs de globData.
-            Ces valeurs sont mises à jour avec un dict.update. Ca fait les actions suivantes :
-             - si une clé est en même temps dans dicNewGlobData, et dans self.dicGlobData,
-               alors la valeur dans self.dicGlobData est modifiée, avec celle de dicNewGlobData
-             - si une clé n'est pas dans dicNewGlobData, mais qu'elle est dans self.dicGlobData,
-               alors la valeur dans self.dicGlobData n'est pas modifiée
-             - si une clé est dans dicNewGlobData, mais pas dans self.dicGlobData,
-               alors une nouvelle clé est ajoutée dans self.dicGlobData, avec la valeur de
-               dicNewGlobData. (Ce dernier cas ne me sert à rien. Comme j'ai déjà initialisée
-               toutes mes globData avec es valeurs par défaut, si je m'en rajoute une autre,
-               c'en est forcément une inutile. Mais c'est pas grave, on a le droit).
+            Ces valeurs sont mises Ã  jour avec un dict.update. Ca fait les actions suivantes :
+             - si une clÃ© est en mÃªme temps dans dicNewGlobData, et dans self.dicGlobData,
+               alors la valeur dans self.dicGlobData est modifiÃ©e, avec celle de dicNewGlobData
+             - si une clÃ© n'est pas dans dicNewGlobData, mais qu'elle est dans self.dicGlobData,
+               alors la valeur dans self.dicGlobData n'est pas modifiÃ©e
+             - si une clÃ© est dans dicNewGlobData, mais pas dans self.dicGlobData,
+               alors une nouvelle clÃ© est ajoutÃ©e dans self.dicGlobData, avec la valeur de
+               dicNewGlobData. (Ce dernier cas ne me sert Ã  rien. Comme j'ai dÃ©jÃ  initialisÃ©e
+               toutes mes globData avec es valeurs par dÃ©faut, si je m'en rajoute une autre,
+               c'en est forcÃ©ment une inutile. Mais c'est pas grave, on a le droit).
 
         plat-dessert :
-            boolean. Indique si la sauvegarde a fail, ou si elle a réussite.
+            boolean. Indique si la sauvegarde a fail, ou si elle a rÃ©ussite.
         """
 
-        #update du dictionnaire self.dicGlobData avec les données de dicNewGlobData
+        #update du dictionnaire self.dicGlobData avec les donnÃ©es de dicNewGlobData
         self.dicGlobData.update(dicNewGlobData)
 
         #sauvegarde du fichier et renvoi du boolean
@@ -870,23 +870,23 @@ class Archivist():
 
     def modifyGlobDataAndKeyMapping(self, newKeyMapping, dicNewGlobData):
         """
-        Prend en compte de nouvelles valeurs de globData, spécifiées dans un dictionnaire,
-        ainsi qu'une nouvelle config de touches, et sauvegarde toutes les données dans le fichier.
+        Prend en compte de nouvelles valeurs de globData, spÃ©cifiÃ©es dans un dictionnaire,
+        ainsi qu'une nouvelle config de touches, et sauvegarde toutes les donnÃ©es dans le fichier.
 
-        entrées:
+        entrÃ©es:
             newKeyMapping : dictionnaire contenant la nouvelle config de touches.
-                            il doit être structurée comme DEFAULT_KEY_MAPPING,
-                            et contenir exactement les mêmes clés.
+                            il doit Ãªtre structurÃ©e comme DEFAULT_KEY_MAPPING,
+                            et contenir exactement les mÃªmes clÃ©s.
             dicNewGlobData : dictionnaire contenant une ou plusieurs valeurs de globData.
-                             On met à jour les infos avec un dict.update (voir modifyGlobData)
+                             On met Ã  jour les infos avec un dict.update (voir modifyGlobData)
 
         plat-dessert :
-            boolean. Indique si la sauvegarde a fail, ou si elle a réussite.
+            boolean. Indique si la sauvegarde a fail, ou si elle a rÃ©ussite.
         """
 
-        #update du dictionnaire self.dicGlobData avec les données de dicNewGlobData
+        #update du dictionnaire self.dicGlobData avec les donnÃ©es de dicNewGlobData
         self.dicGlobData.update(dicNewGlobData)
-        #recupération de la config des touches. (on copie le dictionnaire, pour en
+        #recupÃ©ration de la config des touches. (on copie le dictionnaire, pour en
         #avoir une copie en interne dedans la classe, rien que pour soi)
         self.dicKeyMapping = dict(newKeyMapping)
 
@@ -896,21 +896,21 @@ class Archivist():
 
     def isDogDomEnabledFromGlobData(self):
         """
-        consulte les globData en interne, et vérifie si elles contiennent la valeur permettant
+        consulte les globData en interne, et vÃ©rifie si elles contiennent la valeur permettant
         d'activer le edoMedoG.
 
         plat-dessert :
-            boolean. indique si le edoMedoG est activé ou pas.
+            boolean. indique si le edoMedoG est activÃ© ou pas.
         """
 
-        #récupération de la globData contenant la valeur d'activation.
-        #Si y'a pas la globData, y'a pas à réfléchir, le edoMedoG n'est pas activé.
+        #rÃ©cupÃ©ration de la globData contenant la valeur d'activation.
+        #Si y'a pas la globData, y'a pas Ã  rÃ©flÃ©chir, le edoMedoG n'est pas activÃ©.
         dogDomEdoc = self.dicGlobData.get(GLOB_DATA_ID_DOGDOM)
 
         if dogDomEdoc is None:
             return False
 
-        #tentative d'activation avec la valeur, et renvoi du résultat.
+        #tentative d'activation avec la valeur, et renvoi du rÃ©sultat.
         return self.isDogDomEdocValid(dogDomEdoc)
 
 
@@ -918,25 +918,25 @@ class Archivist():
         """
         indique si un dogDomEdoc est valide ou pas.
 
-        entrées :
+        entrÃ©es :
             dogDomEdoc : string unicode. permettant de valider ou pas le edoMedoG
 
         plat-dessert :
-            boolean. indique si le edoMedoG est activé ou pas.
+            boolean. indique si le edoMedoG est activÃ© ou pas.
         """
 
-        #si y'a pas la bibliothèque permettant de faire du chiffrement SHA, on laisse tomber.
+        #si y'a pas la bibliothÃ¨que permettant de faire du chiffrement SHA, on laisse tomber.
         #c'est bien dommage, et c'est totalement injuste, mais je peux pas faire autrement.
-        #à priori, cette biblio est toujours présente dans le python, au moins dans la version
+        #Ã  priori, cette biblio est toujours prÃ©sente dans le python, au moins dans la version
         #que j'utilise. Hein ? Ouais on va dire que ouais.
         if not hashlibEnabled:
             return False
 
-        #conversion unicode -> ascii. Si y'a des caractères bizarres, on les remplaces par
-        #des points d'interrogation. (Donc j'ai pas intérêt à avoir foutu de caractère
+        #conversion unicode -> ascii. Si y'a des caractÃ¨res bizarres, on les remplaces par
+        #des points d'interrogation. (Donc j'ai pas intÃ©rÃªt Ã  avoir foutu de caractÃ¨re
         #bizarre dans mon dogDomEdoc. Et justement, il se trouve que je l'ai pas fait. Youpi !)
         dogDomEdocAscii = dogDomEdoc.encode("ascii", "replace")
-        #chiffrement SHA pour voir si ça correspond.
+        #chiffrement SHA pour voir si Ã§a correspond.
         hashedDogDomeEdocTry = hashlib.sha512(dogDomEdocAscii).hexdigest()
         #et si c'est bon, le dogDomEdoc permet d'activer le edoMedoG. Tadzam !!!
         return hashedDogDomeEdocTry == HASHED_DOGDOMEDOC
@@ -944,16 +944,16 @@ class Archivist():
 
     def _addFixedDataOfRecher(self):
         """
-        fonction interne. Ne doit pas être exécutée par le code extérieur,
-        sinon y'a aura plus la synchro entre les données du disque dur et cette classe
+        fonction interne. Ne doit pas Ãªtre exÃ©cutÃ©e par le code extÃ©rieur,
+        sinon y'a aura plus la synchro entre les donnÃ©es du disque dur et cette classe
 
-        Cette fonction ajoute un joueur dans l'archivist, nommée Réchèr,
-        avec des playerData déjà définie.
-        Le joueur ne peut pas jouer avec ce "Réchèr", ses playerData resteront toujours les mêmes.
-        Ca sert juste à l'affichage dans les scores. Je voulais faire mon mégalo, un petit peu.
+        Cette fonction ajoute un joueur dans l'archivist, nommÃ©e RÃ©chÃ¨r,
+        avec des playerData dÃ©jÃ  dÃ©finie.
+        Le joueur ne peut pas jouer avec ce "RÃ©chÃ¨r", ses playerData resteront toujours les mÃªmes.
+        Ca sert juste Ã  l'affichage dans les scores. Je voulais faire mon mÃ©galo, un petit peu.
         """
 
-        #Vous avez vu mes scores ? C'est pas de la nioniotte ça ! Et tout est véridique.
+        #Vous avez vu mes scores ? C'est pas de la nioniotte Ã§a ! Et tout est vÃ©ridique.
         playerDataOfRecher = {
             TOTAL_BURST   :  5779,
             TOTAL_KILL    : 15925,
@@ -962,20 +962,20 @@ class Archivist():
             HISCORE_KILL  : { BURST :  20, KILL : 325},
         }
 
-        #ajout de "Réchèr" dans le dictionnaire des données des joueurs.
+        #ajout de "RÃ©chÃ¨r" dans le dictionnaire des donnÃ©es des joueurs.
         self.dicPlayerData[NAME_RECHER] = playerDataOfRecher
 
 
     def _addNewPlayerData(self, newPlayerName):
         """
-        fonction interne. Ne doit pas être exécutée par le code extérieur,
-        sinon y'a aura plus la synchro entre les données du disque dur et cette classe
+        fonction interne. Ne doit pas Ãªtre exÃ©cutÃ©e par le code extÃ©rieur,
+        sinon y'a aura plus la synchro entre les donnÃ©es du disque dur et cette classe
 
         Ajoute un nouveau joueur, avec des playerData ayant les valeurs initiales
-        (c'est à dire tout à zero).
+        (c'est Ã  dire tout Ã  zero).
 
-        entrées :
-            newPlayerName : string unicode. Nom du nouveau joueur à ajouter.
+        entrÃ©es :
+            newPlayerName : string unicode. Nom du nouveau joueur Ã  ajouter.
         """
 
         #dictionnaire contenant les playerStat initiales
@@ -987,28 +987,28 @@ class Archivist():
             HISCORE_BURST : { BURST:0, KILL:0 },
         }
 
-        #ajout du nouveau joueur dans le dictionnaire des données des joueurs.
+        #ajout du nouveau joueur dans le dictionnaire des donnÃ©es des joueurs.
         self.dicPlayerData[newPlayerName] = newPlayerStat
 
 
     def initAndSaveNewArchive(self, nameEntered=""):
         """
-        crée un tout nouveau fichier de sauvegarde. Par exemple, si c'est la première
-        fois que le jeu est exécuté, ou si le fichier existant est tout pourri.
+        crÃ©e un tout nouveau fichier de sauvegarde. Par exemple, si c'est la premiÃ¨re
+        fois que le jeu est exÃ©cutÃ©, ou si le fichier existant est tout pourri.
 
-        entrées :
-            nameEntered : string unicode. Nom que le joueur a tapé dans la zone
-                          de texte au début du jeu. Comme le message débile de présentation
-                          l'indique, ce nom n'est pas enregistré comme nom de joueur.
-                          Mais il est utilisé pour l'activation éventuelle du edoGedoM
+        entrÃ©es :
+            nameEntered : string unicode. Nom que le joueur a tapÃ© dans la zone
+                          de texte au dÃ©but du jeu. Comme le message dÃ©bile de prÃ©sentation
+                          l'indique, ce nom n'est pas enregistrÃ© comme nom de joueur.
+                          Mais il est utilisÃ© pour l'activation Ã©ventuelle du edoGedoM
 
         plat-dessert :
-            boolean. Indique si la création et la sauvegarde du fichier a fail,
-                     ou si elle a réussite.
+            boolean. Indique si la crÃ©ation et la sauvegarde du fichier a fail,
+                     ou si elle a rÃ©ussite.
         """
 
-        #ajout du joueur "Réchèr", qui sert à rien, et du joueur normal, qui contiendra
-        #les playerStat des parties jouées normalement.
+        #ajout du joueur "RÃ©chÃ¨r", qui sert Ã  rien, et du joueur normal, qui contiendra
+        #les playerStat des parties jouÃ©es normalement.
         self._addFixedDataOfRecher()
         self._addNewPlayerData(NAME_HERO)
 
@@ -1016,16 +1016,16 @@ class Archivist():
         if self.isDogDomEdocValid(nameEntered):
             #C'est bon, on peut activer le edoGedoM. Dans ce cas, il faut stocker la
             #globData contenant le nom saisi (car ce nom est le doGedoMedoC, il faut
-            #donc le garder précieusement.)
+            #donc le garder prÃ©cieusement.)
             self.dicGlobData[GLOB_DATA_ID_DOGDOM] = nameEntered
-            #création du joueur spécifique, qui stockera les playerData des parties
-            #jouées en edoGedoM.
+            #crÃ©ation du joueur spÃ©cifique, qui stockera les playerData des parties
+            #jouÃ©es en edoGedoM.
             self._addNewPlayerData(NAME_DOGDOM)
 
         #si le nom saisi n'a pas permi de valider le edoGedoM, pas la peine de l'enregistrer,
-        #on s'en fout complètement.
+        #on s'en fout complÃ¨tement.
 
-        #création et sauvegarde du fichier avec toutes ces nouvelles données dedans.
+        #crÃ©ation et sauvegarde du fichier avec toutes ces nouvelles donnÃ©es dedans.
         return self.saveArchive()
 
 

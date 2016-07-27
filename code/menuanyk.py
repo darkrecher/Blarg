@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+Ôªø#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,17 +10,17 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 RÈchËr
+    Copyright 2010 R√©ch√®r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - PaternitÈ - Partage des Conditions Initiales ‡ l'Identique 2.0 France
+    Creative Commons - Paternit√© - Partage des Conditions Initiales √† l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la derniËre relecture-commentage : 24/02/2011
+date de la derni√®re relecture-commentage : 24/02/2011
 
-Element de menu qui rÈagit ‡ un appuyage de touche et/ou un clic de bouton de souris.
+Element de menu qui r√©agit √† un appuyage de touche et/ou un clic de bouton de souris.
 Mais n'importe quelle touche/bouton.
 C'est de l'appuyage KEY_DOWN, obligatoirement. Pas de KEY_PRESSED.
 Pis pour les bouton c'est aussi que du MOUSE_DOWN, pas de MOUSE_PRESSED (pasque j'avais envie)
@@ -34,20 +34,20 @@ from menuelem import MenuElem
 
 class MenuSensitiveAnyKeyButton(MenuElem):
     """
-    voili voil‡, voyez.
+    voili voil√†, voyez.
     """
 
     def __init__(self, funcAction, sensiKeys=True, sensiMouseClick=True):
         """
         constructeur. (thx captain obvious)
 
-        entrÈe :
-            funcAction : rÈfÈrence vers la fonction ‡ exÈcuter quand ce MenuElem est activÈ.
-                (C'est ‡ dire quand le joueur appuie sur une touche, ou clique)
+        entr√©e :
+            funcAction : r√©f√©rence vers la fonction √† ex√©cuter quand ce MenuElem est activ√©.
+                (C'est √† dire quand le joueur appuie sur une touche, ou clique)
 
-            sensiKeys : boolÈen. Indique si ce MenuElem rÈagit aux touches, ou pas
+            sensiKeys : bool√©en. Indique si ce MenuElem r√©agit aux touches, ou pas
 
-            sensiMouseClick : boolÈen. Indique si il rÈagit aux clics gauche, ou pas.
+            sensiMouseClick : bool√©en. Indique si il r√©agit aux clics gauche, ou pas.
         """
 
         #init de la mother-classe. mother-fucker !!
@@ -60,13 +60,13 @@ class MenuSensitiveAnyKeyButton(MenuElem):
 
     def takeStimuliKeys(self, dictKeyPressed, keyCodeDown, keyCharDown):
         """
-        prise en compte des touches appuyÈes par le joueur.
+        prise en compte des touches appuy√©es par le joueur.
         (voir description dans la classe MenuElem)
         """
 
         #On est sensible aux appuyages de touches. N'importe lesquels.
-        #Donc faut exÈcuter la fonction pointÈe par funcAction,
-        #et propager les messages d'ihm renvoyÈs par cette fonction, tel quel.
+        #Donc faut ex√©cuter la fonction point√©e par funcAction,
+        #et propager les messages d'ihm renvoy√©s par cette fonction, tel quel.
         if self.sensiKeys:
             return self.funcAction()
 
@@ -81,8 +81,8 @@ class MenuSensitiveAnyKeyButton(MenuElem):
         """
 
         #On est sensible aux clics gauche, et justement, le joueur a fait un clic gauche,
-        #Donc faut exÈcuter la fonction pointÈe par funcAction,
-        #et propager les messages d'ihm renvoyÈs par cette fonction, tel quel.
+        #Donc faut ex√©cuter la fonction point√©e par funcAction,
+        #et propager les messages d'ihm renvoy√©s par cette fonction, tel quel.
         if self.sensiMouseClick and mouseDown:
             return self.funcAction()
 

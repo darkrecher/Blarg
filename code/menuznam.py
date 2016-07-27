@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,15 +10,15 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 17/03/2011
+date de la derniÃ¨re relecture-commentage : 17/03/2011
 
 Menu qui s'active que au premier lancement du jeu, et qui demande au joueur d'entrer son nom.
 """
@@ -50,11 +50,11 @@ class MenuManagerEnterName(MenuManager):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
 
             surfaceDest, dicImg : voir constructeur de MenuManager
 
-            fontDefault : objet pygame.font.Font. police de caractères par défaut.
+            fontDefault : objet pygame.font.Font. police de caractÃ¨res par dÃ©faut.
         """
 
         MenuManager.__init__(self, surfaceDest, dicImg)
@@ -64,95 +64,95 @@ class MenuManagerEnterName(MenuManager):
         imgFrame = self.dicImg[IMG_FRAME_NAME]
         imgButtonOK = self.dicImg[IMG_BUTT_OK]
 
-        # --- Création des éléments du menu ---
+        # --- CrÃ©ation des Ã©lÃ©ments du menu ---
 
-        #image statique de l'espèce de fenêtre qu'on fout au milieu de l'écran.
-        #mimgFrameName, ça veut dire : l'image de la Frame pour saisir le Name.
-        #Et non pas : l'image du nom de la frame. Parce que ça voudrait rien dire. OK put'neg' ?
+        #image statique de l'espÃ¨ce de fenÃªtre qu'on fout au milieu de l'Ã©cran.
+        #mimgFrameName, Ã§a veut dire : l'image de la Frame pour saisir le Name.
+        #Et non pas : l'image du nom de la frame. Parce que Ã§a voudrait rien dire. OK put'neg' ?
         mimgFrameName = MenuImage(pyRect(100, 110), imgFrame)
 
-        #création du texte statique demandant au joueur de saisir son nom.
+        #crÃ©ation du texte statique demandant au joueur de saisir son nom.
         param = (pyRect(120, 115), self.fontDefault, txtStock.ENTER_NAME)
         mtxtEnterName = MenuText(*param)
 
-        #création du bouton OK. Alors ce bouton, c'est juste une image (de bouton),
-        #avec le mot "OK" écrit dessus. Le texte est vraiment en dur de dur.
-        #C'est crado, je reconnais. Heureusement que "OK" c'est aussi bien anglais que français.
+        #crÃ©ation du bouton OK. Alors ce bouton, c'est juste une image (de bouton),
+        #avec le mot "OK" Ã©crit dessus. Le texte est vraiment en dur de dur.
+        #C'est crado, je reconnais. Heureusement que "OK" c'est aussi bien anglais que franÃ§ais.
         param = (pyRect(185, 170), imgButtonOK, self.mactOK)
         mbutiOK = MenuSensitiveImage(*param)
 
-        #Création du MenuElem permettant de saisir une chaîne de caractère (le nom du joueur).
-        #La zone de saisie est initalisée avec le nom "officiel" du héros.
-        #rah, j'aime pas cette formulation. Tous les param sont coincés à droite, et ça
+        #CrÃ©ation du MenuElem permettant de saisir une chaÃ®ne de caractÃ¨re (le nom du joueur).
+        #La zone de saisie est initalisÃ©e avec le nom "officiel" du hÃ©ros.
+        #rah, j'aime pas cette formulation. Tous les param sont coincÃ©s Ã  droite, et Ã§a
         #prend plein de ligne pour que d'alle. Mais je peux pas faire ma bidouille de *param,
-        #car y'en a qui sont nommé. Ou alors avec un dict mais ça devient vraiment lourd
-        #TRODO : au fait c'est bien ou mal, cette écriture *param ? Je l'ai fait partout...
+        #car y'en a qui sont nommÃ©. Ou alors avec un dict mais Ã§a devient vraiment lourd
+        #TRODO : au fait c'est bien ou mal, cette Ã©criture *param ? Je l'ai fait partout...
         self.meditPlayerName = MenuEditableText(pyRect(120, 140, 160, 20),
                                                 self.fontDefault,
                                                 text=NAME_HERO,
                                                 maxNbrChar=15)
 
-        #création des menuElem liant des touches à des fonctions.
+        #crÃ©ation des menuElem liant des touches Ã  des fonctions.
 
-        #liaisonnage des deux touches entrée à la fonction de validation du nom.
-        #(C'est la même fonction que celle qui est liée à l'appui sur le bouton "OK")
+        #liaisonnage des deux touches entrÃ©e Ã  la fonction de validation du nom.
+        #(C'est la mÃªme fonction que celle qui est liÃ©e Ã  l'appui sur le bouton "OK")
         mkeyEnterOK_1 = MenuSensitiveKey(self.mactOK, pygl.K_RETURN)
         mkeyEnterOK_2 = MenuSensitiveKey(self.mactOK, pygl.K_KP_ENTER)
 
-        #liaisonnage de la fonction de quittage à la touche Escape.
+        #liaisonnage de la fonction de quittage Ã  la touche Escape.
         #(C'est pas le quittage classique. Voir description de la fonction mactQuitCancel
         mkeyQuitCancel = MenuSensitiveKey(self.mactQuitCancel, pygl.K_ESCAPE)
 
-        # --- Rangement de tous les MenuElem créés, dans la grande liste globale. ---
+        # --- Rangement de tous les MenuElem crÃ©Ã©s, dans la grande liste globale. ---
 
         #pas besoin de faire une liste de liste comme dans d'autres MenuManager.
-        #Tous les MenuElem qu'on a créé l'ont été de manière individuelle.
-        #Y'a juste à les mettre bout à bout dans la liste et voilà.
+        #Tous les MenuElem qu'on a crÃ©Ã© l'ont Ã©tÃ© de maniÃ¨re individuelle.
+        #Y'a juste Ã  les mettre bout Ã  bout dans la liste et voilÃ .
         self.listMenuElem = (mimgFrameName, mtxtEnterName,
                              self.meditPlayerName, mbutiOK,
                              mkeyQuitCancel, mkeyEnterOK_1, mkeyEnterOK_2)
 
-        #j'indique 2 en paramètre, pour que le focus se mette initialement sur
-        #le MenuElem numéro 2 de la liste. C'est à dire la zone de saisie du nom du joueur.
+        #j'indique 2 en paramÃ¨tre, pour que le focus se mette initialement sur
+        #le MenuElem numÃ©ro 2 de la liste. C'est Ã  dire la zone de saisie du nom du joueur.
         self.initFocusCyclingInfo(2)
 
 
     def mactOK(self):
         """
-        fonction qui s'exécute quand on appuie sur le bouton OK, ou sur une touche Entrée.
-        Si le joueur n'a pas saisi de nom, faut rien faire. (Et il a qu'à piger tout seul
+        fonction qui s'exÃ©cute quand on appuie sur le bouton OK, ou sur une touche EntrÃ©e.
+        Si le joueur n'a pas saisi de nom, faut rien faire. (Et il a qu'Ã  piger tout seul
         qu'il faut qu'il saisisse un nom, ce con.).
-        Si le joueur a saisi un nom, faut quitter le menu, pour passer à la suite.
+        Si le joueur a saisi un nom, faut quitter le menu, pour passer Ã  la suite.
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
 
-        #récupération du nom saisi dans la zone de texte.
+        #rÃ©cupÃ©ration du nom saisi dans la zone de texte.
         self.nameTyped = self.meditPlayerName.theLamoche.text
 
         if self.nameTyped != "":
-            #Le nom n'est pas vide. C'est cool. On quitte le menu. (Le code extérieur
-            #s'occupe de récupérer ce nom pour en faire tout un tas de chouettes trucs avec).
+            #Le nom n'est pas vide. C'est cool. On quitte le menu. (Le code extÃ©rieur
+            #s'occupe de rÃ©cupÃ©rer ce nom pour en faire tout un tas de chouettes trucs avec).
             return (IHMSG_QUIT, )
         else:
             #Le nom est vide. On se contente de redessiner le menu. Il ne se passe rien de plus.
-            #(Et si ça se trouve, c'est même pas la peine d'envoyer le message de redraw. boarf)
+            #(Et si Ã§a se trouve, c'est mÃªme pas la peine d'envoyer le message de redraw. boarf)
             return (IHMSG_REDRAW_MENU, )
 
 
     def mactQuitCancel(self):
         """
-        fonction qui s'exécute lorsqu'on appuie sur Esc.
-        Il faut quitter le menu, mais également quitter tout le jeu.
-        Si le joueur appuie sur Esc à cette étape du jeu (alors que c'est le début), on considère
+        fonction qui s'exÃ©cute lorsqu'on appuie sur Esc.
+        Il faut quitter le menu, mais Ã©galement quitter tout le jeu.
+        Si le joueur appuie sur Esc Ã  cette Ã©tape du jeu (alors que c'est le dÃ©but), on considÃ¨re
         que c'est parce qu'il ne veut plus jouer (dommage, c'est triste). Donc on quitte
-        directement, sans prendre en compte le nom saisi, et sans l'enregistrer où que ce soye.
+        directement, sans prendre en compte le nom saisi, et sans l'enregistrer oÃ¹ que ce soye.
         plat-dessert : tuple de message d'ihm, comme d'hab'.
         """
 
-        #Donc faut quitter le menu, d'où le IHMSG_QUIT.
-        #Et il faut aussi indiquer au code extérieur que le joueur ne veut plus joueur.
-        #Donc on rajoute le IHMSG_CANCEL. Le code extérieur s'occupera de détecter la présence
-        #de ce message dans le tuple, et d'agir en conséquence, en quittant tout le jeu.
+        #Donc faut quitter le menu, d'oÃ¹ le IHMSG_QUIT.
+        #Et il faut aussi indiquer au code extÃ©rieur que le joueur ne veut plus joueur.
+        #Donc on rajoute le IHMSG_CANCEL. Le code extÃ©rieur s'occupera de dÃ©tecter la prÃ©sence
+        #de ce message dans le tuple, et d'agir en consÃ©quence, en quittant tout le jeu.
         #(Un peu comme Jospin, le "parti socialiste". (Le socialiste qui est parti)).
         return (IHMSG_QUIT, IHMSG_CANCEL)
 

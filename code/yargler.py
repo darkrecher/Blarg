@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,22 +10,22 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 02/03/2011
+date de la derniÃ¨re relecture-commentage : 02/03/2011
 
 classe qui joue les sons. Yaaaah !!! yargl.
 
-Les sons sont organisés par groupe.
-Un groupe correspond à un événement (ex : coup de feu, magicien qui se prend une balle, ...)
-Il peut y avoir plusieurs sons dans un même groupe.
-Lorsque l'événement survient, on choisit un son au hasard parmi ceux du groupe, et on le joue.
+Les sons sont organisÃ©s par groupe.
+Un groupe correspond Ã  un Ã©vÃ©nement (ex : coup de feu, magicien qui se prend une balle, ...)
+Il peut y avoir plusieurs sons dans un mÃªme groupe.
+Lorsque l'Ã©vÃ©nement survient, on choisit un son au hasard parmi ceux du groupe, et on le joue.
 """
 
 import os
@@ -35,30 +35,30 @@ import random
 from common import (securedPrint, SOUND_DIRECTORY_NAME,
                     SOUND_ENABLED, SOUND_DISABLED)
 
-#liste des identifiants de sons. Chaque identifiant peut se rapporter à un son unique,
-#ou à un groupe de sons.
+#liste des identifiants de sons. Chaque identifiant peut se rapporter Ã  un son unique,
+#ou Ã  un groupe de sons.
 (SND_MAG_BURST,         #magicien qui explose
  SND_MAG_DYING_ROTATE,  #magicien qui meurt en tournoyant dans les airs
  SND_MAG_DYING_SHIT,    #magicien qui meurt en se transformant en chiasse
- SND_GUN_REARM,         #réarmement du flingue
+ SND_GUN_REARM,         #rÃ©armement du flingue
  SND_GUN_FIRE,          #coups de feu. Pan !
- SND_HERO_HURT,         #cri du héro quand il se fait toucher
+ SND_HERO_HURT,         #cri du hÃ©ro quand il se fait toucher
  SND_GUN_RELOAD,        #rechargement du flingue
- SND_MAG_DYING_FART,    #pet du magicien, quand il meurt en s'envolant et en pétant.
- SND_HERO_DIE,          #héros qui meurt
+ SND_MAG_DYING_FART,    #pet du magicien, quand il meurt en s'envolant et en pÃ©tant.
+ SND_HERO_DIE,          #hÃ©ros qui meurt
  SND_MAG_HURT,          #magicien qui se fait toucher (sans mourir)
- SND_MAG_APPEAR,        #magicien qui apparaît
- SND_PREZ_BLARG,        #le "Blarg" de la présentation
- SND_STORY_MUSIC,       #la chanson que je chante moi-même pendant le scrolling du scénario
- SND_MENU_SELECT,       #"blolop" de sélection d'une option du menu
- SND_MENU_CYCLE,        #"plop" de cyclage de focus d'un élément de menu vers un autre
+ SND_MAG_APPEAR,        #magicien qui apparaÃ®t
+ SND_PREZ_BLARG,        #le "Blarg" de la prÃ©sentation
+ SND_STORY_MUSIC,       #la chanson que je chante moi-mÃªme pendant le scrolling du scÃ©nario
+ SND_MENU_SELECT,       #"blolop" de sÃ©lection d'une option du menu
+ SND_MENU_CYCLE,        #"plop" de cyclage de focus d'un Ã©lÃ©ment de menu vers un autre
 ) = range(15)
 
 #dictionnaire des infos permettant de charger tous les fichiers de sons.
-#clé    : identifiant du son ou du groupe de son
-#valeur : tuple de 2 éléments
+#clÃ©    : identifiant du son ou du groupe de son
+#valeur : tuple de 2 Ã©lÃ©ments
 #         - noms de fichier son court.
-#         - nombre de sons à charger pour ce groupe
+#         - nombre de sons Ã  charger pour ce groupe
 DICT_SND_FILENAME = {
     SND_MAG_BURST         : ("magbur", 12),
     SND_MAG_DYING_ROTATE  : ("magrot", 15),
@@ -77,11 +77,11 @@ DICT_SND_FILENAME = {
     SND_MENU_CYCLE        : ("pop",     1),
 }
 
-#on a déjà, autre part, un dico faisant la correspondance entre des booléens et
-#le son activé ou pas. C'est le menuzcon.GLOB_DATA_SOUND_FROM_TICK_VALUE.
-#Mais les booleans n'on pas la même signification.
-#Y'a le boolean de la case à cocher du son. Et le boolean de "doit-on jouer des sons ou pas".
-#Moi je dis que c'est pas les même, que d'abord que même que ouais.
+#on a dÃ©jÃ , autre part, un dico faisant la correspondance entre des boolÃ©ens et
+#le son activÃ© ou pas. C'est le menuzcon.GLOB_DATA_SOUND_FROM_TICK_VALUE.
+#Mais les booleans n'on pas la mÃªme signification.
+#Y'a le boolean de la case Ã  cocher du son. Et le boolean de "doit-on jouer des sons ou pas".
+#Moi je dis que c'est pas les mÃªme, que d'abord que mÃªme que ouais.
 DIC_SOUND_ENABLED_FROM_GLOB_DATA = {
     SOUND_ENABLED   : True,
     SOUND_DISABLED  : False,
@@ -97,7 +97,7 @@ class SoundYargler():
         constructeur. (thx captain obvious)
         """
 
-        #Indique si on a réussi le chargement des fichiers sons.
+        #Indique si on a rÃ©ussi le chargement des fichiers sons.
         self.loadSoundSucess = False
 
 
@@ -105,18 +105,18 @@ class SoundYargler():
         """
         charge un fichier son
 
-        entrées :
-            filename : String indiquant le nom complet du fichier son à charger.
-                       Les sons doivent toutes être dans le sous-répertoire SOUND_DIRECTORY_NAME.
+        entrÃ©es :
+            filename : String indiquant le nom complet du fichier son Ã  charger.
+                       Les sons doivent toutes Ãªtre dans le sous-rÃ©pertoire SOUND_DIRECTORY_NAME.
 
         plat-dessert :
-            l'objet pygame.mixer.Sound contenant le son chargé
+            l'objet pygame.mixer.Sound contenant le son chargÃ©
         """
 
         pathname = os.path.join(SOUND_DIRECTORY_NAME, filename)
 
-        #Tentative de chargement du son. On quitte totalement le jeu comme un voleur si ça fail.
-        #TRODO pour plus tard : ouais en fait ça throw pas d'exception quand le chargement fail.
+        #Tentative de chargement du son. On quitte totalement le jeu comme un voleur si Ã§a fail.
+        #TRODO pour plus tard : ouais en fait Ã§a throw pas d'exception quand le chargement fail.
         #Va falloir trouver autre chose. Monde de merde.
         try:
             sound = pygame.mixer.Sound(pathname)
@@ -132,7 +132,7 @@ class SoundYargler():
         charge tous les fichiers sons, et les range comme il faut dans les groupes de son.
 
         plat-dessert :
-            rien du tout. Mais la fonction peut modifier self.loadSoundSucess si on réussit.
+            rien du tout. Mais la fonction peut modifier self.loadSoundSucess si on rÃ©ussit.
         """
 
         #Fail si le biniou pour balancer les sons n'est pas disponible.
@@ -141,18 +141,18 @@ class SoundYargler():
             return
 
         #dictionnaire qui contiendra tous les sons et groupes de sons.
-        #clé : identifiant du son ou groupe de son
-        #valeur : tuple de 2 éléments.
-        #          - nombre de son dans le groupe. (Ca peut être 1)
+        #clÃ© : identifiant du son ou groupe de son
+        #valeur : tuple de 2 Ã©lÃ©ments.
+        #          - nombre de son dans le groupe. (Ca peut Ãªtre 1)
         #          - tuple avec tous les sons du groupe.  (objet pygame.mixe.Sound)
         #le nombre de sons, on pourrait l'obtenir avec len(tuple_des_sons).
-        #Mais comme j'en ai besoin tout le temps de cette valeur, je préfère la "pré-calculer".
+        #Mais comme j'en ai besoin tout le temps de cette valeur, je prÃ©fÃ¨re la "prÃ©-calculer".
         self.dictSoundGroups = {}
 
         for soundGroupId, soundGroupInfo in DICT_SND_FILENAME.items():
 
             shortFileName, nbrSound = soundGroupInfo
-            #liste qui contiendra tous les sons du groupe, quand on les aura chargés.
+            #liste qui contiendra tous les sons du groupe, quand on les aura chargÃ©s.
             listSound = []
 
             #chargement des sons du groupe
@@ -160,8 +160,8 @@ class SoundYargler():
 
                 #les sons d'un groupe ont des noms de fichiers semblables :
                 #"nomCourt00.ogg", "nomCourt01.ogg", "nomCourt02.ogg", ...
-                #Donc faut construire le nom de fichier complet à partir du nom
-                #de fichier court, du numéro du son écrit sur 2 chiffres, et de ".ogg". Voilà.
+                #Donc faut construire le nom de fichier complet Ã  partir du nom
+                #de fichier court, du numÃ©ro du son Ã©crit sur 2 chiffres, et de ".ogg". VoilÃ .
                 longFileName = "".join((shortFileName,
                                         str(soundIndex).rjust(2, "0"),
                                         ".ogg"))
@@ -173,29 +173,29 @@ class SoundYargler():
             #rangement du groupe de son (avec le nombre de son) dans le dictionnaire.
             self.dictSoundGroups[soundGroupId] = (nbrSound, tuple(listSound))
 
-        #bon, si on est arrivé jusqu'ici, y'a qu'à dire que tout va bien. (Même si
-        #c'est pas forcément vrai, puisque pas d'exception générée par la fonction loadSound.)
+        #bon, si on est arrivÃ© jusqu'ici, y'a qu'Ã  dire que tout va bien. (MÃªme si
+        #c'est pas forcÃ©ment vrai, puisque pas d'exception gÃ©nÃ©rÃ©e par la fonction loadSound.)
         self.loadSoundSucess = True
 
 
     def playSound(self, soundGroupId):
         """
-        choisit au hasard un son, parmi ceux du groupe spécifié en paramètre,
+        choisit au hasard un son, parmi ceux du groupe spÃ©cifiÃ© en paramÃ¨tre,
         et joue ce son. "Tut tut pouet pouet Arrrggll spflark!"
 
-        entrées :
-            soundGroupId : identifiant du son ou du groupe de son à jouer.
+        entrÃ©es :
+            soundGroupId : identifiant du son ou du groupe de son Ã  jouer.
         """
 
-        #on ne joue pas de son si le chargement des sons a raté.
+        #on ne joue pas de son si le chargement des sons a ratÃ©.
         if not self.loadSoundSucess:
             return
 
-        #on ne joue pas de son si ils ont été désactivés par le joueur, lors de la config.
+        #on ne joue pas de son si ils ont Ã©tÃ© dÃ©sactivÃ©s par le joueur, lors de la config.
         if not self.soundEnabled:
             return
 
-        #récupération des infos liées au groupe de son indiqué par le paramètre.
+        #rÃ©cupÃ©ration des infos liÃ©es au groupe de son indiquÃ© par le paramÃ¨tre.
         (nbrSound, listSound) = self.dictSoundGroups[soundGroupId]
 
         if nbrSound > 1:
@@ -203,29 +203,29 @@ class SoundYargler():
             soundChosen = random.choice(listSound)
 
         else:
-            #Il n'y a qu'un seul son dans le groupe. Pas la peine de se prendre la tête à
+            #Il n'y a qu'un seul son dans le groupe. Pas la peine de se prendre la tÃªte Ã 
             #faire du random. On le prend directement.
             soundChosen = listSound[0]
 
-        #on joue le son. Hop, y'a une fonction toute faite pour ça. Youpi.
+        #on joue le son. Hop, y'a une fonction toute faite pour Ã§a. Youpi.
         soundChosen.play()
 
 
     def changeSoundEnablation(self, globDataSound):
         """
-        active/désactive le son. En fonction de la global Data, qui provient,
-        soit du fichier de sauvegarde/config, soit de la case à cocher du menu de config.
+        active/dÃ©sactive le son. En fonction de la global Data, qui provient,
+        soit du fichier de sauvegarde/config, soit de la case Ã  cocher du menu de config.
         """
 
-        #conversion booléen <- globData
+        #conversion boolÃ©en <- globData
         soundEnablation = DIC_SOUND_ENABLED_FROM_GLOB_DATA[globDataSound]
-        #enregistrement du booléen.
+        #enregistrement du boolÃ©en.
         self.soundEnabled = soundEnablation
 
 
-#Instanciation immédiate de la classe stockant tous les sons.
-#Je suis pas fan de ce genre de truc. Mais là c'est un peu obligé. Sinon faut que
-#je le passe en paramètre à plein plein de classe.
-#Le chargement de tous les sons n'est pas effectué dès l'instanciation de la classe.
-#Il faut le faire explicitement, en exécutant loadAllSounds. Tout cela se passe ailleurs.
+#Instanciation immÃ©diate de la classe stockant tous les sons.
+#Je suis pas fan de ce genre de truc. Mais lÃ  c'est un peu obligÃ©. Sinon faut que
+#je le passe en paramÃ¨tre Ã  plein plein de classe.
+#Le chargement de tous les sons n'est pas effectuÃ© dÃ¨s l'instanciation de la classe.
+#Il faut le faire explicitement, en exÃ©cutant loadAllSounds. Tout cela se passe ailleurs.
 theSoundYargler = SoundYargler()

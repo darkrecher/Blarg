@@ -1,24 +1,24 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 Blarg version 1.0
 
-Démo du système de menu.
-Lancement d'une démo avec des MenuElements customisés :
-des carrés qui réagissent aux événements, et qui les signalent dans un
-MenuText associé.
+DÃ©mo du systÃ¨me de menu.
+Lancement d'une dÃ©mo avec des MenuElements customisÃ©s :
+des carrÃ©s qui rÃ©agissent aux Ã©vÃ©nements, et qui les signalent dans un
+MenuText associÃ©.
 
 L'utilisateur peut effectuer les actions suivantes :
- - cliquer sur un carré -> le carré prend le focus et s'active immédiatement.
- - touche Tab -> cyclage de focus entre les 3 carrés affichés.
- - touche Espace ou Entrée -> active l'élément ayant le focus.
+ - cliquer sur un carrÃ© -> le carrÃ© prend le focus et s'active immÃ©diatement.
+ - touche Tab -> cyclage de focus entre les 3 carrÃ©s affichÃ©s.
+ - touche Espace ou EntrÃ©e -> active l'Ã©lÃ©ment ayant le focus.
  - touche Echap -> quitter.
 
-Les clics et la touche Echap sont gérés par le MenuElement customisé, à l'aide
-de fonction overridée.
+Les clics et la touche Echap sont gÃ©rÃ©s par le MenuElement customisÃ©, Ã  l'aide
+de fonction overridÃ©e.
 
-Les touches Tab, Espace et Entrée sont gérées directement par le MenuManager.
+Les touches Tab, Espace et EntrÃ©e sont gÃ©rÃ©es directement par le MenuManager.
 """
 
 
@@ -43,25 +43,25 @@ def launch_demo_menu_event_teller():
     pygame.init()
     SCREEN_RECT = pygame.Rect(0, 0, 400, 300)
     screen = pygame.display.set_mode(SCREEN_RECT.size, 0)
-    # chargement d'une police de caractère.
+    # chargement d'une police de caractÃ¨re.
     load_font_infos = common.loadFonts()
     fontDefault = load_font_infos[1]
 
-    # Création d'un premier label. (Texte simple, non interactif)
+    # CrÃ©ation d'un premier label. (Texte simple, non interactif)
     label_1 = MenuText(
         pygame.Rect(10, 10, 0, 0),
         fontDefault,
         text="bonjour !!")
-    # Création d'un élément de menu customisé, réagissant aux événements.
-    # On lui passe le label en paramètre. Il changera le texte de ce label,
-    # afin de signaler les événements détectés.
+    # CrÃ©ation d'un Ã©lÃ©ment de menu customisÃ©, rÃ©agissant aux Ã©vÃ©nements.
+    # On lui passe le label en paramÃ¨tre. Il changera le texte de ce label,
+    # afin de signaler les Ã©vÃ©nements dÃ©tectÃ©s.
     event_teller_1 = MenuElemEventTeller(
         pygame.rect.Rect(10, 50, 70, 70),
         "haut_gauche",
         label_1)
 
-    # Création de deux autres couples label + MenuElemEventTeller.
-    # Ça permet de bien comprendre ce qu'il se passe lors des cyclages
+    # CrÃ©ation de deux autres couples label + MenuElemEventTeller.
+    # Ã‡a permet de bien comprendre ce qu'il se passe lors des cyclages
     # de focus avec Tab.
     label_2 = MenuText(
         pygame.Rect(210, 10, 0, 0),
@@ -79,28 +79,28 @@ def launch_demo_menu_event_teller():
         pygame.rect.Rect(10, 200, 70, 70),
         "bas_gauche",
         label_3)
-    # Élément qui fait quitter lorsqu'on appuie sur Echap.
+    # Ã‰lÃ©ment qui fait quitter lorsqu'on appuie sur Echap.
     mkey_escape_quit = MenuSensitiveKey(
         mactCloseApp,
         pygl.K_ESCAPE)
 
-    # Définition de l'image de fond du menu, et envoi au MenuManager.
+    # DÃ©finition de l'image de fond du menu, et envoi au MenuManager.
     # Il y en a besoin, car le texte des MenuText change. Il faut donc
     # redessiner l'image de fond, puis dessiner le nouveau texte par-dessus.
-    # Sinon, les différents textes des MenuText vont se superposer au fur et
-    # à mesure qu'ils changent.
-    # L'image de fond est un rectangle noir qui prend tout l'écran.
+    # Sinon, les diffÃ©rents textes des MenuText vont se superposer au fur et
+    # Ã  mesure qu'ils changent.
+    # L'image de fond est un rectangle noir qui prend tout l'Ã©cran.
     img_background = pygame.Surface(SCREEN_RECT.size)
     img_background.fill((0, 0, 0))
     # On ne peut pas donner directement l'image de fond au MenuManager.
-    # (C'est mal fichu mais c'est comme ça). Il faut la mettre dans un
-    # dictionnaire (qui pourraient éventuellemment contenir d'autres images
+    # (C'est mal fichu mais c'est comme Ã§a). Il faut la mettre dans un
+    # dictionnaire (qui pourraient Ã©ventuellemment contenir d'autres images
     # utiles pour le MenuManager). Ensuite, on envoie ce dictionnaire, ainsi
-    # que la clé correspondant à l'image de fond.
+    # que la clÃ© correspondant Ã  l'image de fond.
     img_background_key = 0
     dict_img_background = { img_background_key:img_background }
 
-    # création du menu, définition de ses éléments, init, lancement.
+    # crÃ©ation du menu, dÃ©finition de ses Ã©lÃ©ments, init, lancement.
     menu_main = MenuManager(screen, dict_img_background, img_background_key)
     menu_main.listMenuElem = [
         label_1, event_teller_1,

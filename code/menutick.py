@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,38 +10,38 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 Réchèr
+    Copyright 2010 RÃ©chÃ¨r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la dernière relecture-commentage : 25/02/2011
+date de la derniÃ¨re relecture-commentage : 25/02/2011
 
-Elément de menu qui poutre sa race, parce que c'est une case à cocher
+ElÃ©ment de menu qui poutre sa race, parce que c'est une case Ã  cocher
 
 quelques explications :
 
-Bon, à la base, c'est un MenuElem comme un autre. focusable, sensible aux clics, bindé
+Bon, Ã  la base, c'est un MenuElem comme un autre. focusable, sensible aux clics, bindÃ©
 avec une funcAction.
-Le cochage/décochage doit être indiqué explicitement, dans la funcAction. Il suffit
-d'appeler la fonction toute faite "toggleTick" dans la funcAction. Si on le fait pas, ça
+Le cochage/dÃ©cochage doit Ãªtre indiquÃ© explicitement, dans la funcAction. Il suffit
+d'appeler la fonction toute faite "toggleTick" dans la funcAction. Si on le fait pas, Ã§a
 toggle pas. Haha.
 
-Y'a une variable self.boolTickValue. Pas compliqué : True=coché. False=décoché.
+Y'a une variable self.boolTickValue. Pas compliquÃ© : True=cochÃ©. False=dÃ©cochÃ©.
 
-Si on veut, on peut associer (via un dictionnaire), une literalValue à chaque valeur
-coché/décoché. La literalValue peut être de n'importe quel type, on s'en fout.
-(Mais en théorie, c'est des string, enfin plus exactement des globDataValue.)
-La variable self.literTickValue stocke la valeur litérale actuelle.
+Si on veut, on peut associer (via un dictionnaire), une literalValue Ã  chaque valeur
+cochÃ©/dÃ©cochÃ©. La literalValue peut Ãªtre de n'importe quel type, on s'en fout.
+(Mais en thÃ©orie, c'est des string, enfin plus exactement des globDataValue.)
+La variable self.literTickValue stocke la valeur litÃ©rale actuelle.
 
 Attention, trip total :
-ça ça change plein de trucs. Je fais semblant de taper des trucs pour qu'elle me lâche
-la gamine "au conseil théorie". C'est Pas tout de suite. Pas le choix.
+Ã§a Ã§a change plein de trucs. Je fais semblant de taper des trucs pour qu'elle me lÃ¢che
+la gamine "au conseil thÃ©orie". C'est Pas tout de suite. Pas le choix.
 Gratuit. Non que d'alle. J'en sais rien depuis longtemps.  Bordel de merde. Faut que kje c
-Je commence à.
+Je commence Ã .
 end of trip total
 
 """
@@ -58,7 +58,7 @@ from menuseim import MenuSensitiveImage
 from menutxt  import MenuText
 from txtstock import txtStock
 
-#distance, en pixel, entre l'image de la case à cocher, et le texte.
+#distance, en pixel, entre l'image de la case Ã  cocher, et le texte.
 X_SPACE_IMG_TEXT = 5
 
 
@@ -76,7 +76,7 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
         """
         constructeur. (thx captain obvious)
 
-        entrée :
+        entrÃ©e :
 
             rectPos, font, idTxtStock, text :
                 voir description du contructeur de MenuText
@@ -85,119 +85,119 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
                 voir description du contructeur de MenuSensitiveSquare
 
             dicTickImage : dictionnaire contenant 2 listes d'images,
-                représentant de la case à cochay.
-                clé : booléen
-                valeur : liste de pygame.Surface. Le premier élément de la liste,
-                         c'est l'image de la case, soit coché, soit décoché (selon la clé)
-                         Les pygame.Surface suivantes, c'est la même image, mais de plus
+                reprÃ©sentant de la case Ã  cochay.
+                clÃ© : boolÃ©en
+                valeur : liste de pygame.Surface. Le premier Ã©lÃ©ment de la liste,
+                         c'est l'image de la case, soit cochÃ©, soit dÃ©cochÃ© (selon la clÃ©)
+                         Les pygame.Surface suivantes, c'est la mÃªme image, mais de plus
                          en plus claires. Ca sert quand le MenuElem prend/perd le focus.
-                         Il faut le même nombre d'images dans les deux listes. Sinon ça risque
+                         Il faut le mÃªme nombre d'images dans les deux listes. Sinon Ã§a risque
                          de faire des trucs zarb parfois.
 
-            dicLiteralFromBool : dictionnaire de correspondance pour les valeurs litérales.
-                clé : booléen.
-                valeur : n'importe quoi. Ce sera la valeur litérale correspondante.
-                Si on passe un dictionnaire vide, ou un dictionnaire ne possédant pas les clés
-                True et False, alors on peut pas utiliser les valeurs litérales.
-                On n'a accès que aux valeurs booléennes (self.boolTickValue)
+            dicLiteralFromBool : dictionnaire de correspondance pour les valeurs litÃ©rales.
+                clÃ© : boolÃ©en.
+                valeur : n'importe quoi. Ce sera la valeur litÃ©rale correspondante.
+                Si on passe un dictionnaire vide, ou un dictionnaire ne possÃ©dant pas les clÃ©s
+                True et False, alors on peut pas utiliser les valeurs litÃ©rales.
+                On n'a accÃ¨s que aux valeurs boolÃ©ennes (self.boolTickValue)
 
-            literalValInit : param non utilisé si on ne définit pas dicLiteralFromBool
-                Ce param doit valoir l'une des deux valeurs litérales.
-                Il permet de définir, si, au départ, la case est cochée ou pas.
-                on n'en tient pas compte si il n'est pas égal à l'une des deux valeurs litérales
-                définies dans le dico.
+            literalValInit : param non utilisÃ© si on ne dÃ©finit pas dicLiteralFromBool
+                Ce param doit valoir l'une des deux valeurs litÃ©rales.
+                Il permet de dÃ©finir, si, au dÃ©part, la case est cochÃ©e ou pas.
+                on n'en tient pas compte si il n'est pas Ã©gal Ã  l'une des deux valeurs litÃ©rales
+                dÃ©finies dans le dico.
 
-            boolTickValueInit : valeur booléenne.
-                param non utilisé si on définit correctement dicLiteralFromBool et literalValInit,
-                Il définit la valeur initiale coché/pas coché de la case, tout bêtement.
+            boolTickValueInit : valeur boolÃ©enne.
+                param non utilisÃ© si on dÃ©finit correctement dicLiteralFromBool et literalValInit,
+                Il dÃ©finit la valeur initiale cochÃ©/pas cochÃ© de la case, tout bÃªtement.
 
-        l'ordre des params est bordelique. C'est à cause des params optionnels.
-        Et pis j'ai déjà dis ça ailleurs, de toutes façons.
+        l'ordre des params est bordelique. C'est Ã  cause des params optionnels.
+        Et pis j'ai dÃ©jÃ  dis Ã§a ailleurs, de toutes faÃ§ons.
         """
 
         MenuElem.__init__(self)
 
-        #tentative d'activation des valeurs litérales, selon ce qui est fourni en param.
+        #tentative d'activation des valeurs litÃ©rales, selon ce qui est fourni en param.
         param = (dicLiteralFromBool, literalValInit, boolTickValueInit)
         if not self.activateLiteralValue(*param):
 
-            #ça a fail. On peut pas utiliser les valeurs litérales. On fout des valeurs
-            #par défaut dans les trucs qui sont liés à la gestion de la litéralitude.
-            #bon, ça c'est la valeur booléenne en fait
+            #Ã§a a fail. On peut pas utiliser les valeurs litÃ©rales. On fout des valeurs
+            #par dÃ©faut dans les trucs qui sont liÃ©s Ã  la gestion de la litÃ©ralitude.
+            #bon, Ã§a c'est la valeur boolÃ©enne en fait
             self.boolTickValue = boolTickValueInit
-            #dictionnaire de correspondance val litérales <- val booléennes
+            #dictionnaire de correspondance val litÃ©rales <- val boolÃ©ennes
             self.dicLiteralFromBool = {}
-            #dictionnaire de correspondance val booléennes <- val litérales
+            #dictionnaire de correspondance val boolÃ©ennes <- val litÃ©rales
             #oui j'ai besoin de ces deux dictionnaires, qui sont chacun dans un sens, et
             #je vous emmerde !
             self.dicBoolFromLiteral = {}
-            #valeurs litérales. Donc du coup y'a rien dedans. Paf.
+            #valeurs litÃ©rales. Donc du coup y'a rien dedans. Paf.
             self.literTickValue = None
 
         self.rectPosImg = rectPos
         self.dicTickImage = dicTickImage
-        #récupération de la liste d'image représentant la case cochée, ou la case pas cochée,
-        #avec les différents degrés de luminosité, pour gérer le focusage.
+        #rÃ©cupÃ©ration de la liste d'image reprÃ©sentant la case cochÃ©e, ou la case pas cochÃ©e,
+        #avec les diffÃ©rents degrÃ©s de luminositÃ©, pour gÃ©rer le focusage.
         self.listImgWithLight = self.dicTickImage[self.boolTickValue]
 
-        #index actuel de luminosité sur l'image.
-        #0 = aucune luminosité, MenuElem pas focusé. Image normale.
+        #index actuel de luminositÃ© sur l'image.
+        #0 = aucune luminositÃ©, MenuElem pas focusÃ©. Image normale.
         self.lightIndex = 0
-        #direction d'incrément de l'index de luminosité.
+        #direction d'incrÃ©ment de l'index de luminositÃ©.
         # +1 : focusage en cours. l'image s'illumine.
         # -1 : perte du focus en cours. L'image redevient normale.
         self.lightIndexInc = 0
-        #récupération de l'image en cours. (la normale, donc)
+        #rÃ©cupÃ©ration de l'image en cours. (la normale, donc)
         self.theImg = self.listImgWithLight[self.lightIndex]
 
-        #définition de la zone où se dessine l'image (sans le texte) de la case à cocher.
-        #vague incohérence mais osef : toutes les images de dicTickImage (quel que soit
-        #le coché/pas coché, et la luminosité) doivent avoir la même taille. Sinon ça
+        #dÃ©finition de la zone oÃ¹ se dessine l'image (sans le texte) de la case Ã  cocher.
+        #vague incohÃ©rence mais osef : toutes les images de dicTickImage (quel que soit
+        #le cochÃ©/pas cochÃ©, et la luminositÃ©) doivent avoir la mÃªme taille. Sinon Ã§a
         #risque de faire des trucs bizarres.
         self.rectDrawZoneImg = getRectDrawZone(self.rectPosImg, self.theImg)
 
-        #initialisation des infos concernant le texte de la case à cocher.
+        #initialisation des infos concernant le texte de la case Ã  cocher.
         MenuText.initTextInfo(self, rectPos, font, idTxtStock, text)
 
-        #initialisation de la sensibilité aux clics. Pour l'instant, la zone de sensibilité
-        #est le "rectangle zéro" (taille = 0,0). C'est corrigé tout de suite après.
+        #initialisation de la sensibilitÃ© aux clics. Pour l'instant, la zone de sensibilitÃ©
+        #est le "rectangle zÃ©ro" (taille = 0,0). C'est corrigÃ© tout de suite aprÃ¨s.
         param = (self, funcAction, RECT_ZERO, clickType, inflateDist)
         MenuSensitiveSquare.initSensiInterface(*param)
 
-        #Voilà. Là, on définit la zone complète de dessin (image + texte), et la zone
-        #de sensibilité aux clics qui en décombe. (Blague sur "décombe" déjà faite ailleurs).
+        #VoilÃ . LÃ , on dÃ©finit la zone complÃ¨te de dessin (image + texte), et la zone
+        #de sensibilitÃ© aux clics qui en dÃ©combe. (Blague sur "dÃ©combe" dÃ©jÃ  faite ailleurs).
         self.refreshStimAndDrawZones()
 
 
     def refreshStimAndDrawZones(self):
         """
-        donc, comme je viens de dire : définition des zones de dessins et de sensibilité,
-        en tenant compte de l'image et du texte de la case à cocher.
+        donc, comme je viens de dire : dÃ©finition des zones de dessins et de sensibilitÃ©,
+        en tenant compte de l'image et du texte de la case Ã  cocher.
 
-        On définit également self.rectPosText : position et taille du texte.
+        On dÃ©finit Ã©galement self.rectPosText : position et taille du texte.
 
-        Le texte est centré verticalement par rapport au milieu vertical de l'image
-        de la case à cocher.
-        Le texte est placé à droite de la case à cocher. Il y a un espace de X_SPACE_IMG_TEXT
-        pixels entre le côté droit de la case à cocher et le côté gauche du texte.
+        Le texte est centrÃ© verticalement par rapport au milieu vertical de l'image
+        de la case Ã  cocher.
+        Le texte est placÃ© Ã  droite de la case Ã  cocher. Il y a un espace de X_SPACE_IMG_TEXT
+        pixels entre le cÃ´tÃ© droit de la case Ã  cocher et le cÃ´tÃ© gauche du texte.
         """
 
         #On chope la taille du rectangle englobant le texte. rectPosText = (0, 0, wText, hText)
         textSize = self.theLamoche.image.get_rect().size
         self.rectPosText = pyRectTuple(tupleSize=textSize)
 
-        #on définit les coordonnées du texte. pour que rectPosText = (x, y, wText, hText)
-        #définition de Y. Centrage sur le centre de l'image de la case à cocher.
+        #on dÃ©finit les coordonnÃ©es du texte. pour que rectPosText = (x, y, wText, hText)
+        #dÃ©finition de Y. Centrage sur le centre de l'image de la case Ã  cocher.
         self.rectPosText.centery = self.rectDrawZoneImg.centery
-        #définition de X. Un peu à droite de l'image de la case à cocher
+        #dÃ©finition de X. Un peu Ã  droite de l'image de la case Ã  cocher
         self.rectPosText.left = self.rectDrawZoneImg.right + X_SPACE_IMG_TEXT
 
-        #défitnion de self.rectDrawZone. Ca doit être un gros rectangle englobant
+        #dÃ©fitnion de self.rectDrawZone. Ca doit Ãªtre un gros rectangle englobant
         #la zone de dessin du texte (self.rectPosText) et celle de l'image (self.rectDrawZoneImg)
         self.rectDrawZone = pygame.Rect(self.rectDrawZoneImg)
         self.rectDrawZone.union_ip(self.rectPosText)
 
-        #définition de la zone de sensibilité aux clics, en fonction de la zone de dessin globale,
+        #dÃ©finition de la zone de sensibilitÃ© aux clics, en fonction de la zone de dessin globale,
         #(et de la marge self.inflateDist)
         MenuSensitiveSquare.defineStimZoneFromDrawZone(self)
 
@@ -205,18 +205,18 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
     def activateLiteralValue(self, dicLiteralFromBool, literalValInit,
                              boolTickValueInit):
         """
-        fonction permettant d'activer (si c'est possible) les valeurs litérales associées
-        aux valeurs booléennes de coché / pas coché.
+        fonction permettant d'activer (si c'est possible) les valeurs litÃ©rales associÃ©es
+        aux valeurs boolÃ©ennes de cochÃ© / pas cochÃ©.
 
-        entrées :
+        entrÃ©es :
             dicLiteralFromBool, literalValInit, boolTickValueInit :
-            voir fonction __init__. C'est les même params.
+            voir fonction __init__. C'est les mÃªme params.
 
-        plat-dessert : booléen. Indique si on a réussi à activer les valeurs litérales ou pas.
+        plat-dessert : boolÃ©en. Indique si on a rÃ©ussi Ã  activer les valeurs litÃ©rales ou pas.
         """
 
-        #vérification qu'il y a les bonnes clés dans le dictionnaire val litérales <- booléen.
-        #captain obvious : il faut donc avoir les clés True et False.
+        #vÃ©rification qu'il y a les bonnes clÃ©s dans le dictionnaire val litÃ©rales <- boolÃ©en.
+        #captain obvious : il faut donc avoir les clÃ©s True et False.
 
         if True not in dicLiteralFromBool:
             return False
@@ -224,7 +224,7 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
         if False not in dicLiteralFromBool:
             return False
 
-        #création du dico inverse booléen <- val litérales. Yeaaaahh !!
+        #crÃ©ation du dico inverse boolÃ©en <- val litÃ©rales. Yeaaaahh !!
 
         dicBoolFromLiteral = {}
 
@@ -237,39 +237,39 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
 
         #initialiation de self.boolTickValue et self.literTickValue.
         if literalValInit not in dicBoolFromLiteral:
-            #la valeur litérale indiquée comme valeur initiale n'est pas dans le dico
-            #des valeurs litérales. Zut alors. On initialise les deux valeurs en se
+            #la valeur litÃ©rale indiquÃ©e comme valeur initiale n'est pas dans le dico
+            #des valeurs litÃ©rales. Zut alors. On initialise les deux valeurs en se
             #basant sur boolTickValueInit
             self.boolTickValue = boolTickValueInit
             self.literTickValue = self.dicLiteralFromBool[self.boolTickValue]
         else:
-            #la valeur litérale indiquée comme valeur initiale est dans le dico. Youpi.
-            #On la prend, et on en déduit la valeur booléenne initiale.
+            #la valeur litÃ©rale indiquÃ©e comme valeur initiale est dans le dico. Youpi.
+            #On la prend, et on en dÃ©duit la valeur boolÃ©enne initiale.
             self.literTickValue = literalValInit
             self.boolTickValue = dicBoolFromLiteral[literalValInit]
 
-        #C'est OK, on a pu activer les valeurs litérales.
+        #C'est OK, on a pu activer les valeurs litÃ©rales.
         return True
 
 
     def toggleTick(self):
         """
-        inverse l'état coché / pas coché.
-        Met à jour l'image, la valeur booléenne et la valeur litérale (si elles sont activées)
+        inverse l'Ã©tat cochÃ© / pas cochÃ©.
+        Met Ã  jour l'image, la valeur boolÃ©enne et la valeur litÃ©rale (si elles sont activÃ©es)
 
-        plat-dessert : booléen. Nouvel valeur booléenne de la case à cocher.
-                       (on s'en fout un peu de récupérer ça, mais ça peut être cool).
+        plat-dessert : boolÃ©en. Nouvel valeur boolÃ©enne de la case Ã  cocher.
+                       (on s'en fout un peu de rÃ©cupÃ©rer Ã§a, mais Ã§a peut Ãªtre cool).
         """
 
         self.boolTickValue = not self.boolTickValue
-        #mise à jour de la liste d'images à afficher, en fonction du nouvel état.
+        #mise Ã  jour de la liste d'images Ã  afficher, en fonction du nouvel Ã©tat.
         self.listImgWithLight = self.dicTickImage[self.boolTickValue]
-        #mise à jour de l'image en cours que c'est celle qui s'affiche en ce moment même.
+        #mise Ã  jour de l'image en cours que c'est celle qui s'affiche en ce moment mÃªme.
         self.theImg = self.listImgWithLight[self.lightIndex]
 
-        #mise à jour de la valeur litérale, si elles sont activés.
+        #mise Ã  jour de la valeur litÃ©rale, si elles sont activÃ©s.
         if self.dicBoolFromLiteral != {}:
-            #on déduit la nouvelle valeur litérale de la nouvelle valeur booléennne.
+            #on dÃ©duit la nouvelle valeur litÃ©rale de la nouvelle valeur boolÃ©ennne.
             self.literTickValue = self.dicLiteralFromBool[self.boolTickValue]
 
         return self.boolTickValue
@@ -277,11 +277,11 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
 
     def draw(self, surfaceDest):
         """
-        dessin de l'élément de menu, sur une surface de destination.
+        dessin de l'Ã©lÃ©ment de menu, sur une surface de destination.
         (voir description de la fonction dans la classe MenuElem)
         """
 
-        #et hop, on blite l'image en cours, qui a été récupérée de la liste d'image en cours.
+        #et hop, on blite l'image en cours, qui a Ã©tÃ© rÃ©cupÃ©rÃ©e de la liste d'image en cours.
         surfaceDest.blit(self.theImg, self.rectPosImg)
         #et hop, on blite le texte.
         surfaceDest.blit(self.theLamoche.image, self.rectPosText)
@@ -292,19 +292,19 @@ class MenuSensitiveTick(MenuSensitiveImage, MenuText):
         changement du langage. (voir descrip dans MenuElem)
 
         c'est plus ou moins un copier-coller du MenuText.
-        Je factorise pas, car ça vaut pas trop le coup.
+        Je factorise pas, car Ã§a vaut pas trop le coup.
         """
         if self.idTxtStock is None:
-            #le texte ne dépend pas du langage. Donc on se casse, y'a rien à faire.
+            #le texte ne dÃ©pend pas du langage. Donc on se casse, y'a rien Ã  faire.
             return
 
-        #Sinon faut bosser un peu quand même. On réactualise le texte du lamoche,
-        #en récupérant la chaîne de caractère dans le txtStock. (Il va en donner une différente,
-        #car il aura changé sa valeur de langage en interne)
+        #Sinon faut bosser un peu quand mÃªme. On rÃ©actualise le texte du lamoche,
+        #en rÃ©cupÃ©rant la chaÃ®ne de caractÃ¨re dans le txtStock. (Il va en donner une diffÃ©rente,
+        #car il aura changÃ© sa valeur de langage en interne)
         newText = txtStock.getText(self.idTxtStock)
         self.theLamoche.updateAttrib(text=newText)
 
-        #comme le texte a changé, il faut redéfinir la zone dans laquelle l'élément s'affiche,
-        #ainsi que la zone de sensibilité aux clics. Sans oublier qu'il y a une image ET un texte.
-        #Bon, y'a une fonction qui fait tout ça toute seule. Youpi.
+        #comme le texte a changÃ©, il faut redÃ©finir la zone dans laquelle l'Ã©lÃ©ment s'affiche,
+        #ainsi que la zone de sensibilitÃ© aux clics. Sans oublier qu'il y a une image ET un texte.
+        #Bon, y'a une fonction qui fait tout Ã§a toute seule. Youpi.
         self.refreshStimAndDrawZones()

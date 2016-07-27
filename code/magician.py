@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+Ôªø#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,45 +10,45 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 RÈchËr
+    Copyright 2010 R√©ch√®r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - PaternitÈ - Partage des Conditions Initiales ‡ l'Identique 2.0 France
+    Creative Commons - Paternit√© - Partage des Conditions Initiales √† l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la derniËre relecture-commentage : 05/10/2010
+date de la derni√®re relecture-commentage : 05/10/2010
 
-la classe pour gÈrer le magicien.
+la classe pour g√©rer le magicien.
 
 Vocabulaire et comportement du magicien (magicien de base) :
 
-Trucs gÈrÈs par ce magicien de base :
- - Collision avec le hÈros, qui se fait Hurt et perd un point de vie.
+Trucs g√©r√©s par ce magicien de base :
+ - Collision avec le h√©ros, qui se fait Hurt et perd un point de vie.
  - Collision avec les bullets.
  - Gestions des points de vie. Anim de morts / d'explosion.
- - Comptabilisation du nombre de magiciens tuÈs / explosÈs.
- - MontÈe de niveau initiale (LevelUp), au moment de la crÈation du magicien.
+ - Comptabilisation du nombre de magiciens tu√©s / explos√©s.
+ - Mont√©e de niveau initiale (LevelUp), au moment de la cr√©ation du magicien.
 
-Trucs pas gÈrÈs :
- - Le magicien de base ne se dÈplace pas.
- - Les montÈes de niveau du magicien de base n'ont aucun effet.
- - Le magicien de base ne fait pas de montÈe de niveau au fur ‡ mesure du temps,
-   il fait quand mÍme les montÈe initiale. (Quand on veut crÈer un magicien ayant
+Trucs pas g√©r√©s :
+ - Le magicien de base ne se d√©place pas.
+ - Les mont√©es de niveau du magicien de base n'ont aucun effet.
+ - Le magicien de base ne fait pas de mont√©e de niveau au fur √† mesure du temps,
+   il fait quand m√™me les mont√©e initiale. (Quand on veut cr√©er un magicien ayant
    directement le niveau 5, par exemple)
 
 
 pour d'autres explications sur les magiciens :
- - comment sont gÈrÈs les collisions avec les bullets que tire le hÈros
- - l'Èvolution de ces Ètats (APPEARING, ALIVE, HURT, ...)
+ - comment sont g√©r√©s les collisions avec les bullets que tire le h√©ros
+ - l'√©volution de ces √©tats (APPEARING, ALIVE, HURT, ...)
 voir le fichier cobulmag.py
 
 pour les trois types de mort du magicien, (NAKED, SHIT et ROTATE), il y a
 une fonction initDyingXX et UpdateDyingXXX.
-On choisit le type de mort et on doit exÈcuter la fonction Init correspondante,
-puis ‡ chaque cycle on exÈcute la Update correspondante.
-C'est la liste BRANCH_DYING_FUNCTION qui s'occupe de Áa.
+On choisit le type de mort et on doit ex√©cuter la fonction Init correspondante,
+puis √† chaque cycle on ex√©cute la Update correspondante.
+C'est la liste BRANCH_DYING_FUNCTION qui s'occupe de √ßa.
 
 Quand le magicien explose (BURSTING) y'a qu'une anim. Pas le choix
 
@@ -56,14 +56,14 @@ PUTAIN Y'A UNE LIGNE TROP LONGUE ET JE LA TROUVE PAS CA M'ENERVE !
 Y'A LA BARRE DE DEFILEMENT HORIOZONTAL DANS NOTEPAD++ ET JE COMPREND PAS POURQUOI
 MERDE !! MERDE !!! MERDE !! MERERERDE MERDE !!!
 Ah non c'est bon. C'est notepad++ qui plante. Fallait fermer-rouvrir le fichier.
-Bizarre quand mÍme.
+Bizarre quand m√™me.
 
-idÈe ‡ la con : essayer de faire hÈriter le magicien de SimpleSprite. Comme Áa pour ses
-animations de mort, y'a juste ‡ dÈfinir la liste d'image et de dÈcalage qui va bien,
-et ‡ faire l'update du SimpleSprite. Y'aurait juste un peu de bidouille ‡ faire
+id√©e √† la con : essayer de faire h√©riter le magicien de SimpleSprite. Comme √ßa pour ses
+animations de mort, y'a juste √† d√©finir la liste d'image et de d√©calage qui va bien,
+et √† faire l'update du SimpleSprite. Y'aurait juste un peu de bidouille √† faire
 au niveau des SPRITE_ALIVE et SPRITE_DEAD, qu'il faut convertir en currentState de magicien.
-Objection rejetÈe. Quand le magicien crËve, on crÈe un simple sprite avec l'anim de sa mort
-Mais le magicien lui-mÍme n'est pas un simple sprite. Ce serait zarb et Áa me plait pas.
+Objection rejet√©e. Quand le magicien cr√®ve, on cr√©e un simple sprite avec l'anim de sa mort
+Mais le magicien lui-m√™me n'est pas un simple sprite. Ce serait zarb et √ßa me plait pas.
 """
 
 import pygame
@@ -73,7 +73,7 @@ from common import (centeredRandom, randRange,
 
 from sprsimpl import SPRITE_ALIVE, SPRITE_DEAD, SpriteSimple
 
-#le magicien utilise le Simple Sprite Generator pour gÈnÈrer des Sprite "Fume" qui sorte
+#le magicien utilise le Simple Sprite Generator pour g√©n√©rer des Sprite "Fume" qui sorte
 #de son cul lorsqu'il est DYING_NAKED, et pis des morceaux quand il BURST
 from sprsigen import SpriteSimpleGenerator
 
@@ -87,7 +87,7 @@ from yargler import (theSoundYargler, SND_MAG_BURST, SND_MAG_DYING_ROTATE,
  IMG_HURT,             #image du magicien quand il se prend une balle mais qu'il creve pas.
 ) = range(3)
 
-#prÈfixe dans les noms de fichiers image du magicien.
+#pr√©fixe dans les noms de fichiers image du magicien.
 IMG_FILENAME_PREFIX = "m"
 
 #correspondance entre nom de fichier court et identifiant d'image
@@ -103,72 +103,72 @@ LIST_IMG_FILE_SHORT_NAME = (
 MAGICIAN_SIZE  = pyRect(0, 0, 21, 33)
 
 #les etats du magicien
-(APPEARING,         #en train d'apparaÓtre ‡ l'Ècran
+(APPEARING,         #en train d'appara√Ætre √† l'√©cran
  ALIVE,             #vivant, etat normal
  HURT,              #en train de se prendre une/plusieurs balles dans la gueule
- DYING,             #en train de crever (animation ‡ la con du magicien qui meurt)
- BURSTING,          #en train d'exploser (anim ‡ la con)
+ DYING,             #en train de crever (animation √† la con du magicien qui meurt)
+ BURSTING,          #en train d'exploser (anim √† la con)
  DEAD,              #mort. La boucle principale du jeu doit le supprimer.
 ) = range(6)
 
-#nombre de point de vie initial du magicien. Un bullet enlËve un point de vie.
+#nombre de point de vie initial du magicien. Un bullet enl√®ve un point de vie.
 LIFE_POINT_INIT = 2
 
-#nombre de points de dÈgats que doit se prendre le magicien en une seule fois, pour se faire BURST
-#En thÈorie, le BURST s'applique mÍme si il reste des points de vie au magicien.
-#(Quand on se prend plein de points de dÈgats d'un coup, on crËve automatiquement, mÍme si on
-#Ètait en super forme au dÈpart). En pratique, osef, car le magicien a moins de points
-#de vie que le nombre de points de dÈgats d'un BURST.
+#nombre de points de d√©gats que doit se prendre le magicien en une seule fois, pour se faire BURST
+#En th√©orie, le BURST s'applique m√™me si il reste des points de vie au magicien.
+#(Quand on se prend plein de points de d√©gats d'un coup, on cr√®ve automatiquement, m√™me si on
+#√©tait en super forme au d√©part). En pratique, osef, car le magicien a moins de points
+#de vie que le nombre de points de d√©gats d'un BURST.
 DAMAGE_FOR_BURSTING = 3
 
-#le magicien doit rester dans l'Ècran, mais il peut dÈpasser un peu ‡ droite et en bas. Ca donne
+#le magicien doit rester dans l'√©cran, mais il peut d√©passer un peu √† droite et en bas. Ca donne
 #l'impression qu'il arrive d'autre part. Wouhou !!!
-#Nombre de pixel qu'il a le droit de dÈpasser ‡ droite
+#Nombre de pixel qu'il a le droit de d√©passer √† droite
 CLAMPING_MARGIN_RIGHT = 25
-#Nombre de pixel qu'il a le droit de dÈpasser en bas
+#Nombre de pixel qu'il a le droit de d√©passer en bas
 CLAMPING_MARGIN_BOTTOM = 35
 #zone de clamping, dans laquelle le magicien doit rester.
-#on tient compte de la marge ‡ ajouter en haut et en bas.
+#on tient compte de la marge √† ajouter en haut et en bas.
 #(petite disgression : quand on modifie l'attribut right ou bottom,
-#Áa change pas la taille du rectangle. Ca le dÈplace !! Je m'ai fait avoir au dÈbut.)
+#√ßa change pas la taille du rectangle. Ca le d√©place !! Je m'ai fait avoir au d√©but.)
 MAGI_RECT_CLAMPING = pyRect(GAME_RECT.x,
                             GAME_RECT.y,
                             GAME_RECT.width + CLAMPING_MARGIN_RIGHT,
                             GAME_RECT.height + CLAMPING_MARGIN_BOTTOM)
 
 
-#dÈcalage de l'image normale vers l'image hurt
+#d√©calage de l'image normale vers l'image hurt
 DECALAGE_NORM_HURT = pyRect(-1, 0)
 DECALAGE_HURT_NORM = oppRect(DECALAGE_NORM_HURT)
 
 #les 3 animations possibles de mort du magicien.
 #(lorsqu'il meurt, on en choisit une au hasard)
-(DYING_ROTATE,   #Le magicien tournoye, et se pËte la gueule vers le bas en une splendide courbe
- DYING_SHIT,     #Le magicien se tranforme en caca qui dÈgouline
- DYING_NAKED,    #Le magicien paume ses fringues et s'envole vers le haut en pÈtant.
+(DYING_ROTATE,   #Le magicien tournoye, et se p√®te la gueule vers le bas en une splendide courbe
+ DYING_SHIT,     #Le magicien se tranforme en caca qui d√©gouline
+ DYING_NAKED,    #Le magicien paume ses fringues et s'envole vers le haut en p√©tant.
 ) = range(3)
 
 #j'ai besoin de ce truc parce que je dois pouvoir choisir au hasard entre l'une des morts possibles
 #donc faites pas chier OK?
 LIST_DYING_TYPE = (DYING_ROTATE, DYING_SHIT, DYING_NAKED)
 
-#juste deux identifiants ‡ la con, pour savoir quelle fonction on veut rÈcupÈrer
-#lorsqu'on cherche la fonction init/update correspondant ‡ la mort choisie
+#juste deux identifiants √† la con, pour savoir quelle fonction on veut r√©cup√©rer
+#lorsqu'on cherche la fonction init/update correspondant √† la mort choisie
 BRANCH_DYING_INIT = 0
 BRANCH_DYING_UPDATE = 1
 
-#dÈcalage ‡ appliquer lorsqu'on passe de l'image du magicien normal ‡ l'image DYING_NAKED
+#d√©calage √† appliquer lorsqu'on passe de l'image du magicien normal √† l'image DYING_NAKED
 DECAL_DYING_NAKED = pyRect(0, 2)
 
-#PÈriode de mouvement quand le magicien est DYING_NAKE (il bouge 1 fois tous les X cycles. X=2)
+#P√©riode de mouvement quand le magicien est DYING_NAKE (il bouge 1 fois tous les X cycles. X=2)
 DYIND_NAKED_MOVE_PERIOD = 2
 
-#nombre de cycle de jeu ‡ attendre entre 2 pets du magicien, quand il DYING_NAKED
-#le nombre de cycle est calculÈ alÈatoirement, entre la valeur min et la valeur max
+#nombre de cycle de jeu √† attendre entre 2 pets du magicien, quand il DYING_NAKED
+#le nombre de cycle est calcul√© al√©atoirement, entre la valeur min et la valeur max
 FART_PERIOD_MAX = 20
 FART_PERIOD_MIN = 5
 
-#dÈcalage entre l'image du magicien et la position de dÈpart du sprite de pet
+#d√©calage entre l'image du magicien et la position de d√©part du sprite de pet
 DECAL_MAGICIAN_FART = pyRect(10, 26)
 
 
@@ -183,15 +183,15 @@ class Magician(pygame.sprite.Sprite):
         """
         constructeur. (thx captain obvious)
 
-        entrÈe :
+        entr√©e :
             dicMagicienImg        : dictionnaire de correspondance identifiant d'image -> image
 
-            spriteSimpleGenerator : classe eponyme. Pour que le magicien gÈnËre
+            spriteSimpleGenerator : classe eponyme. Pour que le magicien g√©n√®re
                                     des petits sprites si il a envie (quand il pete, ou burste)
 
-            posStart              : Rect. position du coin superieur gauche du sprite, ‡ l'Ècran.
+            posStart              : Rect. position du coin superieur gauche du sprite, √† l'√©cran.
 
-            level                 : int. Valeur initiale du level du magicien. (ne sert pas ‡
+            level                 : int. Valeur initiale du level du magicien. (ne sert pas √†
                                     grand chose pour le magicien de base, mais les autres, oui)
         """
         pygame.sprite.Sprite.__init__(self)
@@ -202,57 +202,57 @@ class Magician(pygame.sprite.Sprite):
         self.image = dicMagicienImg[IMG_NORMAL]
         self.rect = pygame.Rect(posStart.topleft + MAGICIAN_SIZE.size)
 
-        #dÈfinition du level. On peut pas fixer directement le level souhaitÈ, car ‡ priori,
+        #d√©finition du level. On peut pas fixer directement le level souhait√©, car √† priori,
         #on sait pas ce que fait la fonction levelUp. donc faut les monter un par un.
         self.resetToLevelOne()
         for _ in xrange(1, level):
             self.levelUp()
 
-        #gÈnÈration du sprite qui fait l'anim d'apparition du magicien.
-        #(c'est pas gÈrÈ par cette classe-ci, mais par un simpleSprite)
-        #le magicien garde une rÈfÈrence sur le SimpleSprite de son anim d'apparition,
-        #Ca lui permettra de savoir quand cet anim est terminÈe.
+        #g√©n√©ration du sprite qui fait l'anim d'apparition du magicien.
+        #(c'est pas g√©r√© par cette classe-ci, mais par un simpleSprite)
+        #le magicien garde une r√©f√©rence sur le SimpleSprite de son anim d'apparition,
+        #Ca lui permettra de savoir quand cet anim est termin√©e.
         fonc = self.spriteSimpleGenerator.generateMagAppearing
         self.spriteAppearing = fonc(posStart)
 
-        #Au dÈbut, le magicien ne peut pas agir, il fait son anim d'apparition
+        #Au d√©but, le magicien ne peut pas agir, il fait son anim d'apparition
         self.currentState = APPEARING
 
         self.lifePoint = LIFE_POINT_INIT
 
-        #Yeaaaahh. Je trouve Áa super cool de pouvoir faire Áa, crac, directos !!
+        #Yeaaaahh. Je trouve √ßa super cool de pouvoir faire √ßa, crac, directos !!
         #c'est un dictionnaire avec :
-        # -    clÈ : l'identifiant de l'Ètat du magicien
-        # - valeur : la fonction update ‡ appeler quand le magicien est dans cet Ètat
+        # -    cl√© : l'identifiant de l'√©tat du magicien
+        # - valeur : la fonction update √† appeler quand le magicien est dans cet √©tat
         #
-        #Je fout pas ce dico en const. Comme Áa je branche vers les fonctions de l'instance de
+        #Je fout pas ce dico en const. Comme √ßa je branche vers les fonctions de l'instance de
         #classe, et non pas vers les fonctions de la classe. C'est plus logique.
-        #Et si j'hÈrite vers une autre classe et que je change les fonctions d'update,
-        #Áa me pËtera pas ‡ la gueule. (D'autant plus que je le fais, cet hÈritage)
+        #Et si j'h√©rite vers une autre classe et que je change les fonctions d'update,
+        #√ßa me p√®tera pas √† la gueule. (D'autant plus que je le fais, cet h√©ritage)
         self.BRANCH_UPDATE = {
             HURT      : self.updateHurt,
             DYING     : self.updateDying,
             ALIVE     : self.updateNormal,
             APPEARING : self.updateAppearing,
             BURSTING  : self.dieImmediatlyBlarg,
-            #quand le magicien est DEAD, on n'est plus censÈ exÈcuter son update.
-            #je branch un petit coup quand mÍme vers une fonction ‡ la con,
+            #quand le magicien est DEAD, on n'est plus cens√© ex√©cuter son update.
+            #je branch un petit coup quand m√™me vers une fonction √† la con,
             #pour plus de robustaysse.
             DEAD      : self.dieImmediatlyBlarg,
         }
 
-        #init d'un dico qui fait les branchements : type de mort -> fonctions ‡ exÈcuter
-        #Pour la mÍme raison que ci-dessus, ce dico est crÈÈ ici, et pas en const.
+        #init d'un dico qui fait les branchements : type de mort -> fonctions √† ex√©cuter
+        #Pour la m√™me raison que ci-dessus, ce dico est cr√©√© ici, et pas en const.
         #Les valeurs de ce dico sont des tuples de 2 element :
-        # - fonction qu'il faut lancer au dÈbut, lorsqu'on veut initialiser
+        # - fonction qu'il faut lancer au d√©but, lorsqu'on veut initialiser
         #   l'anim de mort correspondante du magicien.
-        # - fonction ‡ lancer ‡ chaque cycle, pour updater l'anim de mort.
-        #   on update jusqu'‡ ce qu'elle soit finie, et que l'objet magicien soit deletÈ
+        # - fonction √† lancer √† chaque cycle, pour updater l'anim de mort.
+        #   on update jusqu'√† ce qu'elle soit finie, et que l'objet magicien soit delet√©
         #
         #Pour certaines morts, la fonction d'update est dieImmediatlyBlarg. Ca veut dire
-        #qu'il n'y a plus rien ‡ faire, et on delete le magicien tout de suite. Ce sont
-        #les morts o˘ l'animation est entiËrement gÈrÈe par des SimpleSprite, qui ont
-        #ÈtÈ gÈnÈrÈs lors de l'appel de la fonction Init.
+        #qu'il n'y a plus rien √† faire, et on delete le magicien tout de suite. Ce sont
+        #les morts o√π l'animation est enti√®rement g√©r√©e par des SimpleSprite, qui ont
+        #√©t√© g√©n√©r√©s lors de l'appel de la fonction Init.
         self.BRANCH_DYING_FUNCTION = {
             DYING_ROTATE : (self.initDyingRotate, self.dieImmediatlyBlarg),
             DYING_SHIT   : (self.initDyingShit,   self.dieImmediatlyBlarg),
@@ -262,7 +262,7 @@ class Magician(pygame.sprite.Sprite):
 
     def isMoveFinished(self):
         """
-        permet d'indiquer au code extÈrieur si le magicien a fini son mouvement ou pas
+        permet d'indiquer au code ext√©rieur si le magicien a fini son mouvement ou pas
         """
         #on renvoie tout de suite True, car le magicien de base ne bouge pas
         return True
@@ -270,54 +270,54 @@ class Magician(pygame.sprite.Sprite):
 
     def resetToLevelOne(self):
         """
-        initialise/rÈinitialise le level ‡ 1, et remet les caractÈristiques dÈpendante du level
-        ‡ leur valeur initiale pourrite.
+        initialise/r√©initialise le level √† 1, et remet les caract√©ristiques d√©pendante du level
+        √† leur valeur initiale pourrite.
         """
         self.level = 1
-        #le magicien de base n'a rien de plus ‡ se rÈinitialiser
+        #le magicien de base n'a rien de plus √† se r√©initialiser
 
 
     def levelUp(self):
         """
-        Fonction permettant au magicien de faire un levelUp et de monter ses caractÈristiques.
+        Fonction permettant au magicien de faire un levelUp et de monter ses caract√©ristiques.
         """
         self.level += 1
-        #le magi de base n'a rien de plus ‡ upper.
+        #le magi de base n'a rien de plus √† upper.
 
 
     def TakeStimuliTouchedHero(self):
         """
-        fonction exÈcutÈe par le code extÈrieur, lorsque le magicien vient de toucher le hÈros,
+        fonction ex√©cut√©e par le code ext√©rieur, lorsque le magicien vient de toucher le h√©ros,
         et de lui faire mal. paf !!
         """
         #Le magicien revient au niveau 1 quand il a fait mal au joueur.
-        #Áa permet de diminuer le risque d'une autre collision trËs vite,
-        #‡ peine quelques cycles plus tard. Car Áa ne serait pas trËs gentil pour le joueur.
+        #√ßa permet de diminuer le risque d'une autre collision tr√®s vite,
+        #√† peine quelques cycles plus tard. Car √ßa ne serait pas tr√®s gentil pour le joueur.
         self.resetToLevelOne()
 
 
     def hitByBullet(self, Damage):
         """
-        Fonction ‡ exÈcuter par le code extÈrieur.
+        Fonction √† ex√©cuter par le code ext√©rieur.
         La fonction permet d'indiquer au magicien qu'il s'est pris des bullets dans la gueule.
 
-        entrÈes :
-            Damage. int. Nombre de points de dÈg‚ts ( = nombre de bullets qui le touchent)
+        entr√©es :
+            Damage. int. Nombre de points de d√©g√¢ts ( = nombre de bullets qui le touchent)
 
         plat-dessert :
-            identifiant de l'Ètat actuel du magicien, aprËs qu'il s'est pris le bullet.
-            Ca peut Ítre HURT, ou DYING, ou BURSTING
+            identifiant de l'√©tat actuel du magicien, apr√®s qu'il s'est pris le bullet.
+            Ca peut √™tre HURT, ou DYING, ou BURSTING
         """
 
         #si le magicien se prend X bullets d'un coup, il explose direct : BURST. (X = 3)
-        #on ne contrÙle mÍme pas ses points de vie restants. (Pis de toutes faÁons il en a que 2)
-        #Il y a une anim de mourage spÈcifique au BURST
+        #on ne contr√¥le m√™me pas ses points de vie restants. (Pis de toutes fa√ßons il en a que 2)
+        #Il y a une anim de mourage sp√©cifique au BURST
         if Damage >= DAMAGE_FOR_BURSTING:
             self.initBursting()
-            #va renvoyer l'Ètat BURSTING
+            #va renvoyer l'√©tat BURSTING
             return self.currentState
 
-        #on retire le nombre de points de dÈg‚ts aux points de vie du magicien.
+        #on retire le nombre de points de d√©g√¢ts aux points de vie du magicien.
         self.lifePoint -= Damage
 
         if self.lifePoint <= 0:
@@ -328,10 +328,10 @@ class Magician(pygame.sprite.Sprite):
             #choix au hasard d'un moyen de crevage.
             dyingTypeIndex = randRange(len(LIST_DYING_TYPE))
             dyingType = LIST_DYING_TYPE[dyingTypeIndex]
-            #rÈcupÈration vers la fonction initialisant le moyen de mourage choisi
+            #r√©cup√©ration vers la fonction initialisant le moyen de mourage choisi
             dyingTypeBranching = self.BRANCH_DYING_FUNCTION[dyingType]
             funcDyingInit = dyingTypeBranching[BRANCH_DYING_INIT]
-            #exÈcution de cette fonction
+            #ex√©cution de cette fonction
             funcDyingInit()
 
         else:
@@ -339,7 +339,7 @@ class Magician(pygame.sprite.Sprite):
             #le magicien ne va pas BURST, et il a encore des points de vie.
             #Donc il a juste mal (HURT)
 
-            #C'est une fonction sÈparÈe qui gËre ce cas, car il faut pouvoir la surcharger
+            #C'est une fonction s√©par√©e qui g√®re ce cas, car il faut pouvoir la surcharger
             #quand on fait les classes-fifilles.
             self.hitByBulletButNotDead(Damage)
 
@@ -348,62 +348,62 @@ class Magician(pygame.sprite.Sprite):
 
     def hitByBulletButNotDead(self, Damage):
         """
-        fonction dÈfinissant les actions ‡ faire quand le magicien s'est pris
+        fonction d√©finissant les actions √† faire quand le magicien s'est pris
         des bullets, mais qu'il n'en est pas mort. (il est HURT)
 
-        entrÈes :
-            Damage. int. Nombre de points de dÈg‚ts ( = nombre de bullets qui le touchent)
+        entr√©es :
+            Damage. int. Nombre de points de d√©g√¢ts ( = nombre de bullets qui le touchent)
         """
 
-        #pas de diminution des points de vie. DÈj‡ fait par la fonction appelante (hitByBullet)
+        #pas de diminution des points de vie. D√©j√† fait par la fonction appelante (hitByBullet)
 
         self.currentState = HURT
 
-        #changement de l'image du sprite et application du dÈcalage
+        #changement de l'image du sprite et application du d√©calage
         self.image = self.dicMagicienImg[IMG_HURT]
         self.rect.move(DECALAGE_NORM_HURT.topleft)
         #son qui fait "arh je suis un magicien et j'ai mal"
         theSoundYargler.playSound(SND_MAG_HURT)
 
-        #pour les classes dÈrivÈes du magician : lorsqu'il est hurt, on peut
+        #pour les classes d√©riv√©es du magician : lorsqu'il est hurt, on peut
         #rajouter des trucs ici. Par exemple, l'initialisation d'un mouvement de recul
         #on peut auissi ajouter un compteur, pour que le magicien reste hurt
-        #un certain temps. Quand c'est fini, on exÈcutera la fonction unHurt
-        #(il faut gÈrer tout Áa par rapport au code qu'on met dans la fonction updateHurt
+        #un certain temps. Quand c'est fini, on ex√©cutera la fonction unHurt
+        #(il faut g√©rer tout √ßa par rapport au code qu'on met dans la fonction updateHurt
 
 
     def updateNormal(self):
         """
-        update du magicien (fonction qui se lance ‡ chaque cycle de jeu)
-        cas o˘ le magicien est dans son Ètat normal (ALIVE)
+        update du magicien (fonction qui se lance √† chaque cycle de jeu)
+        cas o√π le magicien est dans son √©tat normal (ALIVE)
         """
-        #ici, on peut gÈrer des mouvements du magicien,
-        #des montÈes de niveau, plein d'autres trucs
+        #ici, on peut g√©rer des mouvements du magicien,
+        #des mont√©es de niveau, plein d'autres trucs
         #dans cette classe de base, on ne fait rien.
         pass
 
 
     def unHurt(self):
         """
-        fonction ‡ lancer quand le magicien s'est fait HURT, et qu'il faut
-        le remettre dans l'Ètat normal
+        fonction √† lancer quand le magicien s'est fait HURT, et qu'il faut
+        le remettre dans l'√©tat normal
         """
-        #et donc oui, on le remet dans l'Ètat normals
+        #et donc oui, on le remet dans l'√©tat normals
         self.currentState = ALIVE
 
-        #retour ‡ l'image de sprite du magicien normal, et application du dÈcalage.
+        #retour √† l'image de sprite du magicien normal, et application du d√©calage.
         self.image = self.dicMagicienImg[IMG_NORMAL]
         self.rect.move(DECALAGE_HURT_NORM.topleft)
 
 
     def updateHurt(self):
         """
-        update du magicien (fonction qui se lance ‡ chaque cycle de jeu)
-        Cas o˘ le magicien s'est pris des dÈgats y'a pas longtemps (HURT)
+        update du magicien (fonction qui se lance √† chaque cycle de jeu)
+        Cas o√π le magicien s'est pris des d√©gats y'a pas longtemps (HURT)
         """
         #ici, on peut faire un mouvement, ou d'autres choses.
-        #mais il faut obligatoirement exÈcuter unHurt au bout d'un certain nombre de cycle,
-        #pour le magicien de base, on fait unHurt immÈdiatement. (on va au plus simple)
+        #mais il faut obligatoirement ex√©cuter unHurt au bout d'un certain nombre de cycle,
+        #pour le magicien de base, on fait unHurt imm√©diatement. (on va au plus simple)
         self.unHurt()
 
 
@@ -418,11 +418,11 @@ class Magician(pygame.sprite.Sprite):
         #son : "spflark !!"
         theSoundYargler.playSound(SND_MAG_BURST)
 
-        # --- gÈnÈration des parties du corps ensanglantÈs qui s'envolent ---
-        # chaque partie du corps est un simple sprite, gÈnÈrÈe bien comme il
-        # faut par le SimpleSpriteGenerator. La position de dÈpart des parties
-        # du corps est prise ‡ partir de la position du magicien, avec un petit
-        #dÈcalage en plus.
+        # --- g√©n√©ration des parties du corps ensanglant√©s qui s'envolent ---
+        # chaque partie du corps est un simple sprite, g√©n√©r√©e bien comme il
+        # faut par le SimpleSpriteGenerator. La position de d√©part des parties
+        # du corps est prise √† partir de la position du magicien, avec un petit
+        #d√©calage en plus.
 
         #le bras droit
         armPosStartRight = self.rect.move(pyRect(10, 2).topleft)
@@ -432,7 +432,7 @@ class Magician(pygame.sprite.Sprite):
         armPosStartLeft = self.rect.move(pyRect(0, 2).topleft)
         self.spriteSimpleGenerator.generateMagBurstArmLeft(armPosStartLeft)
 
-        #la tÍte
+        #la t√™te
         headPosStart = self.rect.move(pyRect(5, -3).topleft)
         self.spriteSimpleGenerator.generateMagBurstHead(headPosStart)
 
@@ -442,7 +442,7 @@ class Magician(pygame.sprite.Sprite):
 
     def initDyingRotate(self):
         """
-        Fonction ‡ lancer lorsque le magicien va crever dans l'animation DYING_ROTATE.
+        Fonction √† lancer lorsque le magicien va crever dans l'animation DYING_ROTATE.
         """
 
         self.currentDyingState = DYING_ROTATE
@@ -450,14 +450,14 @@ class Magician(pygame.sprite.Sprite):
         #son : "heeuehhaauuehheuuuaarrghh !!"
         theSoundYargler.playSound(SND_MAG_DYING_ROTATE)
 
-        #gÈnÈration d'un SimpleSprite, reprÈsentant un magicien qui meurt en tournoyant
-        #et en planant en une magnifique parabole qui finit dans les trÈfonds du bas de l'Ècran.
+        #g√©n√©ration d'un SimpleSprite, repr√©sentant un magicien qui meurt en tournoyant
+        #et en planant en une magnifique parabole qui finit dans les tr√©fonds du bas de l'√©cran.
         self.spriteSimpleGenerator.generateMagDyingRotate(self.rect)
 
 
     def initDyingShit(self):
         """
-        Fonction ‡ lancer lorsque le magicien va crever dans l'animation DYING_SHIT.
+        Fonction √† lancer lorsque le magicien va crever dans l'animation DYING_SHIT.
         """
 
         self.currentDyingState = DYING_SHIT
@@ -465,40 +465,40 @@ class Magician(pygame.sprite.Sprite):
         #son : "heuarshblorf !!"
         theSoundYargler.playSound(SND_MAG_DYING_SHIT)
 
-        #on gÈnËre un spriteSimple, reprÈsentant l'anim de transformation en merde.
+        #on g√©n√®re un spriteSimple, repr√©sentant l'anim de transformation en merde.
         self.spriteSimpleGenerator.generateMagDyingShit(self.rect)
 
 
     def initDyingNaked(self):
         """
-        Fonction ‡ lancer lorsque le magicien va crever dans l'animation DYING_NAKED.
+        Fonction √† lancer lorsque le magicien va crever dans l'animation DYING_NAKED.
 
-        On peut pas se contenter de gÈnrer cette anim avec uniquement des SpriteSimple,
-        car le magicien, quand il s'envole tout nu, gÈnËre des petits nuages de pets.
-        Les nuages de pets sont des SpriteSimple. Mais leur gÈnÈration ne peut pas
-        Ítre confiÈe ‡ un SpriteSimple, car ils ne sont pas prÈvus pour Áa.
+        On peut pas se contenter de g√©nrer cette anim avec uniquement des SpriteSimple,
+        car le magicien, quand il s'envole tout nu, g√©n√®re des petits nuages de pets.
+        Les nuages de pets sont des SpriteSimple. Mais leur g√©n√©ration ne peut pas
+        √™tre confi√©e √† un SpriteSimple, car ils ne sont pas pr√©vus pour √ßa.
 
-        Donc l'objet magicien est toujours prÈsent pendant un DYING_NAKED,
-        et on le dÈtruit lorsque l'anim est finie.
+        Donc l'objet magicien est toujours pr√©sent pendant un DYING_NAKED,
+        et on le d√©truit lorsque l'anim est finie.
         """
 
         self.currentDyingState = DYING_NAKED
 
-        #changement de l'image du sprite, et application du dÈcalage qui va avec
+        #changement de l'image du sprite, et application du d√©calage qui va avec
         self.image = self.dicMagicienImg[IMG_DYING_NAKED]
         self.rect.move_ip(DECAL_DYING_NAKED.topleft)
 
         #initialisation des trucs pour le mouvement. (vers le haut, sans accel)
-        #en fait y'aura une accel en X, alÈatoire vers la gauche ou la droite,
+        #en fait y'aura une accel en X, al√©atoire vers la gauche ou la droite,
         #mais on la rajoutera plus tard.
         self.moveCounter = DYIND_NAKED_MOVE_PERIOD
         self.speed = pyRect(0, -4)
         self.currentAccel = pyRect()
 
-        #Áa y'en aura besoin pour savoir quand le magicien est sorti de l'Ècran.
+        #√ßa y'en aura besoin pour savoir quand le magicien est sorti de l'√©cran.
         self.image_height = self.image.get_height()
 
-        #compteur avant le prochain pets, pour savoir quand gÈnÈrer un SimpleSprite de type "Fume"
+        #compteur avant le prochain pets, pour savoir quand g√©n√©rer un SimpleSprite de type "Fume"
         self.fartCounter = randRange(FART_PERIOD_MIN, FART_PERIOD_MAX)
 
 
@@ -514,14 +514,14 @@ class Magician(pygame.sprite.Sprite):
 
         if self.fartCounter == 0:
 
-            # il faut pÈter !!!
-            #dÈtermination de la position d'o˘ gÈnÈrer le prout
+            # il faut p√©ter !!!
+            #d√©termination de la position d'o√π g√©n√©rer le prout
             fartPosStart = self.rect.move(DECAL_MAGICIAN_FART.topleft)
-            #gÈnÈration du prout (c'est un SimpleSprite de type Fume).
+            #g√©n√©ration du prout (c'est un SimpleSprite de type Fume).
             self.spriteSimpleGenerator.generateFume(fartPosStart)
             #son qui fait prout. prout !!
             theSoundYargler.playSound(SND_MAG_DYING_FART)
-            #reinit du compteur de prout, pour la prochaine gÈnÈration.
+            #reinit du compteur de prout, pour la prochaine g√©n√©ration.
             self.fartCounter = randRange(FART_PERIOD_MIN, FART_PERIOD_MAX)
 
         # --- gestion du mouvement du magicien ---
@@ -532,14 +532,14 @@ class Magician(pygame.sprite.Sprite):
         if self.moveCounter == 0:
 
             # il faut bouger.
-            #on applique une petite accÈlÈration alÈatoire sur la vitesse en X.
-            #comme Áa le magicien monte en zigzagouillant, ce qui est fort rigolo.
+            #on applique une petite acc√©l√©ration al√©atoire sur la vitesse en X.
+            #comme √ßa le magicien monte en zigzagouillant, ce qui est fort rigolo.
             self.speed.left = centeredRandom(2)
 
             #application de la vitesse sur la position
             self.rect.move_ip(self.speed.topleft)
 
-            #quand il sort complËtement de l'Ècran par le haut, le magicien peut Ítre deletÈ.
+            #quand il sort compl√®tement de l'√©cran par le haut, le magicien peut √™tre delet√©.
             if self.rect.top < -self.image_height:
                 self.currentState = DEAD
 
@@ -549,51 +549,51 @@ class Magician(pygame.sprite.Sprite):
 
     def dieImmediatlyBlarg(self):
         """
-        fonction a exÈcuter quand le magicien est mort, qu'on a gÈrÈ son anim de mort,
-        et qu'on a plus du tout besoin de lui (l'objet de magicien peut Ítre deletÈ).
+        fonction a ex√©cuter quand le magicien est mort, qu'on a g√©r√© son anim de mort,
+        et qu'on a plus du tout besoin de lui (l'objet de magicien peut √™tre delet√©).
         """
 
-        #c'est le code extÈrieur qui s'occupe de la supression effective de l'objet magicien
-        #(puisque c'est aussi lui qui s'est occupÈ de le crÈer).
-        #on prÈvient le code extÈrieur qu'il faut deleter en fixant son Ètat ‡ DEAD.
+        #c'est le code ext√©rieur qui s'occupe de la supression effective de l'objet magicien
+        #(puisque c'est aussi lui qui s'est occup√© de le cr√©er).
+        #on pr√©vient le code ext√©rieur qu'il faut deleter en fixant son √©tat √† DEAD.
         self.currentState = DEAD
 
 
     def updateDying(self):
         """
-        Haha, Áa c'est une fonction qu'elle est rigolote.
-        C'est juste pour savoir quelle fonction updateDyingXXX il faut exÈcuter,
-        en fonction du type de Dying. Mais c'est fait de maniËre classe et raffinÈe.
+        Haha, √ßa c'est une fonction qu'elle est rigolote.
+        C'est juste pour savoir quelle fonction updateDyingXXX il faut ex√©cuter,
+        en fonction du type de Dying. Mais c'est fait de mani√®re classe et raffin√©e.
         """
 
-        #on rÈcupËre la liste de fonction gÈrant le type de DYING actuel.
+        #on r√©cup√®re la liste de fonction g√©rant le type de DYING actuel.
         dyingTypeBranching = self.BRANCH_DYING_FUNCTION[self.currentDyingState]
-        #dans cette liste, on rÈcupËre la fonction pour l'update
+        #dans cette liste, on r√©cup√®re la fonction pour l'update
         funcDyingUpdate = dyingTypeBranching[BRANCH_DYING_UPDATE]
-        #exÈcution de cette fonction. Woot !!!
+        #ex√©cution de cette fonction. Woot !!!
         funcDyingUpdate()
 
 
     def updateAppearing(self):
         """
-        fonction update. Cas o˘ le magicien est en train d'apparaÓtre (APPEARING)
+        fonction update. Cas o√π le magicien est en train d'appara√Ætre (APPEARING)
 
-        Le magicien n'a pratiquement rien ‡ faire pendant qu'il est appearing, car l'anim
-        est gÈrÈe par un SimpleSprite. Le magicien se contente d'inspecter le SimpleSprite
-        pour voir si il a terminÈ son anim ou pas.
+        Le magicien n'a pratiquement rien √† faire pendant qu'il est appearing, car l'anim
+        est g√©r√©e par un SimpleSprite. Le magicien se contente d'inspecter le SimpleSprite
+        pour voir si il a termin√© son anim ou pas.
         """
 
-        #sÈcuritÈ un peu inutile. Quand le self.spriteAppearing est devenu None, c'est forcÈment
-        #que la fin de l'anim d'apparition a ÈtÈ prise en compte.
-        #Donc on n'exÈcute plus cette fonction. Mais bon, hop, soyons fou.
+        #s√©curit√© un peu inutile. Quand le self.spriteAppearing est devenu None, c'est forc√©ment
+        #que la fin de l'anim d'apparition a √©t√© prise en compte.
+        #Donc on n'ex√©cute plus cette fonction. Mais bon, hop, soyons fou.
         if self.spriteAppearing is not None:
 
             if self.spriteAppearing.currentState == SPRITE_DEAD:
 
-                #l'anim d'apparition du magicien est terminÈ, donc on change son Ètat.
+                #l'anim d'apparition du magicien est termin√©, donc on change son √©tat.
                 self.currentState = ALIVE
 
-                #et on vire la rÈfÈrence au simpleSprite d'apparition. Y'en a plus besoin
+                #et on vire la r√©f√©rence au simpleSprite d'apparition. Y'en a plus besoin
                 #car on ne l'affiche plus. (Il n'est plus dans le groupe de sprite
                 #rassemblant tous les SimpleSprite)
                 self.spriteAppearing = None
@@ -601,12 +601,12 @@ class Magician(pygame.sprite.Sprite):
 
     def update(self):
         """
-        fonction gÈnÈrique pour l'update du magicien.
-        Celle l‡ aussi elle est classe, comme la fonction prÈprÈcÈdente.
+        fonction g√©n√©rique pour l'update du magicien.
+        Celle l√† aussi elle est classe, comme la fonction pr√©pr√©c√©dente.
         """
 
-        #on rÈcupËre la bonne fonction, selon l'Ètat actuel
+        #on r√©cup√®re la bonne fonction, selon l'√©tat actuel
         funcUpdate = self.BRANCH_UPDATE[self.currentState]
-        #et on l'exÈcute.  Tadzaaaamm !!
+        #et on l'ex√©cute.  Tadzaaaamm !!
         funcUpdate()
 

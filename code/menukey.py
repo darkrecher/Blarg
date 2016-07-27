@@ -1,5 +1,5 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+Ôªø#/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Blarg version 1.0
 
@@ -10,19 +10,19 @@ Blarg version 1.0
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
 
-    Copyright 2010 RÈchËr
+    Copyright 2010 R√©ch√®r
     Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
     termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
     Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
 
-    Creative Commons - PaternitÈ - Partage des Conditions Initiales ‡ l'Identique 2.0 France
+    Creative Commons - Paternit√© - Partage des Conditions Initiales √† l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
-date de la derniËre relecture-commentage : 24/02/2010
+date de la derni√®re relecture-commentage : 24/02/2010
 
-Element de menu qui rÈagit ‡ un appuyage de touche.
-Mais Áa rÈagit PAS ‡ un l‚chage de touche, ni ‡ une touche dÈj‡ appuyÈe.
-Parce que j'avais pas envie de le faire et/ou que je l'ai gÈrÈ autrement. Na !
+Element de menu qui r√©agit √† un appuyage de touche.
+Mais √ßa r√©agit PAS √† un l√¢chage de touche, ni √† une touche d√©j√† appuy√©e.
+Parce que j'avais pas envie de le faire et/ou que je l'ai g√©r√© autrement. Na !
 
 """
 
@@ -41,11 +41,11 @@ class MenuSensitiveKey(MenuElem):
         """
         constructeur. (thx captain obvious)
 
-        entrÈe :
-            funcAction : rÈfÈrence vers la fonction ‡ exÈcuter quand ce menuElem est activÈ.
-                (c.‡.d. quand le joueur appuira sur la touche associÈe ‡ ce menuSensitiveKey.)
+        entr√©e :
+            funcAction : r√©f√©rence vers la fonction √† ex√©cuter quand ce menuElem est activ√©.
+                (c.√†.d. quand le joueur appuira sur la touche associ√©e √† ce menuSensitiveKey.)
 
-            stimKey : identifiant de la touche ‡ laquelle il faut rÈagir. "How do you react ?"
+            stimKey : identifiant de la touche √† laquelle il faut r√©agir. "How do you react ?"
                       on utilise les identifiants de pygame.locals : K_xxx
         """
 
@@ -58,13 +58,13 @@ class MenuSensitiveKey(MenuElem):
 
     def takeStimuliKeys(self, dictKeyPressed, keyCodeDown, keyCharDown):
         """
-        prise en compte des touches appuyÈes par le joueur.
+        prise en compte des touches appuy√©es par le joueur.
         (voir description dans la classe MenuElem)
         """
 
-        #On teste si la touche requise est appuyÈe.
+        #On teste si la touche requise est appuy√©e.
         if keyCodeDown == self.stimKey:
-            #Ca correspond. donc il faut exÈcuter la fonction pointÈe par funcAction,
+            #Ca correspond. donc il faut ex√©cuter la fonction point√©e par funcAction,
             #et renvoyer le ihmsgInfo de cette fonction, tel quel.
             return self.funcAction()
 

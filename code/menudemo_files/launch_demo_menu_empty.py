@@ -1,14 +1,14 @@
-#/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+ï»¿#/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 Blarg version 1.0
 
-Démo du système de menu.
-Lancement d'une démo avec un menu vide.
+DÃ©mo du systÃ¨me de menu.
+Lancement d'une dÃ©mo avec un menu vide.
 
-Crée un MenuManager, ne contenant aucun "MenuElement".
-Pour quitter la démo, appuyer sur le bouton de fermage de fenêtre.
+CrÃ©e un MenuManager, ne contenant aucun "MenuElement".
+Pour quitter la dÃ©mo, appuyer sur le bouton de fermage de fenÃªtre.
 Alt-F4 ne marche pas.
 """
 
@@ -19,7 +19,7 @@ from menumng import MenuManager
 
 def launch_demo_menu_empty():
 
-    # Init de pygame et création d'une surface correspondant à l'écran,
+    # Init de pygame et crÃ©ation d'une surface correspondant Ã  l'Ã©cran,
     # comme dans toute application pygame qui se respecte.
     pygame.init()
     SCREEN_RECT = pygame.Rect(0, 0, 400, 300)
@@ -28,10 +28,10 @@ def launch_demo_menu_empty():
     # Instanciation d'un MenuManager.
     menu_empty = MenuManager(screen)
     # Lancement du menu. Il y a une boucle, dans handleMenu, qui :
-    #  - dépile les événements de souris et de clavier,
-    #  - les prend en compte pour lui-même ou bien
-    #  - les transfère aux MenuElements contenus dans le menu.
-    # Là, on a un menu sans MenuElements, donc il ne se passe pas grand-chose.
+    #  - dÃ©pile les Ã©vÃ©nements de souris et de clavier,
+    #  - les prend en compte pour lui-mÃªme ou bien
+    #  - les transfÃ¨re aux MenuElements contenus dans le menu.
+    # LÃ , on a un menu sans MenuElements, donc il ne se passe pas grand-chose.
     menu_empty.handleMenu()
 
     pygame.quit()
