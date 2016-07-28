@@ -1,0 +1,300 @@
+skipping byte-compilation of c:\Python25\lib\encodings\tis_620.py to encodings\t
+is_620.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\undefined.py to encodings
+\undefined.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\unicode_escape.py to enco
+dings\unicode_escape.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\unicode_internal.py to en
+codings\unicode_internal.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\utf_16.py to encodings\ut
+f_16.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\utf_16_be.py to encodings
+\utf_16_be.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\utf_16_le.py to encodings
+\utf_16_le.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\utf_7.py to encodings\utf
+_7.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\utf_8.py to encodings\utf
+_8.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\utf_8_sig.py to encodings
+\utf_8_sig.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\uu_codec.py to encodings\
+uu_codec.pyo
+skipping byte-compilation of c:\Python25\lib\encodings\zlib_codec.py to encoding
+s\zlib_codec.pyo
+skipping byte-compilation of c:\Python25\lib\fnmatch.py to fnmatch.pyo
+skipping byte-compilation of c:\Python25\lib\getopt.py to getopt.pyo
+skipping byte-compilation of c:\Python25\lib\gettext.py to gettext.pyo
+skipping byte-compilation of c:\Python25\lib\glob.py to glob.pyo
+skipping byte-compilation of c:\Python25\lib\hashlib.py to hashlib.pyo
+skipping byte-compilation of c:\Python25\lib\heapq.py to heapq.pyo
+skipping byte-compilation of c:\Python25\lib\inspect.py to inspect.pyo
+skipping byte-compilation of c:\Python25\lib\linecache.py to linecache.pyo
+skipping byte-compilation of c:\Python25\lib\locale.py to locale.pyo
+skipping byte-compilation of c:\Python25\lib\macpath.py to macpath.pyo
+skipping byte-compilation of c:\Python25\lib\new.py to new.pyo
+skipping byte-compilation of c:\Python25\lib\ntpath.py to ntpath.pyo
+skipping byte-compilation of c:\Python25\lib\opcode.py to opcode.pyo
+skipping byte-compilation of c:\Python25\lib\optparse.py to optparse.pyo
+skipping byte-compilation of c:\Python25\lib\os.py to os.pyo
+skipping byte-compilation of c:\Python25\lib\os2emxpath.py to os2emxpath.pyo
+skipping byte-compilation of c:\Python25\lib\pdb.py to pdb.pyo
+skipping byte-compilation of c:\Python25\lib\pickle.py to pickle.pyo
+skipping byte-compilation of c:\Python25\lib\popen2.py to popen2.pyo
+skipping byte-compilation of c:\Python25\lib\posixpath.py to posixpath.pyo
+skipping byte-compilation of c:\Python25\lib\pprint.py to pprint.pyo
+skipping byte-compilation of c:\Python25\lib\quopri.py to quopri.pyo
+skipping byte-compilation of c:\Python25\lib\random.py to random.pyo
+skipping byte-compilation of c:\Python25\lib\re.py to re.pyo
+skipping byte-compilation of c:\Python25\lib\repr.py to repr.pyo
+skipping byte-compilation of c:\Python25\lib\shlex.py to shlex.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\__init__.py to
+ pygame\__init__.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\_numpysndarray
+.py to pygame\_numpysndarray.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\_numpysurfarra
+y.py to pygame\_numpysurfarray.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\colordict.py t
+o pygame\colordict.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\compat.py to p
+ygame\compat.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\cursors.py to
+pygame\cursors.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\locals.py to p
+ygame\locals.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\mac_scrap.py t
+o pygame\mac_scrap.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\macosx.py to p
+ygame\macosx.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\pkgdata.py to
+pygame\pkgdata.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\sndarray.py to
+ pygame\sndarray.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\sprite.py to p
+ygame\sprite.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\surfarray.py t
+o pygame\surfarray.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\sysfont.py to
+pygame\sysfont.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\threads\Py25Qu
+eue.py to pygame\threads\Py25Queue.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\threads\__init
+__.py to pygame\threads\__init__.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\pygame\version.py to
+pygame\version.pyo
+skipping byte-compilation of c:\Python25\lib\site-packages\zipextimporter.py to
+zipextimporter.pyo
+skipping byte-compilation of c:\Python25\lib\socket.py to socket.pyo
+skipping byte-compilation of c:\Python25\lib\sre.py to sre.pyo
+skipping byte-compilation of c:\Python25\lib\sre_compile.py to sre_compile.pyo
+skipping byte-compilation of c:\Python25\lib\sre_constants.py to sre_constants.p
+yo
+skipping byte-compilation of c:\Python25\lib\sre_parse.py to sre_parse.pyo
+skipping byte-compilation of c:\Python25\lib\stat.py to stat.pyo
+skipping byte-compilation of c:\Python25\lib\string.py to string.pyo
+skipping byte-compilation of c:\Python25\lib\stringprep.py to stringprep.pyo
+skipping byte-compilation of c:\Python25\lib\struct.py to struct.pyo
+skipping byte-compilation of c:\Python25\lib\subprocess.py to subprocess.pyo
+skipping byte-compilation of c:\Python25\lib\tempfile.py to tempfile.pyo
+skipping byte-compilation of c:\Python25\lib\textwrap.py to textwrap.pyo
+skipping byte-compilation of c:\Python25\lib\threading.py to threading.pyo
+skipping byte-compilation of c:\Python25\lib\token.py to token.pyo
+skipping byte-compilation of c:\Python25\lib\tokenize.py to tokenize.pyo
+skipping byte-compilation of c:\Python25\lib\traceback.py to traceback.pyo
+skipping byte-compilation of c:\Python25\lib\types.py to types.pyo
+skipping byte-compilation of c:\Python25\lib\unittest.py to unittest.pyo
+skipping byte-compilation of c:\Python25\lib\warnings.py to warnings.pyo
+skipping byte-compilation of c:\Python25\lib\webbrowser.py to webbrowser.pyo
+removing c:\users\recher\appdata\local\temp\tmpbzk1vq.py
+*** copy extensions ***
+*** copy dlls ***
+copying C:\Windows\system32\MSVCR71.dll -> C:\Recher\projets\git\Blarg\code\dist
+
+copying c:\Python25\w9xpopen.exe -> C:\Recher\projets\git\Blarg\code\dist
+*** copy data files ***
+creating C:\Recher\projets\git\Blarg\code\dist\fontzy
+copying fontzy\fonts_origin.txt -> C:\Recher\projets\git\Blarg\code\dist\fontzy
+copying fontzy\tempesta.ttf -> C:\Recher\projets\git\Blarg\code\dist\fontzy
+creating C:\Recher\projets\git\Blarg\code\dist\img
+copying img\back.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\bgdeath.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\bggame.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\bullet.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\bulshell.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\bulsmoka.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\bulsmokb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\buttconf.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\buttok.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\dedicace.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\drapalen.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\drapalfr.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\feua.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\feub.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\framname.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\fumea.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\fumeb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\gam_icon.gif -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\harminge.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hhednorm.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hhedsmil.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hhurt.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hleva.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hlevb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hnorm.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hrcharga.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\hrchargb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\lishdiaa.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\lishdias.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\lishhor.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\lishver.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\manual.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mappea01.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mappea02.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mappea03.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mappea10.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mappea11.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mappea12.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbarmla.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbarmlb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbarmra.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbarmrb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbheada.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbheadb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbsplata.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbsplatb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mbsplatc.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mhurt.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mnaked.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mnorm.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mshitaa.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mshitab.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mshitba.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mshitbb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mshitbc.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\mshitbd.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\pblood.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\prezback.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\prezhero.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\prezmagi.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\preztitl.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\Thumbs.db -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\tickboxa.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\tickboxb.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\txtscrdo.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\txtscrup.png -> C:\Recher\projets\git\Blarg\code\dist\img
+copying img\vestjean.png -> C:\Recher\projets\git\Blarg\code\dist\img
+creating C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\blarg00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\bllb00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\clicli00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\herarg00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\herarg01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\herdie00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg08.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg09.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg10.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magarg11.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur08.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur09.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur10.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magbur11.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot08.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot09.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot10.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot11.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot12.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot13.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magrot14.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi08.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\magshi09.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pan07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\pop00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout08.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\prout09.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\shlklk00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\shlklk01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\shlklk02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\shlklk03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\tuluu00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw00.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw01.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw02.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw03.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw04.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw05.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw06.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw07.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying sound\zwouw08.ogg -> C:\Recher\projets\git\Blarg\code\dist\sound
+copying c:\Python25\lib\site-packages\py2exe\run_w.exe -> C:\Recher\projets\git\
+Blarg\code\dist\zemain.exe
+Adding python25.dll as resource to C:\Recher\projets\git\Blarg\code\dist\zemain.
+exe
+The following modules appear to be missing
+['AppKit', 'Foundation', 'Numeric', 'OpenGL.GL', 'copyreg', 'io', 'multiprocessi
+ng', 'numpy', 'pkg_resources', 'queue', 'winreg', 'pygame.sdlmain_osx']
+
+*** binary dependencies ***
+Your executable(s) also depend on these dlls which are not included,
+you may or may not need to distribute them.
+
+Make sure you have the license if you distribute any of them, and
+make sure you don't distribute files belonging to the operating system.
+
+   USER32.dll - C:\Windows\system32\USER32.dll
+   SHELL32.dll - C:\Windows\system32\SHELL32.dll
+   WINMM.DLL - C:\Windows\system32\WINMM.DLL
+   WSOCK32.dll - C:\Windows\system32\WSOCK32.dll
+   ADVAPI32.dll - C:\Windows\system32\ADVAPI32.dll
+   WS2_32.DLL - C:\Windows\system32\WS2_32.DLL
+   GDI32.dll - C:\Windows\system32\GDI32.dll
+   KERNEL32.dll - C:\Windows\system32\KERNEL32.dll
+Press any key to continue
+
+C:\Recher\projets\git\Blarg\code>
