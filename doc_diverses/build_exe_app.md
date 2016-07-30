@@ -140,6 +140,10 @@ Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de l
 Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
+#### Création de l'icône
+
+http://convertico.com/
+
 ## Mac OS X
 
 Todo.
