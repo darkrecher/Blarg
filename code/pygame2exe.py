@@ -23,58 +23,59 @@ except ImportError, message:
 
 class pygame2exe(py2exe.build_exe.py2exe): #This hack make sure that pygame default font is copied: no need to modify code for specifying default font
     def copy_extensions(self, extensions):
-        #Get pygame default font
+        # Get pygame default font
         pygamedir = os.path.split(pygame.base.__file__)[0]
         pygame_default_font = os.path.join(pygamedir, pygame.font.get_default_font())
-        #print "blrop : ", pygame_default_font
-        #raise SystemExit
 
-        #Add font to list of extension to be copied
+        # Add font to list of extension to be copied
         extensions.append(Module("pygame.font", pygame_default_font))
         py2exe.build_exe.py2exe.copy_extensions(self, extensions)
 
 class BuildExe:
     def __init__(self):
-        #Name of starting .py
+        # Name of starting .py
         self.script = "zemain.py"
 
-        #Name of program
+        # Name of program
         self.project_name = "Blarg"
 
-        #Project url
+        # Project url
         self.project_url = "http://recher.wordpress.com"
 
-        #Version of program
+        # Version of program
         self.project_version = "1.0"
 
-        #License of the program
+        # License of the program
         self.license = "Free Art License : http://www.artlibre.org and CC-BY-SA"
 
-        #Auhor of program
+        # Auhor of program
         self.author_name = "Recher"
         self.author_email = "plouf@plouf.com"
         self.copyright = "Copyright (c) 2011 Recher."
 
-        #Description
+        # Description
         self.project_description = "Dis iz Blarg. My game. da bayst in da vvoirld !"
 
-        #Icon file (None will use pygame default icon)
-        self.icon_file = None #"gam_icon.ico" : j'ai pas l'impression que cha marche.
+        # Icon file (None will use pygame default icon)
+        # Note Recher : ajouter un icone ne semble pas fonctionner.
+        #self.icon_file = "gam_icon.ico" #
+        self.icon_file = None
 
-        #Extra files/dirs copied to game
+        # Extra files/dirs copied to game
         self.extra_datas = ["fontzy", "img", "sound"]
 
-        #Extra/excludes python modules
-        self.extra_modules = ["pygame.font"] #osef ?
+        # Extra/excludes python modules
+        # Note Recher : on n'a peut-etre pas besoin de ce truc.
+        self.extra_modules = ["pygame.font"]
         self.exclude_modules = []
 
-        #DLL Excludes
+        # DLL Excludes
         self.exclude_dll = ['']
 
-        #Zip file name (None will bundle files in exe instead of zip file)
+        # Zip file name (None will bundle files in exe instead of zip file)
         self.zipfile_name = None
 
-        #Dist directory
+        # Dist directory
         self.dist_dir ='dist'
 
     ## Code from DistUtils tutorial at http://wiki.python.org/moin/Distutils/Tutorial
@@ -112,15 +113,16 @@ class BuildExe:
         return file_list
 
     def run(self):
-        if os.path.isdir(self.dist_dir): #Erase previous destination dir
+        # Erase previous destination dir
+        if os.path.isdir(self.dist_dir):
             shutil.rmtree(self.dist_dir)
 
-        #Use the default pygame icon, if none given
+        # Use the default pygame icon, if none given
         if self.icon_file == None:
             path = os.path.split(pygame.__file__)[0]
             self.icon_file = os.path.join(path, 'pygame.ico')
 
-        #List all data files to add
+        # List all data files to add
         extra_datas = []
         for data in self.extra_datas:
             if os.path.isdir(data):
@@ -139,8 +141,11 @@ class BuildExe:
             license = self.license,
 
             # targets to build
+            # Note Recher : si on veut toujours voir la fenetre de la console
+            # (pour debugger a l'aide de la sortie standard, par exemple),
+            # il faut decommenter la ligne suivante et commenter la ligne suivante-suivante
+            #console = [{
             windows = [{
-            #console = [{   #on peut mettre ceci, si on veut encore voir la fenetre de console
                 'script': self.script,
                 'icon_resources': [(0, self.icon_file)],
                 'copyright': self.copyright
@@ -153,11 +158,14 @@ class BuildExe:
             dist_dir = self.dist_dir
             )
 
-        if os.path.isdir('build'): #Clean up build dir
+        # Clean up build dir
+        if os.path.isdir('build'):
             shutil.rmtree('build')
 
 if __name__ == '__main__':
     if operator.lt(len(sys.argv), 2):
         sys.argv.append('py2exe')
-    BuildExe().run() #Run generation
-    raw_input("Press any key to continue") #Pause to let user see that things ends
+    # Run generation
+    BuildExe().run()
+    # Pause to let user see that things ends
+    raw_input("Press any key to continue")

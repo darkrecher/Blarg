@@ -65,29 +65,31 @@ Indiquer le répertoire ou vous avez installé python. (`C:\python25\` ou autre)
 
 #### Création du .exe ####
 
-Cette action utilise le fichier `code/pygame2exe.py` quip a été créé à partir de ce tutoriel : http://www.pygame.org/wiki/Pygame2exe?parent=CookBook
+Cette action utilise le fichier `code/pygame2exe.py`, qui a été créé à partir de ce tutoriel : http://www.pygame.org/wiki/Pygame2exe?parent=CookBook
 
-Exécuter `code/build_blarg_exe.bat`
+Exécuter `code/build_blarg_exe.bat`. Une fenêtre s'ouvre, demandant parfois d'appuyer sur une touche pour continuer le processus.
 
 Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marchera pas. Il faut exécuter les commandes du .bat via une console, en adaptant le chemin d'installation de python.
 
 À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu.
 
+##### Message d'erreur possible
+
 Parfois, on obtient un message d'erreur de cette forme :
 
     WindowsError: [Error 32]
-    Le processus ne peut pas accÚder au fichier car ce fichier est utilisÚ par un autre processus:
-    'build\\bdist.win32\\winexe\\collect-2.5\\encodings'
+    Le processus ne peut pas accéder au fichier car ce fichier est utilisé par un autre processus:
+    'build\\bdist.win32\\winexe\\{chemin de fichier quelconque}
 
-Ou bien ?
+Le texte `{chemin de fichier quelconque}` peut prendre diverses valeurs : `collect-2.5\\encodings'`, `bundle-2.5\\python25.dll`, ...
 
-    WindowsError: [Error 32]
-    Le processus ne peut pas accÚder au fichier car ce fichier est utilisÚ par un autre processus:
-    'build\\bdist.win32\\winexe\\bundle-2.5\\python25.dll'
+Dans ce cas, il reste un répertoire `C:\blarg\code\build\`. Il ne sert plus à rien une fois une fois que l'exécutable a été créé. Vous pouvez le supprimer ainsi que son contenu.
 
-Même avec ce message, la création de l'exécutable devrait avoir été faite.
+À priori, la création de l'exécutable s'est faite correctement même si ce message est apparu. Dans le doute, on peut relancer la construction (ce message semble apparaître aléatoirement).
 
-D'autre part, on obtient le message d'avertissement suivant :
+##### Message d'avertissement
+
+On obtient systématiquement le message d'avertissement suivant :
 
     Make sure you have the license if you distribute any of them, and
     make sure you don't distribute files belonging to the operating system.
@@ -101,7 +103,7 @@ D'autre part, on obtient le message d'avertissement suivant :
     ADVAPI32.dll - I:\WINDOWS\system32\ADVAPI32.dll
     USER32.dll - I:\WINDOWS\system32\USER32.dll
 
-Ça ne m'a jamais posé de problème. À priori, tous ces fichiers sont déjà présents sur la plupart des systèmes Windows. Pour distribuer le jeu, il suffit juste de distribuer le contenu du répertoire dist.
+Ça ne m'a jamais posé de problème. À priori, tous ces fichiers sont déjà présents sur la plupart des systèmes Windows. Pour distribuer le jeu, il suffit juste de distribuer le contenu du répertoire `dist`.
 
 #### Lancement du jeu avec le .exe ####
 
@@ -113,28 +115,31 @@ Au premier lancement, il peut y avoir le message d'erreur suivant.
 
 Mais le fichier de log mentionné n'est pas créé. Le jeu se lance correctement.
 
-Le message d'erreur n'apparaît qu'une fois.
+Ce message n'apparaît qu'une fois.
 
 Si vous avez l'anti-virus Avast, celui-ci va couiner un petit peu au premier lancement (validation d'un .exe non connu). Mais ça se passe sans aucun problème.
 
 Le contenu du répertoire `dist` n'est pas versionné dans ce repository.
 
+Pour lancer le jeu en mode fenêtre, quelle que soit la config actuelle, double-cliquer sur le fichier `C:\blarg\code\dist\blarg_windowed.bat`
+
 #### Redistribution de l'exécutable ####
 
 Créer un fichier compressé (.zip ou autre), contenant tout le répertoire `dist`. À savoir, les fichiers et répertoires suivants :
 
-    fontzy
-    img
-    sound
-    blarg.exe
-    MSVCR71.dll
-    w9xpopen.exe
+ - fontzy
+ - img
+ - sound
+ - blarg_windowed.bat
+ - blarg.exe
+ - MSVCR71.dll
+ - w9xpopen.exe
 
-Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de le décompresser n'importe où, et de double-cliquer sur main.exe.
+Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de le décompresser n'importe où, et de double-cliquer sur blarg.exe.
 
 Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
-# Mac OS X
+## Mac OS X
 
 Todo.
