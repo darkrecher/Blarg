@@ -164,3 +164,184 @@ Pistes possibles :
 ## Mac OS X
 
 Todo.
+
+Brouillon :
+
+
+## Mac OS X ##
+
+### Lancement du jeu à partir du code source ###
+
+À priori, pas de souci de version de python, ni pour jouer, ni pour transformer en exécutable. On peut utiliser n'importe laquelle, de la 2.5 à la 2.x.
+
+#### Installation de python et pygame ####
+
+Je l'ai fait sur mon Mac, mais je ne me souviens plus des actions effectuées ! Si je n'ai rien noté de spécial, c'est qu'il ne devait rien y avoir de compliqué. (Je suppose).
+
+Mon header python est comme ça :
+
+    Python 2.6.4 (r264:75821M, Oct 27 2009, 19:48:32)
+    [GCC 4.0.1 (Apple Inc. build 5493)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+
+Mon répertoire lib contient les fichiers suivants :
+
+    cd /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+    ls
+
+    README
+    altgraph-0.6.7-py2.6.egg
+    easy-install.pth
+    macholib-1.2.1-py2.6.egg
+    modulegraph-0.7.3-py2.6.egg
+    py2app-0.4.3-py2.6.egg
+    pygame
+    pygame-1.9.1release-py2.6.egg-info
+    setuptools-0.6c11-py2.6.egg
+    setuptools.pth
+
+La valeur de la variable python `pygame.version.ver` est : `'1.9.1release-svn2575'`
+
+Je ne sais pas trop dans quelle mesure ces renseignement sont utiles. Faites-en ce que vous voulez.
+
+#### Lancement du jeu ####
+
+Télécharger tout le contenu de ce repository. On considèrera qu'il est mis à l'emplacement `~/Documents/recher/blarg/`
+
+Ouvrir un terminal et exécuter les commandes suivantes :
+
+    cd ~/Documents/recher/blarg/code
+    python zemain.py
+
+En supposant que l'exécutable python a été mis dans le path. Normalement, ça se fait automatiquement à l'installation.
+
+Sinon, il faudrait faire quelque chose dans ce style (en prenant garde au numéro de version 2.6 / 2.7 / autre) :
+
+`/Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python/python zemain.py`
+
+Le jeu devrait se lancer.
+
+### Transformation en exécutable  ###
+
+#### Installation de py2app et setuptools ####
+
+Comme pour l'installation de python et pygame : je ne sais plus comment j'ai fait ! Et si ça se trouve, il n'y a rien à faire, c'est déjà pré-installé.
+
+Se reporter au contenu de mon répertoire lib, et essayer d'avoir plus ou moins la même chose, en adaptant les divers numéros de versions.
+
+#### Création du .app ####
+
+Dupliquer le fichier `code/zemain.py`, en le nommant `code/blarg.py`. (C'est le moyen le plus simple de créer une app avec le bon nom).
+
+Le fichier `code/blarg.py` n'est pas versionné dans ce repository, puisque c'est juste une copie.
+
+Ouvrir un terminal et exécuter les commandes suivantes :
+
+    cd ~/Documents/recher/blarg/code
+    python pygame2macapp.py py2app
+
+ou bien (voir plus loin)
+
+python pygame2macapp.py py2app --iconfile blarg_icon.icns
+
+Deux répertoires sont créés :
+
+ - `code/build`. Répertoire temporaire qui peut être supprimé.
+ - `code/dist`. Contient l'application `blarg.app`.
+
+Le contenu de ces 2 répertoires n'est pas versionné dans ce repository.
+
+Il est possible d'avoir un .app avec l'icône de son choix. J'étais parvenu à le faire pour mon jeu précédent (Blarg). Je ne l'ai pas fait pour celui-là, car j'ai la flemme et c'est un jeu terminé fortement à l'arrache.
+
+Double-cliquer sur `code/dist/blarg.app`. Le jeu devrait se lancer sans problème.
+
+#### Création d'un disque .dmg contenant le .app ####
+
+Ouvrir un terminal et exécuter les commandes suivantes :
+
+    cd ~/Documents/recher/blarg/code/dist
+    hdiutil create -imagekey zlib-level=9 -srcfolder blarg.app blarg.dmg
+
+Ça met un certain temps. Des petits points s'écrivent dans le terminal, pour montrer qu'il est vivant.
+
+Le fichier `dist/blarg.dmg` devrait être créé.
+
+#### Lancement du jeu à partir du disque .dmg ####
+
+Double-cliquer sur le .dmg pour monter le disque, comme on fait d'habitude sur les Mac.
+
+Dans le disque, double-cliquer sur l'appli `blarg.app`.
+
+Pour les applications enregistrant des fichiers de sauvegarde, il faut préalablement copier le .app sur le disque dur (à l'endroit qu'on veut). Sinon, ça ne sauvegarde rien. Je l'avais constaté avec mon jeu précédent.
+
+
+#### Redistribution de l'application ####
+
+Copier simplement le .dmg sur un autre Mac. Puis exécuter le jeu comme expliqué dans le chapitre précédent.
+
+Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira. (Là je me répète un peu, mais j'y tiens)
+
+
+### Plantage éventuel à l'exécution ###
+
+Si vous avez un peu joué avec le code source, vous risquez d'avoir l'erreur suivante au lancement de blarg.app.
+
+    Fatal Python error: (pygame parachute) Bus Error
+    Abort trap
+
+Aucune fenêtre n'apparaît. Ce message est émis sur la sortie standard ou erreur. (Bref, dans la console).
+
+Ça arrive avec les exécutables Mac, mais peut-être aussi sur d'autres systèmes.
+
+Pour régler le problème, vérifiez que vous n'avez pas ajouté une instruction de ce genre dans le code :
+
+    my_default_font = pygame.font.Font(None, 20)
+
+Lorsqu'on instancie une police de caractère sans spécifier de fichier de police, le python parvient toujours à se débrouiller. Il s'en est gardé une sous le coude, il demande une police au système, il écrit les lettres lui-même avec son sang, ... Donc, quand on lance le jeu avec le code source, tout va bien.
+
+Mais dans un exécutable, ça pète. Car la police par défaut n'est pas embarquée dedans. Le message d'erreur est vraiment cabbalistique, mais il faut faire avec.
+
+Pour éviter ce genre de désagrément, indiquez toujours un fichier de police quand vous en instanciez une. N'importe quelle fichier, même un truc moche. Si vous ne savez pas où il y en a, prenez celui du repository : code/fontzy/tempesta.ttf
+
+J'ai eu l'explication de ce bug grâce à ce post sur stackoverflow : http://stackoverflow.com/questions/3470377/my-py2app-app-will-not-open-whats-the-problem
+
+## GNU/Linux, Ubuntu, Fedora, etc. ##
+
+Il est certainement possible de jouer à Blarg sur ces systèmes, puisque python et pygame sont compatibles dessus. Mais je n'ai pas ce genre de chose chez moi. Désolé, je devrais certainement être qualifié de vilain monsieur.
+
+Je vous laisse vous débrouiller tout seul, à coup de apt-get ou autres cabalisteries. Ça ne devrait pas être trop difficile, je suis sûr que vous êtes très fort. Bon courage !
+
+Si vous rencontrez des problèmes durant l'installation, l'exécution ou autre, n'hésitez pas à m'en faire part. Je les décrirais dans ce document pour en faire profiter tout le monde.
+
+
+# icônes
+
+création du .icns
+
+à partir du .gif.
+car à partir du .png, ça fait un truc bizarre.
+
+
+
+iconComposer
+
+Alert
+Extract Large 1bit mask from data also?
+
+
+Image does not have a representation with same dimensions.
+Use a scaled version
+
+re-meme question qu avant
+
+# lancer en windowed sous mac
+
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ ./blarg FORCE_WINDOWED
+coucou
+tchaw
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ ./blarg
+coucou
+tchaw
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ pwd
+/Users/recherpsychotrope/Documents/recher/blarg_test/blarg.app/Contents/MacOS
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$

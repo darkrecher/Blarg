@@ -1,0 +1,6 @@
+
+mac-mini-de-recher-psychotrope:~ recherpsychotrope$ cd Documents/recher/blarg/code/dist/
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg/code/dist recherpsychotrope$ hdiutil create -imagekey zlib-level=9 -srcfolder blarg.app blarg.dmg
+..........................................................................................................................................
+created: /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.dmg
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg/code/dist recherpsychotrope$ 

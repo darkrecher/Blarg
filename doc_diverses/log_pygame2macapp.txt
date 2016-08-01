@@ -1,0 +1,819 @@
+Last login: Mon Aug  1 00:41:59 on ttyp1
+Welcome to Darwin!
+You have new mail.
+mac-mini-de-recher-psychotrope:~ recherpsychotrope$ 
+
+
+
+mac-mini-de-recher-psychotrope:~ recherpsychotrope$ cd
+mac-mini-de-recher-psychotrope:~ recherpsychotrope$ cd Documents/recher/blarg/code/
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg/code recherpsychotrope$ python pygame2macapp.py py2app --iconfile blarg_icon.icns                         running py2app
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist
+creating build/bdist.macosx-10.3-fat/python2.6-standalone/app/lib-dynload
+creating build/bdist.macosx-10.3-fat/python2.6-standalone/app/Frameworks
+*** using recipe: virtualenv ***
+*** using recipe: pygame ***
+*** filtering dependencies ***
+522 total
+57 filtered
+5 orphaned
+465 remaining
+*** create binaries ***
+creating python loader for extension 'MacOS'
+creating python loader for extension 'Nav'
+creating python loader for extension '_AE'
+creating python loader for extension '_Ctl'
+creating python loader for extension '_Dlg'
+creating python loader for extension '_Evt'
+creating python loader for extension '_File'
+creating python loader for extension '_Menu'
+creating python loader for extension '_Qd'
+creating python loader for extension '_Res'
+creating python loader for extension '_Win'
+creating python loader for extension '_bisect'
+creating python loader for extension '_bytesio'
+creating python loader for extension '_codecs_cn'
+creating python loader for extension '_codecs_hk'
+creating python loader for extension '_codecs_iso2022'
+creating python loader for extension '_codecs_jp'
+creating python loader for extension '_codecs_kr'
+creating python loader for extension '_codecs_tw'
+creating python loader for extension '_collections'
+creating python loader for extension '_ctypes'
+creating python loader for extension '_fileio'
+creating python loader for extension '_functools'
+creating python loader for extension '_hashlib'
+creating python loader for extension '_heapq'
+creating python loader for extension '_locale'
+creating python loader for extension '_multibytecodec'
+creating python loader for extension '_multiprocessing'
+creating python loader for extension '_random'
+creating python loader for extension '_scproxy'
+creating python loader for extension '_sha256'
+creating python loader for extension '_sha512'
+creating python loader for extension '_socket'
+creating python loader for extension '_ssl'
+creating python loader for extension '_struct'
+creating python loader for extension '_weakref'
+creating python loader for extension 'array'
+creating python loader for extension 'binascii'
+creating python loader for extension 'bz2'
+creating python loader for extension 'cPickle'
+creating python loader for extension 'cStringIO'
+creating python loader for extension 'datetime'
+creating python loader for extension 'fcntl'
+creating python loader for extension 'gestalt'
+creating python loader for extension 'icglue'
+creating python loader for extension 'itertools'
+creating python loader for extension 'math'
+creating python loader for extension 'mmap'
+creating python loader for extension 'operator'
+creating python loader for extension 'pyexpat'
+creating python loader for extension 'select'
+creating python loader for extension 'strop'
+creating python loader for extension 'termios'
+creating python loader for extension 'time'
+creating python loader for extension 'unicodedata'
+creating python loader for extension 'zlib'
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame
+creating python loader for extension 'pygame._arraysurfarray'
+creating python loader for extension 'pygame._numericsndarray'
+creating python loader for extension 'pygame._numericsurfarray'
+creating python loader for extension 'pygame.base'
+creating python loader for extension 'pygame.bufferproxy'
+creating python loader for extension 'pygame.cdrom'
+creating python loader for extension 'pygame.color'
+creating python loader for extension 'pygame.constants'
+creating python loader for extension 'pygame.display'
+creating python loader for extension 'pygame.draw'
+creating python loader for extension 'pygame.event'
+creating python loader for extension 'pygame.fastevent'
+creating python loader for extension 'pygame.font'
+creating python loader for extension 'pygame.image'
+creating python loader for extension 'pygame.imageext'
+creating python loader for extension 'pygame.joystick'
+creating python loader for extension 'pygame.key'
+creating python loader for extension 'pygame.mask'
+creating python loader for extension 'pygame.mixer'
+creating python loader for extension 'pygame.mixer_music'
+creating python loader for extension 'pygame.mouse'
+creating python loader for extension 'pygame.movie'
+creating python loader for extension 'pygame.overlay'
+creating python loader for extension 'pygame.pixelarray'
+creating python loader for extension 'pygame.rect'
+creating python loader for extension 'pygame.rwobject'
+creating python loader for extension 'pygame.sdlmain_osx'
+creating python loader for extension 'pygame.surface'
+creating python loader for extension 'pygame.surflock'
+creating python loader for extension 'pygame.time'
+creating python loader for extension 'pygame.transform'
+*** byte compile python files ***
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/Queue.py to Queue.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/StringIO.py to StringIO.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/UserDict.py to UserDict.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/__future__.py to __future__.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/_abcoll.py to _abcoll.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/_strptime.py to _strptime.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/_threading_local.py to _threading_local.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/abc.py to abc.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/atexit.py to atexit.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/base64.py to base64.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/bdb.py to bdb.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/bisect.py to bisect.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/calendar.py to calendar.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/cmd.py to cmd.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/codecs.py to codecs.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/collections.py to collections.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/copy.py to copy.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/copy_reg.py to copy_reg.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/ctypes/__init__.py to ctypes/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/ctypes
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/ctypes/_endian.py to ctypes/_endian.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/difflib.py to difflib.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/dis.py to dis.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/__init__.py to distutils/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/distutils
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dep_util.py to distutils/dep_util.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/errors.py to distutils/errors.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/log.py to distutils/log.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/spawn.py to distutils/spawn.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/sysconfig.py to distutils/sysconfig.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/text_file.py to distutils/text_file.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/util.py to distutils/util.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/doctest.py to doctest.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/dummy_thread.py to dummy_thread.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/dummy_threading.py to dummy_threading.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/__init__.py to email/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/email
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/_parseaddr.py to email/_parseaddr.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/base64mime.py to email/base64mime.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/charset.py to email/charset.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/encoders.py to email/encoders.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/errors.py to email/errors.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/feedparser.py to email/feedparser.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/generator.py to email/generator.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/header.py to email/header.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/iterators.py to email/iterators.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/message.py to email/message.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/mime/__init__.py to email/mime/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/email/mime
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/parser.py to email/parser.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/quoprimime.py to email/quoprimime.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/email/utils.py to email/utils.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/__init__.py to encodings/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/encodings
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/aliases.py to encodings/aliases.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/ascii.py to encodings/ascii.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/base64_codec.py to encodings/base64_codec.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/big5.py to encodings/big5.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/big5hkscs.py to encodings/big5hkscs.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/bz2_codec.py to encodings/bz2_codec.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/charmap.py to encodings/charmap.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp037.py to encodings/cp037.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1006.py to encodings/cp1006.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1026.py to encodings/cp1026.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1140.py to encodings/cp1140.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1250.py to encodings/cp1250.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1251.py to encodings/cp1251.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1252.py to encodings/cp1252.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1253.py to encodings/cp1253.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1254.py to encodings/cp1254.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1255.py to encodings/cp1255.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1256.py to encodings/cp1256.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1257.py to encodings/cp1257.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp1258.py to encodings/cp1258.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp424.py to encodings/cp424.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp437.py to encodings/cp437.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp500.py to encodings/cp500.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp737.py to encodings/cp737.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp775.py to encodings/cp775.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp850.py to encodings/cp850.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp852.py to encodings/cp852.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp855.py to encodings/cp855.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp856.py to encodings/cp856.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp857.py to encodings/cp857.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp860.py to encodings/cp860.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp861.py to encodings/cp861.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp862.py to encodings/cp862.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp863.py to encodings/cp863.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp864.py to encodings/cp864.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp865.py to encodings/cp865.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp866.py to encodings/cp866.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp869.py to encodings/cp869.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp874.py to encodings/cp874.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp875.py to encodings/cp875.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp932.py to encodings/cp932.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp949.py to encodings/cp949.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/cp950.py to encodings/cp950.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/euc_jis_2004.py to encodings/euc_jis_2004.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/euc_jisx0213.py to encodings/euc_jisx0213.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/euc_jp.py to encodings/euc_jp.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/euc_kr.py to encodings/euc_kr.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/gb18030.py to encodings/gb18030.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/gb2312.py to encodings/gb2312.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/gbk.py to encodings/gbk.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/hex_codec.py to encodings/hex_codec.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/hp_roman8.py to encodings/hp_roman8.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/hz.py to encodings/hz.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/idna.py to encodings/idna.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_jp.py to encodings/iso2022_jp.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_jp_1.py to encodings/iso2022_jp_1.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_jp_2.py to encodings/iso2022_jp_2.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_jp_2004.py to encodings/iso2022_jp_2004.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_jp_3.py to encodings/iso2022_jp_3.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_jp_ext.py to encodings/iso2022_jp_ext.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso2022_kr.py to encodings/iso2022_kr.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_1.py to encodings/iso8859_1.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_10.py to encodings/iso8859_10.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_11.py to encodings/iso8859_11.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_13.py to encodings/iso8859_13.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_14.py to encodings/iso8859_14.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_15.py to encodings/iso8859_15.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_16.py to encodings/iso8859_16.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_2.py to encodings/iso8859_2.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_3.py to encodings/iso8859_3.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_4.py to encodings/iso8859_4.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_5.py to encodings/iso8859_5.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_6.py to encodings/iso8859_6.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_7.py to encodings/iso8859_7.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_8.py to encodings/iso8859_8.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/iso8859_9.py to encodings/iso8859_9.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/johab.py to encodings/johab.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/koi8_r.py to encodings/koi8_r.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/koi8_u.py to encodings/koi8_u.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/latin_1.py to encodings/latin_1.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_arabic.py to encodings/mac_arabic.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_centeuro.py to encodings/mac_centeuro.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_croatian.py to encodings/mac_croatian.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_cyrillic.py to encodings/mac_cyrillic.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_farsi.py to encodings/mac_farsi.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_greek.py to encodings/mac_greek.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_iceland.py to encodings/mac_iceland.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_latin2.py to encodings/mac_latin2.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_roman.py to encodings/mac_roman.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_romanian.py to encodings/mac_romanian.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mac_turkish.py to encodings/mac_turkish.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/mbcs.py to encodings/mbcs.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/palmos.py to encodings/palmos.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/ptcp154.py to encodings/ptcp154.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/punycode.py to encodings/punycode.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/quopri_codec.py to encodings/quopri_codec.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/raw_unicode_escape.py to encodings/raw_unicode_escape.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/rot_13.py to encodings/rot_13.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/shift_jis.py to encodings/shift_jis.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/shift_jis_2004.py to encodings/shift_jis_2004.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/shift_jisx0213.py to encodings/shift_jisx0213.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/string_escape.py to encodings/string_escape.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/tis_620.py to encodings/tis_620.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/undefined.py to encodings/undefined.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/unicode_escape.py to encodings/unicode_escape.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/unicode_internal.py to encodings/unicode_internal.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_16.py to encodings/utf_16.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_16_be.py to encodings/utf_16_be.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_16_le.py to encodings/utf_16_le.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_32.py to encodings/utf_32.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_32_be.py to encodings/utf_32_be.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_32_le.py to encodings/utf_32_le.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_7.py to encodings/utf_7.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_8.py to encodings/utf_8.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/utf_8_sig.py to encodings/utf_8_sig.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/uu_codec.py to encodings/uu_codec.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/encodings/zlib_codec.py to encodings/zlib_codec.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/fnmatch.py to fnmatch.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/ftplib.py to ftplib.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/functools.py to functools.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/genericpath.py to genericpath.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/getopt.py to getopt.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/getpass.py to getpass.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/gettext.py to gettext.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/glob.py to glob.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/hashlib.py to hashlib.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/heapq.py to heapq.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/hmac.py to hmac.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py to httplib.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/inspect.py to inspect.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/io.py to io.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/keyword.py to keyword.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/linecache.py to linecache.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/locale.py to locale.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/logging/__init__.py to logging/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/logging
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/macurl2path.py to macurl2path.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/mimetools.py to mimetools.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/mimetypes.py to mimetypes.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/__init__.py to multiprocessing/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/multiprocessing
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/connection.py to multiprocessing/connection.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/dummy/__init__.py to multiprocessing/dummy/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/multiprocessing/dummy
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/dummy/connection.py to multiprocessing/dummy/connection.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/forking.py to multiprocessing/forking.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/heap.py to multiprocessing/heap.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/managers.py to multiprocessing/managers.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/pool.py to multiprocessing/pool.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/process.py to multiprocessing/process.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/queues.py to multiprocessing/queues.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/reduction.py to multiprocessing/reduction.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/sharedctypes.py to multiprocessing/sharedctypes.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/synchronize.py to multiprocessing/synchronize.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/multiprocessing/util.py to multiprocessing/util.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/opcode.py to opcode.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/optparse.py to optparse.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/os.py to os.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/pdb.py to pdb.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/pickle.py to pickle.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/pkgutil.py to pkgutil.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/AE.py to Carbon/AE.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/Carbon
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Appearance.py to Carbon/Appearance.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/AppleEvents.py to Carbon/AppleEvents.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/CarbonEvents.py to Carbon/CarbonEvents.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/ControlAccessor.py to Carbon/ControlAccessor.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Controls.py to Carbon/Controls.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Ctl.py to Carbon/Ctl.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Dialogs.py to Carbon/Dialogs.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Dlg.py to Carbon/Dlg.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Dragconst.py to Carbon/Dragconst.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Events.py to Carbon/Events.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Evt.py to Carbon/Evt.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/File.py to Carbon/File.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Files.py to Carbon/Files.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Menu.py to Carbon/Menu.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Qd.py to Carbon/Qd.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/QuickDraw.py to Carbon/QuickDraw.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Res.py to Carbon/Res.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/TextEdit.py to Carbon/TextEdit.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Win.py to Carbon/Win.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/Windows.py to Carbon/Windows.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/Carbon/__init__.py to Carbon/__init__.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/EasyDialogs.py to EasyDialogs.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/aepack.py to aepack.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/aetools.py to aetools.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/aetypes.py to aetypes.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/applesingle.py to applesingle.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/ic.py to ic.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Containers_and_folders.py to Finder/Containers_and_folders.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/Finder
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Enumerations.py to Finder/Enumerations.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Files.py to Finder/Files.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Finder_Basics.py to Finder/Finder_Basics.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Finder_items.py to Finder/Finder_items.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Legacy_suite.py to Finder/Legacy_suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Standard_Suite.py to Finder/Standard_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Type_Definitions.py to Finder/Type_Definitions.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/Window_classes.py to Finder/Window_classes.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/Finder/__init__.py to Finder/__init__.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/AppleScript_Suite.py to StdSuites/AppleScript_Suite.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/StdSuites
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/Macintosh_Connectivity_Clas.py to StdSuites/Macintosh_Connectivity_Clas.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/QuickDraw_Graphics_Suite.py to StdSuites/QuickDraw_Graphics_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/QuickDraw_Graphics_Suppleme.py to StdSuites/QuickDraw_Graphics_Suppleme.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/Required_Suite.py to StdSuites/Required_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/Standard_Suite.py to StdSuites/Standard_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/Table_Suite.py to StdSuites/Table_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/Text_Suite.py to StdSuites/Text_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/Type_Names_Suite.py to StdSuites/Type_Names_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/StdSuites/__init__.py to StdSuites/__init__.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/_builtinSuites/__init__.py to _builtinSuites/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/_builtinSuites
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages/_builtinSuites/builtin_Suite.py to _builtinSuites/builtin_Suite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/macostools.py to macostools.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/macresource.py to macresource.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/platform.py to platform.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/posixpath.py to posixpath.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/pprint.py to pprint.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/py_compile.py to py_compile.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/quopri.py to quopri.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/random.py to random.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/re.py to re.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/repr.py to repr.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/rfc822.py to rfc822.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/sets.py to sets.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/shlex.py to shlex.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/shutil.py to shutil.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/py2app-0.4.3-py2.6.egg/py2app/bootstrap/argv_emulation.py to argv_emulation.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/py2app-0.4.3-py2.6.egg/py2app/bootstrap/boot_app.py to boot_app.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/py2app-0.4.3-py2.6.egg/py2app/bootstrap/chdir_resource.py to chdir_resource.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/py2app-0.4.3-py2.6.egg/py2app/bootstrap/disable_linecache.py to disable_linecache.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/__init__.py to pygame/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/pygame
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/_numpysndarray.py to pygame/_numpysndarray.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/_numpysurfarray.py to pygame/_numpysurfarray.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/colordict.py to pygame/colordict.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/compat.py to pygame/compat.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/cursors.py to pygame/cursors.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/locals.py to pygame/locals.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/mac_scrap.py to pygame/mac_scrap.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/macosx.py to pygame/macosx.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/pkgdata.py to pygame/pkgdata.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/sndarray.py to pygame/sndarray.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/sprite.py to pygame/sprite.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/surfarray.py to pygame/surfarray.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/sysfont.py to pygame/sysfont.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/threads/Py25Queue.py to pygame/threads/Py25Queue.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/pygame/threads
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/threads/__init__.py to pygame/threads/__init__.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pygame/version.py to pygame/version.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg/pkg_resources.pyc to pkg_resources.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/socket.py to socket.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/sre.py to sre.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/sre_compile.py to sre_compile.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/sre_constants.py to sre_constants.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/sre_parse.py to sre_parse.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/ssl.py to ssl.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/stat.py to stat.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/string.py to string.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/stringprep.py to stringprep.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/struct.py to struct.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/subprocess.py to subprocess.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tempfile.py to tempfile.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/textwrap.py to textwrap.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/threading.py to threading.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/token.py to token.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tokenize.py to tokenize.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/traceback.py to traceback.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/types.py to types.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/unittest.py to unittest.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib.py to urllib.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urlparse.py to urlparse.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/uu.py to uu.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/warnings.py to warnings.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/weakref.py to weakref.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/webbrowser.py to webbrowser.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/xml/__init__.py to xml/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/xml
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/xml/parsers/__init__.py to xml/parsers/__init__.pyc
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/collect/xml/parsers
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/xml/parsers/expat.py to xml/parsers/expat.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/xmllib.py to xmllib.pyc
+byte-compiling /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/xmlrpclib.py to xmlrpclib.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/ammoview.py to ammoview.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/archiv.py to archiv.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/blarg.py to blarg.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/cobulmag.py to cobulmag.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/cohermag.py to cohermag.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/common.py to common.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/game.py to game.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/hardmana.py to hardmana.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/hero.py to hero.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/herobody.py to herobody.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/herohead.py to herohead.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/lamoche.py to lamoche.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/lifeview.py to lifeview.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/maggen.py to maggen.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/maggenlc.py to maggenlc.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/maggenwa.py to maggenwa.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/magician.py to magician.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/magiline.py to magiline.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/magirand.py to magirand.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/mainclas.py to mainclas.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuanyk.py to menuanyk.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menucomn.py to menucomn.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuedtx.py to menuedtx.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuelem.py to menuelem.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menugen.py to menugen.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuimg.py to menuimg.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menukey.py to menukey.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menukrec.py to menukrec.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menulink.py to menulink.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menumng.py to menumng.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuseim.py to menuseim.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menusesq.py to menusesq.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menusetx.py to menusetx.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menusubm.py to menusubm.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menutick.py to menutick.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menutxt.py to menutxt.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzcon.py to menuzcon.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzcre.py to menuzcre.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzdea.py to menuzdea.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzmai.py to menuzmai.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzman.py to menuzman.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuznam.py to menuznam.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzpof.py to menuzpof.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzsco.py to menuzsco.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzsto.py to menuzsto.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/menuzwak.py to menuzwak.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/movline.py to movline.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/movpoint.py to movpoint.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/prezanim.py to prezanim.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/scoremn.py to scoremn.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/sprsigen.py to sprsigen.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/sprsiman.py to sprsiman.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/sprsimpl.py to sprsimpl.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/txtstock.py to txtstock.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/yargler.py to yargler.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/MacOS.py to MacOS.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/Nav.py to Nav.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_AE.py to _AE.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Ctl.py to _Ctl.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Dlg.py to _Dlg.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Evt.py to _Evt.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_File.py to _File.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Menu.py to _Menu.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Qd.py to _Qd.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Res.py to _Res.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_Win.py to _Win.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_bisect.py to _bisect.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_bytesio.py to _bytesio.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_codecs_cn.py to _codecs_cn.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_codecs_hk.py to _codecs_hk.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_codecs_iso2022.py to _codecs_iso2022.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_codecs_jp.py to _codecs_jp.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_codecs_kr.py to _codecs_kr.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_codecs_tw.py to _codecs_tw.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_collections.py to _collections.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_ctypes.py to _ctypes.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_fileio.py to _fileio.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_functools.py to _functools.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_hashlib.py to _hashlib.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_heapq.py to _heapq.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_locale.py to _locale.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_multibytecodec.py to _multibytecodec.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_multiprocessing.py to _multiprocessing.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_random.py to _random.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_scproxy.py to _scproxy.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_sha256.py to _sha256.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_sha512.py to _sha512.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_socket.py to _socket.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_ssl.py to _ssl.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_struct.py to _struct.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/_weakref.py to _weakref.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/array.py to array.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/binascii.py to binascii.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/bz2.py to bz2.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/cPickle.py to cPickle.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/cStringIO.py to cStringIO.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/datetime.py to datetime.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/fcntl.py to fcntl.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/gestalt.py to gestalt.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/icglue.py to icglue.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/itertools.py to itertools.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/math.py to math.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/mmap.py to mmap.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/operator.py to operator.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pyexpat.py to pyexpat.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/select.py to select.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/strop.py to strop.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/termios.py to termios.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/time.py to time.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/unicodedata.py to unicodedata.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/zlib.py to zlib.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/_arraysurfarray.py to pygame/_arraysurfarray.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/_numericsndarray.py to pygame/_numericsndarray.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/_numericsurfarray.py to pygame/_numericsurfarray.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/base.py to pygame/base.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/bufferproxy.py to pygame/bufferproxy.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/cdrom.py to pygame/cdrom.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/color.py to pygame/color.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/constants.py to pygame/constants.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/display.py to pygame/display.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/draw.py to pygame/draw.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/event.py to pygame/event.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/fastevent.py to pygame/fastevent.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/font.py to pygame/font.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/image.py to pygame/image.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/imageext.py to pygame/imageext.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/joystick.py to pygame/joystick.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/key.py to pygame/key.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/mask.py to pygame/mask.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/mixer.py to pygame/mixer.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/mixer_music.py to pygame/mixer_music.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/mouse.py to pygame/mouse.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/movie.py to pygame/movie.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/overlay.py to pygame/overlay.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/pixelarray.py to pygame/pixelarray.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/rect.py to pygame/rect.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/rwobject.py to pygame/rwobject.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/sdlmain_osx.py to pygame/sdlmain_osx.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/surface.py to pygame/surface.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/surflock.py to pygame/surflock.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/time.py to pygame/time.pyc
+byte-compiling /Users/recherpsychotrope/Documents/recher/blarg/code/build/bdist.macosx-10.3-fat/python2.6-standalone/app/temp/pygame/transform.py to pygame/transform.pyc
+*** creating application bundle: blarg ***
+copying blarg.py -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/config
+copying /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config/Makefile -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/config
+copying /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config/Setup -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/config
+copying /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config/Setup.local -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/config
+copying /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config/Setup.config -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/config
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/include
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/include/python2.6
+copying /Library/Frameworks/Python.framework/Versions/2.6/include/python2.6/pyconfig.h -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/include/python2.6
+copying build/bdist.macosx-10.3-fat/python2.6-standalone/app/site-packages.zip -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/lib-dynload
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Resources/lib/python2.6/lib-dynload/pygame
+copying /Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/MacOS/python
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/Resources
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/include
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/include/python2.6
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/lib
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/lib/python2.6
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config
+copying /Library/Frameworks/Python.framework/Versions/2.6/Python -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6
+copying /Library/Frameworks/Python.framework/Versions/2.6/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/Resources
+copying /Library/Frameworks/Python.framework/Versions/2.6/include/python2.6/pyconfig.h -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/include/python2.6
+copying /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config/Makefile -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/Python.framework/Versions/2.6/lib/python2.6/config
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL -> Versions/Current/SDL
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/SDL -> Versions/Current/SDL
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib/classes.nib -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib/info.nib -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib/objects.nib -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/SDL.framework/Versions/A/SDL -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/SDL.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A/Resources
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib/classes.nib -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib/info.nib -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib/objects.nib -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A/Resources/SDLMain.nib
+copying /Library/Frameworks/SDL.framework/Versions/A/SDL -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer -> Versions/Current/SDL_mixer
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/SDL_mixer -> Versions/Current/SDL_mixer
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/A/SDL_mixer -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_mixer.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_mixer.framework/Versions/A/SDL_mixer -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_mixer.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf -> Versions/Current/SDL_ttf
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/SDL_ttf -> Versions/Current/SDL_ttf
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/A/SDL_ttf -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/SDL_ttf.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_ttf.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_ttf.framework/Versions/A/SDL_ttf -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_ttf.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image -> Versions/Current/SDL_image
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/SDL_image -> Versions/Current/SDL_image
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_image.framework/SDL_image.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_image.framework/SDL_image.framework/Versions/A/SDL_image -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/SDL_image.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_image.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Versions/A/Resources
+copying /Library/Frameworks/SDL_image.framework/Versions/A/SDL_image -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/SDL_image.framework/Versions/Current -> A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Resources -> Versions/Current/Resources
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/smpeg -> Versions/Current/smpeg
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/A
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/A/Resources
+creating /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/A/Resources/English.lproj
+copying /Library/Frameworks/smpeg.framework/Versions/A/Resources/English.lproj/InfoPlist.strings -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/A/Resources/English.lproj
+copying /Library/Frameworks/smpeg.framework/Versions/A/Resources/Info.plist -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/A/Resources
+copying /Library/Frameworks/smpeg.framework/Versions/A/smpeg -> /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/A
+linking /Users/recherpsychotrope/Documents/recher/blarg/code/dist/blarg.app/Contents/Frameworks/smpeg.framework/Versions/Current -> A
+stripping color.so
+stripping _AE.so
+stripping SDL_ttf
+stripping _ssl.so
+stripping termios.so
+stripping _Ctl.so
+stripping SDL_image
+stripping _numericsurfarray.so
+stripping _Qd.so
+stripping _File.so
+stripping binascii.so
+stripping time.so
+stripping _socket.so
+stripping surflock.so
+stripping mask.so
+stripping SDL_mixer
+stripping mixer_music.so
+stripping mouse.so
+stripping rwobject.so
+stripping _numericsndarray.so
+stripping select.so
+stripping _hashlib.so
+stripping mmap.so
+stripping smpeg
+stripping draw.so
+stripping blarg
+stripping _codecs_iso2022.so
+stripping time.so
+stripping fastevent.so
+stripping SDL_image
+stripping fcntl.so
+stripping _weakref.so
+stripping _codecs_tw.so
+stripping joystick.so
+stripping movie.so
+stripping cStringIO.so
+stripping _locale.so
+stripping transform.so
+stripping unicodedata.so
+stripping gestalt.so
+stripping python
+stripping _Menu.so
+stripping _bytesio.so
+stripping _fileio.so
+stripping operator.so
+stripping _multibytecodec.so
+stripping itertools.so
+stripping base.so
+stripping _codecs_jp.so
+stripping _multiprocessing.so
+stripping SDL
+stripping sdlmain_osx.so
+stripping _codecs_kr.so
+stripping zlib.so
+stripping overlay.so
+stripping _Dlg.so
+stripping key.so
+stripping _bisect.so
+stripping Nav.so
+stripping _ctypes.so
+stripping _codecs_cn.so
+stripping datetime.so
+stripping _Win.so
+stripping pyexpat.so
+stripping _scproxy.so
+stripping image.so
+stripping _Res.so
+stripping pixelarray.so
+stripping _collections.so
+stripping _functools.so
+stripping constants.so
+stripping MacOS.so
+stripping bz2.so
+stripping _arraysurfarray.so
+stripping Python
+stripping _Evt.so
+stripping SDL_mixer
+stripping surface.so
+stripping event.so
+stripping icglue.so
+stripping _heapq.so
+stripping rect.so
+stripping imageext.so
+stripping display.so
+stripping _random.so
+stripping _codecs_hk.so
+stripping cdrom.so
+stripping _sha512.so
+stripping SDL
+stripping array.so
+stripping strop.so
+stripping bufferproxy.so
+stripping mixer.so
+stripping cPickle.so
+stripping _sha256.so
+stripping _struct.so
+stripping font.so
+stripping SDL_ttf
+stripping math.so
+stripping saved 0 bytes (32460104 / 32460104)
+mac-mini-de-recher-psychotrope:~/Documents/recher/blarg/code recherpsychotrope$ 
