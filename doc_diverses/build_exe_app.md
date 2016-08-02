@@ -161,12 +161,6 @@ Pistes possibles :
  - http://convertico.com/
  - Le répertoire `code/shortcut_icon` de ce repository.
 
-## Mac OS X
-
-Todo.
-
-Brouillon :
-
 
 ## Mac OS X ##
 
@@ -176,13 +170,23 @@ Brouillon :
 
 #### Installation de python et pygame ####
 
-Je l'ai fait sur mon Mac, mais je ne me souviens plus des actions effectuées ! Si je n'ai rien noté de spécial, c'est qu'il ne devait rien y avoir de compliqué. (Je suppose).
+Je l'ai fait sur mon Mac, mais je ne me souviens plus des actions effectuées ! Je suppose que si je n'ai rien noté de spécial, c'est qu'il ne devait rien y avoir de compliqué.
 
-Mon header python est comme ça :
+Pour vérifier les versions de python et pygame, ouvrir un terminal et excuter la commande `python`. Vous devriez avoir quelque chose comme cela :
 
     Python 2.6.4 (r264:75821M, Oct 27 2009, 19:48:32)
     [GCC 4.0.1 (Apple Inc. build 5493)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
+    
+Ensuite, dans la console python, exécuter les commandes suivantes :
+
+    >>> import pygame
+    >>> print pygame.version.ver
+    >>> 1.9.1release-svn2575
+
+Si le python a été installé correctement, il devrait automatiquement être dans la variable PATH. Sinon, il est ici : `/Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python/python`
+
+(Adapter le `2.6` à la version de Python que vous avez installé).
 
 Mon répertoire lib contient les fichiers suivants :
 
@@ -200,9 +204,6 @@ Mon répertoire lib contient les fichiers suivants :
     setuptools-0.6c11-py2.6.egg
     setuptools.pth
 
-La valeur de la variable python `pygame.version.ver` est : `'1.9.1release-svn2575'`
-
-Je ne sais pas trop dans quelle mesure ces renseignement sont utiles. Faites-en ce que vous voulez.
 
 #### Lancement du jeu ####
 
@@ -213,13 +214,8 @@ Ouvrir un terminal et exécuter les commandes suivantes :
     cd ~/Documents/recher/blarg/code
     python zemain.py
 
-En supposant que l'exécutable python a été mis dans le path. Normalement, ça se fait automatiquement à l'installation.
-
-Sinon, il faudrait faire quelque chose dans ce style (en prenant garde au numéro de version 2.6 / 2.7 / autre) :
-
-`/Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python/python zemain.py`
-
 Le jeu devrait se lancer.
+
 
 ### Transformation en exécutable  ###
 
@@ -231,18 +227,16 @@ Se reporter au contenu de mon répertoire lib, et essayer d'avoir plus ou moins 
 
 #### Création du .app ####
 
-Dupliquer le fichier `code/zemain.py`, en le nommant `code/blarg.py`. (C'est le moyen le plus simple de créer une app avec le bon nom).
+Dans le repository, dupliquer le fichier `code/zemain.py` en le renommant `code/blarg.py`. C'est le moyen le plus simple de créer une app avec le bon nom.
 
 Le fichier `code/blarg.py` n'est pas versionné dans ce repository, puisque c'est juste une copie.
 
 Ouvrir un terminal et exécuter les commandes suivantes :
 
     cd ~/Documents/recher/blarg/code
-    python pygame2macapp.py py2app
+    python pygame2macapp.py py2app --iconfile blarg_icon.icns
 
-ou bien (voir plus loin)
-
-python pygame2macapp.py py2app --iconfile blarg_icon.icns
+Les deux derniers paramètres : `--iconfile blarg_icon.icns` sont facultatifs. Ils permettent de créer l'application avec une icône.
 
 Deux répertoires sont créés :
 
@@ -250,8 +244,6 @@ Deux répertoires sont créés :
  - `code/dist`. Contient l'application `blarg.app`.
 
 Le contenu de ces 2 répertoires n'est pas versionné dans ce repository.
-
-Il est possible d'avoir un .app avec l'icône de son choix. J'étais parvenu à le faire pour mon jeu précédent (Blarg). Je ne l'ai pas fait pour celui-là, car j'ai la flemme et c'est un jeu terminé fortement à l'arrache.
 
 Double-cliquer sur `code/dist/blarg.app`. Le jeu devrait se lancer sans problème.
 
@@ -315,6 +307,8 @@ Si vous rencontrez des problèmes durant l'installation, l'exécution ou autre, 
 
 
 # icônes
+
+brouillon
 
 création du .icns
 
