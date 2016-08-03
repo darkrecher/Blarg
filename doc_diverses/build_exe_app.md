@@ -233,8 +233,6 @@ Le contenu de ces 2 répertoires n'est pas versionné dans ce repository.
 
 Double-cliquer sur `code/dist/blarg.app` pour lancer le jeu.
 
-Attention, le fichier `dichmama.nil` (sauvegarde de la config et des scores) est automatiquement créé dans `blarg.app` au premier lancement du jeu. Ça peut être gênant, voir plus loin.
-
 #### Création d'un disque .dmg contenant le .app ####
 
 Ouvrir un terminal et exécuter les commandes suivantes :
@@ -248,8 +246,15 @@ Le fichier `dist/blarg.dmg` finit par être créé.
 
 #### Gestion du fichier de sauvegarde
 
+Au premier lancement du jeu, le fichier `dichmama.nil` (sauvegarde de la config et des scores) est automatiquement créé à l'intérieur de `blarg.app`. Pour les Macqueux néophytes : une application `.app` est en réalité un dossier, contenant les divers fichiers de l'application. Pour Blarg, le fichier de sauvegarde se retrouve à cet emplacement : `blarg.app/Contents/Resources`.
 
+Les "vrais applications" Mac ne mettent pas leur fichier de données dans le .app, mais dans un emplacment prévu à cet effet : `~/Library/Application Support` ou quelque chose comme ça. Mais je ne savais pas trop comment faire ça.
 
+Cela pose deux problèmes :
+
+Si vous distribuer ce .app à d'autre personnes, vous embarquez votre sauvegarde avec. Rappelons que le jeu demande au joueur de saisir son nom uniquement dans le cas où le fichier de sauvegarde est encore inexistant. La saisie du code secret pour être invincible ne peut se faire qu'à ce moment là. En donnant un jeu possédant déjà un fichier `dichmama.nil`, vous empêchez d'autres personnes de valider leur code et de se faire leur propres scores.
+
+Les fichiers .dmg sont en lecture seule. Lorsque vous jouez au jeu en exécutant le .app contenu dans un .dmg, sans l'avoir préalablement extrait, la création du fichier `dichmama.nil` échoue silencieusement. Vous ne pouvez alors conserver ni votre code d'invincibilité, ni votre configuration de touches, ni vos scores. Il est donc conseillé d'extraire systématiquement le .app du .dmg pour jouer.
 
 #### Redistribution de l'application ####
 
@@ -280,6 +285,15 @@ Mais dans un exécutable, ça pète. Car la police par défaut n'est pas embarqu
 Pour éviter ce genre de désagrément, indiquez toujours un fichier de police quand vous en instanciez une. N'importe quelle fichier, même un truc moche. Si vous ne savez pas où il y en a, prenez celui du repository : code/fontzy/tempesta.ttf
 
 J'ai eu l'explication de ce bug grâce à ce post sur stackoverflow : http://stackoverflow.com/questions/3470377/my-py2app-app-will-not-open-whats-the-problem
+
+
+### Ajout des icônes
+
+Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des tâches et dans le fichier .app.
+
+Ça marche plus ou moins bien.
+
+Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/ajout_icones.md .
 
 
 ## GNU/Linux, Ubuntu, Fedora, etc. ##
