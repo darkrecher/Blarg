@@ -140,27 +140,13 @@ Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de l
 Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
-#### Ajout de l'icône dans le .exe
+#### Ajout des icônes
 
-Il y a une option pour ça dans py2exe. Mais je n'arrive pas à la faire fonctionner.
+Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des tâches et dans le fichier .exe.
 
-Pour la version de l'exécutable sur Indie DB, j'avais utilisé resource hacker, pour intégrer l'icône dans le .exe.
+Ça marche plus ou moins bien.
 
-Je ne sais pas si je vais le refaire, car j'aime pas trop ce concept de bidouiller un .exe avec un outil différent de celui qui a été utilisé pour le fabriquer au départ. Ça risque de corrompre le fichier.
-
-Il y a d'autres solutions, mais pas très élégantes non plus.
-
-TODO : je laisse ça en plan pour l'instant. Je fais la conversion pour Mac. Si j'arrive à avoir les icônes comme il faut sous Mac, ça vaudra le coup de le faire aussi pour PC, histoire d'avoir un truc vraiment parfait.
-
-Sinon : osef.
-
-Pistes possibles :
-
- - http://www.wikihow.com/Change-the-Icon-for-an-Exe-File
- - http://windowsitpro.com/systems-management/how-do-i-execute-exe-files-without-typing-extension
- - http://convertico.com/
- - Le répertoire `code/shortcut_icon` de ce repository.
-
+Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/ajout_icones.md .
 
 ## Mac OS X ##
 
@@ -177,7 +163,7 @@ Pour vérifier les versions de python et pygame, ouvrir un terminal et excuter l
     Python 2.6.4 (r264:75821M, Oct 27 2009, 19:48:32)
     [GCC 4.0.1 (Apple Inc. build 5493)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
-    
+
 Ensuite, dans la console python, exécuter les commandes suivantes :
 
     >>> import pygame
@@ -214,7 +200,7 @@ Ouvrir un terminal et exécuter les commandes suivantes :
     cd ~/Documents/recher/blarg/code
     python zemain.py
 
-Le jeu devrait se lancer.
+Le jeu va se lancer.
 
 
 ### Transformation en exécutable  ###
@@ -245,7 +231,9 @@ Deux répertoires sont créés :
 
 Le contenu de ces 2 répertoires n'est pas versionné dans ce repository.
 
-Double-cliquer sur `code/dist/blarg.app`. Le jeu devrait se lancer sans problème.
+Double-cliquer sur `code/dist/blarg.app` pour lancer le jeu.
+
+Attention, le fichier `dichmama.nil` (sauvegarde de la config et des scores) est automatiquement créé dans `blarg.app` au premier lancement du jeu. Ça peut être gênant, voir plus loin.
 
 #### Création d'un disque .dmg contenant le .app ####
 
@@ -256,22 +244,18 @@ Ouvrir un terminal et exécuter les commandes suivantes :
 
 Ça met un certain temps. Des petits points s'écrivent dans le terminal, pour montrer qu'il est vivant.
 
-Le fichier `dist/blarg.dmg` devrait être créé.
+Le fichier `dist/blarg.dmg` finit par être créé.
 
-#### Lancement du jeu à partir du disque .dmg ####
+#### Gestion du fichier de sauvegarde
 
-Double-cliquer sur le .dmg pour monter le disque, comme on fait d'habitude sur les Mac.
 
-Dans le disque, double-cliquer sur l'appli `blarg.app`.
-
-Pour les applications enregistrant des fichiers de sauvegarde, il faut préalablement copier le .app sur le disque dur (à l'endroit qu'on veut). Sinon, ça ne sauvegarde rien. Je l'avais constaté avec mon jeu précédent.
 
 
 #### Redistribution de l'application ####
 
-Copier simplement le .dmg sur un autre Mac. Puis exécuter le jeu comme expliqué dans le chapitre précédent.
+Copier simplement le .app ou le .dmg sur un autre Mac. Puis exécuter le jeu en double-cliquant sur le .app comme expliqué précédemment.
 
-Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira. (Là je me répète un peu, mais j'y tiens)
+Si vous redistribuez ce jeu ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
 ### Plantage éventuel à l'exécution ###
@@ -297,6 +281,7 @@ Pour éviter ce genre de désagrément, indiquez toujours un fichier de police q
 
 J'ai eu l'explication de ce bug grâce à ce post sur stackoverflow : http://stackoverflow.com/questions/3470377/my-py2app-app-will-not-open-whats-the-problem
 
+
 ## GNU/Linux, Ubuntu, Fedora, etc. ##
 
 Il est certainement possible de jouer à Blarg sur ces systèmes, puisque python et pygame sont compatibles dessus. Mais je n'ai pas ce genre de chose chez moi. Désolé, je devrais certainement être qualifié de vilain monsieur.
@@ -305,37 +290,3 @@ Je vous laisse vous débrouiller tout seul, à coup de apt-get ou autres cabalis
 
 Si vous rencontrez des problèmes durant l'installation, l'exécution ou autre, n'hésitez pas à m'en faire part. Je les décrirais dans ce document pour en faire profiter tout le monde.
 
-
-# icônes
-
-brouillon
-
-création du .icns
-
-à partir du .gif.
-car à partir du .png, ça fait un truc bizarre.
-
-
-
-iconComposer
-
-Alert
-Extract Large 1bit mask from data also?
-
-
-Image does not have a representation with same dimensions.
-Use a scaled version
-
-re-meme question qu avant
-
-# lancer en windowed sous mac
-
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ ./blarg FORCE_WINDOWED
-coucou
-tchaw
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ ./blarg
-coucou
-tchaw
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ pwd
-/Users/recherpsychotrope/Documents/recher/blarg_test/blarg.app/Contents/MacOS
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$
