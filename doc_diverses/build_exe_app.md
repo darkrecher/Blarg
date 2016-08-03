@@ -48,7 +48,7 @@ Ouvrir une console MS-DOS
 Exécuter les commandes suivantes
 
     cd C:\blarg\code
-    C:\python25\python.exe main.py
+    C:\python25\python.exe zemain.py
 
 Amusez-vous bien !
 
@@ -71,7 +71,7 @@ Cette action utilise le fichier `code/pygame2exe.py`, qui a été créé à part
 
 Exécuter `code/build_blarg_exe.bat`. Une fenêtre s'ouvre, demandant parfois d'appuyer sur une touche pour continuer le processus.
 
-Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marchera pas. Il faut exécuter les commandes du .bat via une console, en adaptant le chemin d'installation de python.
+Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marchera pas. Il faut exécuter manuellement les commandes indiquées dans le .bat, en adaptant le chemin d'installation de python.
 
 À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu.
 
@@ -83,11 +83,11 @@ Parfois, on obtient un message d'erreur de cette forme :
     Le processus ne peut pas accéder au fichier car ce fichier est utilisé par un autre processus:
     'build\\bdist.win32\\winexe\\{chemin de fichier quelconque}
 
-Le texte `{chemin de fichier quelconque}` peut prendre diverses valeurs : `collect-2.5\\encodings'`, `bundle-2.5\\python25.dll`, ...
+Le texte `{chemin de fichier quelconque}` peut prendre diverses valeurs : `collect-2.5\\encodings`, `bundle-2.5\\python25.dll`, ...
 
-Dans ce cas, il reste un répertoire `C:\blarg\code\build\`. Il ne sert plus à rien une fois une fois que l'exécutable a été créé. Vous pouvez le supprimer ainsi que son contenu.
+Dans ce cas, il reste un répertoire `C:\blarg\code\build\`, qui ne sert plus à rien. Vous pouvez le supprimer ainsi que son contenu.
 
-À priori, la création de l'exécutable s'est faite correctement même si ce message est apparu. Dans le doute, on peut relancer la construction (ce message semble apparaître aléatoirement).
+À priori, la création de l'exécutable s'est faite correctement même si ce message est apparu. Dans le doute, on peut réessayer (ce message semble apparaître aléatoirement).
 
 #### Message d'avertissement
 
