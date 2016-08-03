@@ -2,6 +2,7 @@
 
 ## Windows
 
+
 ### Lancement du jeu à partir du code source
 
 Le jeu peut fonctionner avec python 2.5.4, ou une version 2.x supérieure (pas la version 3, car elle n'est pas rétro-compatible).
@@ -51,6 +52,7 @@ Exécuter les commandes suivantes
 
 Amusez-vous bien !
 
+
 ### Transformation en exécutable
 
 #### Installation de py2exe
@@ -73,7 +75,7 @@ Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marc
 
 À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu.
 
-##### Message d'erreur possible
+#### Message d'erreur possible
 
 Parfois, on obtient un message d'erreur de cette forme :
 
@@ -87,7 +89,7 @@ Dans ce cas, il reste un répertoire `C:\blarg\code\build\`. Il ne sert plus à 
 
 À priori, la création de l'exécutable s'est faite correctement même si ce message est apparu. Dans le doute, on peut relancer la construction (ce message semble apparaître aléatoirement).
 
-##### Message d'avertissement
+#### Message d'avertissement
 
 On obtient systématiquement le message d'avertissement suivant :
 
@@ -140,7 +142,7 @@ Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de l
 Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
-#### Ajout des icônes
+### Ajout des icônes
 
 Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des tâches et dans le fichier .exe.
 
@@ -148,7 +150,9 @@ Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des
 
 Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/ajout_icones.md .
 
+
 ## Mac OS X
+
 
 ### Lancement du jeu à partir du code source
 
@@ -189,7 +193,6 @@ Mon répertoire lib contient les fichiers suivants :
     pygame-1.9.1release-py2.6.egg-info
     setuptools-0.6c11-py2.6.egg
     setuptools.pth
-
 
 #### Lancement du jeu
 
