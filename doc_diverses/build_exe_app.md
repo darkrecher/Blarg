@@ -1,8 +1,8 @@
-# Exploitation du code source #
+# Exploitation du code source
 
-## Windows ##
+## Windows
 
-### Lancement du jeu à partir du code source ###
+### Lancement du jeu à partir du code source
 
 Le jeu peut fonctionner avec python 2.5.4, ou une version 2.x supérieure (pas la version 3, car elle n'est pas rétro-compatible).
 
@@ -13,7 +13,7 @@ Cependant, la transformation en exécutable n'est peut-être pas réalisable ave
 
 Dans la partie "Windows" de cette documentation, on considérera donc uniquement la version python 2.5.4.
 
-#### Installation de python ####
+#### Installation de python
 
 Télécharger le fichier d'installation `python-2.5.4.msi`, à partir de https://www.python.org/download/releases/2.5.4/
 
@@ -25,7 +25,7 @@ Choisir les options suivantes :
  - Le répertoire de destination que vous voulez. On considérera le choix par défaut : `C:\python25`
  - Installation complète (choisir toutes les features).
 
-#### Installation de pygame ####
+#### Installation de pygame
 
 Télécharger le fichier `pygame-1.9.1.win32-py2.5.msi`, à partir de http://www.pygame.org/download.shtml.
 
@@ -38,7 +38,7 @@ Choisir les options suivantes :
  - "Install for all users".
  - Indiquer le répertoire ou vous avez installé python. (`C:\python25\` ou autre)
 
-#### Lancement du jeu ####
+#### Lancement du jeu
 
 Télécharger tout le contenu de ce repository. On considèrera qu'il est mis à l'emplacement `C:\blarg\`.
 
@@ -51,9 +51,9 @@ Exécuter les commandes suivantes
 
 Amusez-vous bien !
 
-### Transformation en exécutable  ###
+### Transformation en exécutable
 
-#### Installation de py2exe ####
+#### Installation de py2exe
 
 Télécharger le fichier `py2exe-0.6.9.win32-py2.5.exe`, à partir de http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.5.exe/download?use_mirror=skylink&download=
 
@@ -63,7 +63,7 @@ S'il n'est pas lancé en mode administrateur, on risque d'obtenir un message d'a
 
 Indiquer le répertoire ou vous avez installé python. (`C:\python25\` ou autre)
 
-#### Création du .exe ####
+#### Création du .exe
 
 Cette action utilise le fichier `code/pygame2exe.py`, qui a été créé à partir de ce tutoriel : http://www.pygame.org/wiki/Pygame2exe?parent=CookBook
 
@@ -105,7 +105,7 @@ On obtient systématiquement le message d'avertissement suivant :
 
 Ça ne m'a jamais posé de problème. À priori, tous ces fichiers sont déjà présents sur la plupart des systèmes Windows. Pour distribuer le jeu, il suffit juste de distribuer le contenu du répertoire `dist`.
 
-#### Lancement du jeu avec le .exe ####
+#### Lancement du jeu avec le .exe
 
 Double-cliquer sur le fichier `C:\blarg\code\dist\blarg.exe`.
 
@@ -123,7 +123,7 @@ Le contenu du répertoire `dist` n'est pas versionné dans ce repository.
 
 Pour lancer le jeu en mode fenêtre, quelle que soit la config actuelle, double-cliquer sur le fichier `C:\blarg\code\dist\blarg_windowed.bat`
 
-#### Redistribution de l'exécutable ####
+#### Redistribution de l'exécutable
 
 Créer un fichier compressé (.zip ou autre), contenant tout le répertoire `dist`. À savoir, les fichiers et répertoires suivants :
 
@@ -148,13 +148,13 @@ Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des
 
 Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/ajout_icones.md .
 
-## Mac OS X ##
+## Mac OS X
 
-### Lancement du jeu à partir du code source ###
+### Lancement du jeu à partir du code source
 
 À priori, pas de souci de version de python, ni pour jouer, ni pour transformer en exécutable. On peut utiliser n'importe laquelle, de la 2.5 à la 2.x.
 
-#### Installation de python et pygame ####
+#### Installation de python et pygame
 
 Je l'ai fait sur mon Mac, mais je ne me souviens plus des actions effectuées ! Je suppose que si je n'ai rien noté de spécial, c'est qu'il ne devait rien y avoir de compliqué.
 
@@ -191,7 +191,7 @@ Mon répertoire lib contient les fichiers suivants :
     setuptools.pth
 
 
-#### Lancement du jeu ####
+#### Lancement du jeu
 
 Télécharger tout le contenu de ce repository. On considèrera qu'il est mis à l'emplacement `~/Documents/recher/blarg/`
 
@@ -203,15 +203,15 @@ Ouvrir un terminal et exécuter les commandes suivantes :
 Le jeu va se lancer.
 
 
-### Transformation en exécutable  ###
+### Transformation en exécutable
 
-#### Installation de py2app et setuptools ####
+#### Installation de py2app et setuptools
 
 Comme pour l'installation de python et pygame : je ne sais plus comment j'ai fait ! Et si ça se trouve, il n'y a rien à faire, c'est déjà pré-installé.
 
 Se reporter au contenu de mon répertoire lib, et essayer d'avoir plus ou moins la même chose, en adaptant les divers numéros de versions.
 
-#### Création du .app ####
+#### Création du .app
 
 Dans le repository, dupliquer le fichier `code/zemain.py` en le renommant `code/blarg.py`. C'est le moyen le plus simple de créer une app avec le bon nom.
 
@@ -233,7 +233,7 @@ Le contenu de ces 2 répertoires n'est pas versionné dans ce repository.
 
 Double-cliquer sur `code/dist/blarg.app` pour lancer le jeu.
 
-#### Création d'un disque .dmg contenant le .app ####
+#### Création d'un disque .dmg contenant le .app
 
 Ouvrir un terminal et exécuter les commandes suivantes :
 
@@ -256,14 +256,14 @@ Si vous distribuer ce .app à d'autre personnes, vous embarquez votre sauvegarde
 
 Les fichiers .dmg sont en lecture seule. Lorsque vous jouez au jeu en exécutant le .app contenu dans un .dmg, sans l'avoir préalablement extrait, la création du fichier `dichmama.nil` échoue silencieusement. Vous ne pouvez alors conserver ni votre code d'invincibilité, ni votre configuration de touches, ni vos scores. Il est donc conseillé d'extraire systématiquement le .app du .dmg pour jouer.
 
-#### Redistribution de l'application ####
+#### Redistribution de l'application
 
 Copier simplement le .app ou le .dmg sur un autre Mac. Puis exécuter le jeu en double-cliquant sur le .app comme expliqué précédemment.
 
 Si vous redistribuez ce jeu ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
-### Plantage éventuel à l'exécution ###
+### Plantage éventuel à l'exécution
 
 Si vous avez un peu joué avec le code source, vous risquez d'avoir l'erreur suivante au lancement de blarg.app.
 
@@ -296,7 +296,7 @@ Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des
 Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/ajout_icones.md .
 
 
-## GNU/Linux, Ubuntu, Fedora, etc. ##
+## GNU/Linux, Ubuntu, Fedora, etc.
 
 Il est certainement possible de jouer à Blarg sur ces systèmes, puisque python et pygame sont compatibles dessus. Mais je n'ai pas ce genre de chose chez moi. Désolé, je devrais certainement être qualifié de vilain monsieur.
 
