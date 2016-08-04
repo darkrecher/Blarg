@@ -7,7 +7,7 @@
 
 Le jeu peut fonctionner avec python 2.5.4, ou une version 2.x supérieure (pas la version 3, car elle n'est pas rétro-compatible).
 
-Cependant, la transformation en exécutable n'est peut-être pas réalisable avec une version supérieure à 2.5.4, à cause d'un bug dans pygame2exe. Pour plus de détails concernant ce bug :
+Cependant, la transformation en exécutable n'est peut-être pas réalisable avec une version supérieure à 2.5.4, à cause d'un bug dans pygame2exe. Pour plus de détails :
 
  - https://www.daniweb.com/programming/software-development/threads/247249/need-help-with-pygame-to-exe#post1447072
  - https://github.com/darkrecher/Kawax/blob/master/doc_diverses/message_forum_pygame_exe.md
@@ -71,9 +71,9 @@ Cette action utilise le fichier `code/pygame2exe.py`, qui a été créé à part
 
 Exécuter `code/build_blarg_exe.bat`. Une fenêtre s'ouvre, demandant parfois d'appuyer sur une touche pour continuer le processus.
 
-Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marchera pas. Il faut exécuter manuellement les commandes indiquées dans le .bat, en adaptant le chemin d'installation de python.
+Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marchera pas. Il faut alors exécuter manuellement les commandes indiquées dans le .bat, en adaptant le chemin d'installation de python.
 
-À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu. Ce répertoire n'est pas versionné dans ce repository.
+À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu. (Ce répertoire n'est pas versionné dans ce repository).
 
 #### Message d'erreur possible
 
@@ -87,7 +87,7 @@ Le texte `{chemin de fichier quelconque}` peut prendre diverses valeurs : `colle
 
 Dans ce cas, il reste un répertoire `C:\blarg\code\build\`, qui ne sert plus à rien. Vous pouvez le supprimer ainsi que son contenu.
 
-À priori, la création de l'exécutable s'est faite correctement même si ce message est apparu. Dans le doute, on peut réessayer (ce message semble apparaître aléatoirement).
+À priori, l'exécutable a été correctement créé même si ce message est apparu. Dans le doute, on peut réessayer (ce message semble apparaître aléatoirement).
 
 #### Message d'avertissement
 
@@ -172,9 +172,10 @@ Ensuite, dans la console python, exécuter les commandes suivantes :
     >>> print pygame.version.ver
     >>> 1.9.1release-svn2575
 
-Si le python a été installé correctement, il devrait automatiquement être dans la variable PATH. Sinon, il est ici : `/Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python/python`
+Si le python a été installé correctement, il devrait automatiquement être dans la variable PATH. Sinon, il est ici :
+`/Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python/python`
 
-(Adapter le `2.6` à la version de Python que vous avez installé).
+(Adapter le "2.6" à la version de Python installée).
 
 Mon répertoire lib contient les fichiers suivants :
 
@@ -227,12 +228,17 @@ Les deux derniers paramètres : `--iconfile blarg_icon.icns` sont facultatifs. I
 
 Deux répertoires sont créés :
 
- - `code/build`. Répertoire temporaire qui peut être supprimé.
- - `code/dist`. Contient l'application `blarg.app`.
+ - `code/dist` : contient l'application `blarg.app`.
+ - `code/build` : répertoire temporaire pouvant être supprimé.
 
 Le contenu de ces 2 répertoires n'est pas versionné dans ce repository.
 
 Double-cliquer sur `code/dist/blarg.app` pour lancer le jeu.
+
+Pour lancer le jeu en mode fenêtre quelle que soit la config, il faut le faire par une ligne de commande. Le plus dur étant de trouver la commande exacte. C'est quelque chose comme ça :
+
+    cd ~/Documents/recher/blarg/code/dist/blarg.app/Contents/MacOS
+    ./blarg FORCE_WINDOWED
 
 #### Création d'un disque .dmg contenant le .app
 
@@ -247,21 +253,21 @@ Le fichier `dist/blarg.dmg` finit par être créé.
 
 #### Gestion du fichier de sauvegarde
 
-Au premier lancement du jeu, le fichier `dichmama.nil` (sauvegarde de la config et des scores) est automatiquement créé à l'intérieur de `blarg.app`. Pour les Macqueux néophytes : une application `.app` est en réalité un dossier, contenant les divers fichiers de l'application. Pour Blarg, le fichier de sauvegarde se retrouve à cet emplacement : `blarg.app/Contents/Resources`.
+Au premier lancement du jeu, le fichier `dichmama.nil` (sauvegarde de la config et des scores) est automatiquement créé à l'intérieur de `blarg.app`. (Pour les Macqueux néophytes : une application `.app` est en réalité un dossier contenant plusieurs fichiers). En ce qui concerne Blarg, le fichier de sauvegarde se retrouve à cet emplacement : `blarg.app/Contents/Resources`.
 
-Les "vrais applications" Mac ne mettent pas leur fichier de données dans le .app, mais dans un emplacment prévu à cet effet : `~/Library/Application Support` ou quelque chose comme ça. Mais je ne savais pas trop comment faire ça.
+Les "vrais applications" Mac ne mettent pas leurs fichiers de données dans le .app, mais dans un emplacement prévu à cet effet : `~/Library/Application Support` ou quelque chose comme ça. Je ne sais pas trop comment faire ça.
 
-Cela pose deux problèmes :
+Cette sauvegarde dans le .app pose deux problèmes :
 
-Si vous distribuer ce .app à d'autre personnes, vous embarquez votre sauvegarde avec. Rappelons que le jeu demande au joueur de saisir son nom uniquement dans le cas où le fichier de sauvegarde est encore inexistant. La saisie du code secret pour être invincible ne peut se faire qu'à ce moment là. En donnant un jeu possédant déjà un fichier `dichmama.nil`, vous empêchez d'autres personnes de valider leur code et de se faire leur propres scores.
+ - Si vous distribuez ce .app à d'autre personnes, vous embarquez votre sauvegarde avec. Rappelons que le jeu demande au joueur de saisir son nom uniquement dans le cas où le fichier de sauvegarde est encore inexistant. La saisie du code secret pour être invincible ne peut se faire qu'à ce moment là. En donnant un jeu possédant déjà un fichier `dichmama.nil`, vous empêchez d'autres personnes de valider leur code et de se faire leurs propres scores.
 
-Les fichiers .dmg sont en lecture seule. Lorsque vous jouez au jeu en exécutant le .app contenu dans un .dmg, sans l'avoir préalablement extrait, la création du fichier `dichmama.nil` échoue silencieusement. Vous ne pouvez alors conserver ni votre code d'invincibilité, ni votre configuration de touches, ni vos scores. Il est donc conseillé d'extraire systématiquement le .app du .dmg pour jouer.
+ - Les fichiers .dmg sont en lecture seule. Lorsque vous exécutez le .app contenu dans un .dmg, sans l'avoir préalablement extrait, la création du fichier `dichmama.nil` échoue silencieusement. Vous ne pouvez alors conserver ni votre code d'invincibilité, ni votre configuration de touches, ni vos scores. Il est donc conseillé d'extraire systématiquement le .app du .dmg pour jouer.
 
 #### Redistribution de l'application
 
-Copier simplement le .app ou le .dmg sur un autre Mac. Puis exécuter le jeu en double-cliquant sur le .app comme expliqué précédemment.
+Copier le .app ou le .dmg sur un autre Mac, puis exécuter le jeu en double-cliquant sur le .app comme expliqué précédemment.
 
-Si vous redistribuez ce jeu ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
+Si vous modifiez et/ou redistribuez ce jeu, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
 ### Plantage éventuel à l'exécution
@@ -281,16 +287,14 @@ Pour régler le problème, vérifiez que vous n'avez pas ajouté une instruction
 
 Lorsqu'on instancie une police de caractère sans spécifier de fichier de police, le python parvient toujours à se débrouiller. Il s'en est gardé une sous le coude, il demande une police au système, il écrit les lettres lui-même avec son sang, ... Donc, quand on lance le jeu avec le code source, tout va bien.
 
-Mais dans un exécutable, ça pète. Car la police par défaut n'est pas embarquée dedans. Le message d'erreur est vraiment cabbalistique, mais il faut faire avec.
+Mais dans un exécutable, ça pète. Car la police par défaut n'est pas embarquée dedans. Le message d'erreur est vraiment cabbalistique.
 
-Pour éviter ce genre de désagrément, indiquez toujours un fichier de police quand vous en instanciez une. N'importe quelle fichier, même un truc moche. Si vous ne savez pas où il y en a, prenez celui du repository : code/fontzy/tempesta.ttf
+Pour éviter ce genre de désagrément, indiquez toujours un fichier de police quand vous en instanciez une. N'importe laquelle, même un truc moche. Si vous ne savez pas où en trouver, prenez celle du repository : code/fontzy/tempesta.ttf
 
 J'ai eu l'explication de ce bug grâce à ce post sur stackoverflow : http://stackoverflow.com/questions/3470377/my-py2app-app-will-not-open-whats-the-problem
 
 
 ### Ajout des icônes
-
-Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des tâches et dans le fichier .app.
 
 Ça marche plus ou moins bien.
 
@@ -301,7 +305,7 @@ Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/
 
 Il est certainement possible de jouer à Blarg sur ces systèmes, puisque python et pygame sont compatibles dessus. Mais je n'ai pas ce genre de chose chez moi. Désolé, je devrais certainement être qualifié de vilain monsieur.
 
-Je vous laisse vous débrouiller tout seul, à coup de apt-get ou autres cabalisteries. Ça ne devrait pas être trop difficile, je suis sûr que vous êtes très fort. Bon courage !
+Je vous laisse vous débrouiller tout seul, à coup de apt-get ou autres ésotériqueries. Ça ne devrait pas être trop difficile, je suis sûr que vous êtes très fort. Bon courage !
 
 Si vous rencontrez des problèmes durant l'installation, l'exécution ou autre, n'hésitez pas à m'en faire part. Je les décrirais dans ce document pour en faire profiter tout le monde.
 

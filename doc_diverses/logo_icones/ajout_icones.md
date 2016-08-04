@@ -42,15 +42,3 @@ Image does not have a representation with same dimensions.
 Use a scaled version
 
 re-meme question qu avant
-
-## lancer en windowed sous mac
-
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ ./blarg FORCE_WINDOWED
-coucou
-tchaw
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ ./blarg
-coucou
-tchaw
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$ pwd
-/Users/recherpsychotrope/Documents/recher/blarg_test/blarg.app/Contents/MacOS
-mac-mini-de-recher-psychotrope:~/Documents/recher/blarg_test/blarg.app/Contents/MacOS recherpsychotrope$
