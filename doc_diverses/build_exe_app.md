@@ -73,7 +73,7 @@ Exécuter `code/build_blarg_exe.bat`. Une fenêtre s'ouvre, demandant parfois d'
 
 Attention, si le python n'est pas installé dans `C:\python25\`, ce .bat ne marchera pas. Il faut exécuter manuellement les commandes indiquées dans le .bat, en adaptant le chemin d'installation de python.
 
-À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu.
+À l'issue de l'exécution de ces commandes, un répertoire `C:\blarg\code\dist\` a été créé, contenant l'exécutable stand-alone du jeu. Ce répertoire n'est pas versionné dans ce repository.
 
 #### Message d'erreur possible
 
@@ -121,8 +121,6 @@ Ce message n'apparaît qu'une fois.
 
 Si vous avez l'anti-virus Avast, celui-ci va couiner un petit peu au premier lancement (validation d'un .exe non connu). Mais ça se passe sans aucun problème.
 
-Le contenu du répertoire `dist` n'est pas versionné dans ce repository.
-
 Pour lancer le jeu en mode fenêtre, quelle que soit la config actuelle, double-cliquer sur le fichier `C:\blarg\code\dist\blarg_windowed.bat`
 
 #### Redistribution de l'exécutable
@@ -139,7 +137,7 @@ Créer un fichier compressé (.zip ou autre), contenant tout le répertoire `dis
 
 Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de le décompresser n'importe où, et de double-cliquer sur blarg.exe.
 
-Si vous redistribuez ce jeu, ou une version modifiée, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
+Si vous modifiez et/ou redistribuez ce jeu, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
 ### Ajout des icônes
@@ -162,7 +160,7 @@ Voir : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/logo_icones/
 
 Je l'ai fait sur mon Mac, mais je ne me souviens plus des actions effectuées ! Je suppose que si je n'ai rien noté de spécial, c'est qu'il ne devait rien y avoir de compliqué.
 
-Pour vérifier les versions de python et pygame, ouvrir un terminal et excuter la commande `python`. Vous devriez avoir quelque chose comme cela :
+Pour vérifier les versions de python et pygame, ouvrir un terminal et exécuter la commande `python`. Vous devriez avoir quelque chose comme cela :
 
     Python 2.6.4 (r264:75821M, Oct 27 2009, 19:48:32)
     [GCC 4.0.1 (Apple Inc. build 5493)] on darwin
@@ -196,7 +194,7 @@ Mon répertoire lib contient les fichiers suivants :
 
 #### Lancement du jeu
 
-Télécharger tout le contenu de ce repository. On considèrera qu'il est mis à l'emplacement `~/Documents/recher/blarg/`
+Télécharger ce repository sur votre disque. On considèrera qu'il est à cet emplacement : `~/Documents/recher/blarg/`
 
 Ouvrir un terminal et exécuter les commandes suivantes :
 
@@ -225,7 +223,7 @@ Ouvrir un terminal et exécuter les commandes suivantes :
     cd ~/Documents/recher/blarg/code
     python pygame2macapp.py py2app --iconfile blarg_icon.icns
 
-Les deux derniers paramètres : `--iconfile blarg_icon.icns` sont facultatifs. Ils permettent de créer l'application avec une icône.
+Les deux derniers paramètres : `--iconfile blarg_icon.icns` sont facultatifs. Ils permettent d'ajouter une icône au .app.
 
 Deux répertoires sont créés :
 
