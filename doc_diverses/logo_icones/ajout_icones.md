@@ -94,22 +94,46 @@ Le fichier d'icône `blarg_icon.icns` est déjà présent dans le repository, au
 
 Ça marche très bien.
 
-brouillon
+### création du fichier blarg_icon.icns
 
-création du .icns
+Télécharger et installer l'application iconComposer. (Je ne sais plus d'où je l'ai récupérée ni quelle version j'ai. Il est 
 
-à partir du .gif.
-car à partir du .png, ça fait un truc bizarre.
+possible que que je l'ai eu en installant Xcode. J'ai oublié, désolé).
 
+**Attention, il semble que ça ne marche bien qu'avec le .gif, et pas le .png**
 
+ - Démarrer iconComposer.
 
-iconComposer
+ - prendre le fichier `/code/img/gam_icon.gif` et le glisser-déplacer dans la fenêtre de iconComposer, (case "image RGB, 
 
-Alert
-Extract Large 1bit mask from data also?
+large 32x32").
 
+ - L'image s'ajoute dans cette case, ainsi que dans le Hit Mask (la case d'â côté).
 
-Image does not have a representation with same dimensions.
-Use a scaled version
+ - Prendre l'image qu'on vient d'ajouter dans la case RGB 32x32 et la glisser déplacer dans la case du haut, puis celle du 
 
-re-meme question qu avant
+bas et celle de tout en bas.
+
+ - Générer le fichier .icns en sélectionnant l'option idoine dans le menu de l'application. (Je ne sais plus exactement son 
+
+nom).
+
+Durant les glisser-déplacer de fichier et d'images, des messages peuvent poser diverses questions : 
+
+ - "Extract Large 1bit mask from data also?" : répondre "oui".
+
+ - "Image does not have a representation with same dimensions." : répondre "Use a scaled version"
+
+Avant la génération de l'icône, la fenêtre doit ressembler à ceci :
+
+![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	
+
+screenshot_iconComposer_gif.tiff)
+
+Si on part de l'image en .png, ça merdouille et ça ressemble à ça :
+
+![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	
+
+screenshot_iconComposer.tiff)
+
+Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé lors de la créatio ndu .app.
