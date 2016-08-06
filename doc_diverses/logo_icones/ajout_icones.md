@@ -20,7 +20,7 @@ Effectué grâce à du code python dans le fichier `mainclas.py` :
 
 Au passage, cela définit également l'icône en haut à gauche de la fenêtre du jeu.
 
-Lorsqu'on passe en mode plein écran puis qu'on repasse en mode fenêtre, l'icône reste présent dans la barre des tâches, mais disparait de la fenêtre. À priori, ça pourrait être réglé en remettant l'instruction `pygame.display.set_icon` juste après le changement de mode graphique. Ça mériterait d'être testé à l'occasion.
+Lorsqu'on passe en mode plein écran puis qu'on repasse en mode fenêtre, l'icône reste présent dans la barre des tâches, mais disparait de la fenêtre. À priori, ça pourrait être réglé en re-exécutant l'instruction `pygame.display.set_icon` juste après le changement de mode graphique. Ça mériterait d'être testé à l'occasion.
 
 ### Icône dans le .exe
 
@@ -40,9 +40,9 @@ J'avais une autre idée :
 
  - Convertir ce .bat en un .exe et lui ajouter l'icône, grâce à l'utilitaire "Bat to Exe Converter".
 
-Sauf qu'il est écrit un peu partout sur internet que cet utilitaire contient des virus. Et même si apparemment, ce ne serait que des faux positifs, je préfère ne pas prendre de risque.
+Sauf qu'il est écrit un peu partout sur internet que cet utilitaire contient des virus. Apparemment, ce ne serait que des faux positifs, mais je préfère ne pas prendre de risque.
 
-J'avais une dernière idée : créer un raccourci relatif avec une icône dedans, mais c'était un peu cheap et un peu n'importe quoi. Juste pour rigoler, j'ai essayé d'automatiser cette tâche en vue de l'ajouter dans build_blarg_exe.bat. Pour ceux que ça intéresse, l'embryon de script est ici : `git/Blarg/code/shortcut_icon/createShortcut.vbs`
+J'avais une dernière idée : créer un raccourci avec une icône dedans, mais c'est un peu cheap. Juste pour rigoler, j'ai essayé d'automatiser cette tâche en vue de l'ajouter dans `build_blarg_exe.bat`. Pour ceux que ça intéresse, l'embryon de script est ici : `git/Blarg/code/shortcut_icon/createShortcut.vbs`
 
 J'ai trouvé toutes ces idées ici : http://www.wikihow.com/Change-the-Icon-for-an-Exe-File
 
@@ -58,17 +58,17 @@ Effectué grâce au même code python que tout à l'heure, dans `mainclas.py` :
 
 Ça ne marche pas très bien.
 
-Au moment du lancement du jeu, on voit bien l'icône de Blarg dans le dock (car il est pris à partir du .app).
+Au lancement du jeu, on voit bien l'icône de Blarg dans le dock (car il est pris à partir du .app).
 
 Ensuite, on voit l'icône de pygame pendant quelques secondes : le serpent jaune tenant une manette entre les dents.
 
-Finalement, on revient à l'icône de Blarg, vraisemblablement lorsque l'instruction `set_icon` dans le code du jeu est exécutée.
+Finalement, on revient à l'icône de Blarg, vraisemblablement lorsque le `set_icon()` du code du jeu est exécuté.
 
 Le problème a été signalé ici : https://mail.python.org/pipermail/pythonmac-sig/2009-January/020834.html
 
 Il y a une proposition de solution ici : http://www.mail-archive.com/pythonmac-sig@python.org/msg09705.html
 
-Copie de la solution :
+Copie de cette proposition :
 
 > You need two files, a bitmap of the icon, here dubbed "AppIcon.png",
 > and an icns file created in Icon Composer, here dubbed "AppIcon.icns".
@@ -82,7 +82,7 @@ Copie de la solution :
 >
 > python setup.py py2app --iconfile AppIcon.icns --resources AppIcon.png
 
-J'ai essayé cette solution, ça ne marche pas mieux.
+J'ai essayé, ça ne marche pas mieux.
 
 ### Icône dans le .app
 
@@ -97,25 +97,25 @@ Le fichier d'icône `blarg_icon.icns` est déjà présent dans le repository, au
 
 Télécharger et installer l'application iconComposer. (Désolé, je ne sais plus d'où je l'ai récupérée ni quelle version j'ai. Il est possible qu'elle était contenue dans Xcode, que j'ai installé lors d'un moment d'égarement).
 
-**Attention, il semble que ça ne marche bien qu'à partir de .gif, et pas du .png**
+**Attention, il semble que ça ne marche correctement qu'à partir du .gif, et pas du .png**
 
  - Démarrer iconComposer.
 
- - Prendre le fichier `/code/img/gam_icon.gif` de ce repository et le glisser-déplacer dans la fenêtre de iconComposer, (case "image RGB, large 32x32").
+ - Prendre le fichier `/code/img/gam_icon.gif` de ce repository et le glisser-déplacer dans la fenêtre de l'iconComposer, (case "image RGB, large 32x32").
 
  - L'image s'ajoute dans cette case, ainsi que dans le Hit Mask â côté.
 
- - Prendre l'image qu'on vient d'ajouter dans la case RGB 32x32 et la glisser déplacer dans la case du haut, puis celle du bas et celle de tout en bas.
+ - Prendre l'image qu'on vient d'ajouter dans la case RGB 32x32 et la glisser-déplacer dans la case du haut, puis celle du bas, puis celle de tout en bas.
 
  - Générer le fichier .icns en sélectionnant l'option idoine dans le menu de l'application. (Je ne sais plus exactement laquelle c'est).
 
-Durant les glisser-déplacer de fichier et d'images, des avertissements divers sont émis : 
+Durant les glisser-déplacer de fichiers et d'images, des avertissements divers sont émis : 
 
  - "Extract Large 1bit mask from data also ? " : répondre "oui".
 
- - "Image does not have a representation with same dimensions." : répondre "Use a scaled version".
+ - "Image does not have a representation with same dimensions" : répondre "Use a scaled version".
 
-Avant la génération de l'icône, la fenêtre doit ressembler à ceci :
+Au moment de la génération de l'icône, la fenêtre doit ressembler à ceci :
 
 ![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/screenshot_iconComposer_gif.jpg)
 
@@ -123,4 +123,4 @@ Si on part de l'image en .png, ça merdouille et ça ressemble à ça (l'image 3
 
 ![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/screenshot_iconComposer.jpg)
 
-Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé lors de la création du .app.
+Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé pour la création du .app.
