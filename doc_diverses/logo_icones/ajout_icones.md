@@ -96,27 +96,19 @@ Le fichier d'icône `blarg_icon.icns` est déjà présent dans le repository, au
 
 ### création du fichier blarg_icon.icns
 
-Télécharger et installer l'application iconComposer. (Je ne sais plus d'où je l'ai récupérée ni quelle version j'ai. Il est 
-
-possible que que je l'ai eu en installant Xcode. J'ai oublié, désolé).
+Télécharger et installer l'application iconComposer. (Je ne sais plus d'où je l'ai récupérée ni quelle version j'ai. Il est possible que que je l'ai eu en installant Xcode. J'ai oublié, désolé).
 
 **Attention, il semble que ça ne marche bien qu'avec le .gif, et pas le .png**
 
  - Démarrer iconComposer.
 
- - prendre le fichier `/code/img/gam_icon.gif` et le glisser-déplacer dans la fenêtre de iconComposer, (case "image RGB, 
-
-large 32x32").
+ - prendre le fichier `/code/img/gam_icon.gif` et le glisser-déplacer dans la fenêtre de iconComposer, (case "image RGB, large 32x32").
 
  - L'image s'ajoute dans cette case, ainsi que dans le Hit Mask (la case d'â côté).
 
- - Prendre l'image qu'on vient d'ajouter dans la case RGB 32x32 et la glisser déplacer dans la case du haut, puis celle du 
+ - Prendre l'image qu'on vient d'ajouter dans la case RGB 32x32 et la glisser déplacer dans la case du haut, puis celle du bas et celle de tout en bas.
 
-bas et celle de tout en bas.
-
- - Générer le fichier .icns en sélectionnant l'option idoine dans le menu de l'application. (Je ne sais plus exactement son 
-
-nom).
+ - Générer le fichier .icns en sélectionnant l'option idoine dans le menu de l'application. (Je ne sais plus exactement son nom).
 
 Durant les glisser-déplacer de fichier et d'images, des messages peuvent poser diverses questions : 
 
@@ -126,10 +118,10 @@ Durant les glisser-déplacer de fichier et d'images, des messages peuvent poser 
 
 Avant la génération de l'icône, la fenêtre doit ressembler à ceci :
 
-![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	screenshot_iconComposer_gif.jpg)
+![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/screenshot_iconComposer_gif.jpg)
 
 Si on part de l'image en .png, ça merdouille et ça ressemble à ça :
 
-![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	screenshot_iconComposer.jpg)
+![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/screenshot_iconComposer.jpg)
 
-Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé lors de la créatio ndu .app.
+Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé lors de la création du .app.
