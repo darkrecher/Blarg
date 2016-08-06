@@ -126,14 +126,10 @@ Durant les glisser-déplacer de fichier et d'images, des messages peuvent poser 
 
 Avant la génération de l'icône, la fenêtre doit ressembler à ceci :
 
-![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	
-
-screenshot_iconComposer_gif.tiff)
+![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	screenshot_iconComposer_gif.tiff)
 
 Si on part de l'image en .png, ça merdouille et ça ressemble à ça :
 
-![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	
-
-screenshot_iconComposer.tiff)
+![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/ 	screenshot_iconComposer.tiff)
 
 Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé lors de la créatio ndu .app.
