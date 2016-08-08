@@ -28,7 +28,7 @@ Il existe une variable dans `pygame2exe.py` permettant de choisir l'icône : `se
 
 Mais je n'ai jamais réussi à la faire fonctionner. J'ai spécifié un fichier .ico et un fichier .png, dans les deux cas ça ne fait rien.
 
-Pour information, le fichier `gam_icon.ico` a été créé à partir de `gam_icon.png`, via le site http://convertico.com/. Ces deux fichiers ont été déplacés dans `git/Blarg/code/shortcut_icon`. Ils ne sont nécessaires ni pour le jeu ni pour la création du .exe.
+Pour information, le fichier `gam_icon.ico` a été créé à partir de `gam_icon.png`, via le site http://convertico.com/. Ces deux fichiers ont été déplacés dans `git/Blarg/doc_diverses/logo_icones`. Ils ne sont nécessaires ni pour le jeu ni pour la création du .exe.
 
 Pour la version mise à disposition sur [indiedb](http://www.indiedb.com/games/blarg), j'avais intégré l'icône en utilisant le logiciel Resource Hacker. Mais je n'aime pas trop cette idée, car on bidouille un .exe avec un logiciel n'ayant rien à voir avec le python ni py2exe, et on ne sait pas trop ce que ça fait car le code source n'est pas librement disponible. Il y a des avertissements ici et là précisant que Resource Hacker peut corrompre les .exe et que si ça arrive, ils déclinent toute responsabilités, blablabla.
 
@@ -42,7 +42,7 @@ J'avais une autre idée :
 
 Sauf qu'il est écrit un peu partout sur internet que cet utilitaire contient des virus. Apparemment, ce ne serait que des faux positifs, mais je préfère ne pas prendre de risque.
 
-J'avais une dernière idée : créer un raccourci avec une icône dedans, mais c'est un peu cheap. Juste pour rigoler, j'ai essayé d'automatiser cette tâche en vue de l'ajouter dans `build_blarg_exe.bat`. Pour ceux que ça intéresse, l'embryon de script est ici : `git/Blarg/code/shortcut_icon/createShortcut.vbs`
+J'avais une dernière idée : créer un raccourci avec une icône dedans, mais c'est un peu cheap. Juste pour rigoler, j'ai essayé d'automatiser cette tâche en vue de l'ajouter dans `build_blarg_exe.bat`. Pour ceux que ça intéresse, l'embryon de script est ici : `git/Blarg/doc_diverses/logo_icones/createShortcut.vbs`
 
 J'ai trouvé toutes ces idées ici : http://www.wikihow.com/Change-the-Icon-for-an-Exe-File
 
@@ -86,7 +86,7 @@ J'ai essayé, ça ne marche pas mieux.
 
 ### Icône dans le .app
 
-L'icône est intégré dans le .app lors de sa création, lorsqu'on exécute la commande 
+L'icône est intégré dans le .app lors de sa création, lorsqu'on exécute la commande
 `python pygame2macapp.py py2app --iconfile blarg_icon.icns`
 
 Le fichier d'icône `blarg_icon.icns` est déjà présent dans le repository, au bon endroit.
@@ -109,7 +109,7 @@ Télécharger et installer l'application iconComposer. (Désolé, je ne sais plu
 
  - Générer le fichier .icns en sélectionnant l'option idoine dans le menu de l'application. (Je ne sais plus exactement laquelle c'est).
 
-Durant les glisser-déplacer de fichiers et d'images, des avertissements divers sont émis : 
+Durant les glisser-déplacer de fichiers et d'images, des avertissements divers sont émis :
 
  - "Extract Large 1bit mask from data also ? " : répondre "oui".
 
