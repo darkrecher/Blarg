@@ -8,51 +8,57 @@ Url d'origine du projet : http://fr.ulule.com/blarg/
 Url de la vidéo : https://www.dailymotion.com/video/xgx2in_blarg-demo-v2_videogames
 
 50 € collectés sur un objectif de 10 €
+
 Financé le 3 avr. 2011
 
-8 news
-13 commentaires
-11 contributeurs
+8 news ;
+13 commentaires ;
+11 contributeurs ;
 
 ### Participants
 
-Fan anonyme
-Fan anonyme
-cemonsieur. Montréal
-captivestudio. Boulogne-Billancourt
-Fan anonyme
-Fan anonyme
-ceska2007
-cedric-2. Ma nuit chez Ulule
-cuningham. dans un pays froid et pluvieux
-Fan anonyme
-Fan anonyme
+Fan anonyme ;
+Fan anonyme ;
+cemonsieur. Montréal ;
+captivestudio. Boulogne-Billancourt ;
+Fan anonyme ;
+Fan anonyme ;
+ceska2007 ;
+cedric-2. Ma nuit chez Ulule ;
+cuningham. dans un pays froid et pluvieux ;
+Fan anonyme ;
+Fan anonyme ;
 
 ### Les fans
 
-Recher ici
-barredevie Paris, France
-nomansland Nomade
+Recher ici ;
+barredevie Paris, France ;
+nomansland Nomade ;
 
 ## Contreparties
 
 Pour 1 € ou plus (4)
+
 La version spéciale du jeu, en avant-première, avec le mode invincible !
 
 Pour 5 € ou plus (5)
+
 Jeu en avant-première et mode invincible + Votre nom/pseudo dans le générique, ainsi qu'un lien vers votre site ou votre blog.
 
 Pour 7 € ou plus (0)
+
 Même chose que ci-dessus +
 Une dédicace de l'image de présentation. (Dédicacée sous Paint et envoyée par mail, parce que le cheap, c'est chic)
 
 Pour 10 € ou plus (2)
+
 Même chose que ci-dessus +
 Participez activement au contenu artistique !
 Imitez le râle d'un magicien qui meurt, et envoyez-moi le fichier son. Il sera intégré dans le jeu.
 Vous serez crédité dans le générique comme "assistant aux effets sonores".
 
 Pour 20 € ou plus (0 / 1)
+
 Même chose que ci-dessus +
 Nommez le personnage principal.
 Notre héros est un vendeur de fusil à pompe tout ce qu'il y a de plus honnête. Il se retrouve par hasard téléporté dans un univers parallèle rempli de magiciens. Mais quel est son nom ? A vous de décider.
@@ -91,7 +97,7 @@ C'est écrit en python, avec la librairie multi-plateformes pygame. Le python es
 
 En fait le jeu est déjà terminé, et son développement n'a rien coûté, sinon du temps. Mais pour l'instant, je le garde jalousement en otage dans mon ordinateur. **J'ai fixé la limite à 10 euros, parce qu'il fallait bien en mettre une, mais ce serait bien qu'elle soit dépassée. Le but réel est d'obtenir le plus d'argent possible.** Pourquoi une telle cupidité ?
 
-![manger des billets](mangeage_billet)
+![manger des billets](mangeage_billet.jpg)
 
  - Parce que je veux évaluer l'intérêt que pourraient avoir les gens envers mes créations vidéoludiques. (Et éventuellement, dans un futur lointain, changer de métier)
 
@@ -109,7 +115,7 @@ Je m'appelle Réchèr. Je suis ouvrier-codeur dans une importante entreprise qui
 
 ![stealing time](voleur_temps.jpg)
 
-Je sévis sur le blog recher.wordpress.com, où je raconte diverses geekeries, que je ponctue d'images érotiques de femmes rondes.
+Je sévis sur le blog [recher.wordpress.com](recher.wordpress.com), où je raconte diverses geekeries, que je ponctue d'images érotiques de femmes rondes.
 
 Je commet également des articles pour le magazine 42. (Le magazine par, pour, sur, dans les geeks)
 
