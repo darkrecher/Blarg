@@ -75,7 +75,7 @@ Envie d'un petit instant de stupidité jouissive ? Alors, démarrez une partie d
 
 #### Pour secourir les cerveaux des informaticiens
 
-des ordinateurs et des chimpanzés
+![des ordinateurs et des chimpanzés](singes.jpg)
 
 Les développeurs en informatique sont souvent frustrés par leur activité professionnelle. On leur demande de programmer à l'arrache, afin de tenir le délai de avant-hier-au-plus-tard-en-urgence. Cette méthode de production génère des kilo-octets de programmes mal fichus, illisibles, buggés et atteints de cancers du copier-coller. Dans mon travail du monde réel, j'ai vu des lignes de code affreuses, traumatisantes, que mes yeux ne pourront jamais oublier.
 
@@ -85,13 +85,13 @@ Le jeu, le code source, les images et les sons seront disponible librement et gr
 
 C'est écrit en python, avec la librairie multi-plateformes pygame. Le python est un langage de programmation beau, simple, et lisible. Je me suis appliqué à faire un code factorisé, découpé en objets indépendants, et commenté. Bien sûr, je ne peux pas avoir la prétention de programmer à la perfection, d'autant plus que chacun a son style. Mais je suis assez fier de ce que j'ai fait.
 
-jeu vidéo blarg. pendant le jeu.
+![jeu vidéo blarg. pendant le jeu.](blarg_jeu.png)
 
 ### A quoi va servir le financement ?
 
 En fait le jeu est déjà terminé, et son développement n'a rien coûté, sinon du temps. Mais pour l'instant, je le garde jalousement en otage dans mon ordinateur. **J'ai fixé la limite à 10 euros, parce qu'il fallait bien en mettre une, mais ce serait bien qu'elle soit dépassée. Le but réel est d'obtenir le plus d'argent possible.** Pourquoi une telle cupidité ?
 
-manger des billets
+![manger des billets](mangeage_billet)
 
  - Parce que je veux évaluer l'intérêt que pourraient avoir les gens envers mes créations vidéoludiques. (Et éventuellement, dans un futur lointain, changer de métier)
 
@@ -107,7 +107,7 @@ Et que ferais-je de cette montagne de brouzoufs ? A priori : n'importe quoi. Je 
 
 Je m'appelle Réchèr. Je suis ouvrier-codeur dans une importante entreprise qui vend du temps de cerveau d'informaticien disponible. Entre deux rafistolages hasardeux de programme bancal, je tente de voler un peu de ce temps, en travaillant sur des projets personnels qui me tiennent à coeur.
 
-stealing time
+![stealing time](voleur_temps.jpg)
 
 Je sévis sur le blog recher.wordpress.com, où je raconte diverses geekeries, que je ponctue d'images érotiques de femmes rondes.
 
