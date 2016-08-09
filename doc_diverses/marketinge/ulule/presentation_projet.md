@@ -65,15 +65,15 @@ Vous serez crédité dans le générique comme "co-scénariste principal"
 
 Il existe des jeux vidéos avec des magiciens, il en existe aussi avec des fusils à pompe, mais personne n'a jamais osé cross-overiser les deux. C'est maintenant chose faite avec Blarg. Il sera disponible sur Mac et sur PC, et sera téléchargeable depuis le site de jeux vidéos indépendants indieDB : http://www.indiedb.com/games/blarg
 
-jeux video blarg. présentation
+![jeux video blarg. présentation](blarg_presentation.png)
 
 Pourquoi ai-je créé ce jeu ?
 
-Pour vous offrir adrénaline, défouloir, et onomatopées
+#### Pour vous offrir adrénaline, défouloir, et onomatopées
 
 Envie d'un petit instant de stupidité jouissive ? Alors, démarrez une partie de Blarg, et faites voler des magiciens en morceaux, sous un déluge de "arrggh!!" "bblleeeaaakkhhh" et autres "gghhrouhhoohouuuwofff". Les bruitages ont tous été créés avec mes petites cordes vocales musclées.
 
-Pour secourir les cerveaux des informaticiens
+#### Pour secourir les cerveaux des informaticiens
 
 des ordinateurs et des chimpanzés
 
@@ -81,14 +81,15 @@ Les développeurs en informatique sont souvent frustrés par leur activité prof
 
 Partir en guerre contre cette montagne d'horreurs serait une chose impossible. Alors j'ai décidé de me construire mon petit oasis de code personnel. Si j'ai créé ce jeu, c'est tout d'abord pour sauver mon propre cerveau, et en le partageant, j'en sauverais peut-être d'autres.
 
-Le jeu, le code source, les images et les sons seront disponible librement et gratuitement, sous les licences Creative Commons CC-BY-SA, et Art Libre. Vous pourrez consulter, modifier, et mâchouiller le tout selon les termes de l'une ou l'autre de ces licences.
+Le jeu, le code source, les images et les sons seront disponible librement et gratuitement, sous les [licences Creative Commons CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.0/fr/), et [Art Libre](http://artlibre.org/). Vous pourrez consulter, modifier, et mâchouiller le tout selon les termes de l'une ou l'autre de ces licences.
 
 C'est écrit en python, avec la librairie multi-plateformes pygame. Le python est un langage de programmation beau, simple, et lisible. Je me suis appliqué à faire un code factorisé, découpé en objets indépendants, et commenté. Bien sûr, je ne peux pas avoir la prétention de programmer à la perfection, d'autant plus que chacun a son style. Mais je suis assez fier de ce que j'ai fait.
 
 jeu vidéo blarg. pendant le jeu.
-A quoi va servir le financement ?
 
-En fait le jeu est déjà terminé, et son développement n'a rien coûté, sinon du temps. Mais pour l'instant, je le garde jalousement en otage dans mon ordinateur. J'ai fixé la limite à 10 euros, parce qu'il fallait bien en mettre une, mais ce serait bien qu'elle soit dépassée. Le but réel est d'obtenir le plus d'argent possible. Pourquoi une telle cupidité ?
+### A quoi va servir le financement ?
+
+En fait le jeu est déjà terminé, et son développement n'a rien coûté, sinon du temps. Mais pour l'instant, je le garde jalousement en otage dans mon ordinateur. **J'ai fixé la limite à 10 euros, parce qu'il fallait bien en mettre une, mais ce serait bien qu'elle soit dépassée. Le but réel est d'obtenir le plus d'argent possible.** Pourquoi une telle cupidité ?
 
 manger des billets
 
@@ -98,10 +99,11 @@ manger des billets
 
  - Parce que gagner des sous, ça fait cool, et on est bien plus pris au sérieux lorsqu'on y parvient. (Même si ce qu'on produit n'est pas sérieux en soi).
 
-Contribuer à ce projet est, pour vous, votre seule chance d'obtenir une édition spéciale du jeu avec le mode invincible, ainsi que de devenir connu simplement en hurlant dans un micro (cf. les contreparties proposées, ci-à-droite). De plus, vous aurez accès au jeu en avant-première, dès que vous aurez effectué votre contribution.
+**Contribuer à ce projet est, pour vous, votre seule chance d'obtenir une édition spéciale du jeu avec le mode invincible, ainsi que de devenir connu simplement en hurlant dans un micro (cf. les contreparties proposées, ci-à-droite). De plus, vous aurez accès au jeu en avant-première, dès que vous aurez effectué votre contribution.**
 
 Et que ferais-je de cette montagne de brouzoufs ? A priori : n'importe quoi. Je compte offrir un bon restau à ma chérie, m'acheter des BD, des nouveaux slips...
-A propos du porteur de projet
+
+### A propos du porteur de projet
 
 Je m'appelle Réchèr. Je suis ouvrier-codeur dans une importante entreprise qui vend du temps de cerveau d'informaticien disponible. Entre deux rafistolages hasardeux de programme bancal, je tente de voler un peu de ce temps, en travaillant sur des projets personnels qui me tiennent à coeur.
 
@@ -111,4 +113,4 @@ Je sévis sur le blog recher.wordpress.com, où je raconte diverses geekeries, q
 
 Je commet également des articles pour le magazine 42. (Le magazine par, pour, sur, dans les geeks)
 
-J'ai l'intention de faire d'autres jeux, selon le même mode de production et de libération. Mon prochain titre s'appelera "Le Stagiaire", et sera un peu plus subtil que Blarg. Vous pouvez suivre à peu près quotidiennement les cahots du processus de création, sur mon touittère.
+J'ai l'intention de faire d'autres jeux, selon le même mode de production et de libération. Mon prochain titre s'appelera "Le Stagiaire", et sera un peu plus subtil que Blarg. Vous pouvez suivre à peu près quotidiennement les cahots du processus de création, sur [mon touittère](https://twitter.com/_Recher_).
