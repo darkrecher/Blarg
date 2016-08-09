@@ -115,7 +115,7 @@ Je m'appelle Réchèr. Je suis ouvrier-codeur dans une importante entreprise qui
 
 ![stealing time](voleur_temps.jpg)
 
-Je sévis sur le blog [recher.wordpress.com](recher.wordpress.com), où je raconte diverses geekeries, que je ponctue d'images érotiques de femmes rondes.
+Je sévis sur le blog [recher.wordpress.com](http://recher.wordpress.com), où je raconte diverses geekeries, que je ponctue d'images érotiques de femmes rondes.
 
 Je commet également des articles pour le magazine 42. (Le magazine par, pour, sur, dans les geeks)
 
