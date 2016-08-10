@@ -60,7 +60,7 @@ Sur le site [www.pygame.org](http://www.pygame.org), vous trouverez des tonnes d
 
 Sur ce, à bientôt tout le monde. Continuez de parler de moi autour de vous (et de vous autour de moi, pourquoi pas).
 
-Source des images :
+## Source des images :
 
  - la dame qui lèche : http://www.2lincolns.com/2009/07/24/gran-turismo-littlebigplanet-in-action-on-the-psp-go-video/
 
