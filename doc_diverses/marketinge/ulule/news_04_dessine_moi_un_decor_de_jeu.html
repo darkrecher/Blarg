@@ -1,0 +1,987 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+body .markdown-body {
+    padding: 45px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+
+pre {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background-color: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body input {
+  font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4078c0;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body .select::-ms-expand {
+  opacity: 0;
+}
+
+.markdown-body .octicon {
+  font: normal normal normal 16px/1 octicons-anchor;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body .anchor {
+  display: inline-block;
+  padding-right: 2px;
+  margin-left: -18px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #000;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h1 .anchor {
+  line-height: 1;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 .anchor {
+  line-height: 1;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h3 .anchor {
+  line-height: 1.2;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 .anchor {
+  line-height: 1.2;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h5 .anchor {
+  line-height: 1.1;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body h6 .anchor {
+  line-height: 1.1;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.markdown-body .pl-c {
+  color: #969896;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #0086b3;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #795da3;
+}
+
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+  color: #333;
+}
+
+.markdown-body .pl-ent {
+  color: #63a35c;
+}
+
+.markdown-body .pl-k {
+  color: #a71d5d;
+}
+
+.markdown-body .pl-pds,
+.markdown-body .pl-s,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sra,
+.markdown-body .pl-sr .pl-sre {
+  color: #183691;
+}
+
+.markdown-body .pl-v {
+  color: #ed6a43;
+}
+
+.markdown-body .pl-id {
+  color: #b52a1d;
+}
+
+.markdown-body .pl-ii {
+  background-color: #b52a1d;
+  color: #f8f8f8;
+}
+
+.markdown-body .pl-sr .pl-cce {
+  color: #63a35c;
+  font-weight: bold;
+}
+
+.markdown-body .pl-ml {
+  color: #693a17;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  color: #1d3e81;
+  font-weight: bold;
+}
+
+.markdown-body .pl-mq {
+  color: #008080;
+}
+
+.markdown-body .pl-mi {
+  color: #333;
+  font-style: italic;
+}
+
+.markdown-body .pl-mb {
+  color: #333;
+  font-weight: bold;
+}
+
+.markdown-body .pl-md {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.markdown-body .pl-mi1 {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.markdown-body .pl-mdr {
+  color: #795da3;
+  font-weight: bold;
+}
+
+.markdown-body .pl-mo {
+  color: #1d3e81;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.markdown-body .plan-price-unit {
+  color: #767676;
+  font-weight: normal;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 0.35em 0.25em -1.6em;
+  vertical-align: middle;
+}
+
+.markdown-body .plan-choice {
+  padding: 15px;
+  padding-left: 40px;
+  display: block;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  font-weight: normal;
+  background-color: #fafafa;
+}
+
+.markdown-body .plan-choice.open {
+  background-color: #fff;
+}
+
+.markdown-body .plan-choice.open .plan-choice-seat-breakdown {
+  display: block;
+}
+
+.markdown-body .plan-choice-free {
+  border-radius: 3px 3px 0 0;
+}
+
+.markdown-body .plan-choice-paid {
+  border-radius: 0 0 3px 3px;
+  border-top: 0;
+  margin-bottom: 20px;
+}
+
+.markdown-body .plan-choice-radio {
+  position: absolute;
+  left: 15px;
+  top: 18px;
+}
+
+.markdown-body .plan-choice-exp {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.markdown-body .plan-choice-seat-breakdown {
+  margin-top: 10px;
+  display: none;
+}
+
+.markdown-body :checked+.radio-label {
+  z-index: 1;
+  position: relative;
+  border-color: #4078c0;
+}
+</style><title>news_04_dessine_moi_un_decor_de_jeu</title></head><body><article class="markdown-body"><h1>
+<a id="user-content-dessine-moi-un-décor-de-jeu-vidéo--avec-pixia" class="anchor" href="#dessine-moi-un-d%C3%A9cor-de-jeu-vid%C3%A9o--avec-pixia" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dessine-moi un décor de jeu vidéo !!! (avec Pixia)</h1>
+
+<p>Publié par Recher le mars 16, 2011</p>
+
+<p>0 commentaires</p>
+
+<h2>
+<a id="user-content-salut-les-petits-princes-" class="anchor" href="#salut-les-petits-princes-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Salut les petits princes !</h2>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/petit_prince.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/petit_prince.png" alt="dessin petit prince" style="max-width:100%;"></a></p>
+
+<p>Alors comme ça, tu veux pas un mouton, mais un décor de jeux vidéo ? Haha, charmante petite tête blonde, sais-tu que je suis une véritable tanche dans ce domaine ? Ca ne te dérange pas ? Fort bien. Tiens passe-moi la clé de 12 au lieu de glander.</p>
+
+<p>Mais dis-moi, jeune et fringant inconscient, tu ne préférerais pas que je te montre comment faire, plutôt que de le faire à ta place ? Car, comme le disait si bien Confucius : "Donnes un poisson à un homme, et tu le nourriras pendant une journée. Mais apprends-lui à pêcher, et tu ... Chasse pêêêche et bituuuure ! Nous on respecte la natuuuuure !!"</p>
+
+<p>Pour mon exemple de création de décor, Nous allons donc partir des postulats suivants :</p>
+
+<ul>
+<li><p>Vous êtes une grosse tanche en dessin, comme moi.</p></li>
+<li><p>Vous n'avez pas beaucoup de temps à perdre pour ces conneries. Parce que vous préférez coder et/ou boire des bières.</p></li>
+<li><p>Vous avez entendu parler de The-Gimp, mais vous avez la flemme de l'installer, et l'énormité de ce logiciel vous fait un peu peur. Tout ce que vous voulez, c'est créer une petite image simple, et comme le disait Confucius, avec qui nous sommes maintenant intime : "On ne chasse pas les mouches avec un canon, mais on peut les appâter avec du caca."</p></li>
+<li><p>Vous savez penser fourbe.</p></li>
+</ul>
+
+<h2>
+<a id="user-content-bien-séquiper-comme-il-faut" class="anchor" href="#bien-s%C3%A9quiper-comme-il-faut" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bien s'équiper comme il faut</h2>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/gros_stylo.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/gros_stylo.jpg" alt="gros stylo" style="max-width:100%;"></a></p>
+
+<p>Installez le logiciel Pixia. Il est sympa, et les quelques bugs dont il est saupoudré ne sont pas trop gênant. Il est bien evidemment gratuit, sur PC, et se chope ici : <a href="http://pixia.free.fr/">http://pixia.free.fr/</a></p>
+
+<p>Il comporte trouze-plein de fonctionnalités, mais vous n'en utiliserez que 4,03 environ. On n'est pas là pour apprendre à s'en servir, y'a des vrais tutoriaux pour ça. On est là pour apprendre à faire une image à l'arrache.</p>
+
+<p>Pour finir de bien vous équiper à fond, vérifier que vous avez MS Paint. (Le plus grand logiciel de dessin de tous les temps, et le pire, c'est que je le pense un tout petit peu).</p>
+
+<h2>
+<a id="user-content-penser-fourbe-donc" class="anchor" href="#penser-fourbe-donc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Penser fourbe, donc</h2>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/gollum.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/gollum.jpg" alt="gollum" style="max-width:100%;"></a></p>
+
+<p>Le jeu vidéo dont on veut faire le décor est un peu simpliste. C'est de la 2D, le héros ne peut pas sortir de l'écran, y'a pas de scrolling, et qu'un seul lieu. On va essayer de cacher cette misère avec une bonne dose de fourberie.</p>
+
+<p>Les personnages du jeu mesurent environ 30 pixels de haut. On va donc placer en haut de l'image un mur d'une taille un peu plus petite (mettons 25 pixels). Ca conférera un semblant de vague impression de 3D à l'ensemble. Les personnages seront bloqués en haut, non pas parce que c'est le bord de l'écran et que votre jeu est pouillave, mais parce qu'il y a un mur ! Ha-ha !</p>
+
+<p>Les RPG old-school utilisent eux aussi cette fourberie de fausse 3D, mais de manière plus élaborée, et pour donner l'impression que le jeu emploie différents angles de vue. Par exemple : Chrono Trigger, sur la Super NES.</p>
+
+<p>Dans l'image ci-dessous, le personnage est à peu près en "vue plongeante du dessus".</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/chrono_trigger_dessus.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/chrono_trigger_dessus.png" alt="chrono trigger vue de dessus" style="max-width:100%;"></a></p>
+
+<p>OMG ! Maintenant, il est vu de côté ! Pourtant, c'est le même sprite !!!</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/chrono_trigger_cote.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/chrono_trigger_cote.png" alt="chrono trigger vue de côté" style="max-width:100%;"></a></p>
+
+<p>Allons-nous arrêter la fourberie ici ? Que nenni ! On va ajouter une grande porte. Ainsi, le joueur potentiel, regardant un screenshot, va se dire : "Wouhaouw ! Une porte ! Ca veut surement dire que le héros peut l'ouvrir, et partir explorer, que sais-je, une maison, un château, d'autres pays, des univers fabuleux et foutrasmagoriques ! Ce jeu est génial ! Vite vite ! Je dois le télécharger sans plus tarder et donner toutes mes économies à son créateur. Tant pis pour le médicament de ma petite soeur orpheline très malade, elle n'aura qu'à soigner sa tuberculose avec de la médecine douce !"</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/orphelin_simpsons.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/orphelin_simpsons.jpg" alt="orphelin dans les Simpsons" style="max-width:100%;"></a></p>
+
+<p>Ensuite, lorsque le joueur essaie le jeu, il se rend compte que tout ceci n'est qu'une vaste pantalonnade, et que la porte ne sert à rien. Mais c'est trop tard, entre temps, il aura téléchargé le jeu, et aura fait augmenter ma célébrité, mon ego, et mon compte en banque.</p>
+
+<p>Mouaahhahahahahaaa !</p>
+
+<p>Donc un mur avec une porte dedans.</p>
+
+<p>Dans le même ordre de fourberie, mais en moins impactant, on place une petite zone de sable jaune sur la droite. Ca donne l'impression qu'il y a un début de changement de type de terrain, que peut être ça scrolle vers une plage, d'autres pays, des univers fabuleux et foutrasmagoriques, blabla, tuberculose tout ça.</p>
+
+<p>Et pour finir, on décide de placer quelques changement de nuance de couleur, par ci par là. Juste histoire de varier un peu, car le vert, c'est bien, mais le même vert partout, bof.</p>
+
+<p>On part donc sur une image comme ça. (Réalisable sous Paint, sans trop de difficulté).</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_decor_debut.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_decor_debut.png" alt="screenshot decor debut" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-ajouter-du-schfrouschfrougnage-dans-le-vert" class="anchor" href="#ajouter-du-schfrouschfrougnage-dans-le-vert" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ajouter du schfrouschfrougnage dans le vert</h2>
+
+<p>Avec Pixia, utiliser l'outil de sélection polygonesque, <a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_polygon.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_polygon.png" alt="pixia bouton polygon" style="max-width:100%;"></a> et prenez tout le vert.</p>
+
+<p>Pendant la construction du polygône, vous pouvez cliquer en dehors de l'image, ça rajoutera un point sur le bord, ce qui peut être utile. Suivez approximativement la séparation jaune-vert, en quelques points. Terminez en cliquant sur le bouton droit, ce qui joint le dernier point placé avec le premier.</p>
+
+<p>Dans le fatras d'options situé à droite se trouve deux bidules-doseurs super important. "t" et "d".</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_selecteur_t_d.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_selecteur_t_d.png" alt="pixia selecteur t et d" style="max-width:100%;"></a></p>
+
+<p>Le "t" signifie transparency, et le "d" dithering (dispersion, ou quelque chose comme ça). Laissez le "t" au maximum, et mettez le "d" à pas beaucoup, 20/255 par exemple.</p>
+
+<p>Sélectionnez une couleur parmi les nuances de verts déja présentes dans l'image (mais pas le vert principal). Ca se fait en cliquant-droit sur un pixel de la couleur souhaitée. Il vous faudra peut-être double-cliquer-droit, parce que le premier clic ouvre le menu contextuel qui sert à rien. Bon, c'est Pixia, c'est un peu artisanal comme logiciel, voilà.</p>
+
+<p>Donc vous prenez un vert, vous avez toujours votre sélection de toute la zone verte, et vous faites paf ! le pot de peinture : <a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_fill.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_fill.png" alt="pixia bouton fill" style="max-width:100%;"></a></p>
+
+<p>Ca met plein de petits pixels de la couleur choisie, au hasard, dans la zone sélectionnée. Plus y'a de dithering, plus y'a de pixels. D'où l'intérêt de bien doser.</p>
+
+<p>Faites pareil avec les autres nuances de vert. Ajouter aussi un peu de vert plus clair. Hésitez pas à faire Ctrl-Z, ou à remettre un petit coup de vert principal, si vous voyez que ça devient trop n'importe quoi.</p>
+
+<p>Vous pourriez ajouter plein d'autres nuances de verts, non présentes dans l'image de départ, mais ça apporterait pas grand chose, vu le bordel qu'on va mettre juste après.</p>
+
+<p>A la fin, ça donne ça. (J'ai laissé le polygone de sélection, pour que vous voyez bien que c'est pas la peine de se prendre la tête à suivre au pixel près la zone verte).</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_selection_vert.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_selection_vert.png" alt="screenshot selection vert" style="max-width:100%;"></a></p>
+
+<p>Attention, l'étape suivante est un peu bourrine. Déplacez tout votre polygone de sélection vers le haut, puis dépacer juste les points du haut vers le bas. Le but c'est de restreindre un peu la zone sélectionnée, car on va faire du bruit !</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/cornemusiers.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/cornemusiers.jpg" alt="cornemusiers" style="max-width:100%;"></a></p>
+
+<p>Appuyez sur l'espèce de bouton de combo-box, en haut à droite : <a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_combobox.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_combobox.png" alt="pixia bouton combobox" style="max-width:100%;"></a></p>
+
+<p>Choisissez l'option "bruit" dans la liste déroulante. Dans mon Pixia à moi, j'ai deux options portant ce nom, faut prendre la première.</p>
+
+<p>Augmentez un peu le dithering. Mettons, 40 / 255, et re-paf pot de peinture. Eventuellement, paffez plusieurs fois. On ne doit plus distinguer la forme des cercles, mais les zones de nuances de vert doivent rester. Ca va vous donner un machin comme ça.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_bruit.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_bruit.png" alt="screenshot bruit" style="max-width:100%;"></a></p>
+
+<p>On remarquera que quelques pixels gris (provenant du mur), et jaunes (provenant du sable) se sont égarés dans le vert. D'où l'intérêt d'avoir resserré la sélection. Sinon, ça aurait été pire. Les gens intelligents utilisent des layers pour éviter ce genre de gloubiboulga chaotique. Moi non. Pas envie.</p>
+
+<p>Supprimez à la main les pixels gris et jaune, tel le galérien. Pour faire des modifs au pixel près, utilisez l'option Outils -&gt; Loupe. Il vaut mieux remettre le "t" et le "d" à leur valeur d'origine (le maximum) car ils influent aussi sur les actions faites avec la loupe. Enfin je crois.</p>
+
+<p>Il reste une petite zone verte unie, juste en dessous de la porte. Recouvrez là avec un rectangle de vert pas-uni, que vous aurez copié-collé depuis ailleurs. Ce sera pas vraiment raccord, mais on s'en fout.</p>
+
+<p>Pour finir, resélectionnez toute la zone verte, à peu près comme la première fois, baissez un peu le dithering, choisissez le mode "flou" à la place du mode "bruit", et re-paf pot de peinture, éventuellement plusieurs fois. Si y'a du vert qui déborde sur le mur et la porte, c'est pas grave.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_flou.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_flou.png" alt="screenshot flou" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-schfrouschfrougner-le-jaune" class="anchor" href="#schfrouschfrougner-le-jaune" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Schfrouschfrougner le jaune</h2>
+
+<p>Sélectionnez la zone jaune, reprenez le mode initial (mode "crayon") et un dithering faible, choisissez des couleurs de jaunes un peu plus foncés et un peu plus claires, et balancez-en quelques pixels.</p>
+
+<p>Pas la peine de faire l'étape de bruit pour le jaune, car il n'y a pas de zones de nuances à mélanger. Passez directement au flou.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_flou_jaune.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_flou_jaune.png" alt="screenshot flou jaune" style="max-width:100%;"></a></p>
+
+<p>Sélectionnez la bande délimitant le vert et le jaune. Là pour le coup, la seule chose à faire c'est de mélanger les nuances. Mettez donc du bruit, puis du flou.</p>
+
+<p>Pour finir, démochifiez un peu tout ça en remettant du flou général sur toute l'image, excepté le mur et la porte, et resupprimez à la main quelques petits pixels qu'ont rien à faire là.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_flou_general.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_flou_general.png" alt="screenshot flou general" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-savoir-aimer-lesthétique-disco" class="anchor" href="#savoir-aimer-lesth%C3%A9tique-disco" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Savoir aimer l'esthétique disco.</h2>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/chaise_couleurs_disco.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/chaise_couleurs_disco.jpg" alt="chaise couleurs disco" style="max-width:100%;"></a></p>
+
+<p>Je l'aime bien, ce vert, mais il est pas assez flashy. On va donc l'éclaircir un petit peu. Couleur blanche, sélection de toute l'image, dithering au max, et transparency à 50. Paf, pot de peinture. Plus la transparency est haute, plus l'image sera éclaircie.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_eclaircissage.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_eclaircissage.png" alt="screenshot eclaircissage" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-faire-le-mur-pas-la-guerre" class="anchor" href="#faire-le-mur-pas-la-guerre" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Faire le mur, pas la guerre</h2>
+
+<p>Alors là, ça va être chiant. Faut dessiner le charmant et classieux motif du mur. Ca se fait à la main, pierre par pierre, sous Paint, ou sous Pixia avec le mode loupe. J'ai pas de meilleure idée, désolée. Faites juste la forme de chaque pierre, avec une couleur unie. (N'oubliez pas de remettre les "t" et "d" au max).</p>
+
+<p>Vous n'avez pas vraiment besoin de fibre artistique pour ça. Essayez juste de varier les formes, en maintenant un espace de "ciment" à peu près constant. N'hésitez pas à faire des pierres qu'on ne voit qu'en partie, sur les bords haut, gauche et droit de l'image. Ca permet de bien donner l'impression que le mur se continue dans ces directions.</p>
+
+<p>Lorsque l'herbe dépasse du mur, j'ai décidé de la laisser. (C'est une connerie, on verra pourquoi plus loin).</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_pierres.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_pierres.png" alt="screenshot pierres" style="max-width:100%;"></a></p>
+
+<p>La partie chiante du travail est presque finie, mais pas complètement. Il faut donner du relief. Prenez une couleur plus claire, et mettez en sur les bords haut et gauche de chaque pierre. La lumière vient du haut-gauche. Je sais pas trop pourquoi, mais il paraît que ça fait plus cool que si ça venait du haut-droite.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshos_pierres_lumiere.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshos_pierres_lumiere.png" alt="screenshos pierres lumiere" style="max-width:100%;"></a></p>
+
+<p>Et ensuite, une couleur plus foncée, sur les bords bas et droit de chaque pierre.</p>
+
+<p>Entre temps, je me suis aperçu que finalement, ce vert est trop flashy. (Oui je suis incohérent, je vous proutte). Donc sélection de toute l'image, on choisit la couleur noire, une transparency à pas trop haute, et plaf.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_pierres_ombre.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_pierres_ombre.png" alt="screenshot pierres ombre" style="max-width:100%;"></a></p>
+
+<p>Durant toute la création du mur, il faut que la couleur du ciment reste unie. Ca permettra, plus tard, de faire la séparation ciment-pierre. Car comme le disait Jésus, (qui est à peu près une autre version de Confucius) : "Tu t'appelles Ciment, mais on va t'appeler Pierre et sur cette Pierre je poserais mon Eglise."</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/jesus.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/jesus.jpg" alt="jesus" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-schfrouschfrougner-séparément-les-éléments-du-mur" class="anchor" href="#schfrouschfrougner-s%C3%A9par%C3%A9ment-les-%C3%A9l%C3%A9ments-du-mur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Schfrouschfrougner séparément les éléments du mur</h2>
+
+<p>Avant tout, nous avons besoin d'une autre image, définissant le masque de séparation entre le ciment et les pierres. Si vous avez une sauvegarde de celle avec les pierres unies, sans relief, c'est parfait.</p>
+
+<p>Sinon, utiliser l'outil "sélection - zone" de Pixia : <a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_selection.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_bouton_selection.png" alt="pixia bouton selection" style="max-width:100%;"></a> et cliquez sur le ciment.</p>
+
+<p>Ca va sélectionner toute la zone de pixels ayant la même couleur. Puis copier-coller ça dans une autre image. Il vous faut les deux parties du ciment, de chaque côté de la porte. Pour ajouter de la sélection à une sélection existante, cliquez tout en appuyant sur la touche "Ctrl".</p>
+
+<p>Le but étant de récupérer ce genre de chose :</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_ciment.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_ciment.png" alt="screenshot mur ciment" style="max-width:100%;"></a></p>
+
+<p>Copiez-collez le mur dans une autre-autre image, changez la couleur du ciment pour celle des pierres ("Sélection - zone" sur le ciment, puis plaf-pot-de-peinture avec la couleur de base des pierres).</p>
+
+<p>Sélectionnez toute l'image, et schfrouschfrougnez-là comme pour le sable. (Ajout de quelques pixels foncés et clairs, puis du flou) (Puy-du-fou).</p>
+
+<p>J'ai également éclairci un peu, histoire d'avoir un vrai contraste entre les cailloux clairs et le ciment foncé.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_cailloux_flous.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_cailloux_flous.png" alt="screenshot cailloux flous" style="max-width:100%;"></a></p>
+
+<p>Créez une dernière image, de la taille du mur, et remplissez-là entièrement avec la couleur du ciment. Schfrouschfrougnez.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_ciment_shfrou.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_ciment_shfrou.png" alt="screenshot ciment shfrou" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-fuuuuu-sion-" class="anchor" href="#fuuuuu-sion-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fuuuuu-sion !!</h2>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/fuuuusion.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/fuuuusion.jpg" alt="fuuuusion" style="max-width:100%;"></a></p>
+
+<p>On a les cailloux, on a le ciment, on a l'image globale. Faut rassembler tout ça. (Un type intelligent aurait tout géré dès le départ avec des layers. Vous ais-je fait part de mon opinion personnelle concernant l'intelligence ?)</p>
+
+<p>Prenez le masque, sélectionnez tout le ciment, et copiez-collez le sur les cailloux.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_fusion_01.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_fusion_01.png" alt="screenshot mur fusion 01" style="max-width:100%;"></a></p>
+
+<p>Dans cette image, re-sélectionnez le ciment, puis : Menu - Sélection - Inverser. Ainsi, vous aurez tous les cailloux, sans le ciment. Copiez-collez dans l'image du ciment schfrouschfrougné.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_fusion_02.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_fusion_02.png" alt="screenshot mur fusion 02" style="max-width:100%;"></a></p>
+
+<p>Et finalement, balancez le tout directement dans l'image principale</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_fini.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_mur_fini.png" alt="screenshot mur fini" style="max-width:100%;"></a></p>
+
+<p>Bon, je sais plus trop comment je me suis débrouillé, mais au niveau de l'herbe, ça merdouille. (J'aurais du effacer les bouts d'herbe qui dépasse au moment de dessiner le mur). C'est pas grave.</p>
+
+<h2>
+<a id="user-content-joindre-lherbe-et-non-pas--herber-le-joint" class="anchor" href="#joindre-lherbe-et-non-pas--herber-le-joint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Joindre l'herbe (et non pas : herber le joint).</h2>
+
+<p>Il reste encore un peu de bidouille à faire à la main, mais c'est pas long.</p>
+
+<p>Dans cette espèce de combo-box, <a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_combobox_1x1.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/pixia_combobox_1x1.png" alt="pixia combobox 1x1" style="max-width:100%;"></a> vérifier bien que vous avez la taille de pinceau "1x1".</p>
+
+<p>Remettez le mode de dessin en crayon normal, mettez la transparency vers 120 / 255, zoomez, et tracez vaguement des bouts d'herbe, de ci de là, le long du bas du mur. De temps en temps, changez la couleur de traçage en cliquant-droit sur n'importe quelle pixel vert à portée. Vous pouvez repasser plusieurs fois au même endroit si vous voulez plus d'herbe. Profitez-en pour essayer de cacher les bouts de cailloux moches.</p>
+
+<p>Et pour finir, schfrouschfrougnez légèrement la porte, avec quelques pixels plus foncés et plus claires, et un petit coup de flou.</p>
+
+<p>Et Vwala !!</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_joint_herbe.png" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/screenshot_joint_herbe.png" alt="screenshot joint herbe" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-conclusion-et-ouverture-vers-le-futur" class="anchor" href="#conclusion-et-ouverture-vers-le-futur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion et ouverture vers le futur</h2>
+
+<p>Il est évident qu'avec un peu plus de maîtrise de Pixia, et un peu plus de talent, on arriverait à faire beaucoup mieux. Mais là, par rapport au temps investi, l'image est assez correcte. N'oubliez pas que le plus important, ce sont les fourberies élaborées au départ.</p>
+
+<p>Pour mes prochains jeux (car il y en aura une foultritude, vous vous doutez bien), j'ai pu recruter un barbouilleur effectuant un travail plus rapide et moins grumeleux. Je continuerais de m'occuper des sprites, car j'aime bien faire des petits dessins très précis. Mais pour les grandes images, je compte me décharger sur une talentueuse personne.</p>
+
+<p>Sur ce, je vous laisse, j'ai du code à finir de commenter.</p>
+
+<p><a href="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/concombre_visage.jpg" target="_blank"><img src="///C://Recher/projets/git/Blarg/doc_diverses/marketinge/ulule/concombre_visage.jpg" alt="concombre visage" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-source-des-images" class="anchor" href="#source-des-images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>source des images</h2>
+
+<p><a href="http://www.paperstone.co.uk/News/2011/Enormous_Fountain_Pen_Unveiled">http://www.paperstone.co.uk/News/2011/Enormous_Fountain_Pen_Unveiled</a></p>
+
+<p><a href="http://forum.canardpc.com/showpost.php?p=4034797&amp;postcount=4319">http://forum.canardpc.com/showpost.php?p=4034797&amp;postcount=4319</a></p>
+
+<p><a href="http://www.lamemoiredupad.net/361-chrono-trigger.php">http://www.lamemoiredupad.net/361-chrono-trigger.php</a></p>
+
+<p><a href="http://picturesinthesand.blogspot.com/2010/11/my-5-favourite-minor-simpsons.html">http://picturesinthesand.blogspot.com/2010/11/my-5-favourite-minor-simpsons.html</a></p>
+
+<p><a href="http://pixfr.eu/image/0d6c88a6/">http://pixfr.eu/image/0d6c88a6/</a></p>
+
+<p><a href="http://newshousedesign.com/flashy-chair-design-from-kiwi-pom-its-disco-chair/">http://newshousedesign.com/flashy-chair-design-from-kiwi-pom-its-disco-chair/</a></p>
+
+<p><a href="http://akwanet.servhome.org/jesuslol.php">http://akwanet.servhome.org/jesuslol.php</a></p>
+
+<p><a href="http://dbzgotenks.skyrock.com/955709848-Gogeta.html">http://dbzgotenks.skyrock.com/955709848-Gogeta.html</a></p>
+
+<p><a href="http://fr.dreamstime.com/photographie-stock-libre-de-droits-masque-de-yaourt-de-concombre-image603257">http://fr.dreamstime.com/photographie-stock-libre-de-droits-masque-de-yaourt-de-concombre-image603257</a></p>
+</article></body></html>
