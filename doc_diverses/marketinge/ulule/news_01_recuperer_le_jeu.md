@@ -1,3 +1,5 @@
+Url d'origine : http://fr.ulule.com/blarg/news/how-get-game-858/
+
 # Comment récupérer le jeu ?
 
 Publié par Recher le fév. 22, 2011

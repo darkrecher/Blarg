@@ -1,3 +1,5 @@
+Url d'origine : http://fr.ulule.com/blarg/news/rediffusion-comment-recuperer-jeu-1192/
+
 # Rediffusion : Comment récupérer le jeu ?
 
 Publié par Recher le avr. 3, 2011

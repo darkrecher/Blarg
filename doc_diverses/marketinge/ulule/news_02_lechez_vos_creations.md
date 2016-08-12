@@ -1,3 +1,5 @@
+Url d'origine : http://fr.ulule.com/blarg/news/programmeurs-jeux-lechez-vos-creations-885/
+
 # Programmeurs de jeux : léchez vos créations !!
 
 Publié par Recher le fév. 25, 2011

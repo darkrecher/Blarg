@@ -1,3 +1,5 @@
+Url d'origine : http://fr.ulule.com/blarg/news/messieurs-anglais-tirez-seconds-930/
+
 # Messieurs les anglais, tirez les seconds.
 
 Publié par Recher le mars 4, 2011

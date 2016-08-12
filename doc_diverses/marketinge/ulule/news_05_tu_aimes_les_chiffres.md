@@ -1,3 +1,5 @@
+Url d'origine : http://fr.ulule.com/blarg/news/hmmmm-tu-aimes-chiffres-1163/
+
 # Hmmmm... Tu aimes les chiffres ?
 
 Publié par Recher le mars 31, 2011
