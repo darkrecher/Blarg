@@ -66,7 +66,7 @@ Mac: http://www.indiedb.com/games/blarg/downloads/blarg-v10-for-mac
 
 [Blarg - 1.00 - May 6, 2011](http://pygame.org/project-Blarg-1795-.html)
 
-[Blarg - 0.99 pre-release - Mar 3, 2011|(http://pygame.org/project-Blarg-1795-3126.html)
+[Blarg - 0.99 pre-release - Mar 3, 2011](http://pygame.org/project-Blarg-1795-3126.html)
 
 
 ## Comments
