@@ -6,12 +6,25 @@ Url d'origine : http://www.indiedb.com/games/blarg
 
 **Blarg**
 
-Recher. Released 2011
-
 
 ## Summary
 
 You are a honest and peaceful shotgun seller. For an unknown reason, you are teleported in another dimension, full of hostile magicians who wants to transform you into a mana potion. How long will you survive ? Blast as more magicians as possible in this fun shoot-em up. Come on ! There are corpses flying in the air and great sound effects : Bleewwaaaeeuuhhaaarrgghh ! Kaboom ! Sppflleuweerkh ! 
+
+
+## Profile
+
+Icon : ![game icon](gam_icon-0-3.png)
+
+Platforms : Windows, Mac, Linux	
+
+Creator : Recher	
+
+Engine : Custom	
+
+Homepage : [Twitter.com](http://twitter.com/_Recher_)
+
+Release date : Released 2011	
 
 
 ## Community rating
@@ -49,6 +62,45 @@ Files : 3
 Articles : 2	
 
 Reviews : 1	
+
+
+## Comments
+
+> **[hiperrr](http://www.indiedb.com/members/hiperrr)** Apr 7 2011	
+> 
+> so...they want to turn me into a MANA POTON :D
+> 
+> > **[Recher](http://www.indiedb.com/members/recher)** Apr 7 2011	
+> > 
+> > Yep. Exactly.
+> > 
+> > Magicians love mana potions. So, when they meet someone they don't like, they transform him into a mana potion.
+> > 
+> > unbeatable logic, I would say.
+> > 
+> > Thanks for having downloaded and for playing my game. Enjoy it ! and its awesome sound effects !
+> 
+> **[noTformaT](http://www.indiedb.com/members/notformat)** Mar 6 2011	
+> 
+> Cool "Sound Effect".
+> 
+> > **[Recher](http://www.indiedb.com/members/recher)** Jan 14 2011	
+> 
+> Thanks for the comments !
+> 
+> The code is nearly finished. Then, I will comment it. (Commented code makes you cool). And then : Release !!!
+> 
+> Follow me on twitter if you're not afraid of French language :
+> 
+> [Twitter.com](http://twitter.com/_Recher_)
+> **[wilbefast](http://www.indiedb.com/members/wilbefast)** Jan 11 2011	
+> 
+> XD love the sound effects
+> 
+> **[Jok3r098](http://www.indiedb.com/members/jok3r098)** Jan 3 2011	
+> 
+> tracking! Absolutley FAB
+> 
 
 
 ## Videos
@@ -95,14 +147,14 @@ Here is the long awaited sourcecode for Blarg. The sound, image and fonts are al
 
 Comments on file : 
 
-Guest Jun 27 2013
-
+> **Guest** Jun 27 2013
+> 
 > Blargintonised
-
-Recher Feb 8 2015	
-
-> Thank you.
-> (well, more than one year later, hope you won't mind).
+> 
+> > **[Recher](http://www.indiedb.com/members/recher)** Feb 8 2015	
+> > Thank you.
+> > 
+> > (well, more than one year later, hope you won't mind).
 
 ### Blarg v1.0 for Windows
 
