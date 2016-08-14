@@ -11,7 +11,6 @@ Dates de publication :
 
 # Infos publiées
 
-Blarg 
 
 ## Tags
 
@@ -50,8 +49,11 @@ Now available for everyone ! Registered on Indie DB. Released under Free Art Lic
 ## Links
 
 Home Page: http://www.indiedb.com/games/blarg/
+
 Source: http://www.indiedb.com/games/blarg/downloads/blarg-v10-sourcecode
+
 Windows: http://www.indiedb.com/games/blarg/downloads/blarg-v10-for-windows
+
 Mac: http://www.indiedb.com/games/blarg/downloads/blarg-v10-for-mac
 
 
@@ -62,8 +64,9 @@ Mac: http://www.indiedb.com/games/blarg/downloads/blarg-v10-for-mac
 
 ## Releases
 
-Blarg - 1.00 - May 6, 2011
-Blarg - 0.99 pre-release - Mar 3, 2011
+[Blarg - 1.00 - May 6, 2011](http://pygame.org/project-Blarg-1795-.html)
+
+[Blarg - 0.99 pre-release - Mar 3, 2011|(http://pygame.org/project-Blarg-1795-3126.html)
 
 
 ## Comments
