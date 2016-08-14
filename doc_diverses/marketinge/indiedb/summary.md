@@ -44,7 +44,9 @@ Players : Single Player
 
 Project : Indie	
 
-Boxart : ![game boxshot](gam_boxshot-0-1.png)
+Boxart : 
+
+![game boxshot](gam_boxshot-0-1.png)
 
 
 ## Statistics
@@ -85,14 +87,15 @@ Reviews : 1
 > Cool "Sound Effect".
 > 
 > > **[Recher](http://www.indiedb.com/members/recher)** Jan 14 2011	
+> > 
+> > Thanks for the comments !
+> > 
+> > The code is nearly finished. Then, I will comment it. (Commented code makes you cool). And then : Release !!!
+> > 
+> > Follow me on twitter if you're not afraid of French language :
+> > 
+> > [Twitter.com](http://twitter.com/_Recher_)
 > 
-> Thanks for the comments !
-> 
-> The code is nearly finished. Then, I will comment it. (Commented code makes you cool). And then : Release !!!
-> 
-> Follow me on twitter if you're not afraid of French language :
-> 
-> [Twitter.com](http://twitter.com/_Recher_)
 > **[wilbefast](http://www.indiedb.com/members/wilbefast)** Jan 11 2011	
 > 
 > XD love the sound effects
@@ -197,8 +200,4 @@ Downloads : 50
 MD5 Hash : 812f5c410462e410eebcf906af383c71 
 
 This is the full and final release of Blarg, for Mac. Enjoy ! (And don't forget to download also the source code, if you want to explore it). To install, double-click on the .dmg file, and copy the blarg.app file where you want on your hard drive. If you double-click on the blarg.app directly from the .dmg, before extracting it, the game will work, but nothing will be saved (scores, configuration, ...) So, please, really put it on your hard drive. If you have trouble with the fulscreen display, or if the mouse cursor cannot go everywhere : launch the game with the command "blarg.app FORCE_WINDOWED"
-
-
-
-
 
