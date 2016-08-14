@@ -6,6 +6,7 @@ Url d'origine : http://www.indiedb.com/games/blarg
 
 **Blarg**
 
+![profile image](prof_small-0-2.png)
 
 ## Summary
 
@@ -104,6 +105,20 @@ Reviews : 1
 > 
 > tracking! Absolutley FAB
 > 
+
+
+## Reviews
+
+**[noTformaT](http://www.indiedb.com/members/notformat)** Mar 6 2011	
+
+> 10/10
+> 
+> pygame :^)
+
+
+**[drdazzle](http://www.indiedb.com/members/drdazzle)** Apr 17 2011	
+
+ > 1 / 10
 
 
 ## Videos
