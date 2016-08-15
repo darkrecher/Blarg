@@ -1,4 +1,4 @@
-# Documentation de "marketing"
+# La documentation "marketing"
 
 C'est un bien grand mot. En fait c'est juste une copie de tous les endroits où j'ai mentionné Blarg.
 
@@ -30,7 +30,7 @@ C'est un bien grand mot. En fait c'est juste une copie de tous les endroits où 
 
 ## Pygame
 
-[Présentation du jeu](pygame/blarg.md)
+[Présentation du jeu, commentaires](pygame/blarg.md)
 
 
 ## indieDB
