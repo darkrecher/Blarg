@@ -10,27 +10,25 @@ Vous êtes un honnête vendeur de fusil à pompe. Un jour, vous êtes mystérieu
 
 # Pour jouer #
 
-Vous pouvez directement récupérer un exécutable Windows ou MacOSX. Suivez ce lien : http://www.indiedb.com/games/blarg, puis cliquez sur l'option "downloads".
+Vous pouvez directement récupérer un exécutable Windows ou MacOSX, par ici : http://www.indiedb.com/games/blarg/downloads . Cliquez sur le lien "Blarg v1.0 for Windows" ou "Blarg v1.0 for Mac", puis cliquez sur l'option "downloads".
 
-L'installation est assez simple : télécharger, décompresser le fichier, double-cliquer sur l'exécutable.
+L'installation est assez simple : télécharger, décompresser le fichier, double-cliquer sur l'exécutable (.exe ou .app).
 
 # État actuel du machin #
 
-Ce jeu a été terminé en 2011. Je mets son code source sur github histoire de me faire mousser. Je suis en train de terminer la doc de conception.
+Ce jeu a été terminé en 2011. Je mets son code source et toute la doc associée sur github, histoire de me faire mousser.
 
 ## Exécution du jeu à partir du code source, conversion en exécutable ##
 
-En cours. Mais ça ressemblera beaucoup à cette doc, de mon autre jeu.
-
-https://github.com/darkrecher/Kawax/blob/master/doc_diverses/installation_et_exe_build.md
+[doc_diverses/build_exe_app.md](doc_diverses/build_exe_app.md)
 
 ## Doc de conception du jeu ##
 
-https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md
+[DOC_CONCEPTION_jeu.md](DOC_CONCEPTION_jeu.md)
 
 ## Doc de conception du système de menu ##
 
-En cours.
+[DOC_CONCEPTION_menu.md](DOC_CONCEPTION_menu.md)
 
 # Crédits #
 
