@@ -13,9 +13,9 @@ Ce jeu a été terminé en 2011. J'ai mis son code source et toute la doc associ
 
 ## Pour jouer
 
-Vous pouvez directement récupérer un exécutable Windows ou MacOSX, par ici : http://www.indiedb.com/games/blarg/downloads . Cliquez sur le lien "Blarg v1.0 for Windows" ou "Blarg v1.0 for Mac", puis cliquez sur l'option "downloads".
+Allez ici : http://www.indiedb.com/games/blarg/downloads . Cliquez sur le lien "Blarg v1.0 for Windows" ou "Blarg v1.0 for Mac", puis cliquez sur l'option "downloads".
 
-L'installation est assez simple : télécharger, décompresser le fichier, double-cliquer sur l'exécutable (.exe ou .app).
+L'installation est assez simple : décompressez le fichier téléchargé, puis double-cliquez sur l'exécutable (.exe ou .app).
 
 
 ## Exécution du jeu à partir du code source, conversion en exécutable
