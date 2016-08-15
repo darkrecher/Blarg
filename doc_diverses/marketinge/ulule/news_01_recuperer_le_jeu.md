@@ -6,7 +6,7 @@ Publié par Recher le fév. 22, 2011
 
 0 commentaires
 
-Cette news n'est disponible que pour les persones ayant contribué au financement du jeu. Mais vu que ça date un peu, elle a été recopiée sur git.
+Cette news n'est disponible que pour les personnes ayant contribué au financement du jeu. Mais vu que ça date un peu, elle a été recopiée sur git.
 
 
 Bonjour messieurs-dames.
