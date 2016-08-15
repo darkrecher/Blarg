@@ -2,9 +2,9 @@
 
 Un jeu vidéo écrit en python et pygame. C'est un shoot 2D, avec toutes les fioritures d'usage qu'on trouve dans un "vrai" jeu vidéo : menu, configuration, sauvegarde des scores, présentation, ...
 
-![screenshot in-game blarg](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/screenshot.png)
+![screenshot in-game blarg](doc_diverses/screenshot.png)
 
-![screenshot in-game blarg menu](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/screenshot_menu.png)
+![screenshot in-game blarg menu](doc_diverses/screenshot_menu.png)
 
 Vous êtes un honnête vendeur de fusil à pompe. Un jour, vous êtes mystérieusement télétransportagé dans un univers parallèle remplis de magiciens dopés aux amphétamines. Ils veulent vous transformer en potion de mana. Combien de temps pourrez-vous survivre ?
 
@@ -44,7 +44,9 @@ Créé par Réchèr.
 
 Le code et cette doc sont sous une double licence : Art Libre ou Creative Commons CC-BY-SA (au choix).
 
-Repository : https://github.com/darkrecher/Blarg
+Repository : https://github.com/darkrecher/Blarg et https://framagit.org/darkrecher/Blarg
+
+(La version la plus récente est toujours celle de github).
 
 Mon blog : http://recher.wordpress.com
 
