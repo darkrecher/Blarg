@@ -117,10 +117,10 @@ Durant les glisser-déplacer de fichiers et d'images, des avertissements divers 
 
 Au moment de la génération de l'icône, la fenêtre doit ressembler à ceci :
 
-![screenshot iconComposer gif](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/screenshot_iconComposer_gif.jpg)
+![screenshot iconComposer gif](screenshot_iconComposer_gif.jpg)
 
 Si on part de l'image en .png, ça merdouille et ça ressemble à ça (l'image 32x32 n'a pas la bonne taille) :
 
-![screenshot iconComposer png](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/logo_icones/screenshot_iconComposer.jpg)
+![screenshot iconComposer png](screenshot_iconComposer.jpg)
 
 Une fois le fichier blarg_icon.icns généré, il peut être directement utilisé pour la création du .app.
