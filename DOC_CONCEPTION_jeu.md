@@ -2,7 +2,7 @@
 
 Ce document décrit la manière dont est organisé le code du jeu.
 
-Le code du système d'interface (menu principal, config, ...) est décrit dans le document https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md .
+Le code du système d'interface (menu principal, config, ...) est décrit dans le document [DOC_CONCEPTION_menu.md](DOC_CONCEPTION_menu.md) .
 
 
 ## Introduction ##
@@ -44,7 +44,7 @@ Les paramètres nécessaires sont les suivants :
 
 ## Diagramme de classe. ##
 
-![diagramme classe Blarg jeu](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/diagramme_pas_UML_jeu.png)
+![diagramme classe Blarg jeu](doc_diverses/diagramme_pas_UML_jeu.png)
 
 ### Légende ###
 
@@ -460,7 +460,7 @@ Lorsque le Magirand est touché, la fonction `updateHurt()` arrête les mouvemen
 
 ### maggen/MagicianGenerator ###
 
-Cette classe génère les magiciens durant le jeu. Elle utilise un `MagicianWaveGenerator` pour savoir quoi générer et quand (voir [MagicianWaveGenerator](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#maggenwamagicianwavegenerator)).
+Cette classe génère les magiciens durant le jeu. Elle utilise un `MagicianWaveGenerator` pour savoir quoi générer et quand (voir [MagicianWaveGenerator](DOC_CONCEPTION_jeu.md#maggenwamagicianwavegenerator)).
 
 Le `MagicianGenerator` possède une référence vers le groupe de sprite `Game.groupMagicianAppearing`. La génération d'un magicien est réalisée par la fonction `MagicianGenerator.generateOneMagician()`. Elle consiste à instancier un magicien et à l'ajouter dans le groupe de sprite. Un son est émis, pour faire cool.
 
@@ -490,7 +490,7 @@ Le `MagicianGenerator` possède une liste de patterns. À chaque cycle, lors de 
     - Diminution du `delay` du premier élément. Lorsqu'il atteint 0, un magicien est généré. Les suivants le sont aussi s'ils avaient un `delay` de 0.
     - Suppression des patterns n'ayant plus d'éléments.
 
-Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, via la fonction `takeStimuliNoMoreActiveMagi()`. Cette fonction modifie le temps de génération avant la prochaine vague de magiciens. Éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir [HardMana](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#hardmanahardmana)).
+Lorsque la classe `Game` détecte qu'il n'y a plus de magiciens actifs dans le jeu, elle envoie un stimuli au `MagicianGenerator`, via la fonction `takeStimuliNoMoreActiveMagi()`. Cette fonction modifie le temps de génération avant la prochaine vague de magiciens. Éventuellement, elle augmente le temps de bonus et envoie de l'"antiHarM" au `MagicianWaveGenerator` (voir [HardMana](DOC_CONCEPTION_jeu.md#hardmanahardmana)).
 
 
 ### maggenlc/MagicianListCoordBuilder ###
