@@ -28,6 +28,17 @@ C'est un bien grand mot. En fait c'est juste une copie de tous les endroits où 
 [Le jeu est là !](ulule/news_08_le_jeu_est_la.md)
 
 
+## Blog recher.wordpress.com
+
+[2011-02-27. J'ai créé un jeu. Donnez-moi votre argent](https://recher.wordpress.com/2011/02/27/jai-cree-un-jeu-donnez-moi-votre-argent/)
+
+[2011-03-19. Allez me lire ailleurs](https://recher.wordpress.com/2011/03/19/allez-me-lire-ailleurs/)
+
+[2011-04-19. Blarg pour tout le monde](https://recher.wordpress.com/2011/04/19/blarg-pour-tout-le-monde/)
+
+[Référencé dans la liste de mes créations](https://recher.wordpress.com/about/)
+
+
 ## Pygame
 
 [Présentation du jeu, commentaires](pygame/blarg.md)
