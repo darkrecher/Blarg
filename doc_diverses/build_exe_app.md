@@ -146,7 +146,7 @@ Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des
 
 Ça marche plus ou moins bien.
 
-Voir : [doc_diverses/logo_icones/ajout_icones.md](doc_diverses/logo_icones/ajout_icones.md) .
+Voir : [logo_icones/ajout_icones.md](logo_icones/ajout_icones.md) .
 
 
 ## Mac OS X
@@ -298,7 +298,7 @@ J'ai eu l'explication de ce bug grâce à ce post sur stackoverflow : http://sta
 
 Ça marche plus ou moins bien.
 
-Voir : [doc_diverses/logo_icones/ajout_icones.md](doc_diverses/logo_icones/ajout_icones.md) .
+Voir : [logo_icones/ajout_icones.md](logo_icones/ajout_icones.md) .
 
 
 ## GNU/Linux, Ubuntu, Fedora, etc.
