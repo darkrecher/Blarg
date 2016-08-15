@@ -2,7 +2,7 @@
 
 Ce document décrit la manière dont est organisé le système de menu de Blarg (menu principal, config des touches, affichage des high scores, ...).
 
-L'organisation du code du jeu en lui-même est décrite dans cet autre document : https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md .
+L'organisation du code du jeu en lui-même est décrite dans cet autre document : [DOC_CONCEPTION_jeu.md](DOC_CONCEPTION_jeu.md) .
 
 ## Introduction ##
 
@@ -28,7 +28,7 @@ Pour les exécuter, ouvrir une console et entrer les commandes suivantes :
 
 Il y a 3 exemples de menus. Remplacer le "1" à la fin de la dernière commande par "2" ou "3" pour les lancer.
 
-Il faut avoir installé python et les dépendances nécessaires. Si vous avez réussi à exécuter le jeu à partir du code source, les exemples s'exécuteront sans problème. L'aide à ce sujet est décrite dans ce document : https://github.com/darkrecher/Blarg/blob/master/doc_diverses/build_exe_app.md .
+Il faut avoir installé python et les dépendances nécessaires. Si vous avez réussi à exécuter le jeu à partir du code source, les exemples s'exécuteront sans problème. L'aide à ce sujet est décrite [dans ce document](doc_diverses/build_exe_app.md) .
 
 Le code des exemples de menu contient des commentaires et des docstrings, qui sont à priori suffisants. Les fichiers sont à consulter dans l'ordre suivant :
 
@@ -40,7 +40,7 @@ Le code des exemples de menu contient des commentaires et des docstrings, qui so
 
 ### Diagramme de classe ###
 
-![diagramme classe Blarg menu générique](https://raw.githubusercontent.com/darkrecher/Blarg/master/doc_diverses/diagramme_pas_UML_menu_generique.png)
+![diagramme classe Blarg menu générique](doc_diverses/diagramme_pas_UML_menu_generique.png)
 
 #### Légende ####
 
@@ -382,7 +382,7 @@ En vrac, les actions effectuées sont les suivantes :
 
  - Création d'une fenêtre, ou activation du mode plein écran (selon la config et les paramètres). Récupération de l'objet `pygame.Surface` correspondant à la zone de dessin à l'écran.
 
- - Initialisation de la classe `Game` permettant de jouer des parties. [voir DOC_CONCEPTION_jeu](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#gamegame)
+ - Initialisation de la classe `Game` permettant de jouer des parties. [voir DOC_CONCEPTION_jeu](DOC_CONCEPTION_jeu.md#gamegame)
 
  - Déroulement de la mini-animation de présentation, définie dans le fichier `prezanim.py`.
 
@@ -422,7 +422,7 @@ Lance une ou plusieurs parties, les unes après les autres, et enregistre le sco
 
 Cette fonction est envoyée en paramètre au menu principal, ce qui lui permet de l'exécuter lorsque l'utilisateur clique sur l'option "Jouer".
 
-Pour plus de détail : [doc conception jeu, chapitre "Lancement d'une partie"](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_jeu.md#lancement-dune-partie)
+Pour plus de détail : [doc conception jeu, chapitre "Lancement d'une partie"](DOC_CONCEPTION_jeu.md#lancement-dune-partie)
 
 #### prezanim/PresentationAnim ####
 
@@ -445,7 +445,7 @@ L'image du texte "Blarg" est également récupérée et réutilisée de la même
 Contient une seule grosse fonction `generateAllMenuManager()`, qui effectue les actions suivantes :
 
  - Chargement de toutes les images nécessaires aux menus : boutons, pseudo-fenêtre, ...
- - Précalcul des images de tickBox. [Voir menutick.](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menutickpy)
+ - Précalcul des images de tickBox. [Voir menutick.](DOC_CONCEPTION_menu.md#menutickpy)
  - Création des menus, un par un, et rangement dans un dictionnaire `dicAllMenu`. Chaque menu est associé à une clé (valeur numérique). Celles-ci sont définies dans `menucomn.py`, il s'agit des variables commençant par `MENU_`.
  - Récupération de la langue courante, stockée dans le fichier de sauvegarde, transmise par l'`Archivist`.
  - Application du changement de langue courante sur tous les menus, afin de les initialiser.
@@ -457,7 +457,7 @@ Classe définissant le menu principal du jeu. Il y a beaucoup de choses mais c'e
 
 Quelques détails :
 
-Il y a un `MenuImage` affichant le titre "Blarg". ce titre est déjà présent dans l'image de background, mais il est en assombri. [(Voir prezanim)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#prezanimpresentationanim). On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
+Il y a un `MenuImage` affichant le titre "Blarg". ce titre est déjà présent dans l'image de background, mais il est en assombri. [(Voir prezanim)](DOC_CONCEPTION_menu.md#prezanimpresentationanim). On le réaffiche par dessus en pas-assombri, pour que ça ressorte bien.
 
 L'élément `mkeyQuitEsc` est utilisé dans plusieurs menus. Il réagit à un appui sur la touche Esc, et envoie un IHMSG demandant à quitter le menu en cours. Dans le menu principal, le fait de quitter le menu en cours fait quitter complètement le jeu.
 
@@ -466,7 +466,7 @@ Les `MenuElem` sont rangés dans trois listes :
  - `listMenuElemOther` : liste avec tous les autres éléments.
  - `listMenuElem` : tous les éléments (concaténation des deux listes précédentes).
 
-Ça permet de définir plus facilement le cyclage de focus avec les flèches haut et bas. [(Voir menumng)](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menumngpy). Ce cyclage se fait sur les éléments de `listMenuElemButtText`.
+Ça permet de définir plus facilement le cyclage de focus avec les flèches haut et bas. [(Voir menumng)](DOC_CONCEPTION_menu.md#menumngpy). Ce cyclage se fait sur les éléments de `listMenuElemButtText`.
 
 Ça permet aussi de rajouter plus facilement une option texte : on modifie `listMenuElemButtText` et on reconstruit `listMenuElem`. C'est ce qui est fait lors du rajout de l'option du mode invincible (fonction `MenuManagerMain.addDogDom`).
 
@@ -588,7 +588,7 @@ Menu permettant de configurer le jeu.
 
 Il est hérité de `MenuManagerManual` (menu affichant la configuration). Le code qui détermine les texte des noms des touches ("left", "right", "space", ...) est mutualisé dans `MenuManagerManual`. Dans le manuel, on met ces textes dans des `MenuText`, alors que dans la config, on les met dans des `MenuSensitiveText`.
 
-La config courante des touches est contenue dans `self.dicKeyMapping`. La structure de ce dictionnaire est la même que celle de `archiv.py/DEFAULT_KEY_MAPPING`. Pour une description détaillée : voir commentaire dans le code ou [voir MenuManagerManual](https://github.com/darkrecher/Blarg/blob/master/DOC_CONCEPTION_menu.md#menuzmanmenumanagermanual).
+La config courante des touches est contenue dans `self.dicKeyMapping`. La structure de ce dictionnaire est la même que celle de `archiv.py/DEFAULT_KEY_MAPPING`. Pour une description détaillée : voir commentaire dans le code ou [voir MenuManagerManual](DOC_CONCEPTION_menu.md#menuzmanmenumanagermanual).
 
 D'autres petits bouts de code sont également mutualisés : image de la fenêtre, texte statique, initialisation de `dicKeyMapping` à partir de l'`archivist`.
 
