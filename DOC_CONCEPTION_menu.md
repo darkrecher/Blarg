@@ -14,6 +14,56 @@ Le système de menu se veut le plus générique et le plus réutilisable possibl
 
 Les noms des fichiers définissant le système de menu commencent tous par "menu". Les noms des fichiers définissant les menus spécifique à Blarg commencent tous par "menuz". J'aurais dû ranger tout ça correctement dans des répertoires, mais j'étais un vilain.
 
+
+## Tables des matières
+
+- [Document de conception de Blarg (système de menu)](#document-de-conception-de-blarg-syst%C3%A8me-de-menu)
+    - [Introduction](#introduction)
+    - [Tables des matières](#tables-des-mati%C3%A8res)
+    - [Description du système de menu générique](#description-du-syst%C3%A8me-de-menu-g%C3%A9n%C3%A9rique)
+        - [Menus d'exemple](#menus-dexemple)
+        - [Diagramme de classe](#diagramme-de-classe)
+            - [Légende](#l%C3%A9gende)
+        - [Modules définissant le fonctionnement des menus](#modules-d%C3%A9finissant-le-fonctionnement-des-menus)
+            - [common.py, valeurs IHMSG_*](#commonpy-valeurs-ihmsg_)
+            - [menucomn.py](#menucomnpy)
+            - [menuelem.py](#menuelempy)
+            - [menumng.py](#menumngpy)
+            - [txtstock.py](#txtstockpy)
+        - [Modules définissant les éléments de menu](#modules-d%C3%A9finissant-les-%C3%A9l%C3%A9ments-de-menu)
+            - [menukey.py](#menukeypy)
+            - [menuany.py](#menuanypy)
+            - [menuimg.py](#menuimgpy)
+            - [menutxt.py](#menutxtpy)
+            - [menusesq.py](#menusesqpy)
+            - [menuseim.py](#menuseimpy)
+            - [menusetx.py](#menusetxpy)
+            - [menulink.py](#menulinkpy)
+            - [menutick.py](#menutickpy)
+            - [menuedtx.py](#menuedtxpy)
+            - [menukrec.py](#menukrecpy)
+            - [menusubm.py](#menusubmpy)
+        - [mot-clé utilisés dans les noms de variables](#mot-cl%C3%A9-utilis%C3%A9s-dans-les-noms-de-variables)
+    - [Description des menus spécifiques de Blarg](#description-des-menus-sp%C3%A9cifiques-de-blarg)
+        - [Déroulement des actions lors du lancement du jeu](#d%C3%A9roulement-des-actions-lors-du-lancement-du-jeu)
+            - [zemain.py](#zemainpy)
+            - [mainclas/MainClass](#mainclasmainclass)
+                - [fonction doFirstTimelaunch()](#fonction-dofirsttimelaunch)
+                - [fonction mactPlaySeveralGames()](#fonction-mactplayseveralgames)
+            - [prezanim/PresentationAnim](#prezanimpresentationanim)
+            - [menugen.py](#menugenpy)
+            - [menuzmai/MenuManagerMain](#menuzmaimenumanagermain)
+            - [menuzwak/MenuManagerWaitOrPressAnyKey](#menuzwakmenumanagerwaitorpressanykey)
+            - [menuzsto/MenuManagerStory](#menuzstomenumanagerstory)
+            - [menuzman/MenuManagerManual](#menuzmanmenumanagermanual)
+            - [menuznam/MenuManagerEnterName](#menuznammenumanagerentername)
+            - [menuzpof/MenuManagerNameIsALie](#menuzpofmenumanagernameisalie)
+            - [menuzdea/MenuManagerHeroDead](#menuzdeamenumanagerherodead)
+            - [menuzsco/MenuManagerHighScore](#menuzscomenumanagerhighscore)
+            - [menuzcre/MenuManagerCredits](#menuzcremenumanagercredits)
+            - [menuzcon/MenuManagerConfig](#menuzconmenumanagerconfig)
+
+
 ## Description du système de menu générique ##
 
 ### Menus d'exemple ###
