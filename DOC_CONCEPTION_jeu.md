@@ -42,7 +42,7 @@ Les paramètres nécessaires sont les suivants :
  - `dogDom` : booléen indiquant si le mode invincible est activé ou pas.
 
 
-## Diagramme de classe. ##
+## Diagramme de classe ##
 
 ![diagramme classe Blarg jeu](doc_diverses/diagramme_pas_UML_jeu.png)
 
@@ -597,7 +597,7 @@ Gère la génération successive des vagues de magiciens.
 
  - Et ainsi de suite, vague après vague ... (trip: peu à peu, vague à vague, goutte à goutte, miette à miette et cœur à cœur).
 
-#### Utilisation du hardMana pour générer une nouvelle vague. ####
+#### Utilisation du hardMana pour générer une nouvelle vague ####
 
 Voir commentaire dans le code de la fonction `MagicianWaveGenerator.elaborateNextWave()`. C'est assez détaillé.
 
