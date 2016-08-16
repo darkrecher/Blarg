@@ -1,9 +1,28 @@
 # Présentation du projet
 
+Url d'origine du projet : http://fr.ulule.com/blarg/
+
+
+## Table des matières
+
+- [Présentation du projet](#pr%C3%A9sentation-du-projet)
+    - [Table des matières](#table-des-mati%C3%A8res)
+- [Infos publiées](#infos-publi%C3%A9es)
+    - [Données diverses](#donn%C3%A9es-diverses)
+        - [Participants](#participants)
+        - [Les fans](#les-fans)
+    - [Contreparties](#contreparties)
+    - [Texte principal](#texte-principal)
+        - [A propos](#a-propos)
+            - [Pour vous offrir adrénaline, défouloir, et onomatopées](#pour-vous-offrir-adr%C3%A9naline-d%C3%A9fouloir-et-onomatop%C3%A9es)
+            - [Pour secourir les cerveaux des informaticiens](#pour-secourir-les-cerveaux-des-informaticiens)
+        - [A quoi va servir le financement ?](#a-quoi-va-servir-le-financement-)
+        - [A propos du porteur de projet](#a-propos-du-porteur-de-projet)
+
+
+# Infos publiées
 
 ## Données diverses
-
-Url d'origine du projet : http://fr.ulule.com/blarg/
 
 Url de la vidéo : https://www.dailymotion.com/video/xgx2in_blarg-demo-v2_videogames
 
