@@ -2,11 +2,33 @@
 
 Url d'origine : http://www.indiedb.com/games/blarg
 
+
+## Table des matières
+
+- [Présentation sur le site IndieDB](#pr%C3%A9sentation-sur-le-site-indiedb)
+    - [Table des matières](#table-des-mati%C3%A8res)
+- [Infos publiées](#infos-publi%C3%A9es)
+    - [Summary](#summary)
+    - [Profile](#profile)
+    - [Community rating](#community-rating)
+    - [Style](#style)
+    - [Statistics](#statistics)
+    - [Comments](#comments)
+    - [Reviews](#reviews)
+    - [Videos](#videos)
+    - [Images](#images)
+    - [Files](#files)
+        - [Blarg v1.0 sourcecode](#blarg-v10-sourcecode)
+        - [Blarg v1.0 for Windows](#blarg-v10-for-windows)
+        - [Blarg v1.0 for Mac](#blarg-v10-for-mac)
+
+
 # Infos publiées
 
 **Blarg**
 
 ![profile image](prof_small-0-2.png)
+
 
 ## Summary
 
@@ -35,7 +57,7 @@ Average : 5.5
 2 votes
 
 
-##  Style
+## Style
 
 Genre : Third Person Shooter	
 
