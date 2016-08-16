@@ -12,6 +12,51 @@ Le code est assez densément commenté. Ce document se bornera donc à décrire 
 Durant la réalisation de ce jeu, le PEP8 a été foulé aux pieds, écartelé, équarri et humilié en place publique par des petits enfants jetant des cailloux. C'est la faute à l'entreprise dans laquelle je bossais à l'époque, qui m'a appris à coder en python avec les conventions de nommage du C++. Il va falloir faire avec !
 
 
+## Table des matières
+
+- [document de conception de blarg (jeu)](#document-de-conception-de-blarg-jeu)
+    - [introduction](#introduction)
+    - [table des matières](#table-des-mati%C3%A8res)
+    - [lancement d'une partie](#lancement-dune-partie)
+    - [diagramme de classe](#diagramme-de-classe)
+        - [légende](#l%C3%A9gende)
+    - [rappel : fonctionnement des sprites avec pygame](#rappel--fonctionnement-des-sprites-avec-pygame)
+    - [description du rôle de chaque classe](#description-du-r%C3%B4le-de-chaque-classe)
+        - [game/game](#gamegame)
+        - [common](#common)
+        - [sprsimpl/spritesimple](#sprsimplspritesimple)
+        - [sprsiman/spritesimplemanager](#sprsimanspritesimplemanager)
+        - [sprsigen/spritesimplegenerator](#sprsigenspritesimplegenerator)
+        - [lamoche/lamoche](#lamochelamoche)
+        - [herobody/herobody](#herobodyherobody)
+        - [herohead/herohead](#heroheadherohead)
+        - [movpoint/movingpoint](#movpointmovingpoint)
+        - [movline/movingpointonline](#movlinemovingpointonline)
+        - [cobulmag/collhandlerbulletmagi](#cobulmagcollhandlerbulletmagi)
+        - [cohermag/collhandlerheromagi](#cohermagcollhandlerheromagi)
+        - [scoremn/scoremanager](#scoremnscoremanager)
+        - [ammoview/ammoviewer](#ammoviewammoviewer)
+        - [lifeview/lifepointviewer](#lifeviewlifepointviewer)
+        - [hero/hero](#herohero)
+            - [fonctionnement global du héros](#fonctionnement-global-du-h%C3%A9ros)
+            - [tir](#tir)
+            - [collision avec un magicien](#collision-avec-un-magicien)
+            - [fin de partie](#fin-de-partie)
+        - [magician/magician](#magicianmagician)
+            - [cycle de vie](#cycle-de-vie)
+        - [magiline/magiline](#magilinemagiline)
+        - [magirand/magirand](#magirandmagirand)
+        - [maggen/magiciangenerator](#maggenmagiciangenerator)
+        - [maggenlc/magicianlistcoordbuilder](#maggenlcmagicianlistcoordbuilder)
+        - [hardmana/hardmana](#hardmanahardmana)
+        - [maggenwa/magicianwavegenerator](#maggenwamagicianwavegenerator)
+            - [déroulement de la génération des vagues](#d%C3%A9roulement-de-la-g%C3%A9n%C3%A9ration-des-vagues)
+            - [utilisation du hardmana pour générer une nouvelle vague](#utilisation-du-hardmana-pour-g%C3%A9n%C3%A9rer-une-nouvelle-vague)
+        - [archiv/archivist](#archivarchivist)
+        - [yargler/soundyargler](#yarglersoundyargler)
+    - [vocabulaire](#vocabulaire)
+
+
 ## Lancement d'une partie ##
 
 Au démarrage du programme, le système d'interface est initialisé. Ensuite, lors du clic sur l'option "jouer" du menu principal, la fonction `mainclas.py/MainClass.mactPlaySeveralGames` est exécutée. Cette fonction effectue les actions suivantes :
