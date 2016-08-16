@@ -7,6 +7,20 @@ Les objectifs étaient les suivants :
 
 Ces objectifs n'ont été que partiellement réalisés.
 
+
+## Table des matières
+
+- [Ajout de l'icône](#ajout-de-lic%C3%B4ne)
+    - [Table des matières](#table-des-mati%C3%A8res)
+    - [Windows](#windows)
+        - [Icône dans la barre des tâches](#ic%C3%B4ne-dans-la-barre-des-t%C3%A2ches)
+        - [Icône dans le .exe](#ic%C3%B4ne-dans-le-exe)
+    - [Mac OSX](#mac-osx)
+        - [Icône dans le dock](#ic%C3%B4ne-dans-le-dock)
+        - [Icône dans le .app](#ic%C3%B4ne-dans-le-app)
+        - [Méthode de création du fichier blarg_icon.icns](#m%C3%A9thode-de-cr%C3%A9ation-du-fichier-blarg_iconicns)
+
+
 ## Windows
 
 ### Icône dans la barre des tâches
