@@ -9,6 +9,20 @@ Dates de publication :
 2011-05-06 : v1.00. annonce finale, avec les liens de téléchargement.
 
 
+## Table des matières
+
+- [Publication sur le site pygame](#publication-sur-le-site-pygame)
+    - [Table des matières](#table-des-mati%C3%A8res)
+- [Infos publiées](#infos-publi%C3%A9es)
+    - [Tags](#tags)
+    - [Description](#description)
+    - [Changes](#changes)
+    - [Links](#links)
+    - [Screenshot](#screenshot)
+    - [Releases](#releases)
+    - [Comments](#comments)
+
+
 # Infos publiées
 
 
