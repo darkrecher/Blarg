@@ -36,7 +36,7 @@
 ## Windows
 
 
-### Lancement du jeu à partir du code source
+### Lancement du jeu à partir du code source (win)
 
 Le jeu peut fonctionner avec python 2.5.4, ou une version 2.x supérieure (pas la version 3, car elle n'est pas rétro-compatible).
 
@@ -86,7 +86,7 @@ Exécuter les commandes suivantes
 Amusez-vous bien !
 
 
-### Transformation en exécutable
+### Transformation en exécutable (win)
 
 #### Installation de py2exe
 
@@ -173,7 +173,7 @@ Pour installer le jeu sur un autre ordinateur, il suffit de copier le .zip, de l
 Si vous modifiez et/ou redistribuez ce jeu, merci de respecter les termes de la licence (Art Libre ou CC-BY). En particulier : citer l'auteur. Un lien vers mon blog ou vers ce repository suffira.
 
 
-### Ajout des icônes
+### Ajout des icônes (win)
 
 Tentative d'avoir une icône représentant le héros de Blarg, dans la barre des tâches et dans le fichier .exe.
 
@@ -185,7 +185,7 @@ Voir : [logo_icones/ajout_icones.md](logo_icones/ajout_icones.md) .
 ## Mac OS X
 
 
-### Lancement du jeu à partir du code source
+### Lancement du jeu à partir du code source (mac)
 
 À priori, pas de souci de version de python, ni pour jouer, ni pour transformer en exécutable. On peut utiliser n'importe laquelle, de la 2.5 à la 2.x.
 
@@ -226,7 +226,7 @@ Mon répertoire lib contient les fichiers suivants :
     setuptools-0.6c11-py2.6.egg
     setuptools.pth
 
-#### Lancement du jeu
+#### Démarrage du jeu
 
 Télécharger ce repository sur votre disque. On considèrera qu'il est à cet emplacement : `~/Documents/recher/blarg/`
 
@@ -238,7 +238,7 @@ Ouvrir un terminal et exécuter les commandes suivantes :
 Le jeu va se lancer.
 
 
-### Transformation en exécutable
+### Transformation en exécutable (mac)
 
 #### Installation de py2app et setuptools
 
@@ -327,7 +327,7 @@ Pour éviter ce genre de désagrément, indiquez toujours un fichier de police q
 J'ai eu l'explication de ce bug grâce à ce post sur stackoverflow : http://stackoverflow.com/questions/3470377/my-py2app-app-will-not-open-whats-the-problem
 
 
-### Ajout des icônes
+### Ajout des icônes (mac)
 
 Ça marche plus ou moins bien.
 
