@@ -1,28 +1,28 @@
 Blarg version 1.0
 
-    La page du jeu sur indieDB : TRODO_INSERT_PAGE_HERE_YOU_DUMB
+    La page du jeu sur indieDB : http://www.indiedb.com/games/blarg
     Liens vers d'autres jeux sur mon blog : http://recher.wordpress.com/jeux
     Mon twitter : http://twitter.com/_Recher_
-    
+
     Ce superbe jeu, son code source, ses images, et son euh... contenu sonore est disponible,
     au choix, sous la licence Art Libre ou la licence CC-BY-SA
-    
-    Copyright 2010 Réchèr
-    Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les 
-    termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site 
-    Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites. 
-    
-    Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique 2.0 France
+
+    Copyright 2010 RÃ©chÃ¨r
+    Copyleft : cette oeuvre est libre, vous pouvez la redistribuer et/ou la modifier selon les
+    termes de la Licence Art Libre. Vous trouverez un exemplaire de cette Licence sur le site
+    Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites.
+
+    Creative Commons - PaternitÃ© - Partage des Conditions Initiales Ã  l'Identique 2.0 France
     http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
 
 
-la police de caractère tempesta.ttf vient du site :
-       
+la police de caractÃ¨re tempesta.ttf vient du site :
+
        http://p.yusukekamiyamane.com
 
-un gentil Japonais qui fait de mignons icônes et des polices.
+un gentil Japonais qui fait de mignons icÃ´nes et des polices.
 
-Pour être plus précis, j'ai pris celle là :       
+Pour Ãªtre plus prÃ©cis, j'ai pris celle lÃ  :
 http://p.yusukekamiyamane.com/fonts/downloads/tempesta-seven-fonts-1.2.zip/pf_tempesta_seven.ttf
 
 On peut aussi la trouver ici:
