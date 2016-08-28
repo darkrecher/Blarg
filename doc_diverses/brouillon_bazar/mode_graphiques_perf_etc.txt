@@ -1,0 +1,11 @@
+    haha = pygame.display.list_modes()
+    print haha
+
+
+[(1024, 600), (800, 600), (640, 480), (640, 400), 
+ (512, 384), (400, 300), (320, 240), (320, 200)]
+ 
+avec 27 magicien plus le héros, on est à 300 frames par secondes.
+sur ma machine à moi, là :
+(Windows XP mes couilles, 1.6 Ghz, 1G de RAM.)
+Donc ça va plutôt bien. J'ai besoin que de 85 frames par secondes.

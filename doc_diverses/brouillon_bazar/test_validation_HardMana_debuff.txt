@@ -1,0 +1,44 @@
+        hmto = HardMana(30)
+        hman = HardMana(60)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        hmto.antiHarMDebuff(hman)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        bla("pffffffffffffffff")
+
+        hmto = HardMana(30)
+        hman = HardMana(400)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        hmto.antiHarMDebuff(hman)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        bla("pffffffffffffffff")
+
+        hmto = HardMana(30)
+        hman = HardMana(10)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        hmto.antiHarMDebuff(hman)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        bla("pffffffffffffffff")
+
+        hmto = HardMana(80)
+        hman = HardMana(60)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        hmto.antiHarMDebuff(hman)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        bla("pffffffffffffffff")
+
+        hmto = HardMana(80)
+        hman = HardMana(400)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        hmto.antiHarMDebuff(hman)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        bla("pffffffffffffffff")
+
+        hmto = HardMana(80)
+        hman = HardMana(75)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        hmto.antiHarMDebuff(hman)
+        bla("hmto  : ", hmto, "hman : ", hman)
+        bla("pffffffffffffffff")
+        
+        
+        #putain debug

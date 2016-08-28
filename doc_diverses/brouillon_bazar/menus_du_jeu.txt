@@ -1,0 +1,60 @@
+en haut à droite :
+"Joueur : Machin"
+juste en dessous, bouton "Configurer/Changer de joueur"
+
+si on appuie dessus, menu qui apparait par-dessus, avec :
+la liste des joueurs.
+"sélectionner"
+"ajouter"
+"supprimer"
+"configurer" (touches + autres conneries sang/caca)
+[ "entrer un code magique" ]
+[ "code de sauvegarde géant" ]
+"annuler"
+---
+mode plein écran (case à cocher)
+---
+langue : anglais. français.
+
+au milieu-haut, le titre : "Veste-en Jean contre les magiciens"
+(le titre c'est blargh)
+
+au milieu-bas, les boutons : 
+
+"JOUER"
+"revoir la présentation"
+"credits"
+"scores"
+[ "beugloir" ]
+"quitter"
+
+
+tout en bas : 
+"créé par Réchèr : (lien vers la page dans mon blog)"
+en bas à droite : le drapeau anglais et le drapeau français, pour les langues.
+
+*******************************
+
+dans les crédits il y a : 
+
+mon blog
+le magazine 42
+
+**************
+
+mon twitter
+ma page ulule, pour voir si y'a d'autres projets
+
+la page du jeu dans mon blog
+la page du jeu dans pygame
+la page du jeu dans indieDB
+
+**************
+
+tous les gens, et leurs sites, qui ont contributé.
+
+**************
+
+merci au monsieur des polices de caractère
+merci au monsieur de la zone de texte
+...

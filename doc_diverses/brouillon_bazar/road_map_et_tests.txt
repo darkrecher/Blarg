@@ -1,0 +1,784 @@
+
+ -- road-map un peu plus précise :
+ 
+X finir relire le game.py. Séparer la classe et le reste
+
+X plein-ecran selon le fichier de config, et pas le debug
+
+X img de prez avec que l'option "jouer", faut cliquer dessus. Et ça rev à l'img de prez qd on fait esc sur l'img 
+X de blarg. Et ça quitte totalement quand on fait echap. Et ça quitte super totalement quand on envoie un QUIT.
+
+X affichage des stats en fin de partie, et de la phrase à la con.
+
+X bouton credits qui ne fait rien. A part un print "coucou". création d'un gros objet listIHMElem. Avec tout dedans.
+X Et on dit si ils sont focusés par les flèches ou pas. Mais on peut toujours cliquer dessus. Ha ! (Et pis le Tab) 
+
+X glow autour du truc sélectionné. Trop bien.
+
+X tous le blabla dans un même fichier, avec anglais/français. choix du bon truc selon ce qui le fichier de sauve.
+
+X faut que le menu principal puisse se réafficher. Si on change la langue en live. 
+X Donc : bouton de changement de langue en bas à droite et réactualisation en live.
+
+X sauvegarde auto du fichier de sauvegarde quand on change la langue.
+
+X case à cocher plein écran ou pas. qui fait changer ou pas. sauvegarde auto du fichier quand on change ça.
+
+X credits avec 2-3 conneries dedans. Retour menu principal quand Echap.
+
+X quittage plein écran et ouverture page web qd clic sur lien. [Transformation curseur souris qd passage sur truc.]
+
+X credits avec tout dedans. scrolling du blabla qd curseur en haut ou en bas (bouton mouseOver moche)
+X scrolling aussi quand touche flèche haut ou bas.
+
+X Vague image moche de fenêtre à zone de texte. zone de texte qui apparaît dès le début si pas de fichier de config. 
+X création du joueur avec ce nom là et sauvegarde du fichier.
+
+X option "revoir la prez". Avec du texte moche qui défile tout seul.
+
+X texte de prez moche qui défile au début, si pas de fichier de config. + img avec manuel du jeu (haha)
+
+X option "quitter", qui quitte.
+
+X option "hi-score". affichage de tout. [scrolling, comme credits. classement selon score. clignotage sélectionné.]
+
+X finir menu, et le "créé par Réchèr" en bas. avec lien vers la page dans mon blog. (y'aura les autres liens après.)
+
+X affichage nom du joueur sélectionné. et le bouton "config/changer" (pas sélectionnable par les flèches) (si)
+
+C ouverture nouveau menu, avec fenêtre moche, qd on clique sur config/changer. menu "select, add, suppr, conf, OK"
+
+X God mode. invincible. C Et plus difficile dès le départ (+de HardMana). Avec l'option dans le menu
+
+X Joueur spécifique pour le god mode. Avec score séparé donc (C). activation via nom, sha
+
+X Verif affichage score bien séparé. Securite pour telescopage de nom. (C) stockage activaation et reactivation.
+
+X Ecrivage dedicace + Verif image dedicace comment ça marche ou bien.
+
+C affichage liste joueurs, que on peut scroller. (Donc c'est un menu scrollable. Ca scrollera par à coup, osef)
+
+C selection du joueur et fermage fenêtre quand on fait OK.
+
+C apparition zone de texte pour entrer le nom du joueur, quand on fait Add.
+
+C message que le joueur X existe déjà si on entre un nom existant
+
+C msgBox Yes/No
+
+C demande confirmation et suppr joueur quand suppr
+
+X ouverture extension de la fenêtre quand on fait le conf. fermeture extension quand on fait OK.
+
+X trouver le moyen de stocker les touches choisies, et d'afficher leurs noms à peu près bien.
+
+X affichage de tout ça.
+
+X element d'IHM "choix de touche". demande un choix et ça prend la prochaine touche appuyée. 
+
+X re-element IHM, car complexe.
+
+X case à cocher du son activé ou pas.
+
+X joli dessin correct pour les cases à cocher, boutons scroll haut, bas, et le back, des Credits, et frame name et OK.
+
+X joli dessin correct pour tous les autres machins d'interface : le "manuel", heu c'est tout ?
+
+ -- tout ce bordel, ça fait 37 unités de boulot. Là : 37 !! finito ce truc !!!
+
+ -- relire. 20 unités
+ - XXXX - 4 
+ 
+    notage des fichiers relus. (y'en a environ 36 à relire) Mettons 40.
+    On avance d'un point à chaque fois qu'on a relu 2.5 fichiers. (quelle que soit la taille)
+    menuelem.py
+    menumng.py
+    menucomn.py
+    menusubm.py
+    scoremn.py
+    archiv.py
+    mainclas.py
+    zemain.py
+    game.py
+    lamoche.py
+    menutxt.py
+    menuimg.py
+    menusesq.py
+    menusetx.py
+    menuseim.py
+    menulink.py
+    menukey.py
+    menukrec.py
+    menuanyk.py
+    menutick.py
+    menuedtx.py
+    prezanim.py
+    txtstock.py
+    yargler.py
+    menuzman.py
+    menuzcon.py
+    menuzcre.py
+    menuzsto.py
+    menuznam.py
+    menuzsco.py
+    menuzwak.py
+    menuzdea.py
+    menuzpof.py
+    menuzmai.py
+    menugen.py
+  
+    il reste common.
+    
+ - XXXXXXXXXXX - 14
+ 
+ -- img prez + noircissage et pas noircissage du titre. 10 unités.
+ XXXXXXXXXX fini 10
+ 
+ -- img de moort : 10 unités
+
+ XXXXXXXXXX fini 10
+ 
+ -- finalisation (je sais pas de quoi, mais finalisation) : 7 unités
+
+X traduction en rosbif 
+ 
+Code que sur 80 et 100 colonnes. Lien manquants. Trim end space.
+
+Ajout des noms des contributeurs + lien manquants dans les credits et comm + nom du héros si choisi
+
+X ecrire les tests, et les essayer sur ce PC
+
+Toutes les dédicaces pour les gens qui auront voulu les acheter, et envoi des messages.
+
+X ????? (1% de mystère pour encore un peu d'imprévu) non c'est bon je l'ai.
+  forcer le mode windowed si on passe un param. (et pas l'enregistrer dans le fichier)
+
+upload on Indie DB bordel !!!
+ 
+ -- version exécutable stand-alone PC et Mac. Avec une taille pas trop gigantesque si possible : 2 unités
+
+X essayer une fois pour le fun. Réussi ! J'en ai chié. Mais j'ai réussi !
+
+la version finale de Mac et PC. Et passer les tests dessus.
+ 
+ -- paperasserie extérieure (payPal, indieDB, texte ulule, copie d'écran, [ dédicace sur page prez ], ...) : 5 unités
+ 
+ - X - X - X - 3
+ 
+X une dernière video complète. + traduction anglais du blabla ulule. ajout img et video dans projet ulule
+ 
+X Redaction d'une news sur indieDB pour dire qu'il faut payer.(plus ou moins recopiage du truc ulule)
++mise à dispo projet + copie dans mon blog + mail aux potes + petits bouts de carton pour les gens.
+ 
+ -- sons. Faut les faire ce week-end. obligé. + implémentation : 6 unités 
+ XXXXXX fini 6
+ 
+ -- surprises imprévues et/ou facultatives : 2 unités (fini, plus le droit de rajouter ici)
+
+C [anim avec un magicien et une chèvre]
+
+C [fausse case à cocher sang, et caca.]
+
+C voir ce que ça donne le curseur de souris. Si il est pas trop crade, on garde celui par défaut. Sinon : mini-fusil.
+
+X finir bouton reinitialisation des touches.
+
+X Validation god mode ou pas, selon le nom. Avec le petit menu qui indique ça ou l'autre chose.
+
+-----------
+ 
+Et ça fait 100. Oui, je confirme.
+ 
+Putain y'a plein de trucs à faire. Ca me fout un peu la trouille je dois avouer. Mais ça va aller vite. J'espère.
+Nan ça va pas vite. M'en fiche d'abord. Je fais ce que je veux.
+
+***************************************
+**** bon c'est le bordel, je copie-colle ici les derniers trucs à faire, car on s'y paume :
+
+X commentaire-relecture de common.py
+
+X verif que tout est à peu près commenté, et que j'en ai pas oublié quelque part. contrôle des TRODO
+
+X Code que sur 80 et 100 colonnes. Lien manquants. Trim end space.
+
+Ajout des noms des contributeurs + lien manquants dans les credits et comm + nom du héros si choisi
+
+essayer de foutre des icônes comme il faut dans les exécutables (Mac et PC)
+
+la version finale de Mac et PC. Et passer les tests dessus.
+
+upload on Indie DB bordel !!! (avec un vague texte en angliche)
+
+Toutes les dédicaces pour les gens qui auront voulu les acheter, et envoi des messages.
+
+***************************************
+
+liens à vérifier : 
+
+(ceux qui sont dans chaque fichier)
+La page du jeu sur indieDB : http://www.indiedb.com/games/blarg
+Liens vers d'autres jeux sur mon blog : http://recher.wordpress.com/jeux
+Mon twitter : http://twitter.com/_Recher_
+Copyleft Attitude http://www.artlibre.org ainsi que sur d'autres sites. 
+http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr
+
+(ceux ici où là)
+http://recher.wordpress.com/2010/07/13/vulture-repellent-doesnt-work
+http://p.yusukekamiyamane.com
+
+plus tout ce contenu de txtStock.py, cela va de soi
+
+***************************************
+les TRODO à s'occuper (j'ai filtré ceux de "plus tard" et "osef") : 
+
+common.py
+X Line 302:         #C'est quoi ce raise avec 2 trucs dedans. TRODO : retrouver comment ça marche vraiment.
+
+X Line 557:     TRODO : tester cette putain de fonction. Je suis pas sur de son fonctionnement (randBoole)
+
+ C:\Recher\magi_shotgun\menuzwak.py (1 hits)
+X	Line 49:                 TRODO : corriger ça à l'occaz'.
+
+ C:\Recher\magi_shotgun\menuzcon.py (2 hits)
+X Line 515:         #TRODO : factoriser cette daube.
+    
+
+---
+
+TRODO : pour les autres jeux : un fichier de config global + un fichier de sauvegarde des joueurs. Faut séparer. là : osef.
+
+
+en haut à droite :
+"Joueur : Machin"
+juste en dessous, bouton "Configurer/Changer de joueur"
+
+si on appuie dessus, menu qui apparait par-dessus, avec :
+la liste des joueurs.
+"sélectionner"
+"ajouter" (faut entrer un nom)
+"supprimer"
+"configurer" (touches + sang/caca)
+[ "entrer un code magique" ]
+[ "code de sauvegarde géant" ]
+"annuler"
+---
+
+au milieu-haut, le titre : "Veste-en Jean contre les magiciens"
+(le titre c'est blargh)
+
+au milieu-bas, les boutons : 
+
+"JOUER"
+"revoir la présentation"
+"credits"
+"scores"
+[ "beugloir" ]
+"quitter"
+
+
+tout en bas : 
+"créé par Réchèr : (lien vers la page dans mon blog)"
+en bas à droite : le drapeau anglais et le drapeau français, pour les langues.
+et en bas-bas droite : mode plein écran
+
+*******************************
+
+dans les crédits il y a : 
+
+mon blog
+le magazine 42
+
+**************
+
+mon twitter
+ma page ulule, pour voir si y'a d'autres projets
+
+la page du jeu dans mon blog
+la page du jeu dans pygame
+la page du jeu dans indieDB
+
+**************
+
+tous les gens, et leurs sites, qui ont contributé.
+
+**************
+
+merci au monsieur des polices de caractère
+merci au monsieur de la zone de texte
+...
+
+
+
+#the beat of the drum echoes in the night. 
+La je fais semblant de taper un truc pour me donner une contenance. Parce que y'a des gonzesses qui parlent
+super fort dans le bus, et ça me fout un peu mal à l'aise. Je sais passi elles analysent mon comportement
+ou si elles s'en branlent. Y'en a quand même une pile poil en face de moi. Hahhahahaha  !! POIL !!
+
+
+le texte de présentation :
+
+Vous êtes Paf, un vendeur de fusil à pompe tout ce qu'il y a de plus honnête.
+Un jour, vous êtes mystérieusement télétransportagé dans un univers parallèle
+rempli de vilains magiciens dopés aux amphétamines, qui veulent vous transformer
+en potion de mana.
+
+Combien de temps pourrez-vous survivre ?
+
+Et surtout, pourquoi y'a un crétin qui chante Star Wars alors que y'a même pas le scrolling 3D de fou qui va avec ?
+
+
+***************************************
+les tests
+***************************************
+
+----------- INIT NORMAL, PARTIE NORMALE, CREATION FICHIER SAUVEGARDE, ENREGISTREMENT SCORES
+
+virer dichmama.nil
+
+lancer le jeu. 
+Vérifier que y'a l'intro, le manuel et le demandage de nom.
+taper un nom pourri, avec accents et caractère bizarres.
+vérifier le message initial
+vérifier les scores (que 2 joueurs)
+cliquer sur "jouer". tuer 5 magi, dont un qui explose
+vérifier les scores : 6 5 1 5 1
+cliquer sur "quitter". puis relancer le jeu.
+Vérifier que y'a pas l'intro ni le manuel ni le demandage de nom.
+cliquer sur "jouer". faire exploser 3 magi. Ne pas en tuer d'autres.
+vérifier les scores : 6 5 3 8 4
+vérifier le contenu de dichmama.nil (enfin osef un peu)
+
+----------- IHM. GENERAL
+
+passer la souris sur tous les elements de menu. Vérifier que ça se focus.
+cliquer sur chaque élément du menu principal (sauf jouer et quitter). Vérifier que ça fait quelque chose, et que y'a les sons bululup sur à peu près tous les elem de menus. Appuyer sur Echap pour revenir, si ça fait aller dans un autre menu
+cliquer sur anglais puis français. 
+cliquer sur le plein écran. Vérifier que ça met bien en windowed
+cliquer sur le lien vers mon blog, en bas.
+Vérifier que ça ouvre le navigateur vers le lien qui va bien.
+remettre en plein écran.
+ouvrir les credits. cliquer sur n'importe quel lien.
+Vérifier que ça vire le plein écran et que ça re-active / re-ouvre le navigateur
+revenir au menu principal en appuyant sur Echap.
+Verifier que la case est décochée.
+quitter en appuyant sur Echap.
+Relancer le jeu. Verifier que ça se relance en plein écran.
+cliquer sur le lien vers mon blog. Verifier que ça vire aussi le plein écran, et que la case est décoch
+recocher la case.
+quitter (comme on veut, osef)
+Relancer le jeu. Verifier que ça se relance en plein écran.
+
+----------- IHM. MENU PRINCIPAL. NAVIGATION AVEC LE CLAVIER
+
+Virer le plein écran et mettre en français si c'est pas fait. (car c'est chiant de suivre en windowed)
+Ceci est valable pour la suite des tests, sauf si on est obligé d'être en plein écran.
+Appuyer sur haut et bas pour naviguer dans le menu principal. 
+Faire une fois le tour dans chaque sens.
+Finir sur "high scores".
+Appuyer sur Tab pour faire le tour des elem. Finir sur le drapeau français.
+Appuyer sur bas. Vérifier que ça revient à l'option "jouer"
+Refaire tab et finir sur le lien vers mon blog.
+Appuyer sur haut. Vérifier que ça revient à l'option "jouer"
+Activer chaque element de l'écran (navigation avec tab), 
+en appuyant alternativement sur entrée, espace, entrée du pavé num.
+Verifier que ça fait quelque chose à chaque fois. Appuyer eventuellement sur Echap pour revenir
+remettre en français en navigant avec Tab + espace/entrée
+
+----------- IHM. MENU PRINCIPAL. NAVIGATION AVEC CLAVIER+SOURIS
+
+Amener la souris sur le drapeau anglais. Ne plus la bouger
+appuyer sur flèche du bas, vérifier que ça déplace le focus. Le mettre sur credits
+cliquer. Vérifier que ça met en anglais, et que ça active pas les credits.
+amenr la souris sur high scores. Puis ressortir la souris du high scores, sans aller sur
+un autre elem du menu.
+Appuyer sur entrée.
+Vérifier que ça fait les high scores.
+
+----------- IHM CONFIG. NAVIG, ET PRISE EN COMPTE. TOUCHES CORRECTES
+
+Aller dans config.
+Passer la souris sur tous les elem. Vérifier que ça focus.
+Appuyer sur Tab pour cycler tout les éléments d'IHM. Verifier que l'ordre est pas trop degueu
+Cliquer sur la première touche (up). Vérifier que ça bululup avec les points d'interrog.
+Ne pas appuyer sur une touche. Cliquer sur la touche suivante. Verifier que ça vire les points d'int
+Appuyer sur Q. Vérifier que ça écrit ça à l'écran, sur la bonne touche.
+recliquer sur la touche, point d'int.
+ne pas appuyer sur une touche. Cliquer sur la touche suivante. Verifier que les poitns d'int suivent.
+Appuyer sur le S.
+faire pareil avec les touches suivantes, en configurant Z Q S D et C V
+Décocher le son, en cliquant dessus.
+Sortir avec Echap
+Jouer une petite partie. (au moins 10 points). Vérifier que les touches vont bien. Et que pas de son
+Quitter le jeu, 
+vérifier dichmama.nil
+relancer le jeu.
+Vérifier dans "voir l'intro" et dans config, que c'est toujours Z Q S D et C V, et son décoché
+Jouer une petite partie. (au moins 10 points). Vérifier que les touches vont bien. Et que pas de son
+
+----------- IHM CONFIG. NAVIG, ET PRISE EN COMPTE. TOUCHES ZARBI
+
+Aller dans config
+Aller sur la première touche avec Tab. Appuyer sur entrée.
+Appuyer sur Echap. Vérifier que ça a gardé l'ancienne valeur. Et non pas Echap
+Re-entrée.
+Appuyer sur Tab. Vérifier que ça a gardé l'ancienne valeur. Et non pas Tab, et qu'on est passé à l'elem suivant.
+Revenir au premier elem. (avec la souris)
+Re-entrée.
+Appuyer sur entrée. Vérifier que ça le prend en compte.
+touche suivante avec tab.
+Appuyer sur l'entrée du pavé num
+re-entrée du pavé num. Vérifier que ça le prend en compte.
+touche suivante.
+Configurer de la même manière les autres touches, avec space, backspace, shift gauche, shift droit
+Sortir de la config, jouer une partie. Vérifier que les touches sont bien prises en compte.
+Quitter le jeu
+vérifier dichmama.nil
+relancer le jeu. Vérifier dans "voir l'intro" que la config est toujours la même
+rejouer une partie. Vérifier que les touches sont bien prises en compte.
+revenir à la config
+cliquer sur la première touche.
+cliquer sur le bouton "val par défaut".
+appuyer sur S. Vérifier que le S n'apparaît pas dans l'une des touches.
+cliquer sur la touche de Fire
+avec tab, aller sur le bouton "val par défaut" et appuyer sur espace.
+appuyer sur S. Vérifier que le S n'apparaît pas dans l'une des touches.
+cliquer sur la touche de droite
+avec la souris, aller sur le bouton "val par défaut" et appuyer sur entrée du pavé num.
+appuyer sur S. Vérifier que le S n'apparaît pas dans l'une des touches.
+Cocher le son plusieurs fois. Vérifier que ça fait un bululup quand on fait le cochage
+finir en laissant le son coché
+sortir de la config. Jouer une partie. Vérifier que c'est re-les touches normal, avec re-le son.
+quitter le jeu.
+relancer le jeu.
+revérifier la config dans "intro" et "config", 
+refaire une partie pour vérifier que c'est toujours normal.
+
+----------- IHM CONFIG. AZERTY/QWERTY
+
+alors que le jeu est lancé et qu'on est dans le menu config, changer le clavier pour qu'il soit qwerty
+changer les touches de direction en Z Q S D, le feu avec M et le reload avec ù.
+Vérifier que ça écrit W A S D virgule et apostrophe
+Jouer une partie. Vérifier que c'est les bonnes touches. (Celle qu'on appuyées)
+Quitter le jeu. Remettre le clavier en azerty.
+Relancer le jeu. Vérifier dans "voir l'intro" que c'est toujours écrit W A S D virgule aspostrophe.
+Faire une partie. Vérifier que les touches n'ont pas changée.
+remettre la config par défaut, sinon c'est le bordel.
+
+(tout ce bordel ne fonctionne pas forcément sur tous les PC. osef complètement)
+(à retester en redémarrant ou en trouvant le truc)
+
+----------- IHM CONFIG. BUG, MAIS OSEF
+
+cliquer sur n'importe quelle touche.
+ne pas appuyer sur une touche.
+cliquer sur le bouton du son.
+Appuyer sur n'importe quelle touche. Cette touche sera prise en compte.
+Remettre config par défaut, et osef.
+
+(nan c'est corrigé ce bug. Ca ne le fait plus. Les points d'interrogation se barrent quand on clique sur la case à cocher du son. A tester sur une ou deux touches, comme ça.)
+
+----------- IHM. HIGH SCORES et INTRO
+
+aller dans les high scores.
+appuyer sur "y" ou une autre lettre. Vérifier que ça quitte.
+aller dans les high scores.
+cliquer. Vérifier que ça quitte.
+
+aller dans l'intro.
+laisser passer le scrolling. Ecouter la magnifique musique.
+appuyer sur une lettre. Verifier que ça va vers l'écran suivant. (le manuel)
+re-appuyer sur une lettre. vérifier que ça re-amène au menu principal.
+
+aller dans l'intro.
+avant que le scrolling finisse, appuyer sur une lettre et rester appuyé dessus.
+vérifier que ça met le scrolling à la fin. 
+lacher la touche, et rappuyer dessus en restant appuyé.
+Verifier que ça va vers l'écran suivant. (le manuel)
+lacher et re-appuyer sur une lettre. vérifier que ça re-amène au menu principal.
+
+aller dans l'intro.
+avant que le scrolling finisse, cliquer et rester cliqué.
+vérifier que ça met le scrolling à la fin. 
+décliquer et recliquer en restant cliqué.
+Verifier que ça va vers l'écran suivant. (le manuel)
+décliquer et recliquer. vérifier que ça re-amène au menu principal.
+
+aller dans l'intro.
+avant que le scrolling finisse, appuyer sur Echap.
+Vérifier que ça amène directement au manuel.
+Re appuyer sur Echap.
+Vérifier que ça remet dans le menu principal.
+
+quitter et relancer le jeu
+attendre que le menu principal arrive. Normalement ça se fait tout seul
+quitter et relancer le jeu
+cliquer après que les deux persos aient apparus. ça amène au menu principal
+appuyer sur une touche après que les deux persos aient apparus. ça amène au menu principal
+
+----------- IHM CREDITS
+
+aller dans les credits. 
+Appuyer sur Entrée et Espace. Vérifier que ça fait rien.
+Appuyer sur haut et bas. Vérifier que ça scrolle. (Jusqu'en haut et jusqu'en bas)
+Mettre la souris sur les boutons de haut et de bas. Vérifier que ça scrolle. Sans cliquer.
+Vérifier que le scroll se cumule / s'annule avec la souris et les touches.
+Naviguer dans les liens et les boutons avec tab. Vérifier que ça fait le tour
+(C'est pourri, car on navigue aussi dans les liens non visibles, mais osef)
+cliquer sur tous les liens. Vérifier que ça emmène au bon endroit à chaque fois. IMPORTANT !!
+cliquer sur le bouton de retour. Vérifier que ça revient.
+
+  -- fun fact quand on fait Tab :
+  Entre les boutons+flèches et les textes des crédits, y'a un focus à vide.
+  (focus sur SubMenu, mais sous-focus sur None).
+  Appuyer sur Entrée et Espace à ce moment là. Ca doit rien faire.
+
+----------- IHM français/anglais, et textes.
+
+Mettre en français si c'est pas fait.
+Aller dans tous les menus, et vérifier les textes. (y compris le menu de mort du joueur)
+Vérifier le nom du héros partout. (Surtout si quelqu'un l'a choisi !!)
+Activer le drapeau anglais  
+************ (Y'a une faute : "highest number of magiicians killed". Pas envie de corriger. osef) *************
+et il manque la parenthèse fermante dans "click on the links to increment my ego. osef aussi.
+*************
+Aller dans tous les menus, et vérifier les textes. (y compris le menu de mort du joueur)
+Vérifier le nom du héros partout. (Surtout si quelqu'un l'a choisi !!)
+quitter et relancer le jeu.
+Vérifier que c'est toujours en anglais
+Aller dans tous les menus, et vérifier les textes. (y compris le menu de mort du joueur)
+Remettre en français, puis en anglais, puis re en français
+Aller dans tous les menus, et blablabla
+
+----------- IHM QUITTAGE SAUVAGE ET CREATION FICHIER SAUVEGARDE
+
+Dans cette partie, à chaque fois qu'on parle de "quitter", c'est soit en cliquant sur le fermage de fenêtre, soit en faisant alt+F4 ou pomme+Q
+L'idéal est d'alterner les 2. C'est pas forcément possible car dans certains menus, on attend
+juste l'appuyage d'une touche. Donc le Alt va faire aller au menu suivant. Et le +F4 quitte,
+mais trop tard.
+Et en plus, dans certaines situations (premier lancement du jeu), on est forcément en plein écran.
+Bref, on fait au mieux.
+
+A chaque fois qu'on "quitte", faut vérifier que ça quitte vraiment. Fermage d'appli et tout.
+
+Virer dichmama.nil
+lancer le jeu. Quitter après le chargement, mais avant la fenêtre d'entrage de nom
+(Y'a 3 cas : fin scrolling, manuel, entrage du nom)
+Appuyer sur Echap au moment de l'entrage du nom. Vérifier que ça n'a pas créé dichmama.nil
+relancer le jeu. Entrer un nom. Enlever le plein écran. Quitter
+vérifier que dichmama.nil a été créé. relancer le jeu et vérifier que c'est pas en plein écran.
+Aller dans la config. Changer des trucs (touches + son) quitter.
+Vérifier que ça n'a pas enregistré les changements.
+Aller dans les high scores et quitter
+aller dans "voir l'intro", quitter à 3 moments :
+ - pendant le scrolling
+ - scrolling fini
+ - manuel
+aller dans les credits et quitter
+jouer une partie, aller dans l'écran de mourage, et quitter.
+jouer une partie et quitter pendant la partie (fermage de fenêtre)
+jouer une partie et quitter pendant la partie (alt F4)
+
+----------- IHM QUITTAGE ET RELANCAGE DES PARTIES (AVEC ENREGISTREMENT SCORE SYSTEMATIQUE)
+
+Virer dichmama.nil et lancer le jeu.
+Vérifier que les scores sont tous à 0 pour Morac. (Réchèr : osef)
+Faire une partie et battre son high score global. (En faisant exploser un seul magicien)
+crever. noter le nombre de magiciens tués et explosés
+appuyer sur entrée à l'écran de mourage
+rebattre son high score global. (En faisant exploser 0 magiciens)
+crever. noter le nombre de magiciens tués et explosés
+Appuyer sur Echap, et aller dans lse high scores. 
+Vérifier que les valeurs sont cohérentes. (Y compris les 2 totaux/toto)
+Faire une partie et battre son nombre de magiciens explosés sans battre le high score.
+appuyer sur Echap
+vérifier que le nombre max de magiciens explosés a augmenté, et que les toto ont augmenté.
+faire une partie et rebattre le nombre de magiciens explosés
+quitter en faisant alt-F4 ou fermage de fenêtre
+Relancer le jeu, Vérifier que les scores ont été pris en compte, en particulier +grd nbr d'explosé.
+Faire une partie comme on veut, juste pour le plaisir. En faisant le meilleur score possible
+crever. quitter en faisant alt-F4 ou fermage de fenêtre
+Relancer le jeu, Vérifier que les scores ont été pris en compte
+
+----------- FICHIER. FAIL SAUVEGARDE ET RELOADAGE
+
+virer dichmama.nil, créer un nouveau dichmama.nil, interdit en écriture, 
+avec juste le mot "fuck" dedans.
+Lancer le jeu et entrer le code du gode mode
+Vérifier que ça marche, et qu'on peut quand même jouer.
+Changer la config, vérifier que c'est pris en compte quand on va d'un menu à l'autre,
+et pendant le jeu également.
+Jouer une partie. Faire un score quelconque. Vérifier qu'il s'affiche dans les scores.
+quitter et relancer le jeu.
+Rien n'a été retenu (config, scores, ...). Mais on peut quand même encore jouer.
+quitter. enlever l'interdiction en écriture. Mais laisser le "fuck"
+lancer le jeu. Vérifier que y'a un message d'erreur au début. (en fait non, car on voit pas le stdout)
+Faire une partie. Changer la config comme on veut. Faire un peu de score.
+quitter. Vérifier dichmama.nil
+relancer le jeu et vérifier que tout a été enregistré. 
+(le jeu refabrique un fichier de sauvegarde correct quand c'est possible)
+
+----------- FICHIER SONS / IMG CHARGEMENT FAIL
+
+pourir le nom d'un fichier son, n'importe lequel.
+vérifier qu'on peut quand même jouer. Même si y'a aucun son.
+pourrir le nom de la police de caractère.
+vérifier qu'on peut quand même jouer. Même si police dégueu. (ça marche sur PC, pas sur Mac)
+pourrir le nom d'un fichier image.
+Bon là on peut pas jouer. A moins que je m'en occupe. (nan osef)
+
+bug : des erreurs dans les fichiers ne font pas forcément terminer le jeu avec le 
+message final générique : "il y a eu des erreurs durant le jeu". Bon, osef.
+
+----------- IHM. ZONE DE SAISIE DU NOM
+
+virer dichmama.nil
+lancer le jeu. écrire des accents, des espaces, des Ô Ö,  et autres caractères bizarres. 
+**************** le slash du pavé numérique ne fonctionne pas sur PC (à tester sur Mac))
+merde, il semble que tout le pavé numérique ne fonctionne pas. Bien. Osef. MAis absolument à régler pour les prochains jeux. ****************
+Vérifier que ça s'affiche
+Verifier que les touches sans caractère ne génèrent pas de merde (flèches, F1, F2, ...)
+(Sur mac, ça fait encore des merdouilles de ce genre, avec F1, F2, ... A régler selon l'envie)
+Appuyer sur backspace. Vérifier que ça efface un caractère.
+Effacer tout. Appuyer sur OK, puis sur Entrée. Vérifier que ça passe pas à la suite.
+Ecrire le plus de caractère possible. Vérifier que c'est limité à 10. (nan c'est plus. osef)
+Cycler les elem d'IHM avec Tab. (y'en a que 2)
+Vérifier que rien ne s'écrit dans la zone de texte si c'est focusé sur OK.
+Vérifier que le curseur ne clignote pas quand on est pas focusé sur la zone de texte.
+Ecrire ce qu'on veut. Rester focusé sur la zone de saisie, et appuyer sur entrée.
+Vérifier que ça passe à la suite.
+
+----------- GODE MODE
+
+virer dichmama.nil
+lancer le jeu, laisser "Morac".
+Vérifier que y'a pas de texte bizarre et que ça amène direct au jeu.
+vérifier que y'a que Morac et Réchèr dans les high scores.
+quitter. virer dichmama.nil
+lancer le jeu. Taper le code secret. 
+Vérifier le message de félicitations. 
+Vérifier que l'option gode mode est présente dans le menu. 
+cycler avec tab, puis flèche haut, puis flèche bas. Vérifier que les 3 cyclages prennent le godmod
+Vérifier que y'a 3 scores.
+jouer une partie en gode mode (en cliquant sur l'option du menu).
+vérifier qu'on peut pas crever. Buter quelques magiciens.
+Vérifier les scores.
+Jouer une partie en normal. Buter aussi quelques magiciens. crever.
+Vérifier les scores.
+Rejouer une partie en gode mode. (en se focusant avec tab, puis en appuyant sur entrée)
+battre les 3 records. quitter avec alt-F4
+Relancer le jeu. Vérifier que le gode mode est toujours là
+Vérifier les scores, et la somme des tués/explosés.
+Faire une partie en gode mode aussi longue qu'on veut. (Au moins 1000 points)
+Quitter la partie, en lancer une autre (en mode plein écran)
+Ne rien faire. Attendre que l'ordi se mette en veille.
+Réveiller l'ordi. Vérifier qu'au bout d'un moment, la totalité de l'écran revient. (max 4 secondes)
+
+----------- LE JEU EN LUI MEME. OUI CA PEUT ETRE BIEN DE TESTER CA. HMM ?
+
+lancer une partie en gode mode, ou pas. osef.
+On a déjà vérifié que le héros bouge, crève, et tire. Et que les magiciens meurent et explosent.
+
+Pour tout le paragrapge suivant, il faut vérifier l'animation des cartouches,
+pour toutes les actions. (Faut vérifier que ça reste cohérent).
+
+tirer jusqu'à décharger le flingue et arrêter de tirer.
+vérifier que ça recharge automatiquement, et jusqu'au bout
+tirer 7 cartouches.
+recharger.
+tirer après avoir rechargé quelques cartouches.
+vérifier que le rechargement n'est pas repris.
+recharger. vérifier que ça va jusqu'au bout.
+tirer 6 cartouches.
+recharger.
+cogner un magicien après avoir rechargé quelques cartouches.
+vérifier que le rechargement n'est pas repris. (ça marche même en gode mode)
+laisser appuyerle bouton de tir.
+vérifier qu'on utilise toute les cartouches, puis on recharge-tire-recharge-tire...
+laisser appuyer le bouton de tir et le bouton de rechargement.
+vérifier qu'on utilise toute les cartouches, puis on recharge-tire-recharge-tire...
+faire des cercles avec les flèches de direction, et tirer+recharger en même temps
+vérifier que ça fait pas de conflit de touche pourri (au moins avec la config par défaut)
+
+cogner un magicien dans les 8 directions possibles.
+Vérifier que le héros s'éloigne à chaque fois dans la direction opposé.
+cogner un magicien et vérifier qu'on peut bouger pendant le cognage.
+cogner un magicien et appuyer sur le tir
+vérifier qu'il ne tire pas tout de suite, mais juste après s'être remis du cognage.
+cogner un magicien et appuyer sur le rechargement
+vérifier qu'il ne recharge pas tout de suite, mais juste après s'être remis du cognage.
+(rectification. J'ai vérifié dans le code. Les stimuli sont pas du tout enregistrés
+ pendant un hurt)
+cogner un magicien puis en re-cogner un autre pendant qu'on est hurt.
+Vérifier que le deuxième cognage n'est pas pris en compte.
+se mettre sur un magicien qui apparaît.
+Vérifier que le cognage est fait après son anim d'apparition terminée.
+
+Tuer des magiciens jusqu'à avoir vu les 3 différentes morts
+faire exploser un magicien.
+faire exploser au moins 5 magiciens confondus.
+tuer au moins 5 magiciens confondus.
+attendre qu'un magicien line finisse son mouvement. Aller dessus. Ca doit faire mal. Le tuer.
+laisser un magi rand à l'écran. Vérifier qu'il va de plus en plus vite et ses rapproche de plus en plus
+
+arrêter la partie et la relancer en mode normal
+cogner des magiciens doucement, un par un.
+Vérifier que l'affichage des points de vie reste cohérent. (Chaque point de vie clignote un peu
+avant de partir)
+
+relancer une partie en mode normal
+cogner des magiciens très vite, le plus vite possible.
+Vérifier que l'affichage des points de vie reste cohérent. (Chaque point de vie clignote un peu
+avant de partir)
+
+
+NE PAS OUBLIER DE CHANGER LE FPS DE LA PRESENTATION, HEIN QUAND MEME !!!
+oui c'est fait.
+
+************************
+
+Les gens :
+
+
+
+
+Ckyfran vous conseille http://jeanbamin.com
+
+Ceska2007 fait wouf-wouf
+
+Cuningham 
+
+Le Corse
+
+Captive Studio http://www.captive-studio.com/
+
+Cemonsieur http://www.ulule.com
+
+Platypus Creation http://www.platypus-creation.com
+
+************************
+
+
+Hop, un dernier petit contributeur pour la route.
+
+Un grand merci à Lapin. S'il est une évidence qui brille au plus haut du ciel, c'est bien que la Natural Sélection ait placé les ornythorinques (et les lapins) au sommet de l'échelle évolutive darwinienne. Peut-être même l'échelle évolutive créationniste. D'ailleurs à propos de création : puisse la création patapoussienne se mettre sous la dent (enfin... sous le bec) d'immenses projets webiens. Car oui, le web, c'est bien.
+
+
+************************
+
+    --- assistant aux effets sonores ---", 
+    
+    Ckyfran, qui vous conseille: http://jeanbamin.com
+    
+    --- super-donateuse ---", 
+    --- super-donatorette ---"),
+    Ceska2007", ),
+     --- joyeux mécènes ---", 
+    --- joyesque donators ---"),
+    Cuningham", ),
+    Le Corse", ),     
+    Captive Studio", ),
+    http://www.captive-studio.com/", ),
+    cemonsieur", ),
+    http://www.ulule.com", ),
+    Platypus Creation", ),
+    http://www.platypus-creation.com", ),

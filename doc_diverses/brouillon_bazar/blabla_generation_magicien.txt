@@ -1,0 +1,302 @@
+
+bon, faut du hasard. mais pas trop. Faut une difficulté qui monte.
+
+
+variable-param-machin :
+
+nbre de magi généré
+lvl des magis
+temps entre deux waves
+
+
+type de waves : 
+
+random (nbre)
+
+cercle autour du joueur (nbre, distance)
+
+ligne verticale <-
+
+ligne horiz v
+
+ligne horiz ^
+
+carré autour du joueur (bof...)
+
+line en random
+
+verticale -> (dangereux)
+
+hor, ver, mais en échangeant les positions.
+
+
+on donne des points de difficulté au generator.
+il les dépense pour faire des trucs plus ou moins vilains.
+et en dépense aussi pour diminuer le temps avant la prochaine wave.
+
+entre chaque wave, le générator regagne de la difficulté.
+il en regagne de plus en plus.
+et ça fait mal !!!
+
+
+pour plus tard : une touche "taunt"
+
+FUCK !! ah non c'est bon.
+
+
+tous les coefs seront indiqués en "pour 128". C'est comme du pourcent. Mais sur 128
+Ca permet de faire le cakos avec un shift right au lieu d'une division de mayrde.
+pas de nombre réel. Jamais. que des divisions. (enfin : shift left)
+
+bon, dosage, algo, et tout ça.
+
+pts de difficulté = hardMana
+avec comme préfixe de variable harM
+
+faut une fonction de répartition du harM. Avec un coef max et un min (nbre rationnel A/B).
+Et ça renvoie un couple de 2 valeurs.
+
+faut une fonction de décision d'achat : decideBuy
+param : harMCost (coût du truc), harMCredits (crédits alloués à l'achat du truc), coef (0-128)
+si harMCost > harMCredits, on n'achète pas, car trop cher.
+Sinon : decision = random(0, harMCredits * coef / 128)
+si decision > harMCost on achète. sinon on laisse tomber.
+le coef peut etre superieur a 128. Ca fait un peu zarb, mais ca marcherait.
+(de toutes facons y'a toujours la securite de départ, que on achète pas si on n'a pas assez de harM)
+
+si on achète, diminuer harMCredits de harMCost. rencoyer True
+sinon : renvoyer False.
+
+--------------
+
+à chaque pattern (Rand, ou Line) acheté, on doit ensuite décider ce qu'on achète en config.
+
+ - nbre de magi
+ - delai d'apparition
+ - lvlUp general ou individuel
+ - quantité de lvlUp
+ 
+les couts de ces trucs doivent être plus haut pour des magiciens Rand que des Line.
+car les Rand sont plus dangereux.
+
+--------------
+
+valeur de départ : harMTotal
+répartir : harMRand (50, 100), harMPat   coef donné en 128eme, donc
+
+prendre le plus grand des deux ( = X) et : 
+repartir X (110, 128), harMNextWave
+
+avec : harMPat
+repartir harMPatChoice (4, 32), harMPatConf
+ - hardMana for Pattern Choice
+ - hardMana for Pattern Configuration
+
+
+-------
+
+ - utilisation de harMRand
+
+c'est le crédit de harM pour le pattern de base. Celui pour lequel les magiciens sont
+obligatoirement Rand. Y'a pas le choix
+
+choix du pattern. coef/128, cout : 
+ 96, 0, pattern random-random
+ 
+ 12, 10, cercle autour du joueur (nbre, distance)
+  4, 10, diag autour du joueur (bof...) 
+       
+  2,  1, ligne verticale <-
+  2, 20, ligne verticale -> (dangereux)
+  2, 15, ligne horiz v
+  2, 15, ligne horiz ^
+       
+  2,  1, avec echange de position ligne verticale <-
+  2, 20, avec echange de position ligne horiz v
+  2, 15, avec echange de position ligne horiz ^
+  2, 15, avec echange de position ligne verticale -> (dangereux)
+
+le cout est pris dans harMRand
+si certain patterns ne peuvent pas être choisi, car trop cher. on les vire
+ca baisse le total de coef, qu'est plus sur 128, mais osef. Ca empeche pas de faire un choix parmi le reste.
+  
+repartir harMRandNbr (16, 128), harMRandLvlSpd
+
+on utilise les crédits harMRandNbr pour savoir combien on génère de magicien.
+y'a pas de prise de décision. On en prend le plus qu'on peut, avec harMRandNbr
+le premier magi est gratos.
+magiConfCoefCost = 10. C'est comme ça. Ca veut dire que
+le suivant coute 10, le suivant-suivant coute 20, etc...
+on obtient nbrMagiToGenerate
+re-verser le reste du harM à harMRandLvlSpd
+
+ - utilisation de harMRandLvlSpd
+
+   * diminution delai d'apparition
+ 
+    temps de délai initial entre chaque génération d'un magicien = 50
+    cost = nbrMagiToGenerate
+    coef = 128
+    décision(cost, harMRandLvlSpd, coef)
+    si on décide que oui, alors on diminue le temps de délai de 5
+    cost += nbrMagiToGenerate
+    coef -= 13
+    etc
+
+   * lvlUp
+    
+    pas de décision si lvlUp global ou individuel. C'est toujours individuel.
+    
+    choisir un magicien au hasard.
+    cout de lvlUp = (level actuel) * 8
+    (le 8 vient de magiConfCoefCost - 2), et pis c'est tout)
+    on le fait automatiquement, si c'est possible.
+    on recommence
+    si 3 echec de suite dans la tentative de montage de lvl, on arrête
+
+re-verser le reste du harM à harMPat
+    
+ - utilisation de harMPat
+ 
+   * utilisation de harMPatChoice
+ 
+Ca va servir à acheter d'autres patterns de génération. en line ou en random.
+
+on reprend le truc de là haut, mais avec des (proba, cout) différent
+le troisième chiffre c'est le magiConfCoefCost. On le verra plus tard
+
+   5, 15, 1, pattern random-random
+
+  50, 20, 2, cercle autour du joueur (nbre, distance)
+   5, 20, 2, diag autour du joueur (bof...) 
+
+  15, 10, 1, ligne verticale <-
+   3, 40, 4, ligne verticale -> (dangereux)
+   8, 30, 3, ligne horiz v
+   8, 30, 3, ligne horiz ^
+
+  15, 10, 1, avec echange de position ligne verticale <-
+   3, 30, 3, avec echange de position ligne horiz v
+   8, 10, 1, avec echange de position ligne horiz ^
+   8, 10, 1, avec echange de position ligne verticale -> (dangereux)
+
+algo : 
+  Virer ceux qui coute trop cher
+  en prendre un au hasard.
+  Si 1ere fois, il est choisi d'office. Sinon : décision(cost, harMPatChoice, coef=256)
+  payer le pattern avec harMPatChoice (of course !!)
+  Virer le pattern choisi. On peut pas le choisir deux fois.
+  Augmenter le cout de tous les patterns de 20
+  rebouclage (en interne !!!! hahaha ! expression corporate trop de la balle "rebouclage en interne")
+
+re-verser le reste dans harMPatConf
+
+   * utilisation de harMPatConf
+
+diviser harMPatConf en le nombre de pattern choisi. donner le reste de la division au premier
+ca donne : harMPatConfList
+
+prendre random(coef (0, 12) du harMPatConfList[1]) et le donner au harMPatConfList[0]
+(c'est pour contrebalancer lefait que y'aura un reversement après. On ne le fait qu'avec le premier.)
+(ou pas, ça se contrebalancedéjà un peu avec le reste. Et pis osef d'abord)
+
+pour chaque elem de harMPatConfList
+
+  harMPatConfCur = harMPatConfList[i]
+
+  si random(0, 16)/128 on générera des magiciens rand, et magiConfCoefCost = 10
+  sinon on générera du line. et magiConfCoefCost = celui du pattern.
+  
+  repartir harMPatConfCurNbr (16, 128), harMPatConfCurLvlSpd
+  
+  prendre le nombre de magicien max avec harMPatConfCurNbr.
+  en tenant compte du bon magiConfCoefCost
+  ca donne nbrMagiToGenerate
+  re-verser le reste dans harMPatConfCurLvlSpd
+  
+  si le pattern est cercle ou carré.
+  (à la base, il est à une distance de euh... 75 pixels du joueur)
+  cost = nbrMagiToGenerate
+  coef = 256
+  décision(cost, harMPatConfCurLvlSpd, coef)
+  si oui, on diminue la distance de 1/10
+  cost =+ nbrMagiToGenerate
+  coef -= 26
+  recommencer
+    
+  si le pattern est un truc horizontal :
+  cost = nbrMagiToGenerate * magiConfCoefCost
+  coef = 512
+  si oui, génération commence par le magi de gauche, sinon elui de droite.
+  
+  si pattern truc vertical
+  choix de commencer par le haut ou bas en random 1 chance sur 2.
+    
+  choix apparition commune ou indiv :
+  cost = nbrMagiToGenerate * magiConfCoefCost
+  coef = 512
+  si oui, commun, sinon indiv
+  
+  ensuite, on oublie le commuin/indiv, et même décision que pour le rand, sur la diminution du délai d'apparition
+  
+  si commun : délai = somme de tous les délai / 2.
+  sinon, on fait comme d'hab.
+  
+  choix de lvlUp Commun ou indiv :
+  cost = nbrMagiToGenerate * magiConfCoefCost
+  coef = 512
+  si oui, lvl up commun. sinon indiv
+  
+  si lvl up commun : 
+      le premier est gratuit
+      cost de lvlup = level_actuel * min(magiConfCoefCost-2, 1) * nbrMagiToGenerate
+      décision d'office.
+      on lvl up tous les magicien.
+      on recommence.
+  
+  si lvl up individuel : 
+  
+      comme pour le Rand au départ. en tenant compte de magiConfCoefCost
+
+re-verser le harMPatConfCur restant dans le harMPatConfCur suivant.   
+
+à la fin de la boucle :
+re-verser le reste du harMPat pour la prochaine wave.
+
+
+-------
+
+le temps avant la prochaine wave est de : (nbrTotalMagician + indexCurrentWave*3) * 30 cycles
+30 cycles ça fait un peu moins de 0.5 secondes
+
+avec harMNextWave : 
+payage de 1, puis 2 puis 3... pour faire baisser de 30 cycles à chaque fois
+jusqu'à un minimum de 5 secondes.
+
+re-verser le reste du harMPat pour la prochaine wave.
+
+-------
+
+le temps : 
+
+quand il n'y a plus aucun magicien qui bouge (le joueur les a butés, ou ce sont des magiline qui ont fini) : 
+
+on attend 3 - indexCurrentWave * 0.5 secondes
+
+et on lance direct la wave suivante.
+
+le temps qui restait est stocké dans timeReserve.
+et en plus, on convertit ce temps en "30-cycles", et on retire cette valeur à la réserve actuelle de harM du générateur de magicien.
+Comme ça, le joueur qui finit vite a une double récompense. Il aura plus de temps pour les prochaines wave, et il a baissé la difficulté fe la prochaine. Youpi !!
+
+
+Si, durant une wave, le temps avant la prochaine eset écoulé, on puise dans timeReserve pour faire encore attendre.
+
+Si y'a plus de timeReserve, la wave suivante est envoyée, même si celle en cours est pas finite.
+
+
+edit 01//09/2010 : pas de pattern carré, mais un pattern de ligne diagonale.
+et le rayon du cercle est de 100 à la base. non mais.
+
+
+edit 0/09/2010 : les magiRand coutent bien plus cher que les magiLine, car ils sont vraiment dangereux.

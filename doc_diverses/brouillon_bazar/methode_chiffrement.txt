@@ -1,0 +1,295 @@
+Ce document décrit une méthode pour donner des codes secrets à des personnes ayant contribué au jeu (financièrement ou d'une autre manière).
+
+Ces codes sont censés débloquer des choss dans le jeu, contenir le nom du contributeur pour le remercier personnellement, etc.
+
+Cette méthode n'a absolument pas été appliquée dans Blarg. De plus, elle est assez alambiquée, mal expliquée et à priori pas utile.
+
+Je met ce document dans le repository, pour le fun, mais il ne vaut vraiment pas grand chose.
+
+
+=========================
+
+
+technique de la mort pour fabriquer les codes secrets de bonus, de paiement, etc...
+
+donnée de départ :
+
+ - SECRET_PASSWORD. Truc que personne ne connaîtra.
+   Qui sera chiffré irréversiblement, pour valider le code secret.
+   longueur pas fixe
+
+ - CODE_IDENTIFIER. Index à la con. Pour savoir de quel code secret on parle.
+   longueur fixe, sur 3 octets, soyons fou.
+   Ne pas la commencer à 0. Faut mettre tout et n'importe quoi comme valeurs. Et surtout des trucs très grands.
+
+ - PLAYER_NAME. nom du joueur. A chiffrer réversiblement. (ça se fera tout seul avec le XOR ci-après. Pas besoinde 2.
+   Cas 1) c'est le nom de joueur d'un autre jeu, dans ce cas, il est récupéré tel quel,
+          pour l'affichage d'un message classe, du genre : "Félicitations, Machin, vos exploits
+          dans le jeu DTC vous ont permis de débloquer cet achievement"
+
+          Dans ce cas, on part du nom unicode du joueur. Et on le chiffre. (ou UTF8, enfin le truc qu'est bien quoi)
+          Si l'unicode foire, le message classe sera pourri, mais c'est pas un drame.
+
+   Cas 1.5) C'est un "identifiant de ligne de générique". C'est juste une valeur numérique, qui sera
+          récupérée tel quel. (ou alors on la cryptera elle aussi en SHA ? Oh ouais aller, zou!)
+
+          Ca permettra de faire briller une ligne de crédit spécifique, pour les joueurs ayant
+          contribué.
+
+          Pas d'histoire d'unicode de mes couilles. C'est une valeur numérique.
+
+
+   Cas 2) C'est le nom du joueur dans ce jeu, il faut vérifier qu'il est égal à l'un des profils créés.
+          Ca permettra de donner des mot de passe plus ou moins personnalisés aux gens.
+
+          Dans ce cas, on part du nom simplifié. (maj-min, 0-9, le reste est remplacé par des underscores
+
+          Pas de risque de foirage. C'est pas un nom qu'on affichera donc osef.
+          Il peut y avoir des doublons. Genre "Réchèr" et "Recher". Mais osef aussi.
+          Ca n'augmente que légèrement la permissibilité des mots de passe. Donc ça me fait chier moi,
+          et pas les joueurs.
+
+   cas 3) C'est que d'alle, et osef.
+
+   longueur pas fixe
+
+
+méthode de chiffrement :
+
+
+SECRET_PASSWORD_LEN, longueur du SECRET_PASSWORD, sur 3 octets, écrit à l'envers
+coller SECRET_PASSWORD_LEN à SECRET_PASSWORD, pour obtenir SECRET_PASSWORD_WITH_SIZE
+
+PLAYER_NAME_LEN, sur 3 octets. Longueur du nom du joueur.
+coller PLAYER_NAME_LEN à PLAYER_NAME, pour obtenir PLAYER_WITH_SIZE
+
+faut mélanger. Sinon on risque de voir trop facilement le nom et le mot de passe secret.
+on prend : 1 bit de CODE_IDENTIFIER, 1 bit de SECRET_PASSWORD_WITH_SIZE, 1 bit de PLAYER_WITH_SIZE, etc...
+Quand l'une des données n'a plus de bits, on arrête d'en prendre. Mais on continue d'aligner les autres.
+
+Ca donne GARBLED_INFO, qui aura une taille de au moins 9 octets = 72 bits, car y'a les trois valeurs
+numériques du début. (les deux tailles + identifiant du message)
+Comme c'est foutu un peu en bordel, y'a peu de chances qu'on se retrouve pas avec des octets systématiquement à 0,
+ou aux mêmes valeurs. Et c'est cool.
+
+Si la taille, en bits, de GARBLED_INFO n'est pas un multiple de 32, ajouter des "010101..." pour que ça le soye.
+Comme c'est un multiple de 32, c'est aussi un multiplede 8 (yeaahh !!!),
+donc on peut considérer GARBLED_INFO comme une suite d'octets.
+
+Avec ça, ce sera déjà pas trop mal obfusqué.
+
+Petit chiffrage de GARBLED_INFO avec un XOR et une clé à la con (vaguement secrète). Histoire de déconner.
+
+ça donne GARBLED_INFO_XOR
+
+On reprend GARBLED_INFO_XOR sous forme de bits, et on en fait des paquets de 32 bits.
+
+conversion paquet de 32 bits -> caractère, avec la table suivante :
+['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+ 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R',
+ 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+ '2', '3', '4', '5', '6', '7', '8', '9'
+]
+
+Y'a bien 32 éléments dans cette fabuleuse table. C'est les majuscules et les chiffres,
+sans les caractères qui font chier : O, 0, I, 1
+
+
+edit 29/06/2010
+le ALPHACOOL sur 64 valeurs et non pas 32. Ca prendra moins de place. On utilisera ça :
+['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+ 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R',
+ 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+ '2', '3', '4', '5', '6', '7', '8', '9',
+
+ 'a', 'b', '/', 'd', 'e', 'f', 'g', 'h',
+ 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's',
+ 't', 'u', 'v', 'w', 'x', 'y', 'z', '+',
+ '=', ':', '!', '?', '-', '*', '.', '%']
+
+
+Ca donne le code GARBLED_INFO_XOR_ALPHACOOL, et on est content !!
+C'est ça que le joueur doit entrer comme mot de passe.
+
+
+
+
+méthode de déchiffrement
+
+On a pris SECRET_PASSWORD, et on l'a chiffré en SHA. Ca donne SECRET_PASSWORD_SHA,
+qui est indiqué en clair dans le jeu. On peut le consulter comme on veut. Youpi.
+
+On chope ce que l'utilisateur a entré comme code.
+On vérifie que y'a au moins 3 lettres, sinon on peut pas choper les tailles et le CODE_IDENTIFIER.
+Et on vérifie aussi que tous les caractères sont dans la table de conversion.
+
+On reforme les paquets de 32 bits à partir de la table de conversion. On en fait des octets.
+
+ça redonne normalement GARBLED_INFO_XOR (qui est un multiple de 32, obligatoirement)
+
+On re-XOR avec la même clé pourrie.
+
+ça redonne normalement GARBLED_INFO
+
+On prend les 72 premiers bits, qu'on recompose pour ravoir
+CODE_IDENTIFIER, SECRET_PASSWORD_LEN (à remettre à l'endroit), et PLAYER_NAME_LEN.
+
+si SECRET_PASSWORD_LEN > PLAYER_NAME_LEN
+
+    prendre les PLAYER_NAME_LEN*8*2 bits suivants de GARBLED_INFO (si y'en a pas assez, fail).
+
+    les réarranger en en prenant un sur deux, pour avoir PLAYER_NAME en entier, et un bout de SECRET_PASSWORD
+
+    prendre les (SECRET_PASSWORD_LEN-PLAYER_NAME_LEN) * 8 bits suivants.
+    (si pas assez : fail. Si trop, vérifier qu'ils valent 010101..., sinon fail.)
+
+    recoller SECRET_PASSWORD
+
+sinon
+
+    prendre les SECRET_PASSWORD*8*2 bits suivants de GARBLED_INFO (si y'en a pas assez, fail).
+
+    les réarranger pour avoir SECRET_PASSWORD en entier, et un bout de PLAYER_NAME
+
+    prendre les (PLAYER_NAME_LEN-SECRET_PASSWORD_LEN) * 8 bits suivants.
+    (si pas assez : fail. Si trop, vérifier qu'ils valent 010101..., sinon fail.)
+
+    recoller PLAYER_NAME
+
+retrouver le SECRET_PASSWORD_SHA à partir du CODE_IDENTIFIER correspondant. On l'a stocké quelque part
+dans le jeu, en clair.
+Si y'en a pas correspondant au CODE_IDENTIFIER donné, fail.
+
+chiffrer le SECRET_PASSWORD obtenu avec SHA, et vérifier que c'est égal à SECRET_PASSWORD_SHA.
+Si ça l'est pas : fail.
+
+Selon la valeur de CODE_IDENTIFIER :
+    - PLAYER_NAME doit être pris tel quel (en unicode je sais pas quoi) pour le message classe
+    - PLAYER_NAME doit être pris tel quel comme identifiant de ligne de générique.
+      (Avec un petit coup de SHA dessus histoire de déconner.)
+    - PLAYER_NAME doit être comparé avec le nom actuel du profil (ou tous les noms des profils ?), si
+      pas correspondance : fail.
+    - osef de PLAYER_NAME
+
+
+Le jeu ne stocke pas les effets des codes. Il stocke les codes en eux-même (qui sont associés soit à tout le jeu,
+soit à un profil particulier).
+A chaque démarrage du jeu, on reprend les codes, on les retraites, on les valide, et on applique l'effet.
+Oui ça risque d'être un peu le bordel. Eh ben c'est comme ça et pis c'est tout.
+
+Stockage dans le fichier de sauvegarde avec un petit XOR supplémentaire ? Histoire qu'on puisse pas le reprendre
+tel quel d'un fichier de sauvegarde. Faut s'en être souvenu soi-même pour le redonner à d'autres gens.
+
+Ca evite que les codes entrées apparaissent en clair quand on exporte/improte des codes géants de sauvegarde.
+Putain mayrde. Les gens ils vont s'échanger leurs codes géants entre eux.
+Dedans y'a les codes obtenus par des paiement, ça va tout péter. Ouais ben tant pis. Ainsi va la vie.
+Ca permet pas de s'ajouter un code sur soi. Ca permet juste de s'ajouter un profil avec un code.
+
+Faut y réfléchir, aux codes géants de sauvegarde.
+
+
+****************
+
+Création d'une nouvelle version.
+
+Dans le jeu, il y a un achievement de "contributeur". Cet achievement s'active avec un "code contributeur",
+qui contient : un code secret SHA, un CODE_IDENTIFIER lié à la version du jeu,
+et un identifiant de ligne de générique (donc pas de verif supplementaire sur un nom).
+
+On place sur le serveur la version "privé" du jeu. Le code contributeur est automatiquement activé dedans
+(avec une petite fonction à la con, dans un coin du programme, qui donne le code).
+L'identifant de ligne de générique, de ce code contributeur, ne contient aucune info utile.
+Le générique contient les noms des gens ayant participé aux versions précédentes. Mais pas à la version
+actuelle. C'est normal, je ne les connais pas encore.
+
+Il y a un écran à la con au début qui demande de ne pas distribuer cette version privée du jeu.
+
+Les gens contribuent en donnant du fric. Ils reçoivent immédiatement la version privée. Avec l'achievement
+de contributeur qui s'active automatiquement. (+ bonus dans le jeu eventuellement)
+
+
+
+Libération de la nouvelle version.
+
+On place sur le serveur la version "public" du jeu. Identique à la version privée sauf sur 3 points :
+ - le code contributeur est enlevé. L'achievement de contributeur ne s'active plus.
+   (dans le programme, la fonction à la con dans un coin ne donne plus le code contributeur)
+
+ - le générique est complété, avec la liste de tous les contributeurs (maintenant on la connait)
+   dans le programme, chaque contributeurs est associé à un identifiant unique (crypté SHA)
+
+ - il n'y a plus l'écran à la con du début.
+
+
+Je crée un code unique pour chaque contributeur, contenant son identifiant de ligne de générique.
+Je leur donne, en privé.
+
+Le contributeur télécharge la version publique du jeu (comme tout le monde).
+Si tout se passe bien, il paume pas ses sauvegardes. Puisque le fichier de sauvegarde n'est pas écrasé.
+Il paume son achievement, puisque le programme de la version publique écrasera celui de la version privé
+(ou pas si il l'installe ailleurs, mais osef).
+Le contributeur entre son code, et il retrouve son achievement. De plus, ce code fait briller la ligne
+avec son nom dans le générique. Youpi !!
+
+Ce code de contribution restera valide pour les versions suivantes. (ligne de générique qui brille,
+achievement, etc...)
+
+Si un contributeur paie deux fois pour la même version, il aura l'achievement qu'une fois. Mais
+il pourra faire briller deux lignes de générique. (Le brillage se cumule)
+
+Pour chaque nouvelle version, il y aura un achievement différent de contribution.
+Si un contributeur paie deux fois pour deux versions différentes, il aura les deux achievement,
+et les deux lignes de générique qui brillent.
+
+********************
+
+Autre chose : faire un gros code de sauvegarde géant pour stocker toute les infos du fichier de sauvegarde,
+pour que ça puisse se transmettre d'un ordinateur à l'autre ?
+Oui je crois oui. Avec les codes dedans du coup. Mais chiffré  un petit coup avec une autre cle XOR pourrite.
+Ce sera plus facile que de dire au joueur : ton fichier de sauvegarde il est là, tu vas le chercher Lykos.
+
+Y'a tous les profils dans le code.
+En plus ça permettra d'additionner les profils.
+ouais cool !!
+
+comment est foutu le fichier de sauvegarde ? Et par la même, les codes géants de sauvegarde.
+
+Faut obfusquer un minimum, mais pas trop non plus. De toutes façon matériellement on peut pas trop.
+
+trucs à sauvegarder :
+ - les codes génériques (en particulier les codes de contribution). Sous forme d'une suite d'octets GARBLED_INFO_XOR
+(multiple de 32 bits)
+C'est tout mis bout à bout. Comme on a les tailles à chaque fois. (enfin avec le modulo 32 bits mes couilles),
+on peut les retrouver.
+
+ - chaque profil de chaque joueur, avec ses infos du jeu, et ses codes persos.
+Aussi sous forme d'une suite d'octets GARBLED_INFO_XOR. (multiple de 32 bits)
+
+On divise la suite d'octets des code générique en <nbr_profil> morceaux.
+(Le dernier paquet aura peut être une taille inférieure aux autres, osef).
+
+Si la sauvegarde d'un profil d'un joueur a une taille inférieure à 10 octets,
+rajouter des octets avec des conneries dedans. Mais en général non.
+(Faut que les sauvegarde de profil soit imperméable à ce genre de farce. Y'aura qu'à foutre une taille fixe/spécifiée)
+
+Insérer, dans chaque sauvegarde de profil, à partir du 10eme octet, la taille d'un paquet de code générique,
+sur trois octets, ainsi que le paquet.
+
+XOR avec une autre clé à la con, et ALPHACOOL de tous les profils des joueurs.
+
+ecrire : JEU_MACHIN_PLAYER_XXXX_<sauvegarde profil joueur xxxx>_PLAYER_YYYY_<sauvegarde profil joueur yyyy> etc...
+
+les underscore sont les séparateurs. Et c'est bien.
+
+
+Comme ça si le joueur copie tout le texte d'un coup, il récupère les codes communs. Et c'est normal.
+Si il prend que 1 profil, ça va marcher, mais il aura pas les codes communs.
+
+***************
+
+question de merde : si on change le pseudo, ça ddésactive les codes linkés au pseudo.
+Oui.
+Donc on peut pas changer le pseudo.
+Comme on peut créer autant de profil qu'on veut, z'aller pas nous faire chier.
+Dans Emily on peut pas. Si ?
+

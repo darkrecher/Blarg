@@ -1,0 +1,26 @@
+on va pas se faire chier avec du compliqué.
+
+
+y'a 8 mouvement possible de hurt (4 dirs + 4 diago)
+
+marge de mouvement de recul = 5. mettons
+
+pour le X : 
+val absolue (Xheros - Xmagi) < marge : pas de recul X
+sinon
+Xheros > Xmagi : recul +
+sinon
+recul -
+
+pareil pour l'autre
+
+si aucun recul.
+recul X -. par défaut.
+
+
+et pour le recul. move init, accel (qui sera une decel en fait), period, nombre mouvement.
+et basta.
+
+on s'arrange pour que le mouvement se finisse avant l'anim en potion de mana.
+mais théoriquement on est pasz obligé.
+

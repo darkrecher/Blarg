@@ -1,0 +1,15 @@
+
+Avatar
+2000kb max, 256x256 square image recommended to avoid cropping
+
+Profile Header Image
+200kb max, 950x150 recommended
+This header image is shown at the top of your profile, where your username is.
+
+LARGE Profile Header Image
+2000kb max, 940x370 minimum
+Please upload a photo of yourself, or screenshot of work you are doing (with no text) as that will look best.
+
+Profile Bio
+990 characters remaining, no line breaks, links or html is allowed - just a simple description about yourself.
+

@@ -1,0 +1,37 @@
+il faut que le jeu puisse avoir une partie "aire de jeu" (GAME_AREA) 
+et une partie interface, affichant les points de vie, score, etc... (IHM_AREA)
+et par ailleurs, il y a une image BACKGROUND global, qui rassemble les deux AREA, 
+mais avec aucun sprite dessus evidemment.
+
+
+les sprites de la GAME_AREA se redessine tout le temps, car il se passe tout le temps plein de trucs dessus.
+les psrites de l'IHM_AREA se redessinent pas tout le temps, car des fois rien ne change.
+
+mais on veut quand même que des conneries de la GAME_AREA puisse empiéter sur l'IHM_AREA.
+juste pour faire rigolo. Genre des morceaux de bras qui volent et qui peuvent passer par dessus
+l'affichage des scores. Ca serait cool d'avoir ça.
+
+Donc, il faut une surface intermédiaire : BACKGROUND_WITH_IHM_AREA. C'est une surface qui contient
+le background, plus les éléments d'IHM.
+quand l'IHM change, on clear avec le BACKGROUND, on redessine les éléments sur BACKGROUND_WITH_IHM_AREA,
+et on blite les éléments nouveaux sur la GAME_AREA.
+(ou mieux, si possible, on enregistre les dirtyRects de l'IHM, que l'on propagera
+sur la GAME_AREA)
+
+quand la GAME_AREA change, on clear avec la BACKGROUND_WITH_IHM_AREA,
+on redessine les éléments du jeu, et c'est ok !!
+
+Ca permet de pas avoir à réfléchir si des sprites de la GAME_AREA sont entrés dans la zone d'IHM
+ou pas. Comme de toutes façon on reprendra l'IHM déjà dessinée pour le clear, ça 
+devrait être propre et pas faire de bug pourri.
+
+Du coup, y'a un double blit d'une grosse zone importante au moindre petit changement d'IHM.
+le blit BACKGROUND -> BACKGROUND_WITH_IHM_AREA, puis BACKGROUND_WITH_IHM_AREA -> GAME_AREA
+(si on arrive à faire le "mieux" pré-citée, ce sera moins grave. On aura juste un double blit
+des petites zones d'IHM ayant changées).
+
+Dans tous les cas, c'est beaucoup moins grave que de devoir réafficher à chaque cycle tous
+les sprites de l'IHM. Donc c'est cool et youpi.
+
+Petit inconvénient, les éléments d'IHM sont forcément derrière les éléments du jeu genre bras qui volent.
+Mais on s'en fout, c'est ce qu'on veut.

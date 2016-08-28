@@ -1,0 +1,52 @@
+
+des achievements à la con
+
+un beugloir (une touche = un son. Mais on débloque avec les achievements)
+
+
+jeu à 2
+
+
+un pattern de magicien que random, mais ils partent tous du même point. Et on les voit se démuiltipliser.
+Wouhou !!
+
+différents lieux.
+
+d'autres monstres ? tireur, bouclier humain, buffer, ...
+
+magiciens LINE qui devient fou au bout d'un moment qu'il s'est arrêté (il tremble, puis random lvl ++++)
+
+
+achievements : 
+    score
+    nbre burst total
+    total nbre morts d'un certain type
+    nbre burst en un coup
+    rester X min sans tirer
+    jusqu'à la wave X
+    cumul de temps bonus = X
+    rester X minutes / faire X kills avec tjrs au moins une cartouche dans le chargeur
+    que du burst. X burst de suite.
+    X morts d'un certain type de suite
+    toucher 3 magi differents avec 3 balles differentes
+    buter 3 magi differents avec 3 balles differentes
+    un burst et un kill en même temps
+    avoir X magiciens immobiles dans le jeu
+    avoir X magiciens random dans le jeu
+    buter un magicien de level X
+    pas bouger pendant X secondes
+    X coups de feu qui touchent de suite
+    rejouer X fois
+    cliquer sur les trucs
+
+bonus ??
+    + de vie
+    + rapide
+    pet de la mort
+    + de cartouche
+    fusil qui lance + de balles
+    invincibilité
+    berserk (+ y'a des magi proches, + il est fort) le heros tire dans tous les sens.
+    butage de X magiciens immobiles
+    
+    
