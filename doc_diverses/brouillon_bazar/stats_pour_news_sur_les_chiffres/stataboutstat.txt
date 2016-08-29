@@ -1,0 +1,109 @@
+yohop
+-------------------  statmaker.py  -------------------
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! - si y'a un diese de commentaire ou pas (on cherche pas les # qui serait entre guillemets et qui serait donc pas des commentaires. Osef) : superieur a 99. not-Argh !!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! - nombre de caractère espace au début. Faut que ce soit des multiples de 4. Et on enregistre la valeur max : superieur a 99. not-Argh !!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!ORDERED_LIST_LINE_TYPE = (LINE_CODE_ONLY, LINE_CODE_AND_COMM, LINE_COMMENT_ONLY, code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!    LINE_COMMENT_ONLY     : "lignes avec uniquement du commentaire de type diese :", code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!    LINE_COMMENT_TRIQUOTE : "lignes avec du commentaire entre triple-double-quote :", code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!    CHAR_COMMENT_TRIQUOTE  : "caractères de commentaires entre triple-double-quote :", code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!    CHAR_SPACE_INDENT_COMM : "caractères d'indentation dans des commentaires :", code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!            argleu("petit problème de finissage de fichier dedans un commentaire triquote") code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!        self._printStatInfo(self.dicNbrLines, self.dicNbrChar, self.nbrFunction, self.nbrClass) code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!        self._printStatInfo(self.dicTotalNbrLines, self.dicTotalNbrChar, self.totalNbrFunction, self.totalNbrClass) : superieur a 99. not-Argh !!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!        self._printStatInfo(self.dicTotalNbrLines, self.dicTotalNbrChar, self.totalNbrFunction, self.totalNbrClass) code plus que 79 char. La c'est sur!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+--------------------------------------------------
+-- COMPTAGE DU NOMBRE DE LIGNES SELON LEUR TYPE --
+--------------------------------------------------
+
+lignes avec que du code :                                 185
+
+lignes avec du code et des commentaires :                   1
+
+lignes avec uniquement du commentaire de type diese :      13
+
+lignes avec du commentaire entre triple-double-quote :     32
+
+lignes avec juste une triple-double-quote :                20
+
+lignes vides :                                            124
+
+nombre total de ligneu :  375
+
+--------------------------------------------------
+-- COMPTAGE DU NOMBRE DE CHARS SELON LEUR TYPE --
+--------------------------------------------------
+
+caractères de code :                                     6378
+
+caractères de commentaires de type diese :                439
+
+caractères de commentaires entre triple-double-quote :   1543
+
+caractères d'indentation dans des commentaires :          313
+
+caractères d'indentation dans du code :                  1472
+
+nombre total de chareu :  10145
+
+nombre de fonction :  11
+nombre de class :  4
+DER TOTALEU  !! YAAAAHHH !!!
+--------------------------------------------------
+-- COMPTAGE DU NOMBRE DE LIGNES SELON LEUR TYPE --
+--------------------------------------------------
+
+lignes avec que du code :                                 185
+
+lignes avec du code et des commentaires :                   1
+
+lignes avec uniquement du commentaire de type diese :      13
+
+lignes avec du commentaire entre triple-double-quote :     32
+
+lignes avec juste une triple-double-quote :                20
+
+lignes vides :                                            124
+
+nombre total de ligneu :  375
+
+--------------------------------------------------
+-- COMPTAGE DU NOMBRE DE CHARS SELON LEUR TYPE --
+--------------------------------------------------
+
+caractères de code :                                     6378
+
+caractères de commentaires de type diese :                439
+
+caractères de commentaires entre triple-double-quote :   1543
+
+caractères d'indentation dans des commentaires :          313
+
+caractères d'indentation dans du code :                  1472
+
+nombre total de chareu :  10145
+
+nombre de fonction :  11
+nombre de class :  4  (c'est faux mais c'est pas grave)
+tchouss
