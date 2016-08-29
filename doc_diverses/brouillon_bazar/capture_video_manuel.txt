@@ -1,0 +1,32 @@
+Ca ne marche QUE sur le gros PC.
+Pas le PC portable mes couilles.
+
+Panneau de config - sons et périphériques audio - audio - panel "enregistrement audio"
+
+HD audio rear input (pas le choix)
+bouton volume
+menu d'en haut - option - propriétés
+COCHER CETTE CASE DE MERDE "mixage stéréo"
+OK
+Maintenant le putain de contrôle de volume de ce putain de mixage stéréo daigne montrer sa sale gueule de connard dans la fenêtre.
+cocher cette merde.
+mettre un volume correct
+
+lancer speedyvideo mes couilles
+clic droit sur le bouton de merde
+pas nécessaire d'utiliser la compression vidéo. Le son doit pouvior fonctionner même si on la met pas
+cocher fichier avi (vidéo + son)
+COCHER LA CASE MELANGEUR DE CONNARD DE MES COUILLES
+définir la zone et lancer la capture.
+Ca marche.
+
+CA DOIT POUVOIR ETER LU AVEC LE WINDOW MEDIA PLAYER DU MEME PC, ET ON PEUT ENTENDRE LE SON
+
+(le son il foire éventuellement sur les player Mac. OSef. Quand on le balance sur internet, ça marche.)
+
+On peut ajouter une compression vidéo.
+Choisir "divX 6.9.2 codec (2 logical CRmes_couilles_on_a_pas_la_place_de_lire)"
+
+
+
+
